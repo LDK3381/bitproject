@@ -9,7 +9,6 @@ public class WallEvent : MonoBehaviour
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
-    public GameObject block;
 
     public float explosionForce = 50f;
     public float explosionRadius = 4f;
@@ -58,14 +57,12 @@ public class WallEvent : MonoBehaviour
         Vector3 explosionPos = transform.position;
         //해당 지점에서 Collider 가져오기
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-        //add explosion force to all colliders in that overlap sphere
+        //벽 파괴로 인한 파편 이동효과 구현
         foreach (Collider hit in colliders)
         {
-            //get rigidbody from collider object
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                //add explosion force to this body with given parameters
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
             }
         }
@@ -73,9 +70,13 @@ public class WallEvent : MonoBehaviour
 
     public void CreatePiece(int x, int y, int z)
     {
-        //박살난 벽 파편 생성
+        //박살난 벽 파편 오브젝트 선언 및 생성
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        //파편 오브젝트의 텍스쳐를 Wood로 적용
+        piece.AddComponent<Renderer>();
+        piece.GetComponent<Renderer>().material.mainTexture = Resources.Load("Block_WoodUV") as Texture;
 
         //벽 파편 생성 위치
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
