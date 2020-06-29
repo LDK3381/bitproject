@@ -31,9 +31,7 @@ public class WallEvent : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Bullet")
-        {
             explode();
-        }
     }
 
     public void explode()
@@ -87,6 +85,6 @@ public class WallEvent : MonoBehaviour
         piece.GetComponent<Rigidbody>().mass = cubeSize;
 
         //2초 후에 벽 파편 삭제
-        Destroy(piece, 2);
+        Destroy(piece, 1);
     }
 }
