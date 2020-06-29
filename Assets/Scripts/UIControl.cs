@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UIControl : MonoBehaviour
 {
-    [SerializeField] private GameObject mainpanel;
-    [SerializeField] private GameObject signpanel;
-    [SerializeField] private GameObject playpanel;
-    [SerializeField] private GameObject gamemodepanel;
-    [SerializeField] private GameObject noticeepanel;
+    [SerializeField] private GameObject mainpanel = null;
+    [SerializeField] private GameObject signpanel = null;
+    [SerializeField] private GameObject playpanel = null;
+    [SerializeField] private GameObject gamemodepanel = null;
+    [SerializeField] private GameObject noticepanel = null;
 
     public void OnMain()
     {
@@ -41,7 +41,7 @@ public class UIControl : MonoBehaviour
     }
     public void dfsdfsd()
     {
-        noticeepanel.SetActive(true);
+        noticepanel.SetActive(true);
         StartCoroutine("timer");
     }
     public void OnBack()
@@ -49,7 +49,7 @@ public class UIControl : MonoBehaviour
         signpanel.SetActive(false);
         playpanel.SetActive(false);
         gamemodepanel.SetActive(false);
-        noticeepanel.SetActive(false);
+        noticepanel.SetActive(false);
         mainpanel.SetActive(true);
     }
 
@@ -57,6 +57,6 @@ public class UIControl : MonoBehaviour
     IEnumerator timer()
     {
         yield return new WaitForSeconds(1.5f);
-        noticeepanel.SetActive(false);
+        noticepanel.SetActive(false);
     }
 }
