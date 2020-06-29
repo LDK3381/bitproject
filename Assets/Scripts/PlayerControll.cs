@@ -1,36 +1,47 @@
 ﻿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 
 public class PlayerControll : MonoBehaviour
 {
+    Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
-    public float move_speed;    //이동 거리
-    public float knockbackPower;    //넉백 파워
-    public float knockbackTime;     //넉백 지속시간
-    private float knockbackCounter; 
+    public float Move = 0.375f;
 
-    void Start()
-    {
-    }
+    public float move_speed = 0.375f;    //이동 거리
+    float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
+    RaycastHit hit;
 
     void Update()
     {
-        //씬 변환 함수
+        #region 장애물 판정 위한 Ray 생성
+        forwardRay = new Ray(transform.position, transform.forward);
+        LeftRay = new Ray(transform.position, -transform.right);
+        BackwardRay = new Ray(transform.position, -transform.forward);
+        RightRay = new Ray(transform.position, transform.right);
+
+        Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
+        Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
+        Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
+        Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+        #endregion
+
+        //씬 변환 함수(스페이스바)
         if (Input.GetKeyDown(KeyCode.Space))
             SceneManager.LoadScene("AnotherScene");
 
-        Vector3 moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         PlayerMove();
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
+        #region 누른만큼 이동
         //if (Input.GetKeyDown(KeyCode.D))
         //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
         //else if (Input.GetKeyDown(KeyCode.A))
@@ -38,51 +49,116 @@ public class PlayerControll : MonoBehaviour
         //else if (Input.GetKeyDown(KeyCode.W))
         //    transform.Translate(Vector3.forward * move_speed * Time.deltaTime);
         //else if (Input.GetKeyDown(KeyCode.S))
-        //    transform.Translate(Vector3.back * move_speed * Time.deltaTime);       
-        
-        if(knockbackCounter <= 0)
-        {
+        //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
+        #endregion
+
+        #region 칸 단위로 이동       
         if (Input.GetKeyDown(KeyCode.W))
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.25f);
+        {
+            W_MoveCheck();
+        }
         else if (Input.GetKeyDown(KeyCode.S))
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.25f);
+        {
+            S_MoveCheck();
+        }
         else if (Input.GetKeyDown(KeyCode.A))
-            transform.position = new Vector3(transform.position.x - 0.25f, transform.position.y, transform.position.z);
+        {
+            A_MoveCheck();
+        }
         else if (Input.GetKeyDown(KeyCode.D))
-            transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y, transform.position.z);
+        {
+            D_MoveCheck();
+        }
+        #endregion
+    }
+
+    #region WASD 작동여부 결정
+    private void W_MoveCheck()
+    {
+        if (W_ObstacleCheck() == true)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
         }
         else
+            return;
+    }
+    private void S_MoveCheck()
+    {
+        if (S_ObstacleCheck() == true)
         {
-            knockbackCounter -= Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
         }
+        else
+            return;
     }
-
-
-    //캐릭터가 향하는 방향을 마우스에 맞춰서
-    public void LookAt(Vector3 lookPoint)
+    private void A_MoveCheck()
     {
-        Vector3 heightPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
-        transform.LookAt(heightPoint);
-    }
-
-
-    //캐릭터가 폭탄과 충돌시,
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Bomb")
+        if (A_ObstacleCheck() == true)
         {
-            PlayerKnockback();
-            //playerDamaged();
+            transform.position = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
         }
+        else
+            return;
     }
-    
-    //넉백 이벤트
-    public void PlayerKnockback()
+    private void D_MoveCheck()
     {
-        Vector3 knockoutDirection = gameObject.transform.position - transform.position;
-        knockoutDirection = knockoutDirection.normalized;
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(knockoutDirection * knockbackPower, ForceMode.Impulse);
+        if (D_ObstacleCheck() == true)
+        {
+            transform.position = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+        }
+        else
+            return;
     }
+    #endregion
+
+    #region 앞 혹은 옆에 장애물이 있을때 해당 방향으로의 움직임 봉쇄(4방향)
+    public bool W_ObstacleCheck()
+    {  
+        //근처 장애물 여부 판단       
+        if (Physics.Raycast(forwardRay, out hit, rayLength))
+        {
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            {
+                return false;
+            }
+        }       
+        return true;
+    }
+    public bool A_ObstacleCheck()
+    {
+        //근처 장애물 여부 판단 
+        if (Physics.Raycast(LeftRay, out hit, rayLength))
+        {
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool S_ObstacleCheck()
+    {
+        //근처 장애물 여부 판단 
+        if (Physics.Raycast(BackwardRay, out hit, rayLength))
+        {
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool D_ObstacleCheck()
+    {       
+        //근처 장애물 여부 판단 
+        if (Physics.Raycast(RightRay, out hit, rayLength))
+        {
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    #endregion
 }

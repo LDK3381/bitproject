@@ -14,7 +14,7 @@ public class ChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //씬 변환 함수
+        //씬 변환 함수(예제용)
         if (Input.GetKeyDown(KeyCode.Space))
             SceneManager.LoadScene("PlayerScene");
     }
