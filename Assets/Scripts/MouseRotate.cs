@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerControll))]
 public class MouseRotate : MonoBehaviour
 {
     public float rotSpeed;      //마우스 회전 속도
 
     Camera viewCamera;        
-    PlayerControll controller;  
 
+    //캐릭터가 향하는 방향을 마우스에 맞춰서
+    public void LookAt(Vector3 lookPoint)
+    {
+        Vector3 heightPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);
+        transform.LookAt(heightPoint);  //해당 시점으로 마우스 이동
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<PlayerControll>();    //PlayerControll 클래스 내 LookAt 함수 사용 목적으로 가져옴.  
         viewCamera = Camera.main;                       //메인 카메라
     }  
 
@@ -29,10 +31,8 @@ public class MouseRotate : MonoBehaviour
         if(groundPlane.Raycast(ray, out rayDistance))
         {
             Vector3 point = ray.GetPoint(rayDistance);  //그 교차 지점을 point로 지정
-
             //Debug.DrawLine(ray.origin, point, Color.red);
-
-            controller.LookAt(point);                   //교차 지점이 캐릭터가 바라볼 시점이 됨.
+            LookAt(point);                   //교차 지점이 캐릭터가 바라볼 시점이 됨.    
         }
     }
 }
