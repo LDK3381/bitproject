@@ -67,6 +67,7 @@ public class StatusManager : MonoBehaviour
             if (currentHp <= 0)
                 PlayerDead();
 
+            SoundManager.instance.PlaySE("Hurt");
             StartCoroutine(BlinkCoroutine());
         }
     }
