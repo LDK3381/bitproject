@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GunControll : MonoBehaviour
 {
-    [SerializeField] ParticleSystem ps_MuzzleFlash;     //적용할 파티클 효과
-    [SerializeField] GameObject go_Bullet_Prefab;       //적용 대상 총알 오브젝트
-    [SerializeField] float bulletSpeed;                 //발사 속도
+    [SerializeField] ParticleSystem ps_MuzzleFlash = null;     //적용할 파티클 효과
+    [SerializeField] GameObject go_Bullet_Prefab = null;       //적용 대상 총알 오브젝트
+    [SerializeField] float bulletSpeed = 0f;                 //발사 속도
 
     // Start is called before the first frame update
     void Start()
