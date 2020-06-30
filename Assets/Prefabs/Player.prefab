@@ -9685,6 +9685,7 @@ GameObject:
   - component: {fileID: 7813287310642371744}
   - component: {fileID: 7813287310642371769}
   - component: {fileID: 7813287310642371749}
+  - component: {fileID: 2984174409138315668}
   - component: {fileID: 7813287310642371771}
   - component: {fileID: 7813287310642371748}
   m_Layer: 0
@@ -9785,6 +9786,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 1222816898359402728, guid: 102ae64873b3e0a448373edc7c5b05f7, type: 3}
+--- !u!114 &2984174409138315668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813287310642371745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697791904e0c652449f81eb007960937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 3
+  img_HpArray: []
+  blinkSpeed: 0
+  blinkCount: 0
+  mesh_PlayerGraphics: {fileID: 0}
 --- !u!114 &7813287310642371771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20049,7 +20067,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7813287312220728408}
-  - component: {fileID: 7813287312220728415}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -20073,20 +20090,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7813287312220728415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7813287312220728409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf565fdd1467f564a9d5f2d3670ffc07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move: 0.375
-  move_speed: 10
 --- !u!1 &7813287312247513656
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - BreakableWall
   - Bomb
+  - HP
   layers:
   - Default
   - TransparentFX
