@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    [SerializeField] int damage;
+    [SerializeField] int damage = 0;
 
-    [SerializeField] float force;
+    [SerializeField] float force = 0;
 
     void OnCollisionEnter(Collision other)
     {
