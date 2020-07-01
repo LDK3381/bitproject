@@ -13,11 +13,10 @@ public class PlayerControll : MonoBehaviour
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
     public float Move = 0.375f;
-
     public float move_speed = 0.375f;    //이동 거리
     float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
-    RaycastHit hit;
+    RaycastHit hit = new RaycastHit();
 
     void Start()
     {
@@ -172,4 +171,5 @@ public class PlayerControll : MonoBehaviour
         return true;
     }
     #endregion
+
 }

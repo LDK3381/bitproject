@@ -7,7 +7,7 @@ public class WallEvent : MonoBehaviour
     public float cubeSize = 0.2f;
     public int cubesInRow = 5;
 
-    float cubesPivotDistance;
+    float cubesPivotDistance = 0f;
     Vector3 cubesPivot;
 
     public float explosionForce = 50f;
@@ -73,7 +73,6 @@ public class WallEvent : MonoBehaviour
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
         //파편 오브젝트의 텍스쳐를 Wood로 적용
-        piece.AddComponent<Renderer>();
         piece.GetComponent<Renderer>().material.mainTexture = Resources.Load("Block_WoodUV") as Texture;
 
         //벽 파편 생성 위치
