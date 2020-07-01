@@ -8,14 +8,14 @@ public class StatusManager : MonoBehaviour
     [SerializeField] int maxHp = 0;         // 최대 체력
     int currentHp = 0;                      // 현재 체력
 
-    [SerializeField] Image[] img_HpArray;   // 체력 UI
+    [SerializeField] Image[] img_HpArray = null;   // 체력 UI
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
     [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
     [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
 
-    [SerializeField] MeshRenderer mesh_PlayerGraphics;
+    [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
 
     void Start()
     {
