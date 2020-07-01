@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public string soundName;
-    public AudioClip clip;  // 사운드를 담는 클립
+    public string soundName = "";
+    public AudioClip clip = null;  // 사운드를 담는 클립
 }
 public class SoundManager : MonoBehaviour
 {
