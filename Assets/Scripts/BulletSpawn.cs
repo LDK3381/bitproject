@@ -13,4 +13,11 @@ public class BulletSpawn : MonoBehaviour
         if (delay <= 0)
             Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //총알이 벽에 부딪치면 바로 소멸
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "BreakableWall")
+            Destroy(gameObject);
+    }
 }
