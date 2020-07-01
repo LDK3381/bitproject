@@ -8,13 +8,12 @@ public class NoteManager : MonoBehaviour
     double currenTime = 0d;
 
     [SerializeField] Transform tfNoteAppear = null;
-    [SerializeField] GameObject goNote1 = null;
-    //[SerializeField] GameObject goNote2 = null;
-    //[SerializeField] GameObject goNote3 = null;
+    [SerializeField] GameObject[] goNote = null;
+    NoteTimingManager _NoteTimingManager = null;
 
     void Start()
     {
-
+        _NoteTimingManager = GetComponent<NoteTimingManager>();
     }
 
     void Update()
@@ -24,16 +23,20 @@ public class NoteManager : MonoBehaviour
 
         if (currenTime >= 60d / bpm)
         {
-            GameObject t_note = Instantiate(goNote1, tfNoteAppear.position, Quaternion.identity);
+            GameObject t_note = Instantiate(goNote[Random.Range(0,3)], tfNoteAppear.position, Quaternion.identity);
             t_note.transform.SetParent(this.transform);
-            currenTime -= 60d / bpm;    
+            t_note.transform.localScale = new Vector3(1f, 1f, 1f);
+            _NoteTimingManager.NoteList.Add(t_note);
+            currenTime -= 60d / bpm;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Note"))
         {
+            _NoteTimingManager.NoteList.Remove(collision.gameObject);
             Destroy(collision.gameObject);
+            GetComponent<NoteTimingManager>().DoveStop();
         }
     }
 }

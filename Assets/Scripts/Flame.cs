@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class Flame : MonoBehaviour
 {
-    AudioSource myAudio;
     bool musicStart = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        myAudio = GetComponent<AudioSource>();
-    }
+    [SerializeField] SoundManager _soundManager = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,7 +13,7 @@ public class Flame : MonoBehaviour
         {
             if (collision.CompareTag("Note"))
             {
-                myAudio.Play();
+                _soundManager.PlayRandomBGM();
                 musicStart = true;
             }
         }
