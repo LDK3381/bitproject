@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class BombEvent : MonoBehaviour
 {
+    private float RayLength = 0.75f;
 
-    private float Timer = 0f;        //대기시간
-    private float BlastTimer = 1f;   //폭발시간
-
-    public GameObject bomb;
-    public GameObject explosionEffect;
-    public float explosion_force = 1.0f;
-    public float explosion_radius = 2.0f;           //폭발 반경
-
-    WallEvent wall;
+    Ray bomb_Ray;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -24,33 +18,25 @@ public class BombEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NearbyBlast();
+        BombDetection();
     }
 
-    //폭탄이 xx와 충돌 시,
-   private void NearbyBlast()
+    //폭탄의 충돌 범위 감지
+    private void BombDetection()
     {
-        Timer += Time.deltaTime;
+        //폭탄에 Ray(광선) 추가(y축 아랫방향)
+        bomb_Ray = new Ray(transform.position, -transform.up);
+        Debug.DrawRay(bomb_Ray.origin, -transform.up, Color.yellow);
 
-        //폭탄 던지면 1초 후에 폭발하도록  
-        if (Timer > BlastTimer)
+        if (Physics.Raycast(bomb_Ray, out hit, RayLength))
         {
-            //폭탄의 일정 범위 내의 오브젝트들을 폭파시키기
-            Collider[] collidersToDestroy = Physics.OverlapSphere(bomb.transform.position, explosion_radius);
-
-            foreach (Collider nearbyObject in collidersToDestroy)
+            //폭탄 바로 아래의 발판(Ground)을 2초 후에 파괴
+            if (hit.collider.tag == "Ground")
             {
-                Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-
-                //폭탄에 피해받는 대상(플레이어, 부서지는 벽, 타일?)
-                if (rb != null)
-                {
-                    rb.AddExplosionForce(explosion_force, bomb.transform.position, explosion_radius, 0.2f, ForceMode.Impulse);
-                }
+                Collision col = null;
+                hit.transform.GetComponent<GroundExplode>().OnCollisionEnter(col);
             }
+
         }
     }
-
-    //폭발 이펙트 구현
-
 }
