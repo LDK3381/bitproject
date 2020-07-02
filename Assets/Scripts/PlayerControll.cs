@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페�
 
 public class PlayerControll : MonoBehaviour
 {
+    NoteTimingManager _TimingManager;
+
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
     public float Move = 0.375f;
@@ -15,6 +17,11 @@ public class PlayerControll : MonoBehaviour
     float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
     RaycastHit hit = new RaycastHit();
+
+    void Start()
+    {
+        _TimingManager = FindObjectOfType<NoteTimingManager>();
+    }
 
     void Update()
     {
@@ -77,6 +84,7 @@ public class PlayerControll : MonoBehaviour
         if (W_ObstacleCheck() == true)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+            _TimingManager.CheckTiming();
         }
         else
             return;
@@ -86,6 +94,7 @@ public class PlayerControll : MonoBehaviour
         if (S_ObstacleCheck() == true)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+            _TimingManager.CheckTiming();
         }
         else
             return;
@@ -95,6 +104,7 @@ public class PlayerControll : MonoBehaviour
         if (A_ObstacleCheck() == true)
         {
             transform.position = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+            _TimingManager.CheckTiming();
         }
         else
             return;
@@ -104,6 +114,7 @@ public class PlayerControll : MonoBehaviour
         if (D_ObstacleCheck() == true)
         {
             transform.position = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+            _TimingManager.CheckTiming();
         }
         else
             return;
