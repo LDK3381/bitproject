@@ -5,9 +5,12 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
+using Photon.Pun;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerControll : MonoBehaviourPun
 {
+    public PhotonView PV;
+
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
     public float Move = 0.375f;
@@ -19,23 +22,26 @@ public class PlayerControll : MonoBehaviour
 
     void Update()
     {
-        #region 장애물 판정 위한 Ray 생성
-        forwardRay = new Ray(transform.position, transform.forward);
-        LeftRay = new Ray(transform.position, -transform.right);
-        BackwardRay = new Ray(transform.position, -transform.forward);
-        RightRay = new Ray(transform.position, transform.right);
+        if (PV.IsMine)
+        {
+            #region 장애물 판정 위한 Ray 생성
+            forwardRay = new Ray(transform.position, transform.forward);
+            LeftRay = new Ray(transform.position, -transform.right);
+            BackwardRay = new Ray(transform.position, -transform.forward);
+            RightRay = new Ray(transform.position, transform.right);
 
-        Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
-        Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
-        Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
-        Debug.DrawRay(RightRay.origin, transform.right, Color.red);
-        #endregion
+            Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
+            Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
+            Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
+            Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+            #endregion
 
-        //씬 변환 함수(스페이스바)
-        if (Input.GetKeyDown(KeyCode.Space))
-            SceneManager.LoadScene("AnotherScene");
+            //씬 변환 함수(스페이스바)
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene("AnotherScene");
 
-        PlayerMove();
+            PlayerMove();
+        }
     }
 
     //캐릭터 조작 함수(WASD)

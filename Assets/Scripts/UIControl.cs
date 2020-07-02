@@ -1,62 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class UIControl : MonoBehaviour
+public class UIControl : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject mainpanel = null;
-    [SerializeField] private GameObject signpanel = null;
-    [SerializeField] private GameObject playpanel = null;
-    [SerializeField] private GameObject gamemodepanel = null;
-    [SerializeField] private GameObject noticepanel = null;
+    public GameObject obj;
 
-    public void OnMain()
+    void Awake()
     {
-        Debug.Log("메인화면");
-        signpanel.SetActive(false);
-        mainpanel.SetActive(true);
+        Screen.SetResolution(900, 900, false);
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 30;
     }
-    public void OnQuit()
+
+    public void Connect()
     {
-        Debug.Log("종료");
+        PhotonNetwork.ConnectUsingSettings();
+
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);
+        Debug.Log("서버 연결");
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("서버 연결");
+        obj.SetActive(false);
+        PhotonNetwork.LoadLevel("PlayerScene");
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+    }
+
+    public void OnExit()
+    {
         Application.Quit();
-    }
-    public void OnSign()
-    {
-        Debug.Log("회원가입");
-        mainpanel.SetActive(false);
-        signpanel.SetActive(true);
-    }
-    public void OnPlay()
-    {
-        Debug.Log("플레이");
-        mainpanel.SetActive(false);
-        playpanel.SetActive(true);
-    }
-    public void OnGameMode()
-    {
-        Debug.Log("게임 모드");
-        mainpanel.SetActive(false);
-        gamemodepanel.SetActive(true);
-    }
-    public void dfsdfsd()
-    {
-        noticepanel.SetActive(true);
-        StartCoroutine("timer");
-    }
-    public void OnBack()
-    {
-        signpanel.SetActive(false);
-        playpanel.SetActive(false);
-        gamemodepanel.SetActive(false);
-        noticepanel.SetActive(false);
-        mainpanel.SetActive(true);
-    }
-
-
-    IEnumerator timer()
-    {
-        yield return new WaitForSeconds(1.5f);
-        noticepanel.SetActive(false);
     }
 }

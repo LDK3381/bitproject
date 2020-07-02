@@ -10,6 +10,7 @@ TagManager:
   - BreakableWall
   - Bomb
   - HP
+  - CheckPosition
   layers:
   - Default
   - TransparentFX

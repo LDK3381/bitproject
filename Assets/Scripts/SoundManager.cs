@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        PlayRandomBGM();
+        //PlayRandomBGM();
     }
 
     // 효과음 플레이 함수
