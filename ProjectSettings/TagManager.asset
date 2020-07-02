@@ -10,7 +10,7 @@ TagManager:
   - BreakableWall
   - Bomb
   - HP
-  - CheckPosition
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -22,9 +22,9 @@ TagManager:
   - 
   - whatStopsMovement
   - whatCanMovement
-  - 
-  - 
-  - 
+  - Player
+  - Bomb
+  - Ground
   - 
   - 
   - 

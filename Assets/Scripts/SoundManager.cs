@@ -5,27 +5,26 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public string soundName;
-    public AudioClip clip;  // 사운드를 담는 클립
+    public string soundName = "";
+    public AudioClip clip = null;  // 사운드를 담는 클립
 }
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
     [Header("사운드 등록")]
-    [SerializeField] Sound[] bgmSounds; // 브금 사운드
-    [SerializeField] Sound[] sfxSounds; // 효과음 사운드
+    [SerializeField] Sound[] bgmSounds = null; // 브금 사운드
+    [SerializeField] Sound[] sfxSounds = null; // 효과음 사운드
 
     [Header("브금 플레이어")]
-    [SerializeField] AudioSource bgmPlayer;
+    [SerializeField] AudioSource bgmPlayer = null;
 
     [Header("효과음 플에이어")]
-    [SerializeField] AudioSource[] sfxPlayer;
+    [SerializeField] AudioSource[] sfxPlayer = null;
 
     void Start()
     {
         instance = this;
-        //PlayRandomBGM();
     }
 
     // 효과음 플레이 함수

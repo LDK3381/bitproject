@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    [SerializeField] int damage;
+    [SerializeField] int damage = 0;
+    [SerializeField] float force = 0f;
 
-    [SerializeField] float force;
-
-    void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter(Collision other)
     {
         // CompareTag() : 특정 객체의 태그를 비교하는 메소드
         // 부디친 other의 태그가 Player인지를 확인!

@@ -6,15 +6,14 @@ public class WeaponManager : MonoBehaviour
 {
     public int selectedWeapon = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         SelectWeapon();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        #region 무기 변환 1,2,3
         int previousSelectedWeapon = selectedWeapon;
 
         #region 스크롤로 무기 변환 기능(쓸지 말지 일단 보류)
@@ -43,9 +42,11 @@ public class WeaponManager : MonoBehaviour
             selectedWeapon = 2;
         if (previousSelectedWeapon != selectedWeapon)
             SelectWeapon();
+        #endregion
 
     }
 
+    // 무기 선택함수
     private void SelectWeapon()
     {
         int i = 0;
