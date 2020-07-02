@@ -10,6 +10,7 @@ public class Sound
 }
 public class SoundManager : MonoBehaviour
 {
+    //클래스를 쉽게 접근하도록 static으로 공유
     public static SoundManager instance;
 
     [Header("사운드 등록")]
@@ -27,13 +28,15 @@ public class SoundManager : MonoBehaviour
         instance = this;
     }
 
-    // 효과음 플레이 함수
+    //효과음 플레이 함수
     public void PlaySE(string _soundName)
     {
         for (int i = 0; i < sfxSounds.Length; i++)
         {
+            //일치되는 효과음 찾기
             if (_soundName == sfxSounds[i].soundName)
             {
+                //재생되지 않는 효과음 찾기
                 for (int x = 0; x < sfxPlayer.Length; x++)
                 {
                     if (!sfxPlayer[x].isPlaying)
