@@ -859,6 +859,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1141364389}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &329934984 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5231072606572878794, guid: ba5105b94d4a7f5488c1982cdba5acc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5231072605777102840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &336187186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8422699460827828935, guid: 8c0ae4e48e793e14cb480fc93386b947,
@@ -7466,6 +7472,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1245074046}
     m_Modifications:
+    - target: {fileID: 1476000039, guid: ba5105b94d4a7f5488c1982cdba5acc6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231072604843617217, guid: ba5105b94d4a7f5488c1982cdba5acc6,
+        type: 3}
+      propertyPath: TimingRect
+      value: 
+      objectReference: {fileID: 329934984}
     - target: {fileID: 5231072604843617227, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
       propertyPath: m_Name
@@ -7576,11 +7591,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5231072605176099547, guid: ba5105b94d4a7f5488c1982cdba5acc6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5231072605176099549, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
       propertyPath: _soundManager
       value: 
       objectReference: {fileID: 882181732}
+    - target: {fileID: 5231072606572878794, guid: ba5105b94d4a7f5488c1982cdba5acc6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5105b94d4a7f5488c1982cdba5acc6, type: 3}
 --- !u!1001 &7813287312126919307
