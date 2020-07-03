@@ -13,8 +13,7 @@ public class PlayerControll : MonoBehaviour
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
     public float Move = 0.375f;
-    public float move_speed = 0.375f;    //이동 거리
-    float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
+    float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
 
     RaycastHit hit = new RaycastHit();
 
@@ -83,8 +82,15 @@ public class PlayerControll : MonoBehaviour
     {
         if (W_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-            _TimingManager.CheckTiming();
+            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+            Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+            //transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+
+            iTween.MoveBy(gameObject, iTween.Hash("islocal", true, "y", 1f, "time", 0.7f/2, "easeType", iTween.EaseType.easeOutQuad));
+            iTween.MoveBy(gameObject, iTween.Hash("islocal", true, "y", 1f, "time", 0.7f/2, "delay", 0.7f/2, "easeType", iTween.EaseType.easeInCubic));
+            iTween.MoveTo(gameObject, iTween.Hash("islocal", true, "z", transform.position.z + Move, "time", 0.7f,
+                                                    "easetype", iTween.EaseType.linear));
+            _TimingManager.CheckTiming();           
         }
         else
             return;
@@ -93,7 +99,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (S_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+            Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+            transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
             _TimingManager.CheckTiming();
         }
         else
@@ -103,7 +111,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (A_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+            Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+            transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
             _TimingManager.CheckTiming();
         }
         else
@@ -113,7 +123,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (D_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+            Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+            transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
             _TimingManager.CheckTiming();
         }
         else
@@ -127,7 +139,8 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단       
         if (Physics.Raycast(forwardRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || 
+                hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -139,7 +152,8 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(LeftRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                 hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -151,7 +165,8 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(BackwardRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -163,7 +178,8 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(RightRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                hit.collider.tag == "Player")
             {
                 return false;
             }

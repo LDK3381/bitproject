@@ -93,10 +93,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa165ed924e34ab44982a1bcd6f9444f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
+  bulletCount: 0
+  maxBulletCount: 0
+  animator: {fileID: 0}
+  speed: 0
+  sound_Fire: 
   ps_MuzzleFlash: {fileID: 6611130053527133503}
   go_Bullet_Prefab: {fileID: 8905958764493039164, guid: ba088e9fd07ab5245baa27272908280c,
     type: 3}
   bulletSpeed: 20
+  txt_CurrentGunBullet: {fileID: 0}
 --- !u!1 &6611130053227849828
 GameObject:
   m_ObjectHideFlags: 0
@@ -9810,7 +9817,6 @@ GameObject:
   - component: {fileID: 6611130053787388046}
   - component: {fileID: 6611130053787388045}
   - component: {fileID: 6611130053787388044}
-  - component: {fileID: 6611130053787388043}
   - component: {fileID: 6611130053787388042}
   - component: {fileID: 6611130053787388041}
   m_Layer: 10
@@ -9897,20 +9903,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!64 &6611130053787388043
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6611130053787387766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 1222816898359402728, guid: 102ae64873b3e0a448373edc7c5b05f7, type: 3}
 --- !u!114 &6611130053787388042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14833,10 +14825,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa165ed924e34ab44982a1bcd6f9444f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
+  bulletCount: 0
+  maxBulletCount: 0
+  animator: {fileID: 0}
+  speed: 0
+  sound_Fire: 
   ps_MuzzleFlash: {fileID: 6611130053962244185}
   go_Bullet_Prefab: {fileID: 8905958764493039164, guid: ba088e9fd07ab5245baa27272908280c,
     type: 3}
   bulletSpeed: 20
+  txt_CurrentGunBullet: {fileID: 0}
 --- !u!1 &6611130053998233514
 GameObject:
   m_ObjectHideFlags: 0
@@ -19866,7 +19865,6 @@ MonoBehaviour:
   throwPoint: {fileID: 6611130054791908598}
   bomb: {fileID: 5581695425219992936, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
   weapon: {fileID: 6611130055001362078}
-  dissapearTime: 2
 --- !u!1 &6611130054867800766
 GameObject:
   m_ObjectHideFlags: 0
@@ -19909,7 +19907,6 @@ GameObject:
   - component: {fileID: 6611130055001362079}
   - component: {fileID: 6611130055001362066}
   - component: {fileID: 6611130055001362065}
-  - component: {fileID: 6611130055001362064}
   m_Layer: 0
   m_Name: Bomb(Weapon)
   m_TagString: Weapon
@@ -19977,19 +19974,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &6611130055001362064
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6611130055001362078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6611130055046743400
 GameObject:
   m_ObjectHideFlags: 0
