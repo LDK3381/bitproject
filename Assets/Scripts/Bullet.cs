@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] GameObject go_RicochetEffect = null;
 
     [Header("총알 데미지")]
-    [SerializeField] int damage;
+    [SerializeField] int damage = 0;
 
     [Header("피격 효과음")]
     [SerializeField] string sound_Effect = null;

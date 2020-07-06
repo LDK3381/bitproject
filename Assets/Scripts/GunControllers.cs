@@ -10,7 +10,7 @@ public class GunControllers : MonoBehaviour
 
     float FireRate;
 
-    [SerializeField] Text txt_NomalGunBullet;
+    [SerializeField] Text txt_NomalGunBullet = null;
 
     void Start()
     {
