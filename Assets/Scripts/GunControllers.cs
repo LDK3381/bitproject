@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunControllers : MonoBehaviour
 {
     [Header("현재 장착된 총")]
-    [SerializeField] Gun nomalGun;
+    [SerializeField] Gun nomalGun = null;
 
     float FireRate;
 
