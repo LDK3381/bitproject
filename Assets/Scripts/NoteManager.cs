@@ -8,12 +8,11 @@ public class NoteManager : MonoBehaviour
     double currenTime = 0d;
 
     [SerializeField] Transform tfNoteAppear = null;
-    [SerializeField] GameObject[] goNote = null;
-    NoteTimingManager _NoteTimingManager = null;
+    NoteTimingManager noteTimingManager = null;
 
     void Start()
     {
-        _NoteTimingManager = GetComponent<NoteTimingManager>();
+        noteTimingManager = GetComponent<NoteTimingManager>();
     }
 
     void Update()
@@ -23,10 +22,12 @@ public class NoteManager : MonoBehaviour
 
         if (currenTime >= 60d / bpm)
         {
-            GameObject t_note = Instantiate(goNote[Random.Range(0,3)], tfNoteAppear.position, Quaternion.identity);
-            t_note.transform.SetParent(this.transform);
+            GameObject t_note = NotePooler.instance.noteQueue.Dequeue();
+            t_note.transform.position = tfNoteAppear.position;
+            t_note.SetActive(true);
+
             t_note.transform.localScale = new Vector3(1f, 1f, 1f);
-            _NoteTimingManager.NoteList.Add(t_note);
+            noteTimingManager.NoteList.Add(t_note);
             currenTime -= 60d / bpm;
         }
     }
@@ -34,9 +35,14 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            _NoteTimingManager.NoteList.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
-            GetComponent<NoteTimingManager>().DoveStop();
+            if (collision.GetComponent<Note>().GetNoteFlag())
+            {
+                noteTimingManager.DoveStop();
+            }
+
+            noteTimingManager.NoteList.Remove(collision.gameObject);
+            NotePooler.instance.noteQueue.Enqueue(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
