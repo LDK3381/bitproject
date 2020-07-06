@@ -20,7 +20,7 @@ public class NoteManager : MonoBehaviour
     {
         //currentTime = 0.5100555~~, 약간의 오차, 0으로 초기화가 아닌 -
         currenTime += Time.deltaTime;
-
+       
         if (currenTime >= 60d / bpm)
         {
             GameObject t_note = Instantiate(goNote[Random.Range(0,3)], tfNoteAppear.position, Quaternion.identity);

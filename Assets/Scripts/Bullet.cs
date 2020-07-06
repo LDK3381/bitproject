@@ -17,18 +17,24 @@ public class Bullet : MonoBehaviour
     // (Collision other) : 충돌한 객체의 정보는 other에 담김
     void OnCollisionEnter(Collision other)
     {
-        // ContactPoint : 충돌한 객체의 '접촉면'에 대한 정보가 담긴 클래스
-        // other.contacts[0] : 총돌한 객체의 접촉면 정보가 담김
+        //ContactPoint : 충돌한 객체의 '접촉면'에 대한 정보가 담긴 클래스
+        //other.contacts[0] : 총돌한 객체의 접촉면 정보가 담김
         ContactPoint contactPoint = other.contacts[0];
 
         //효과음
         SoundManager.instance.PlaySE(sound_Effect);
 
-        // 피격이펙트 변수
-        // Instantiate : 프리팹을 특정 위치에 특정한 방향으로 생성시킴
-        // Quaternion.LookRotation : 특정 방향을 바라보게 만드는 메서드
-        // normal : 충돌한 컬라이더의 표면 방향
+        //피격이펙트 변수
+        //Instantiate : 프리팹을 특정 위치에 특정한 방향으로 생성시킴
+        //Quaternion.LookRotation : 특정 방향을 바라보게 만드는 메서드
+        //normal : 충돌한 컬라이더의 표면 방향
         var clone = Instantiate(go_RicochetEffect, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
+
+        //지뢰와 충돌 했을 때 데미지 발생
+        if(other.transform.CompareTag("Mine"))
+        {
+            other.transform.GetComponent<Mine>().Damaged(damage);
+        }
 
         // 이펙트 0.5초후 파괴
         Destroy(clone, 0.5f);

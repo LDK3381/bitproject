@@ -11,6 +11,8 @@ TagManager:
   - Bomb
   - HP
   - Ground
+  - Note
+  - Mine
   layers:
   - Default
   - TransparentFX

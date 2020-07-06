@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunControllers : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class GunControllers : MonoBehaviour
 
     float FireRate;
 
+    [SerializeField] Text txt_NomalGunBullet;
+
     void Start()
     {
-        // 시작과 동시에 발사
+        //시작과 동시에 발사
         FireRate = 0;
+        //시작과 동시에 총알 개수 설정
+        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
     }
 
     void Update()
@@ -25,14 +30,16 @@ public class GunControllers : MonoBehaviour
     {
         if (FireRate > 0)
         {
-            // Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
+            //Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
             FireRate -= Time.deltaTime;
         }
     }
 
+    // 총알 발사 시도
     void TryFire()
     {
-        if (Input.GetButton("Fire1"))
+        // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
+        if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
         {
             if (FireRate <= 0)
             {
@@ -45,7 +52,10 @@ public class GunControllers : MonoBehaviour
     // 총알 발사
     void Fire()
     {
-        Debug.Log("총알 발사");
+        //총알감소
+        nomalGun.bulletCount--;
+        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+
         //애니메이터
         nomalGun.animator.SetTrigger("GunFire");
 
