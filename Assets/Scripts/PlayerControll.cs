@@ -84,12 +84,7 @@ public class PlayerControll : MonoBehaviour
         {
             //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
             Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-            //transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
-
-            iTween.MoveBy(gameObject, iTween.Hash("islocal", true, "y", 1f, "time", 0.7f/2, "easeType", iTween.EaseType.easeOutQuad));
-            iTween.MoveBy(gameObject, iTween.Hash("islocal", true, "y", 1f, "time", 0.7f/2, "delay", 0.7f/2, "easeType", iTween.EaseType.easeInCubic));
-            iTween.MoveTo(gameObject, iTween.Hash("islocal", true, "z", transform.position.z + Move, "time", 0.7f,
-                                                    "easetype", iTween.EaseType.linear));
+            transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
             _TimingManager.CheckTiming();           
         }
         else
