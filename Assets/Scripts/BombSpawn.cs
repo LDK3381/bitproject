@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class BombSpawn : MonoBehaviour
@@ -10,7 +11,8 @@ public class BombSpawn : MonoBehaviour
     public Transform throwPoint = null;
     public GameObject bomb = null;
     public GameObject weapon = null;
-    public float dissapearTime = 2f;    //폭탄 깔고 사라지기까지 걸리는 시간
+
+    GameObject bombInstance = null;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,8 @@ public class BombSpawn : MonoBehaviour
         //현재 무기가 폭탄일 때에만 투척하도록 제한
         if(weapon.activeSelf == true)
         {
-            GameObject bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);          
-            Destroy(bombInstance, dissapearTime);
+            bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
+            Destroy(bombInstance, 2);
         }
     }
 }

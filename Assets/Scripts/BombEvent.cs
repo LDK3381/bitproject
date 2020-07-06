@@ -5,9 +5,9 @@ using UnityEngine;
 public class BombEvent : MonoBehaviour
 {
     private float GroundRayLength = 0.25f;
-    public float ObRayLength = 0.5f;
+    private float ObRayLength = 0.5f;
     private float waitTime = 0f;
-    public float explosionTime = 1.9f;  //폭파하기까지 걸리는 시간
+    public float explosionTime = 2f;  //폭파하기까지 걸리는 시간
 
     Ray bomb_Ray, rightRay, leftRay, upRay, downRay;
     RaycastHit hit = new RaycastHit();
@@ -16,10 +16,11 @@ public class BombEvent : MonoBehaviour
     [SerializeField] int damage = 0;
     [SerializeField] float force = 0f;
 
+    public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -47,7 +48,7 @@ public class BombEvent : MonoBehaviour
     }
 
     //폭탄의 충돌 범위 감지(주변 오브젝트에 데미지용)
-    private void BombToDetectOthers()
+    public void BombToDetectOthers()
     {
         #region 장애물 판정 위한 Ray 생성
         upRay = new Ray(transform.position, transform.forward);
@@ -67,6 +68,8 @@ public class BombEvent : MonoBehaviour
         //2초 후에 발동
         if(waitTime > explosionTime)
         {
+            GameObject effect = Instantiate(ps_BombExplode, transform.position, transform.rotation);
+
             //윗쪽 광선 범위에 장애물이 들어온 경우,
             if (Physics.Raycast(upRay, out hit, ObRayLength))
             {
@@ -79,7 +82,7 @@ public class BombEvent : MonoBehaviour
                 if (hit.collider.tag == "Player")
                 {
                     hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);                   
                 }
             }
             //아랫쪽 광선 범위에 장애물이 들어온 경우,
@@ -127,7 +130,19 @@ public class BombEvent : MonoBehaviour
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
+
+            Destroy(effect, 2);     //이펙트 2초후에 소멸
         }
         #endregion
     }
+
+    ////폭탄 설치된 자리에 캐릭터가 있어도 데미지 받음.
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Player")
+    //    {
+    //        //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+    //        hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+    //    }         
+    //}
 }
