@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
-    [SerializeField] float verticalMove;            //수직 움직임
-    [SerializeField] float horizontalMove;          //수직 움직임
-    [Range(0,1)]
-    [SerializeField] float moveSpeed;               //움직임 스피드
-    
+    [SerializeField] float verticalMove = 0;            //수직 움직임
+    [SerializeField] float horizontalMove = 0;          //수직 움직임
+    [Range(0, 1)]
+    [SerializeField] float moveSpeed = 0;               //움직임 스피드
 
-    [SerializeField] int hp;                        //지뢰체력
-    [SerializeField] int damage;                    //지뢰데미지
+
+    [SerializeField] int hp = 0;                        //지뢰체력
+    [SerializeField] int damage =0;                   //지뢰데미지
     [SerializeField] GameObject go_EffectPrefab;    //지뢰이펙트
 
     Vector3 endPos1;            //목적지1
