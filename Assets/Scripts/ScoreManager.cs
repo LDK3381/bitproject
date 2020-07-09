@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     float originPosZ;   // 플레이어의 최초 위치의 Z값
     float originPosX;   // 플레이어의 최초 위치의 x값
 
-    [SerializeField] Text txt_Score;
+    [SerializeField] Text txt_Score = null;
 
     void Start()
     {

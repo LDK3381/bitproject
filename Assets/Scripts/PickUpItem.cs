@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
-    [SerializeField] Gun[] guns;
+    [SerializeField] Gun[] guns = null;
 
     GunControllers theGC;
 
