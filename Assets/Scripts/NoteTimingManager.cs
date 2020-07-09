@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class NoteTimingManager : MonoBehaviour
 {
-    public List<GameObject> NoteList = new List<GameObject>();
+    public List<GameObject> noteList = new List<GameObject>();
 
-    [SerializeField] Transform Center = null;
-    [SerializeField] RectTransform TimingRect = null;
-    [SerializeField] GameObject[] Dove = null;
+    [SerializeField] Transform center = null;
+    [SerializeField] RectTransform timingRect = null;
+    [SerializeField] GameObject[] dove = null;
     [SerializeField] NoteComboManager noteComboManager = null;
 
-    Vector2 TimingBoxes;
+    Vector2 timingBoxes;
     NoteEffectManager noteEffectManager = null;
     
-
     void Start()
     {
         noteEffectManager = FindObjectOfType<NoteEffectManager>();
-        TimingBoxes = new Vector2();
+        timingBoxes = new Vector2();
 
-        TimingBoxes.Set(Center.localPosition.x - TimingRect.rect.width / 2,
-            Center.localPosition.x + TimingRect.rect.width / 2);
+        timingBoxes.Set(center.localPosition.x - timingRect.rect.width / 2,
+            center.localPosition.x + timingRect.rect.width / 2);
     }
 
-    public void CheckTiming()
+    public bool CheckTiming()
     {
-        for(int i = 0; i < NoteList.Count; i++)
+        for(int i = 0; i < noteList.Count; i++)
         {
-            float t_notePosX = NoteList[i].transform.localPosition.x;
+            float t_notePosX = noteList[i].transform.localPosition.x;
 
-            if (TimingBoxes.x <= t_notePosX && t_notePosX <= TimingBoxes.y)
+            if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
             {
                 //노트 제거
-                NoteList[i].GetComponent<Note>().HideNote();
-                NoteList.RemoveAt(i);
+                noteList[i].GetComponent<Note>().HideNote();
+                noteList.RemoveAt(i);
                 //노트 이펙트
                 noteEffectManager.NoteHitEffect();
                 noteEffectManager.DoveBounce();
@@ -43,12 +42,13 @@ public class NoteTimingManager : MonoBehaviour
 
                 Debug.Log("Hit");
 
-                Dove[2].SetActive(false);
+                dove[2].SetActive(false);
                 DoveFly();
-                return;
+                return true;
             }
         }
         DoveStop();
+        return false;
     }
     private void DoveFly()
     {
@@ -63,14 +63,15 @@ public class NoteTimingManager : MonoBehaviour
             GameObject.Find("Dove").transform.Find("Dove2").gameObject.SetActive(true);
         }
     }
+
     public void DoveStop()
     {
         noteComboManager.ResetCombo();
         noteEffectManager.DoveBounce();
 
-        Dove[0].SetActive(false);
-        Dove[1].SetActive(false);
-        Dove[2].SetActive(true);
+        dove[0].SetActive(false);
+        dove[1].SetActive(false);
+        dove[2].SetActive(true);
         Debug.Log("Bad or Miss");
     }
 }

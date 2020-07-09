@@ -24,6 +24,8 @@ public class NotePooler : MonoBehaviour
         noteQueue = InsertQueue(noteInfo[0]);
     }
 
+    //노트를 큐를 사용해서 관리.
+    //노트클론 여러개를 만들고, 순차대로 enable로 보이고 숨기는 것을 반복.
     Queue<GameObject> InsertQueue(NoteInfo _noteInfo)
     {
         Queue<GameObject> t_queue = new Queue<GameObject>();

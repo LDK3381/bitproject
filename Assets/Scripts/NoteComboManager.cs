@@ -31,6 +31,7 @@ public class NoteComboManager : MonoBehaviour
         }
     }
 
+    //콤보 숫자를 계산해서, Cool, Great, Perfect 나오게 함.
     public void IncreaseCombo(int p_num = 1)
     {
         currentCombo += p_num;
@@ -61,6 +62,7 @@ public class NoteComboManager : MonoBehaviour
         }
     }
 
+    //Miss
     public void ResetCombo()
     {
         Miss = ComboCount.Miss;

@@ -9,6 +9,7 @@ public class Note : MonoBehaviour
 
     void OnEnable()
     {
+        //노트 enable = true
         if(noteImage == null)
             noteImage = GetComponent<UnityEngine.UI.Image>();
         noteImage.enabled = true;
@@ -16,16 +17,19 @@ public class Note : MonoBehaviour
 
     void Update()
     {
+        //노트 이동.
         transform.localPosition += Vector3.right * noteSpeed * Time.deltaTime;
     }
 
     public void HideNote()
     {
+        //노트 enable = false
         noteImage.enabled = false;
     }
 
     public bool GetNoteFlag()
     {
+        //노트에 플래그 추가
         return noteImage.enabled;
     }
 }

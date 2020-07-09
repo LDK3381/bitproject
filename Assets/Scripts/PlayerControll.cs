@@ -8,18 +8,19 @@ using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페�
 
 public class PlayerControll : MonoBehaviour
 {
-    NoteTimingManager _TimingManager;
+    NoteTimingManager noteTimingManager;
 
-    Ray forwardRay, LeftRay, BackwardRay, RightRay;
+    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
 
     public float Move = 0.375f;
     float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
+    float underRayLength = 0.25f;
 
     RaycastHit hit = new RaycastHit();
 
     void Start()
     {
-        _TimingManager = FindObjectOfType<NoteTimingManager>();
+        noteTimingManager = FindObjectOfType<NoteTimingManager>();
     }
 
     void Update()
@@ -29,16 +30,14 @@ public class PlayerControll : MonoBehaviour
         LeftRay = new Ray(transform.position, -transform.right);
         BackwardRay = new Ray(transform.position, -transform.forward);
         RightRay = new Ray(transform.position, transform.right);
+        UnderRay = new Ray(transform.position, -transform.up);
 
         Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
         Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
         Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
         Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+        Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
         #endregion
-
-        //씬 변환 함수(스페이스바)
-        if (Input.GetKeyDown(KeyCode.Space))
-            SceneManager.LoadScene("AnotherScene");
 
         PlayerMove();
     }
@@ -57,23 +56,26 @@ public class PlayerControll : MonoBehaviour
         //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
         #endregion
 
-        #region 칸 단위로 이동       
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            W_MoveCheck();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            S_MoveCheck();
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            A_MoveCheck();
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            D_MoveCheck();
-        }
+        #region 칸 단위로 이동
+        //if(Under_ObstacleCheck()) //Ground 여부 판정.
+        //{
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                W_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                S_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                A_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                D_MoveCheck();
+            }
+        //}
         #endregion
     }
 
@@ -82,10 +84,12 @@ public class PlayerControll : MonoBehaviour
     {
         if (W_ObstacleCheck() == true)
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
-            _TimingManager.CheckTiming();           
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+            }
         }
         else
             return;
@@ -94,10 +98,12 @@ public class PlayerControll : MonoBehaviour
     {
         if (S_ObstacleCheck() == true)
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
-            _TimingManager.CheckTiming();
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+            }
         }
         else
             return;
@@ -106,10 +112,12 @@ public class PlayerControll : MonoBehaviour
     {
         if (A_ObstacleCheck() == true)
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
-            _TimingManager.CheckTiming();
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+            }
         }
         else
             return;
@@ -118,10 +126,12 @@ public class PlayerControll : MonoBehaviour
     {
         if (D_ObstacleCheck() == true)
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
-            _TimingManager.CheckTiming();
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+            }
         }
         else
             return;
@@ -181,6 +191,20 @@ public class PlayerControll : MonoBehaviour
         }
         return true;
     }
+    public bool Under_ObstacleCheck()
+    {
+        //바닥 여부 판단
+        if(Physics.Raycast(UnderRay, out hit, rayLength))
+        {
+            if(hit.collider.tag != "Ground")
+            {
+                Debug.Log("Ground 없음");
+                return false;
+            }
+        }
+        return true;
+    }
+
     #endregion
 
 }
