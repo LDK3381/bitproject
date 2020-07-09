@@ -9,17 +9,17 @@ using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페�
 public class PlayerControll : MonoBehaviour
 {
     NoteTimingManager _TimingManager;
+    KeyBindSettings keybinds;
 
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
-
     public float Move = 0.375f;
     float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
-
     RaycastHit hit = new RaycastHit();
 
     void Start()
     {
         _TimingManager = FindObjectOfType<NoteTimingManager>();
+        keybinds = FindObjectOfType<KeyBindSettings>();
     }
 
     void Update()

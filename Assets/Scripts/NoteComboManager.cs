@@ -5,7 +5,7 @@ using UnityEngine;
 public enum ComboCount
 {
     Miss = 0,
-    Cool = 2,
+    Cool = 1,
     Great = 5,
     Perfect = 9,
 }
