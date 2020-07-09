@@ -854,6 +854,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 70506028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &278294999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5673819404564187744, guid: 105ab565efc65f748b0989e099c2c334,
+    type: 3}
+  m_PrefabInstance: {fileID: 2884412618919410735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47683ad668ba84749918dfd43216e4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &322760171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8422699460827828935, guid: 8c0ae4e48e793e14cb480fc93386b947,
@@ -1009,7 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guns:
-  - {fileID: 1462465775}
+  - {fileID: 278294999}
 --- !u!4 &396514704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 831802844816431148, guid: 058b42ca892589941944c5d0db81531f,
@@ -6576,18 +6588,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 058b42ca892589941944c5d0db81531f, type: 3}
---- !u!114 &1462465775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7837676182550866844, guid: 105ab565efc65f748b0989e099c2c334,
-    type: 3}
-  m_PrefabInstance: {fileID: 1728292829}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47683ad668ba84749918dfd43216e4cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1473323677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4108721126264508115, guid: 22bfacebd9af948488c4bf71bd546985,
@@ -8323,11 +8323,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1507431609725231826, guid: 105ab565efc65f748b0989e099c2c334,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693506334308294511, guid: 105ab565efc65f748b0989e099c2c334,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693506334308294511, guid: 105ab565efc65f748b0989e099c2c334,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595476471144066665, guid: 105ab565efc65f748b0989e099c2c334,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4770996337886199183, guid: 105ab565efc65f748b0989e099c2c334,
         type: 3}
       propertyPath: txt_NomalGunBullet
       value: 
       objectReference: {fileID: 622795174}
+    - target: {fileID: 4770996337886199183, guid: 105ab565efc65f748b0989e099c2c334,
+        type: 3}
+      propertyPath: nomalGun
+      value: 
+      objectReference: {fileID: 278294999}
     - target: {fileID: 8390809324293229288, guid: 105ab565efc65f748b0989e099c2c334,
         type: 3}
       propertyPath: img_HpArray.Array.data[0]
