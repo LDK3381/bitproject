@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Sound
@@ -8,6 +10,7 @@ public class Sound
     public string soundName = "";
     public AudioClip clip = null;  // 사운드를 담는 클립
 }
+
 public class SoundManager : MonoBehaviour
 {
     //클래스를 쉽게 접근하도록 static으로 공유
@@ -20,7 +23,7 @@ public class SoundManager : MonoBehaviour
     [Header("브금 플레이어")]
     [SerializeField] AudioSource bgmPlayer = null;
 
-    [Header("효과음 플에이어")]
+    [Header("효과음 플레이어")]
     [SerializeField] AudioSource[] sfxPlayer = null;
 
     void Start()
