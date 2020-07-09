@@ -14,7 +14,6 @@ public class PlayerControll : MonoBehaviour
 
     public float Move = 0.375f;
     float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
-    float underRayLength = 0.25f;
 
     RaycastHit hit = new RaycastHit();
 
