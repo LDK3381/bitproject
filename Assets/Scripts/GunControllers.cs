@@ -16,7 +16,13 @@ public class GunControllers : MonoBehaviour
     {
         //시작과 동시에 발사
         FireRate = 0;
+
         //시작과 동시에 총알 개수 설정
+        BulletUiSetting();
+    }
+
+    public void BulletUiSetting()
+    {
         txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
     }
 
@@ -54,7 +60,8 @@ public class GunControllers : MonoBehaviour
     {
         //총알감소
         nomalGun.bulletCount--;
-        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+
+        BulletUiSetting();
 
         //애니메이터
         nomalGun.animator.SetTrigger("GunFire");
