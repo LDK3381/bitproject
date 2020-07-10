@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class SpawnPlayer : MonoBehaviourPun
@@ -30,33 +31,11 @@ public class SpawnPlayer : MonoBehaviourPun
         }
     }
 
+    [PunRPC]
     public void OnCreate(string Nickname)
     {
         PhotonNetwork.Instantiate(Nickname, SpawnPointCheck().position, Quaternion.identity);
         Choice.SetActive(false);
         HPUI.SetActive(true);
-    }
-
-
-    public void RandomPlayer()
-    {
-        int num = Random.Range(0, 4);
-        Debug.Log(num);
-
-        switch (num)
-        {
-            case 0:
-                OnCreate("KitChen");
-                break;
-            case 1:
-                OnCreate("Gurow");
-                break;
-            case 2:
-                OnCreate("RainGuw");
-                break;
-            default:
-                OnCreate("PapaGu");
-                break;
-        }
     }
 }

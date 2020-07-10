@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using Photon.Pun;
 
-public class FollowMainCamera : MonoBehaviour
+public class FollowMainCamera : MonoBehaviourPun
 {
     public float offsetX = 0f;
-    public float offsetY = 25f;
-    public float offsetZ = -35f;
+    public float offsetY = 3f;
+    public float offsetZ = -0.5f;
+    GameObject obj;
 
-    public GameObject player;
     Vector3 cameraPosition;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        obj = FindObjectOfType<GameObject>();
+    }
+
     void LateUpdate()
     {
-        cameraPosition.x = player.transform.position.x + offsetX;
-        cameraPosition.y = player.transform.position.y + offsetY;
-        cameraPosition.z = player.transform.position.z + offsetZ;
+        if (obj.CompareTag("Player"))
+        {
+            cameraPosition.x = obj.transform.position.x + offsetX;
+            cameraPosition.y = obj.transform.position.y + offsetY;
+            cameraPosition.z = obj.transform.position.z + offsetZ;
 
-        transform.position = cameraPosition;
+            transform.position = cameraPosition;
+        }
     }
 }

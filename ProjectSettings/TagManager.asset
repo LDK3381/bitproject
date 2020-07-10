@@ -11,6 +11,12 @@ TagManager:
   - Bomb
   - HP
   - Ground
+  - Note
+  - CheckPosition
+  - Kitchen
+  - Gurow
+  - PapaGu
+  - RainGuw
   layers:
   - Default
   - TransparentFX

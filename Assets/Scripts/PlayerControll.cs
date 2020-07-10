@@ -10,6 +10,8 @@ using Photon.Pun;
 public class PlayerControll : MonoBehaviourPun
 {
     public PhotonView PV;
+    public GameObject[] obj;      //총 쏘는 장비
+    private int Weapon = 1;
 
     Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
@@ -36,11 +38,24 @@ public class PlayerControll : MonoBehaviourPun
             Debug.DrawRay(RightRay.origin, transform.right, Color.red);
             #endregion
 
-            //씬 변환 함수(스페이스바)
-            if (Input.GetKeyDown(KeyCode.Space))
-                SceneManager.LoadScene("AnotherScene");
+            PlayerMove();   //캐릭터 조작
 
-            PlayerMove();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                Weapon = 1;
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+                Weapon = 2;
+
+            switch(Weapon)
+            {
+                case 1:
+                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
+                        obj[0].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+                    break;
+                case 2:
+                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
+                        obj[1].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+                    break;
+            }
         }
     }
 

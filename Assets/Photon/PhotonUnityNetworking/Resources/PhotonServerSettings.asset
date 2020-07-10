@@ -39,6 +39,12 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - LookAt
+  - DestroyRPC
+  - PlayerMove
+  - OnCreate
+  - RandomPlayer
+  - Choice
+  - SelectWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -8,7 +8,12 @@ public class MouseRotate : MonoBehaviourPun
     public float rotSpeed;      //마우스 회전 속도
     public PhotonView PV;
 
-    public Camera viewCamera;
+    Camera viewCamera;
+
+    private void Start()
+    {
+        viewCamera = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
