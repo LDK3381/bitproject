@@ -6,32 +6,42 @@ using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
+    public Dropdown textureQualityDropdown = null;
+    public Dropdown resolutionDropdown = null;
+    public Toggle fullscreenToggle = null;
+    Resolution[] resolutions = null;
 
-    [Header("볼륨 환경설정")]
-    [SerializeField] AudioMixer masterMixer = null;
-    [SerializeField] Slider masterSlider = null;  
-
-    //음량조절(환경설정)
-    public void VolumeControl()
+    void OnEnable()
     {
-        float sound_master = masterSlider.value;
+        //값이 변할때마다 AddListener을 통해 해당 함수 발동(인자가 없으면 그냥 함수명만, 있으면 delegate 활용)
+        fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
+        resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(); });
+        textureQualityDropdown.onValueChanged.AddListener(delegate { SetTextureQuality(); });
 
-        if (sound_master == -20f)
-            masterMixer.SetFloat("MyMaster", -80);
-        else
-            masterMixer.SetFloat("MyMaster", sound_master);
+        //선택 가능한 해상도가 리스트에 추가
+        resolutions = Screen.resolutions;
+        foreach(Resolution res in resolutions)
+        {
+            resolutionDropdown.options.Add(new Dropdown.OptionData(res.ToString()));
+        }
+    }
+
+    //해상도 설정
+    public void SetResolution()
+    {
+        Screen.SetResolution(resolutions[resolutionDropdown.value].width, 
+            resolutions[resolutionDropdown.value].height, Screen.fullScreen);
     }
 
     //화질 설정
-    public void QualityControl(int qualityIndex)
+    public void SetTextureQuality()
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        QualitySettings.masterTextureLimit = textureQualityDropdown.value;
     }
 
-    //전체화면
-    public void FullScreenControl(bool isFullScreen)
+    //전체화면 설정
+    public void SetFullScreen()
     {
-        Screen.fullScreen = isFullScreen;
+        Screen.fullScreen = fullscreenToggle.isOn;
     }
-
 }

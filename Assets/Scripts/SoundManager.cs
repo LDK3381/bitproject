@@ -21,10 +21,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Sound[] sfxSounds = null; // 효과음 사운드
 
     [Header("브금 플레이어")]
-    [SerializeField] AudioSource bgmPlayer = null;
+    [SerializeField] public AudioSource bgmPlayer;
 
     [Header("효과음 플레이어")]
-    [SerializeField] AudioSource[] sfxPlayer = null;
+    [SerializeField] public AudioSource[] sfxPlayer;
 
     void Start()
     {
@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour
                     if (!sfxPlayer[x].isPlaying)
                     {
                         sfxPlayer[x].clip = sfxSounds[i].clip;
+                        sfxPlayer[x].volume = PlayerPrefs.GetFloat("SfxVolSize");   //변경된 BGM 음량 적용
                         sfxPlayer[x].Play();
                         return;
                     }
@@ -61,6 +62,12 @@ public class SoundManager : MonoBehaviour
     {
         int random = Random.Range(0, 2);
         bgmPlayer.clip = bgmSounds[random].clip;
+        bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 SFX 음량 적용
         bgmPlayer.Play();
+
+        if(!bgmPlayer.isPlaying)
+        {
+            Debug.Log("bgm이 나오질 않습니다!");
+        }
     }
 }

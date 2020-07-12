@@ -9,8 +9,8 @@ public class UIButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Transform buttonScale = null;                //버튼 사이즈
     Vector3 defaultScale = new Vector3();               //현재 버튼크기
 
-    public AudioClip btnSound = null;
-    public AudioSource source = null;
+    //public AudioClip btnSound = null;
+    //public AudioSource source = null;
 
     void Start()
     {
@@ -29,9 +29,9 @@ public class UIButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
         buttonScale.localScale = defaultScale;
     }
 
-    //버튼음 효과
-    public void PlaySound()
-    {
-        source.PlayOneShot(btnSound);
-    }
+    ////버튼음 효과
+    //public void PlaySound()
+    //{
+    //    source.PlayOneShot(btnSound);
+    //}
 }

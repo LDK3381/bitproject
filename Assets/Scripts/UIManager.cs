@@ -10,16 +10,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playPanel = null;       //튜토리얼,싱글,멀티플레이 
     [SerializeField] private GameObject optionPanel = null;     //환경설정
 
-    SoundManager sound = null;
-
     private void Start()
     {
         Debug.Log("메인화면");
         optionPanel.SetActive(false);
         playPanel.SetActive(false);
         mainPanel.SetActive(true);
-
-        sound = FindObjectOfType<SoundManager>();
     }
 
     #region 메인화면 기본옵션들
@@ -46,7 +42,6 @@ public class UIManager : MonoBehaviour
     //뒤로가기
     public void OnBack()
     {
-        mainPanel.SetActive(false);
         playPanel.SetActive(false);
         optionPanel.SetActive(false);
         mainPanel.SetActive(true);

@@ -44,6 +44,8 @@ public class PlayerControll : MonoBehaviour
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
+        //저장된 키값 정보 가져오기
+
         #region 누른만큼 이동
         //if (Input.GetKeyDown(KeyCode.D))
         //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
@@ -58,19 +60,19 @@ public class PlayerControll : MonoBehaviour
         #region 칸 단위로 이동
         //if(Under_ObstacleCheck()) //Ground 여부 판정.
         //{
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up"))))
             {
                 W_MoveCheck();
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down"))))
             {
                 S_MoveCheck();
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left"))))
             {
                 A_MoveCheck();
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right"))))
             {
                 D_MoveCheck();
             }
