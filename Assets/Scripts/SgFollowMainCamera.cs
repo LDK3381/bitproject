@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowMainCamera : MonoBehaviour
+public class SgFollowMainCamera : MonoBehaviour
 {
     public float offsetX = 0f;
     public float offsetY = 3f;
