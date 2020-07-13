@@ -5,47 +5,63 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
+using Photon.Pun;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerControll : MonoBehaviourPun
 {
-    NoteTimingManager noteTimingManager;
+    public PhotonView PV;
+    public GameObject[] obj;      //총 쏘는 장비
+    private int Weapon = 1;
 
-    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
+    Ray forwardRay, LeftRay, BackwardRay, RightRay;
 
     public float Move = 0.375f;
-    float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
 
-    RaycastHit hit = new RaycastHit();
+    public float move_speed = 0.375f;    //이동 거리
+    float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
-    void Start()
-    {
-        noteTimingManager = FindObjectOfType<NoteTimingManager>();
-    }
+    RaycastHit hit;
 
     void Update()
     {
-        #region 장애물 판정 위한 Ray 생성
-        forwardRay = new Ray(transform.position, transform.forward);
-        LeftRay = new Ray(transform.position, -transform.right);
-        BackwardRay = new Ray(transform.position, -transform.forward);
-        RightRay = new Ray(transform.position, transform.right);
-        UnderRay = new Ray(transform.position, -transform.up);
+        if (PV.IsMine)
+        {
+            #region 장애물 판정 위한 Ray 생성
+            forwardRay = new Ray(transform.position, transform.forward);
+            LeftRay = new Ray(transform.position, -transform.right);
+            BackwardRay = new Ray(transform.position, -transform.forward);
+            RightRay = new Ray(transform.position, transform.right);
 
-        Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
-        Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
-        Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
-        Debug.DrawRay(RightRay.origin, transform.right, Color.red);
-        Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
-        #endregion
+            Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
+            Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
+            Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
+            Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+            #endregion
 
-        PlayerMove();
+            PlayerMove();   //캐릭터 조작
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                Weapon = 1;
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+                Weapon = 2;
+
+            switch(Weapon)
+            {
+                case 1:
+                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
+                        obj[0].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+                    break;
+                case 2:
+                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
+                        obj[1].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+                    break;
+            }
+        }
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        //저장된 키값 정보 가져오기
-
         #region 누른만큼 이동
         //if (Input.GetKeyDown(KeyCode.D))
         //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
@@ -57,26 +73,23 @@ public class PlayerControll : MonoBehaviour
         //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
         #endregion
 
-        #region 칸 단위로 이동
-        //if(Under_ObstacleCheck()) //Ground 여부 판정.
-        //{
-            if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up"))))
-            {
-                W_MoveCheck();
-            }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down"))))
-            {
-                S_MoveCheck();
-            }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left"))))
-            {
-                A_MoveCheck();
-            }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right"))))
-            {
-                D_MoveCheck();
-            }
-        //}
+        #region 칸 단위로 이동       
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            W_MoveCheck();
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            S_MoveCheck();
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            A_MoveCheck();
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            D_MoveCheck();
+        }
         #endregion
     }
 
@@ -85,12 +98,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (W_ObstacleCheck() == true)
         {
-            if (noteTimingManager.CheckTiming())
-            {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
-            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
         }
         else
             return;
@@ -99,12 +107,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (S_ObstacleCheck() == true)
         {
-            if (noteTimingManager.CheckTiming())
-            {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
-            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
         }
         else
             return;
@@ -113,12 +116,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (A_ObstacleCheck() == true)
         {
-            if (noteTimingManager.CheckTiming())
-            {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
-            }
+            transform.position = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
         }
         else
             return;
@@ -127,12 +125,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (D_ObstacleCheck() == true)
         {
-            if (noteTimingManager.CheckTiming())
-            {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
-            }
+            transform.position = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
         }
         else
             return;
@@ -145,8 +138,7 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단       
         if (Physics.Raycast(forwardRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || 
-                hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -158,8 +150,7 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(LeftRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                 hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -171,8 +162,7 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(BackwardRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
             {
                 return false;
             }
@@ -184,28 +174,12 @@ public class PlayerControll : MonoBehaviour
         //근처 장애물 여부 판단 
         if (Physics.Raycast(RightRay, out hit, rayLength))
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Player")
+            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
             {
                 return false;
             }
         }
         return true;
     }
-    public bool Under_ObstacleCheck()
-    {
-        //바닥 여부 판단
-        if(Physics.Raycast(UnderRay, out hit, rayLength))
-        {
-            if(hit.collider.tag != "Ground")
-            {
-                Debug.Log("Ground 없음");
-                return false;
-            }
-        }
-        return true;
-    }
-
     #endregion
-
 }

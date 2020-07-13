@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;                   // UI 사용에 필요한 네임스페이스
+using Photon.Pun;
 
-public class StatusManager : MonoBehaviour
+public class StatusManager : MonoBehaviourPun
 {
     [SerializeField] int maxHp = 0;         // 최대 체력
     int currentHp = 0;                      // 현재 체력
