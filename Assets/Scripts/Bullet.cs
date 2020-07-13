@@ -13,6 +13,11 @@ public class Bullet : MonoBehaviour
     [Header("피격 효과음")]
     [SerializeField] string sound_Effect = null;
 
+    private void Start()
+    {
+        Destroy(gameObject, 7.0f);
+    }
+
     // OnCollisionEnter : 다른 컬라이더와 충돌하는 순간 호출되는 함수
     // (Collision other) : 충돌한 객체의 정보는 other에 담김
     void OnCollisionEnter(Collision other)
@@ -38,7 +43,13 @@ public class Bullet : MonoBehaviour
 
         // 이펙트 0.5초후 파괴
         Destroy(clone, 0.5f);
+
         // 총알 파괴
-        Destroy(gameObject);
+        if (other.transform.CompareTag("Wall") == true || other.transform.CompareTag("BreakableWall") == true)
+        {
+            Debug.Log("벽 충돌");
+            Destroy(gameObject);
+        }
+        
     }
 }

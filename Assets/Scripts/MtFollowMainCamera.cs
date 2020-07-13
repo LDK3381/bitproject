@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using Photon.Pun;
 
-public class FollowMainCamera : MonoBehaviourPun
+public class MtFollowMainCamera : MonoBehaviourPun
 {
     public float offsetX = 0f;
     public float offsetY = 3f;

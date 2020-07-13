@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762314625}
   - component: {fileID: 1762314626}
+  - component: {fileID: 1318665789690686427}
   m_Layer: 5
   m_Name: Combo
   m_TagString: Untagged
@@ -443,6 +444,25 @@ MonoBehaviour:
   - {fileID: 1421048318}
   - {fileID: 2069112301}
   - {fileID: 124709852}
+--- !u!95 &1318665789690686427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762314624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 077aa273a010bdc4fb15ab371e636a31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1811166578
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteHitAnimator: {fileID: 1226668882}
-  doveAnimator: {fileID: 0}
+  noteCheckAnimator: {fileID: 1318665789690686427}
+  doveAnimator: {fileID: 116753556475398047}
 --- !u!1 &2069112301
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5231072604716677575}
+  - component: {fileID: 116753556475398047}
   m_Layer: 5
   m_Name: Dove
   m_TagString: Untagged
@@ -678,6 +700,25 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: -440}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &116753556475398047
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231072604716677574}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1c2da3cde0ca7941a62e4915aae06a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5231072604738263639
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,13 +864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a153d50cc7f74391842e465a21b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoteList: []
-  Center: {fileID: 5231072605176099547}
-  TimingRect: {fileID: 5231072606572878794}
-  Dove:
-  - {fileID: 5231072606035529207}
-  - {fileID: 5231072604954812180}
-  - {fileID: 5231072605893446791}
+  noteList: []
+  center: {fileID: 5231072605176099547}
+  timingRect: {fileID: 5231072606572878794}
+  dove: []
   noteComboManager: {fileID: 1762314626}
 --- !u!61 &5231072604843617216
 BoxCollider2D:
