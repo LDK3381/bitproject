@@ -10,6 +10,15 @@ TagManager:
   - BreakableWall
   - Bomb
   - HP
+  - Ground
+  - Note
+  - Mine
+  - Item
+  - RainGuw
+  - PapaGu
+  - Kitchen
+  - Gurow
+  - CheckPosition
   layers:
   - Default
   - TransparentFX
@@ -21,9 +30,9 @@ TagManager:
   - 
   - whatStopsMovement
   - whatCanMovement
-  - 
-  - 
-  - 
+  - Player
+  - Bomb
+  - Ground
   - 
   - 
   - 

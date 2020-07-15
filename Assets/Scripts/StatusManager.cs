@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;                   // UI 사용에 필요한 네임스페이스
+using Photon.Pun;
 
-public class StatusManager : MonoBehaviour
+public class StatusManager : MonoBehaviourPun
 {
-    [SerializeField] int maxHp;         // 최대 체력
-    int currentHp;                      // 현재 체력
+    [SerializeField] int maxHp = 0;         // 최대 체력
+    int currentHp = 0;                      // 현재 체력
 
-    [SerializeField] Image[] img_HpArray;   // 체력 UI
+    [SerializeField] Image[] img_HpArray = null;   // 체력 UI
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
-    [SerializeField] float blinkSpeed;  // 플레이어 깜밖임 속도
-    [SerializeField] int blinkCount;    // 플레이어 깜밖임 횟수
+    [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
+    [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
 
-    [SerializeField] MeshRenderer mesh_PlayerGraphics;
+    [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
 
     void Start()
     {

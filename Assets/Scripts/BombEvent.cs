@@ -4,53 +4,145 @@ using UnityEngine;
 
 public class BombEvent : MonoBehaviour
 {
+    private float GroundRayLength = 0.25f;
+    private float ObRayLength = 0.5f;
+    private float waitTime = 0f;
+    public float explosionTime = 2f;  //폭파하기까지 걸리는 시간
 
-    private float Timer = 0f;        //대기시간
-    private float BlastTimer = 1f;   //폭발시간
+    Ray bomb_Ray, rightRay, leftRay, upRay, downRay;
+    RaycastHit hit = new RaycastHit();
+    Collision col = null;
 
-    public GameObject bomb;
-    public GameObject explosionEffect;
-    public float explosion_force = 1.0f;
-    public float explosion_radius = 2.0f;           //폭발 반경
+    [SerializeField] int damage = 0;
+    [SerializeField] float force = 0f;
 
-    WallEvent wall;
+    public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        NearbyBlast();
+        BombToDetectGround();
+        BombToDetectOthers();
     }
 
-    //폭탄이 xx와 충돌 시,
-   private void NearbyBlast()
+    //폭탄의 충돌 범위 감지(발판 파괴용)
+    private void BombToDetectGround()
     {
-        Timer += Time.deltaTime;
+        //폭탄에 Ray(광선) 추가(y축 아랫방향)
+        bomb_Ray = new Ray(transform.position, -transform.up);
+        Debug.DrawRay(bomb_Ray.origin, -transform.up, Color.yellow);
 
-        //폭탄 던지면 1초 후에 폭발하도록  
-        if (Timer > BlastTimer)
+        if (Physics.Raycast(bomb_Ray, out hit, GroundRayLength))
         {
-            //폭탄의 일정 범위 내의 오브젝트들을 폭파시키기
-            Collider[] collidersToDestroy = Physics.OverlapSphere(bomb.transform.position, explosion_radius);
-
-            foreach (Collider nearbyObject in collidersToDestroy)
-            {
-                Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-
-                //폭탄에 피해받는 대상(플레이어, 부서지는 벽, 타일?)
-                if (rb != null)
-                {
-                    rb.AddExplosionForce(explosion_force, bomb.transform.position, explosion_radius, 0.2f, ForceMode.Impulse);
-                }
+            //폭탄 바로 아래의 발판(Ground)을 2초 후에 파괴
+            if (hit.collider.tag == "Ground")
+            {                
+                hit.transform.GetComponent<GroundExplode>().OnCollisionEnter(col);
             }
         }
     }
 
-    //폭발 이펙트 구현
+    //폭탄의 충돌 범위 감지(주변 오브젝트에 데미지용)
+    public void BombToDetectOthers()
+    {
+        #region 장애물 판정 위한 Ray 생성
+        upRay = new Ray(transform.position, transform.forward);
+        leftRay = new Ray(transform.position, -transform.right);
+        downRay = new Ray(transform.position, -transform.forward);
+        rightRay = new Ray(transform.position, transform.right);
 
+        Debug.DrawRay(upRay.origin, transform.forward, Color.blue);
+        Debug.DrawRay(leftRay.origin, -transform.right, Color.blue);
+        Debug.DrawRay(downRay.origin, -transform.forward, Color.blue);
+        Debug.DrawRay(rightRay.origin, transform.right, Color.blue);
+        #endregion
+
+        #region 폭탄 범위 내 장애물 처리
+        waitTime += Time.deltaTime;
+
+        //2초 후에 발동
+        if(waitTime > explosionTime)
+        {
+            GameObject effect = Instantiate(ps_BombExplode, transform.position, transform.rotation);
+
+            //윗쪽 광선 범위에 장애물이 들어온 경우,
+            if (Physics.Raycast(upRay, out hit, ObRayLength))
+            {
+                //폭탄 범위 내 벽이 있으면 벽 폭파
+                if(hit.collider.tag == "BreakableWall")
+                {
+                    hit.transform.GetComponent<WallEvent>().explode();
+                }
+                //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
+                if (hit.collider.tag == "Player")
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);                   
+                }
+            }
+            //아랫쪽 광선 범위에 장애물이 들어온 경우,
+            if (Physics.Raycast(downRay, out hit, ObRayLength))
+            {
+                //폭탄 범위 내 벽이 있으면 벽 폭파
+                if (hit.collider.tag == "BreakableWall")
+                {
+                    hit.transform.GetComponent<WallEvent>().explode();
+                }
+                //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
+                if (hit.collider.tag == "Player")
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                }
+            }
+            //왼쪽 광선 범위에 장애물이 들어온 경우,
+            if (Physics.Raycast(leftRay, out hit, ObRayLength))
+            {
+                //폭탄 범위 내 벽이 있으면 벽 폭파
+                if (hit.collider.tag == "BreakableWall")
+                {
+                    hit.transform.GetComponent<WallEvent>().explode();
+                }
+                //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
+                if (hit.collider.tag == "Player")
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                }
+            }
+            //오른쪽 광선 범위에 장애물이 들어온 경우,
+            if (Physics.Raycast(rightRay, out hit, ObRayLength))
+            {
+                //폭탄 범위 내 벽이 있으면 벽 폭파
+                if (hit.collider.tag == "BreakableWall")
+                {
+                    hit.transform.GetComponent<WallEvent>().explode();
+                }
+                //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
+                if (hit.collider.tag == "Player")
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                }
+            }
+
+            Destroy(effect, 2);     //이펙트 2초후에 소멸
+        }
+        #endregion
+    }
+
+    ////폭탄 설치된 자리에 캐릭터가 있어도 데미지 받음.
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Player")
+    //    {
+    //        //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+    //        hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+    //    }         
+    //}
 }

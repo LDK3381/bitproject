@@ -1,62 +1,79 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class UIControl : MonoBehaviour
+public class UIControl : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject mainpanel = null;
-    [SerializeField] private GameObject signpanel = null;
-    [SerializeField] private GameObject playpanel = null;
-    [SerializeField] private GameObject gamemodepanel = null;
-    [SerializeField] private GameObject noticepanel = null;
+    private string gameVersion = "1";   //게임 버전
 
-    public void OnMain()
+    public Text connectionInfoText; //네트워크 정보를 표시
+    public Button JoinButton;       //멀티 서버 접속 버튼
+
+    void Awake()
     {
-        Debug.Log("메인화면");
-        signpanel.SetActive(false);
-        mainpanel.SetActive(true);
+        Screen.SetResolution(900, 900, false);
     }
-    public void OnQuit()
+
+    private void Start()
     {
-        Debug.Log("종료");
+        PhotonNetwork.GameVersion = gameVersion;
+        PhotonNetwork.ConnectUsingSettings();
+
+        JoinButton.interactable = false;
+        connectionInfoText.text = "마스터 서버에 접속중...";
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        JoinButton.interactable = true;
+        connectionInfoText.text = "온라인 : 마스터 서버와 접속 성공...";
+
+        Debug.Log("마스터 연결");
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        JoinButton.interactable = false;
+        connectionInfoText.text = "오프라인 : 마스터 서버와 접속 실패...\n접속 재시도중...";
+
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+    public void Connect()
+    {
+        JoinButton.interactable = false;
+        Debug.Log("Connect()실행");
+        if(PhotonNetwork.IsConnected)
+        {
+            connectionInfoText.text = "방에 접속중...";
+            Debug.Log("IsConnect안");
+            PhotonNetwork.JoinRandomRoom();
+        }
+        else
+        {
+            connectionInfoText.text = "오프라인 : 마스터 서버와 접속 실패...\n접속 재시도중...";
+            PhotonNetwork.ConnectUsingSettings();
+        }
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        connectionInfoText.text = "빈 방이 없음, 새로운 방 생성...";
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("서버 연결");
+        connectionInfoText.text = "방 참가 성공";
+        PhotonNetwork.LoadLevel("MultiScene");
+    }
+
+    public void OnExit()
+    {
         Application.Quit();
-    }
-    public void OnSign()
-    {
-        Debug.Log("회원가입");
-        mainpanel.SetActive(false);
-        signpanel.SetActive(true);
-    }
-    public void OnPlay()
-    {
-        Debug.Log("플레이");
-        mainpanel.SetActive(false);
-        playpanel.SetActive(true);
-    }
-    public void OnGameMode()
-    {
-        Debug.Log("게임 모드");
-        mainpanel.SetActive(false);
-        gamemodepanel.SetActive(true);
-    }
-    public void dfsdfsd()
-    {
-        noticepanel.SetActive(true);
-        StartCoroutine("timer");
-    }
-    public void OnBack()
-    {
-        signpanel.SetActive(false);
-        playpanel.SetActive(false);
-        gamemodepanel.SetActive(false);
-        noticepanel.SetActive(false);
-        mainpanel.SetActive(true);
-    }
-
-
-    IEnumerator timer()
-    {
-        yield return new WaitForSeconds(1.5f);
-        noticepanel.SetActive(false);
     }
 }
