@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 using Photon.Pun;
+using System.Net.Http.Headers;
 
 public class PlayerControll : MonoBehaviourPun
 {
@@ -23,7 +24,7 @@ public class PlayerControll : MonoBehaviourPun
     RaycastHit hit;
 
     void Update()
-    {
+    {       
         if (PV.IsMine)
         {
             #region 장애물 판정 위한 Ray 생성
