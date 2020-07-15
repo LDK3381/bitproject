@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
-    public Dropdown textureQualityDropdown = null;
+    //public Dropdown textureQualityDropdown = null;
     public Dropdown resolutionDropdown = null;
     public Toggle fullscreenToggle = null;
     Resolution[] resolutions = null;
@@ -16,7 +16,7 @@ public class OptionManager : MonoBehaviour
         //값이 변할때마다 AddListener을 통해 해당 함수 발동(인자가 없으면 그냥 함수명만, 있으면 delegate 활용)
         fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
         resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(); });
-        textureQualityDropdown.onValueChanged.AddListener(delegate { SetTextureQuality(); });
+        //textureQualityDropdown.onValueChanged.AddListener(delegate { SetTextureQuality(); });
 
         //선택 가능한 해상도가 리스트에 추가
         resolutions = Screen.resolutions;
@@ -34,10 +34,10 @@ public class OptionManager : MonoBehaviour
     }
 
     //화질 설정
-    public void SetTextureQuality()
-    {
-        QualitySettings.masterTextureLimit = textureQualityDropdown.value;
-    }
+    //public void SetTextureQuality()
+    //{
+    //    QualitySettings.masterTextureLimit = textureQualityDropdown.value;
+    //}
 
     //전체화면 설정
     public void SetFullScreen()
