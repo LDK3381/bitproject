@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WallEvent : MonoBehaviour
 {
-    public float cubeSize = 0.2f;
-    public int cubesInRow = 5;
+    public float cubeSize = 0.1f;
+    public int cubesInRow = 2;
 
     float cubesPivotDistance = 0f;
     Vector3 cubesPivot;
 
-    public float explosionForce = 50f;
-    public float explosionRadius = 4f;
-    public float explosionUpward = 0.4f;
+    public float explosionForce = 5f;
+    public float explosionRadius = 1f;
+    public float explosionUpward = 0.1f;
 
     // Start is called before the first frame update
     void Start()

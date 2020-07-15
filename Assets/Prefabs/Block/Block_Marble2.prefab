@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2591975615652103060}
   - component: {fileID: 6819446723445012898}
   - component: {fileID: 981507378626151771}
+  - component: {fileID: 5391397692147391313}
+  - component: {fileID: 4818758815734214056}
   m_Layer: 0
   m_Name: Block_Marble2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +80,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5391397692147391313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559324976790499719}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25400004, y: 0.25400007, z: 0.25400007}
+  m_Center: {x: 0.000000014901161, y: 0.127, z: -0.000000037252903}
+--- !u!114 &4818758815734214056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559324976790499719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

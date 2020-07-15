@@ -19,21 +19,23 @@ public class SoundController : MonoBehaviour
     private float defaultbgmVol = 1f;
     private float defaultsfxVol = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         //Master 초기값 설정
-        defaultmasterVol = PlayerPrefs.GetFloat("MasterVolSize", 1f);
+        PlayerPrefs.SetFloat("MasterVolSize", 1f);
+        defaultmasterVol = PlayerPrefs.GetFloat("MasterVolSize");
         masterSlider.value = defaultmasterVol;
         AudioListener.volume = masterSlider.value;
 
         //BGM 초기값 설정
-        defaultbgmVol = PlayerPrefs.GetFloat("BgmVolSize", 1f);
+        PlayerPrefs.SetFloat("BgmVolSize", 1f);
+        defaultbgmVol = PlayerPrefs.GetFloat("BgmVolSize");
         bgmSlider.value = defaultbgmVol;
         bgmSource.volume = bgmSlider.value;
 
         //SFX 초기값 설정
-        defaultsfxVol = PlayerPrefs.GetFloat("SfxVolSize", 1f);
+        PlayerPrefs.SetFloat("SfxVolSize", 1f);
+        defaultsfxVol = PlayerPrefs.GetFloat("SfxVolSize");
         sfxSlider.value = defaultsfxVol;
         sfxSource.volume = sfxSlider.value;
 

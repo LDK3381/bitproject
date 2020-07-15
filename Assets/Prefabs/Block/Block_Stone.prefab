@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4971159845160624257}
   - component: {fileID: 4154039821422238391}
   - component: {fileID: 7681615246661314126}
+  - component: {fileID: 3567542542936195957}
   m_Layer: 0
   m_Name: Block_Stone
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +79,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3567542542936195957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261363489028362898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25400004, y: 0.25400007, z: 0.25400007}
+  m_Center: {x: 0.000000014901161, y: 0.127, z: -0.000000037252903}

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 using Photon.Pun;
+using System.Net.Http.Headers;
 
 public class PlayerControll : MonoBehaviourPun
 {
@@ -13,7 +14,7 @@ public class PlayerControll : MonoBehaviourPun
     public GameObject[] obj;      //총 쏘는 장비
     private int Weapon = 1;
 
-    Ray forwardRay, LeftRay, BackwardRay, RightRay;
+    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
 
     public float Move = 0.375f;
 
@@ -23,7 +24,7 @@ public class PlayerControll : MonoBehaviourPun
     RaycastHit hit;
 
     void Update()
-    {
+    {       
         if (PV.IsMine)
         {
             #region 장애물 판정 위한 Ray 생성
@@ -31,11 +32,13 @@ public class PlayerControll : MonoBehaviourPun
             LeftRay = new Ray(transform.position, -transform.right);
             BackwardRay = new Ray(transform.position, -transform.forward);
             RightRay = new Ray(transform.position, transform.right);
+            UnderRay = new Ray(transform.position, -transform.up);
 
             Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
             Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
             Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
             Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+            Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
             #endregion
 
             PlayerMove();   //캐릭터 조작
@@ -73,23 +76,27 @@ public class PlayerControll : MonoBehaviourPun
         //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
         #endregion
 
-        #region 칸 단위로 이동       
-        if (Input.GetKeyDown(KeyCode.W))
+        #region 칸 단위로 이동 
+        if(Under_ObstacleCheck())
         {
-            W_MoveCheck();
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                W_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                S_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                A_MoveCheck();
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                D_MoveCheck();
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            S_MoveCheck();
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            A_MoveCheck();
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            D_MoveCheck();
-        }
+        return;
         #endregion
     }
 
@@ -176,6 +183,18 @@ public class PlayerControll : MonoBehaviourPun
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "Player")
             {
+                return false;
+            }
+        }
+        return true;
+    }
+    public bool Under_ObstacleCheck()
+    {
+        if (Physics.Raycast(UnderRay, out hit, rayLength))
+        {
+            if (hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
+            {
+                Debug.Log("Ground 없음");
                 return false;
             }
         }
