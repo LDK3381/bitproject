@@ -12,11 +12,6 @@ public class UIControl : MonoBehaviourPunCallbacks
     public Text connectionInfoText; //네트워크 정보를 표시
     public Button JoinButton;       //멀티 서버 접속 버튼
 
-    void Awake()
-    {
-        Screen.SetResolution(900, 900, false);
-    }
-
     private void Start()
     {
         PhotonNetwork.GameVersion = gameVersion;

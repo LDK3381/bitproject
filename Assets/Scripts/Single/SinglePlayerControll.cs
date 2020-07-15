@@ -58,8 +58,8 @@ public class SinglePlayerControll : MonoBehaviour
         #endregion
 
         #region 칸 단위로 이동
-        //if(Under_ObstacleCheck()) //Ground 여부 판정.
-        //{
+        if(Under_ObstacleCheck()) //Ground 여부 판정.
+        {
             if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up"))))
             {
                 W_MoveCheck();
@@ -76,7 +76,7 @@ public class SinglePlayerControll : MonoBehaviour
             {
                 D_MoveCheck();
             }
-        //}
+        }
         #endregion
     }
 
@@ -197,7 +197,7 @@ public class SinglePlayerControll : MonoBehaviour
         //바닥 여부 판단
         if(Physics.Raycast(UnderRay, out hit, rayLength))
         {
-            if(hit.collider.tag != "Ground")
+            if(hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
             {
                 Debug.Log("Ground 없음");
                 return false;

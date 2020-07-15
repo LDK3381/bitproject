@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BombEvent : MonoBehaviour
 {
-    private float GroundRayLength = 0.25f;
+    //private float GroundRayLength = 0.25f;
     private float ObRayLength = 0.5f;
     private float waitTime = 0f;
     public float explosionTime = 2f;  //폭파하기까지 걸리는 시간
 
-    Ray bomb_Ray, rightRay, leftRay, upRay, downRay;
+    Ray rightRay, leftRay, upRay, downRay;
     RaycastHit hit = new RaycastHit();
-    Collision col = null;
+    //Collision col = null;
 
     [SerializeField] int damage = 0;
     [SerializeField] float force = 0f;
@@ -26,26 +26,25 @@ public class BombEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BombToDetectGround();
         BombToDetectOthers();
     }
 
     //폭탄의 충돌 범위 감지(발판 파괴용)
-    private void BombToDetectGround()
-    {
-        //폭탄에 Ray(광선) 추가(y축 아랫방향)
-        bomb_Ray = new Ray(transform.position, -transform.up);
-        Debug.DrawRay(bomb_Ray.origin, -transform.up, Color.yellow);
+    //private void BombToDetectGround()
+    //{
+    //    //폭탄에 Ray(광선) 추가(y축 아랫방향)
+    //    bomb_Ray = new Ray(transform.position, -transform.up);
+    //    Debug.DrawRay(bomb_Ray.origin, -transform.up, Color.yellow);
 
-        if (Physics.Raycast(bomb_Ray, out hit, GroundRayLength))
-        {
-            //폭탄 바로 아래의 발판(Ground)을 2초 후에 파괴
-            if (hit.collider.tag == "Ground")
-            {                
-                hit.transform.GetComponent<GroundExplode>().OnCollisionEnter(col);
-            }
-        }
-    }
+    //    if (Physics.Raycast(bomb_Ray, out hit, GroundRayLength))
+    //    {
+    //        //폭탄 바로 아래의 발판(Ground)을 2초 후에 파괴
+    //        if (hit.collider.tag == "Ground")
+    //        {                
+    //            hit.transform.GetComponent<GroundExplode>().OnCollisionEnter(col);
+    //        }
+    //    }
+    //}
 
     //폭탄의 충돌 범위 감지(주변 오브젝트에 데미지용)
     public void BombToDetectOthers()

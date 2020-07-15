@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GroundExplode : MonoBehaviour
 {
-
     public void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Bomb")
