@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("멀티플레이 시작");
         playPanel.SetActive(false);
-        SceneManager.LoadScene("PlayerScene");
+        SceneManager.LoadScene("MultiUI");
     }
     #endregion
 
