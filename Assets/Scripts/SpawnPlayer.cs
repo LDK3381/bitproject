@@ -31,10 +31,9 @@ public class SpawnPlayer : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void OnCreate(string Nickname)
     {
-        PhotonNetwork.Instantiate(Nickname, SpawnPointCheck().position, Quaternion.identity);
+        PhotonNetwork.Instantiate(Nickname, new Vector3(0.375f, 0.6f, 0.375f), Quaternion.identity);
         Choice.SetActive(false);
         HPUI.SetActive(true);
     }

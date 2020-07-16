@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         var clone = Instantiate(go_RicochetEffect, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
 
         //지뢰와 충돌 했을 때 데미지 발생
-        if(other.transform.CompareTag("Mine"))
+        if (other.transform.CompareTag("Mine"))
         {
             other.transform.GetComponent<Mine>().Damaged(damage);
         }
@@ -50,6 +50,5 @@ public class Bullet : MonoBehaviour
             Debug.Log("벽 충돌");
             Destroy(gameObject);
         }
-        
     }
 }
