@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum WeaponType
 {
     Normal_Gun,
 }
 
-public class Gun : MonoBehaviour
+public class Gun : MonoBehaviourPun
 {
     [Header("총 유형")]
     public WeaponType weaponType;

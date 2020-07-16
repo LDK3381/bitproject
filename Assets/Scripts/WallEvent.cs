@@ -23,17 +23,6 @@ public class WallEvent : MonoBehaviour
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Bullet")
-            explode();
-    }
-
     public void explode()
     {
         //벽 파괴 이벤트

@@ -41,7 +41,7 @@ public class UIControl : MonoBehaviourPunCallbacks
     {
         JoinButton.interactable = false;
         Debug.Log("Connect()실행");
-        if(PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
             connectionInfoText.text = "방에 접속중...";
             Debug.Log("IsConnect안");
@@ -64,6 +64,7 @@ public class UIControl : MonoBehaviourPunCallbacks
     {
         Debug.Log("서버 연결");
         connectionInfoText.text = "방 참가 성공";
+        
         PhotonNetwork.LoadLevel("MultiScene");
     }
 
