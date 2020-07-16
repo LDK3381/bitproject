@@ -93,8 +93,7 @@ public class PauseManagerMulti : MonoBehaviour
     {
         bgmSource.volume = bgmSlider.value;
 
-        curbgmVol = bgmSlider.value;
-        PlayerPrefs.SetFloat("BgmVolSize", curbgmVol);
+        PlayerPrefs.SetFloat("BgmVolSize", bgmSlider.value);
         PlayerPrefs.Save();
         Debug.Log("변경된 BGM 값 : " + bgmSlider.value);
     }

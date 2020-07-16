@@ -10171,8 +10171,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.469131, y: 0.87777865, z: 1}
-  m_Center: {x: 0, y: -0.050000012, z: 0}
+  m_Size: {x: 0.62129164, y: 1.0180465, z: 1}
+  m_Center: {x: 0.0052245855, y: 0.020133913, z: 0}
 --- !u!114 &2984174409138315668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10192,7 +10192,7 @@ MonoBehaviour:
   - {fileID: 2154571492858165813}
   blinkSpeed: 0
   blinkCount: 0
-  mesh_PlayerGraphics: {fileID: 0}
+  mesh_PlayerGraphics: {fileID: 7813287310642371744}
 --- !u!114 &7813287310642371771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10220,7 +10220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPoint: {fileID: 7813287311661371074}
-  bomb: {fileID: 7997006375466441562, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
+  bomb: {fileID: 7133600363201837525, guid: 285dfc15fb5531742957113c9c29b051, type: 3}
   weapon: {fileID: 7813287311839403138}
 --- !u!114 &3915865406642210855
 MonoBehaviour:

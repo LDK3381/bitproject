@@ -18,11 +18,6 @@ public class BombEvent : MonoBehaviour
 
     public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +42,7 @@ public class BombEvent : MonoBehaviour
     //}
 
     //폭탄의 충돌 범위 감지(주변 오브젝트에 데미지용)
+
     public void BombToDetectOthers()
     {
         #region 장애물 판정 위한 Ray 생성
@@ -80,7 +76,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);                   
                 }
             }
@@ -95,7 +91,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
@@ -110,7 +106,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
@@ -125,7 +121,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
+                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
@@ -134,14 +130,4 @@ public class BombEvent : MonoBehaviour
         }
         #endregion
     }
-
-    ////폭탄 설치된 자리에 캐릭터가 있어도 데미지 받음.
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.gameObject.tag == "Player")
-    //    {
-    //        //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
-    //        hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
-    //    }         
-    //}
 }

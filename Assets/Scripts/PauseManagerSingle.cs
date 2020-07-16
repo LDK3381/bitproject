@@ -23,6 +23,12 @@ public class PauseManagerSingle : MonoBehaviour
     private float curbgmVol = 1f;
     private float cursfxVol = 1f;
 
+    [Header("봉인시킬 기능들")]
+    [SerializeField] GameObject sealControll = null;
+    [SerializeField] GameObject sealWeapon = null;
+    [SerializeField] GameObject sealBomb = null;
+    [SerializeField] GameObject sealMouseRotate = null;
+
     void OnEnable()
     {
         //값이 변할때마다 AddListener을 통해 해당 함수 발동(인자가 없으면 그냥 함수명만, 있으면 delegate 활용)
@@ -55,6 +61,12 @@ public class PauseManagerSingle : MonoBehaviour
         pausePanel.SetActive(true);
         pauseButton.SetActive(false);
         AudioListener.pause = true;     //bgm 일시중단
+
+        //일시정지 중에는 키 입력 기능들 봉인
+        sealControll.GetComponent<SinglePlayerControll>().enabled = false;
+        sealWeapon.GetComponent<SingleWeaponManager>().enabled = false;
+        sealBomb.GetComponent<BombSpawn>().enabled = false;
+        sealMouseRotate.GetComponent<SingleMouseRotate>().enabled = false;
     }
 
     //뒤로가기 버튼
@@ -64,6 +76,12 @@ public class PauseManagerSingle : MonoBehaviour
         pausePanel.SetActive(false);
         pauseButton.SetActive(true);
         AudioListener.pause = false;    //bgm 다시재생
+
+        //일시정지 풀리면 키 입력 기능들 봉인해제
+        sealControll.GetComponent<SinglePlayerControll>().enabled = true;
+        sealWeapon.GetComponent<SingleWeaponManager>().enabled = true;
+        sealBomb.GetComponent<BombSpawn>().enabled = true;
+        sealMouseRotate.GetComponent<SingleMouseRotate>().enabled = true;
     }
 
     //게임 나가기 버튼
