@@ -4308,6 +4308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 1063371884}
   fullscreenToggle: {fileID: 1599217005}
+  resolutionText: {fileID: 1454604734}
 --- !u!4 &1046453344
 Transform:
   m_ObjectHideFlags: 0
@@ -6090,7 +6091,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5d0240e7e57e7d14b9a3097f783a64b4, type: 3}
-    m_FontSize: 20
+    m_FontSize: 13
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1

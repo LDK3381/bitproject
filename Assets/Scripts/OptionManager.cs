@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
-    //public Dropdown textureQualityDropdown = null;
     public Dropdown resolutionDropdown = null;
     public Toggle fullscreenToggle = null;
     Resolution[] resolutions = null;
+    public Text resolutionText = null;
 
     void OnEnable()
     {
@@ -24,6 +24,13 @@ public class OptionManager : MonoBehaviour
         {
             resolutionDropdown.options.Add(new Dropdown.OptionData(res.ToString()));
         }
+        resolutionText.text = resolutions.ToString();
+    }
+
+    //처음 킬 때 최근에 바꾼 해상도 값 유지
+    void Start()
+    {
+        resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", 0);
     }
 
     //해상도 설정
@@ -31,13 +38,10 @@ public class OptionManager : MonoBehaviour
     {
         Screen.SetResolution(resolutions[resolutionDropdown.value].width, 
             resolutions[resolutionDropdown.value].height, Screen.fullScreen);
-    }
 
-    //화질 설정
-    //public void SetTextureQuality()
-    //{
-    //    QualitySettings.masterTextureLimit = textureQualityDropdown.value;
-    //}
+        PlayerPrefs.SetInt("Resolution", resolutionDropdown.value);
+        PlayerPrefs.Save();
+    }
 
     //전체화면 설정
     public void SetFullScreen()
