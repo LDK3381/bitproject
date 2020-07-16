@@ -52,7 +52,9 @@ public class GunControll : MonoBehaviourPun
             if (FireRate <= 0)
             {
                 FireRate = 0.5f;
+                int number = photonView.Owner.ActorNumber;
                 photonView.RPC("Fire", RpcTarget.AllBuffered);
+                Fire();
                 Debug.Log("TryFire");
             }
         }
@@ -62,24 +64,24 @@ public class GunControll : MonoBehaviourPun
     [PunRPC]
     public void Fire()
     {
-            //총알감소
-            //nomalGun.bulletCount--;
+        //총알감소
+        //nomalGun.bulletCount--;
 
-            //BulletUiSetting();
+        //BulletUiSetting();
 
-            //애니메이터
-            nomalGun.animator.SetTrigger("GunFire");
+        //애니메이터
+        nomalGun.animator.SetTrigger("GunFire");
 
-            //효과음
-            SoundManager.instance.PlaySE(nomalGun.sound_Fire);
+        //효과음
+        SoundManager.instance.PlaySE(nomalGun.sound_Fire);
 
-            //총알 발사 이펙트
-            nomalGun.ps_MuzzleFlash.Play();
+        //총알 발사 이펙트
+        nomalGun.ps_MuzzleFlash.Play();
 
-            //총알 Instantiate(무한 생성)
-            var clone = PhotonNetwork.Instantiate("Bullet", obj.transform.position, Quaternion.identity);
-            //총알 AddForce(발사)
-            clone.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
-            Debug.Log("Fire");
+        //총알 Instantiate(무한 생성)
+        var clone = PhotonNetwork.Instantiate("Bullet", obj.transform.position, Quaternion.identity);
+        //총알 AddForce(발사)
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
+        Debug.Log("Fire");
     }
 }
