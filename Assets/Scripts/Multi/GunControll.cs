@@ -12,7 +12,7 @@ public class GunControll : MonoBehaviourPun
     [Header("현재 장착된 총")]
     [SerializeField] Gun nomalGun = null;
 
-    float FireRate;
+    public float FireRate;
     float Speed = 10f;
 
     [SerializeField] Text txt_NomalGunBullet = null;
@@ -41,27 +41,20 @@ public class GunControll : MonoBehaviourPun
     }
 
     // 총알 발사 시도
+    [PunRPC]
     public void TryFire()
     {
-        //FireRateCalc();
+        FireRateCalc();
+
         // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
         if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
         {
             if (FireRate <= 0)
             {
-                FireRate = nomalGun.fireRate;
-                //Fire();
-                photonView.RPC("Fire", RpcTarget.All);
+                FireRate = 0.5f;
+                photonView.RPC("Fire", RpcTarget.AllBuffered);
                 Debug.Log("TryFire");
             }
-            else
-            {
-                Debug.Log("FireRate Error");
-            }
-        }
-        else
-        {
-            Debug.Log("TryFire Error");
         }
     }
 
@@ -69,24 +62,24 @@ public class GunControll : MonoBehaviourPun
     [PunRPC]
     public void Fire()
     {
-        //총알감소
-        //nomalGun.bulletCount--;
+            //총알감소
+            //nomalGun.bulletCount--;
 
-        BulletUiSetting();
+            //BulletUiSetting();
 
-        //애니메이터
-        nomalGun.animator.SetTrigger("GunFire");
+            //애니메이터
+            nomalGun.animator.SetTrigger("GunFire");
 
-        //효과음
-        SoundManager.instance.PlaySE(nomalGun.sound_Fire);
+            //효과음
+            SoundManager.instance.PlaySE(nomalGun.sound_Fire);
 
-        //총알 발사 이펙트
-        nomalGun.ps_MuzzleFlash.Play();
+            //총알 발사 이펙트
+            nomalGun.ps_MuzzleFlash.Play();
 
-        //총알 Instantiate(무한 생성)
-        var clone = PhotonNetwork.Instantiate("Bullet", obj.transform.position, Quaternion.identity);
-        //총알 AddForce(발사)
-        clone.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
-        Debug.Log("Fire");
+            //총알 Instantiate(무한 생성)
+            var clone = PhotonNetwork.Instantiate("Bullet", obj.transform.position, Quaternion.identity);
+            //총알 AddForce(발사)
+            clone.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
+            Debug.Log("Fire");
     }
 }

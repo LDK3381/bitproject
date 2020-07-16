@@ -5050,13 +5050,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537350576077668003}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.4, z: -0.55}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.46, z: 0.6}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 510316088461290924}
-  m_Father: {fileID: 4769451241062118500}
-  m_RootOrder: 0
+  m_Father: {fileID: 3704875111740244970}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2205035121436572658
 GameObject:
@@ -15019,7 +15019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.55}
   m_SizeDelta: {x: 1069, y: 670}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4268390905929415745
@@ -20092,6 +20092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3704875111740244970}
   - component: {fileID: 2236218251023277691}
+  - component: {fileID: 1874820343663027772}
   - component: {fileID: 6743398961075518507}
   m_Layer: 0
   m_Name: Gun
@@ -20108,10 +20109,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490225005325135362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6180005, z: -2.7370002}
+  m_LocalPosition: {x: 0, y: -0.7, z: 2}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4769451241062118500}
+  - {fileID: 1981208171282005958}
   m_Father: {fileID: 7398963910154779197}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20128,8 +20130,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1537350576077668003}
-  nomalGun: {fileID: 8253394388545052073}
+  nomalGun: {fileID: 1874820343663027772}
+  FireRate: 0
   txt_NomalGunBullet: {fileID: 0}
+--- !u!114 &1874820343663027772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490225005325135362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47683ad668ba84749918dfd43216e4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  fireRate: 0.5
+  bulletCount: 10
+  maxBulletCount: 30
+  ps_MuzzleFlash: {fileID: 4908961241708501617}
+  go_Bullet_Prefab: {fileID: 3281407970175139188, guid: 4786491d5c31ad94e83769624f8e5121,
+    type: 3}
+  animator: {fileID: 6868928058280564538}
+  speed: 10
+  sound_Fire: NomalGun_Fire
 --- !u!114 &6743398961075518507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20178,7 +20203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864556211254248259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008000016, y: -0.0400002, z: 0.9220004}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.40000015, z: 0.40000015}
   m_Children:
   - {fileID: 3704875111740244970}
@@ -20348,50 +20373,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6536517936422034384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8388842138977912439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &8253394388545052073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8388842138977912439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47683ad668ba84749918dfd43216e4cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 0
-  fireRate: 0.5
-  bulletCount: 10
-  maxBulletCount: 30
-  ps_MuzzleFlash: {fileID: 4908961241708501617}
-  go_Bullet_Prefab: {fileID: 3281407970175139188, guid: 4786491d5c31ad94e83769624f8e5121,
-    type: 3}
-  animator: {fileID: 6868928058280564538}
-  speed: 10
-  sound_Fire: NomalGun_Fire
 --- !u!1 &9088429868724483325
 GameObject:
   m_ObjectHideFlags: 0
@@ -20486,12 +20467,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
@@ -20555,15 +20536,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9b238f85680334bb8a3bd754ed61a8, type: 3}
---- !u!1 &8388842138977912439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: db9b238f85680334bb8a3bd754ed61a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 525454875313839998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4769451241062118500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 525454875313839998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8388842138977912439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: db9b238f85680334bb8a3bd754ed61a8,
     type: 3}
   m_PrefabInstance: {fileID: 525454875313839998}
   m_PrefabAsset: {fileID: 0}

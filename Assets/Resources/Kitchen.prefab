@@ -5201,7 +5201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5119058891899525678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.03, z: 1.6}
+  m_LocalPosition: {x: 0, y: 0.47, z: 0.65}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 5076268650613242712}
@@ -5234,7 +5234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5288054660820116183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008000016, y: -0.03999996, z: 0.92199993}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 716128422814825021}
@@ -20384,7 +20384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9211942559357857604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6180005, z: -2.7370002}
+  m_LocalPosition: {x: 0, y: -0.7, z: 1.5}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 8745803018093174835}
@@ -20406,6 +20406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 5119058891899525678}
   nomalGun: {fileID: 3601278849099936379}
+  FireRate: 0
   txt_NomalGunBullet: {fileID: 0}
 --- !u!114 &3601278849099936379
 MonoBehaviour:
@@ -20444,7 +20445,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
@@ -20466,12 +20467,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}

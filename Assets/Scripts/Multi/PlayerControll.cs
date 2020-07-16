@@ -50,24 +50,13 @@ public class PlayerControll : MonoBehaviourPun
             if(Input.GetMouseButtonDown(0))
                 obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
             //obj.GetComponent<GunControll>().FireRateCalc();
-            //obj.GetComponent<GunControll>().TryFire();
+            //obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
         }
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        #region 누른만큼 이동
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.A))
-        //    transform.Translate(Vector3.left * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.W))
-        //    transform.Translate(Vector3.forward * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.S))
-        //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
-        #endregion
-
         #region 칸 단위로 이동   
         //if (Under_ObstacleCheck())
         //{
