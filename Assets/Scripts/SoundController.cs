@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class SoundController : MonoBehaviour
 {
     [Header("오디오 소스")]
-    [SerializeField] AudioSource bgmSource = null;
-    [SerializeField] AudioSource sfxSource = null;
+    [SerializeField] public AudioSource bgmSource = null;
+    [SerializeField] public AudioSource sfxSource = null;
 
     [Header("소리 조절 슬라이더")]
-    [SerializeField] Slider masterSlider = null;
-    [SerializeField] Slider bgmSlider = null;
-    [SerializeField] Slider sfxSlider = null;
+    [SerializeField] public Slider masterSlider = null;
+    [SerializeField] public Slider bgmSlider = null;
+    [SerializeField] public Slider sfxSlider = null;
 
     [Header("소리 초기값")]
     private float defaultmasterVol = 1f;

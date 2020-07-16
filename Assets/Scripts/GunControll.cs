@@ -23,7 +23,7 @@ public class GunControll : MonoBehaviourPun
     public string sound_Fire;
 
     [SerializeField] ParticleSystem ps_MuzzleFlash = null;   //적용할 파티클 효과
-    [SerializeField] float bulletSpeed = 10f;                 //발사 속도
+    [SerializeField] float bulletSpeed = 10f;                //발사 속도
 
     [SerializeField] Text txt_CurrentGunBullet;              // 총알 개수를 나타내는 텍스트 UI
 
