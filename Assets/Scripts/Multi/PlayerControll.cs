@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 using Photon.Pun;
 
-public class PlayerControll : MonoBehaviourPun
+public class PlayerControll : MonoBehaviourPun, IPunObservable
 {
     public PhotonView PV;
     public GameObject obj;
@@ -21,6 +21,8 @@ public class PlayerControll : MonoBehaviourPun
     float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
     RaycastHit hit;
+
+    private Vector3 currPos;
 
     private void Start()
     {
@@ -47,10 +49,14 @@ public class PlayerControll : MonoBehaviourPun
 
             PlayerMove();   //캐릭터 조작
 
-            if(Input.GetMouseButtonDown(0))
-                obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+            //if(Input.GetMouseButtonDown(0))
+            //    obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
             //obj.GetComponent<GunControll>().FireRateCalc();
-            //obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+            obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+        }
+        else
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, currPos, Time.deltaTime * 10.0f);
         }
     }
 
@@ -206,4 +212,16 @@ public class PlayerControll : MonoBehaviourPun
         return true;
     }
     #endregion
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(this.transform.position);
+        }
+        else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+        }
+    }
 }

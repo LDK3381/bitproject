@@ -7628,7 +7628,7 @@ PrefabInstance:
     - target: {fileID: 2395882927282240410, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2395882927282240410, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
@@ -7825,10 +7825,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: PapaGu
       objectReference: {fileID: 0}
+    - target: {fileID: 2395882928321611110, guid: fc1802ebe6b29af44bc6d6f824fb6553,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2395882928321611112, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
       propertyPath: m_TagString
       value: PapaGu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395882928321611112, guid: fc1802ebe6b29af44bc6d6f824fb6553,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2395882928437091407, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
@@ -7943,7 +7953,7 @@ PrefabInstance:
     - target: {fileID: 2395882928903377570, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
       propertyPath: m_Interactable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2395882928903377570, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
@@ -7979,6 +7989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Gurow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395882928903377572, guid: fc1802ebe6b29af44bc6d6f824fb6553,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc1802ebe6b29af44bc6d6f824fb6553, type: 3}

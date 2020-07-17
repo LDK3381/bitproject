@@ -33,20 +33,18 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - Choice
   - ClickRpc
   - DestroyRpc
+  - DestroyRPC
   - DestroySpaceship
   - Fire
-  - RespawnSpaceship
   - LookAt
-  - DestroyRPC
-  - PlayerMove
-  - OnCreate
-  - RandomPlayer
-  - Choice
+  - RespawnSpaceship
   - SelectWeapon
   - TryFire
+  - DestoryRPC
   - FireRateCalc
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

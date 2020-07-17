@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 5336668608031576341}
   - component: {fileID: 6358244551439118283}
   - component: {fileID: -7770013283249631203}
-  - component: {fileID: 5636077684693689033}
+  - component: {fileID: -769073050608945060}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -4939,7 +4939,7 @@ MonoBehaviour:
     type: 3}
   damage: 1
   sound_Effect: NomalGun_Effect
---- !u!114 &5636077684693689033
+--- !u!114 &-769073050608945060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
