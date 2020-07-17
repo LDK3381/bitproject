@@ -8,6 +8,8 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
 {
     public Button[] button;
 
+    private Button bu;
+
     [PunRPC]
     public void Choice(string name)
     {
@@ -16,7 +18,8 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
             if (b.CompareTag(name))
             {
                 Debug.Log("button false");
-                b.interactable = false;
+                bu = b;
+                bu.interactable = false;
             }
         }
     }
@@ -25,7 +28,11 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
     {
         if(stream.IsWriting)
         {
-
+            stream.SendNext(bu);
+        }
+        else
+        {
+            bu = (Button)stream.ReceiveNext();
         }
     }
 }

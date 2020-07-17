@@ -36,10 +36,10 @@ public class SpawnPlayer : MonoBehaviourPun
         PhotonNetwork.Instantiate(Nickname, new Vector3(0.375f, 0.6f, 0.375f), Quaternion.identity);
         Choice.SetActive(false);
         HPUI.SetActive(true);
-        StartCoroutine("DestoryBullet");
+        StartCoroutine("DestroyBullet");
     }
 
-    IEnumerator DestoryBullet()
+    IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(0.2f);
         foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Bullet"))

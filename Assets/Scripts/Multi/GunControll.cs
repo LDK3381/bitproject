@@ -44,6 +44,8 @@ public class GunControll : MonoBehaviourPun
     [PunRPC]
     public void TryFire()
     {
+        if (!photonView.IsMine) return;
+
         FireRateCalc();
 
         // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
@@ -52,9 +54,7 @@ public class GunControll : MonoBehaviourPun
             if (FireRate <= 0)
             {
                 FireRate = 0.5f;
-                int number = photonView.Owner.ActorNumber;
-                photonView.RPC("Fire", RpcTarget.AllBuffered);
-                Fire();
+                photonView.RPC("Fire", RpcTarget.All);
                 Debug.Log("TryFire");
             }
         }
@@ -79,9 +79,10 @@ public class GunControll : MonoBehaviourPun
         nomalGun.ps_MuzzleFlash.Play();
 
         //총알 Instantiate(무한 생성)
-        var clone = PhotonNetwork.Instantiate("Bullet", obj.transform.position, Quaternion.identity);
+        var clon = Instantiate(nomalGun.go_Bullet_Prefab, obj.transform.position, Quaternion.identity);
         //총알 AddForce(발사)
-        clone.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
+        clon.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
         Debug.Log("Fire");
+
     }
 }

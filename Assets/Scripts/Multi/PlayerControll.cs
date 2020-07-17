@@ -50,7 +50,7 @@ public class PlayerControll : MonoBehaviourPun, IPunObservable
             PlayerMove();   //캐릭터 조작
 
             //if(Input.GetMouseButtonDown(0))
-                //obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+            //    obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
             //obj.GetComponent<GunControll>().FireRateCalc();
             obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
         }
