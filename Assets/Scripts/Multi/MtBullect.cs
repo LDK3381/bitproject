@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class MtBullect : MonoBehaviourPun
+public class MtBullect : MonoBehaviour
 {
     [Header("피격 이펙트")]
     [SerializeField] GameObject go_RicochetEffect = null;
@@ -55,47 +54,8 @@ public class MtBullect : MonoBehaviourPun
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("캐릭터 충돌");
+            other.transform.GetComponent<StatusManager>().DecreaseHp(1);
             Destroy(this.gameObject);
         }
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //ContactPoint : 충돌한 객체의 '접촉면'에 대한 정보가 담긴 클래스
-    //    //other.contacts[0] : 총돌한 객체의 접촉면 정보가 담김
-
-
-    //    //효과음
-    //    SoundManager.instance.PlaySE(sound_Effect);
-
-    //    //피격이펙트 변수
-    //    //Instantiate : 프리팹을 특정 위치에 특정한 방향으로 생성시킴
-    //    //Quaternion.LookRotation : 특정 방향을 바라보게 만드는 메서드
-    //    //normal : 충돌한 컬라이더의 표면 방향
-    //    //var clone = Instantiate(go_RicochetEffect, transform.point, Quaternion.LookRotation(gameObject.normal));
-
-    //    //지뢰와 충돌 했을 때 데미지 발생
-    //    if (other.transform.CompareTag("Mine"))
-    //    {
-    //        other.transform.GetComponent<Mine>().Damaged(damage);
-    //    }
-
-    //    // 이펙트 0.5초후 파괴
-    //    //Destroy(clone, 0.5f);
-
-    //    // 총알 파괴
-    //    if (other.tag == "Wall" || other.tag == "BreakableWall")
-    //    {
-    //        Debug.Log("벽 충돌");
-    //        Destroy(gameObject);
-    //        //photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
-    //    }
-
-    //    if (!photonView.IsMine && other.tag == "Player" && other.GetComponent<PhotonView>().IsMine)
-    //    {
-    //        Debug.Log("캐릭터 충돌");
-    //        //Destroy(gameObject);
-    //        photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
-    //    }
-    //}
 }
