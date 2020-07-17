@@ -17,7 +17,6 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     [Header("사운드 등록")]
-    [SerializeField] Sound[] bgmSounds = null; // 브금 사운드
     [SerializeField] Sound[] sfxSounds = null; // 효과음 사운드
 
     [Header("브금 플레이어")]

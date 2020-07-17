@@ -3297,11 +3297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e57ad2f243867c499fdc13aa73fdade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSounds:
-  - soundName: 8bit_1
-    clip: {fileID: 8300000, guid: 96239f4dddcb12442afa6aeca6496c8c, type: 3}
-  - soundName: 8bit_2
-    clip: {fileID: 8300000, guid: 7551bab8ee512d24eb7f961576424a8e, type: 3}
   sfxSounds:
   - soundName: NomalGun_Fire
     clip: {fileID: 8300000, guid: b26026189f0b237408812ddddceaa1f5, type: 3}
@@ -6933,6 +6928,12 @@ PrefabInstance:
       propertyPath: txt_NomalGunBullet
       value: 
       objectReference: {fileID: 622795174}
+    - target: {fileID: 5673819404564187744, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: go_Bullet_Prefab
+      value: 
+      objectReference: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
+        type: 3}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: img_HpArray.Array.data[0]

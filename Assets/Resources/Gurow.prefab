@@ -20131,8 +20131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 1537350576077668003}
   nomalGun: {fileID: 1874820343663027772}
-  FireRate: 0
-  txt_NomalGunBullet: {fileID: 0}
+  fireRate: 0
+  speed: 10
 --- !u!114 &1874820343663027772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20150,7 +20150,7 @@ MonoBehaviour:
   bulletCount: 10
   maxBulletCount: 30
   ps_MuzzleFlash: {fileID: 4908961241708501617}
-  go_Bullet_Prefab: {fileID: 3281407970175139188, guid: 4786491d5c31ad94e83769624f8e5121,
+  go_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
     type: 3}
   animator: {fileID: 6868928058280564538}
   speed: 10

@@ -20425,7 +20425,7 @@ MonoBehaviour:
   bulletCount: 10
   maxBulletCount: 30
   ps_MuzzleFlash: {fileID: 2748481778674305904}
-  go_Bullet_Prefab: {fileID: 3281407970175139188, guid: 4786491d5c31ad94e83769624f8e5121,
+  go_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
     type: 3}
   animator: {fileID: 3023902335908215286}
   speed: 10

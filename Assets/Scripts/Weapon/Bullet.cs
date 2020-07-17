@@ -45,10 +45,17 @@ public class Bullet : MonoBehaviour
         Destroy(clone, 0.5f);
 
         // 총알 파괴
-        if (other.transform.CompareTag("Wall") == true || other.transform.CompareTag("BreakableWall") == true)
+        if (other.transform.CompareTag("Wall") || other.transform.CompareTag("BreakableWall"))
         {
             Debug.Log("벽 충돌");
-            Destroy(gameObject);
+            Destroy(this.gameObject);
+        }
+
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("캐릭터 충돌");
+            other.transform.GetComponent<StatusManager>().DecreaseHp(1);
+            Destroy(this.gameObject);
         }
     }
 }
