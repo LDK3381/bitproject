@@ -20406,8 +20406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 5119058891899525678}
   nomalGun: {fileID: 3601278849099936379}
-  FireRate: 0
-  txt_NomalGunBullet: {fileID: 0}
+  fireRate: 0
+  speed: 10
 --- !u!114 &3601278849099936379
 MonoBehaviour:
   m_ObjectHideFlags: 0

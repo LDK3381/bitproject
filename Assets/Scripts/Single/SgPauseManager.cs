@@ -63,10 +63,10 @@ public class SgPauseManager : MonoBehaviour
         AudioListener.pause = true;     //bgm 일시중단
 
         //일시정지 중에는 키 입력 기능들 봉인
-        sealControll.GetComponent<SinglePlayerControll>().enabled = false;
-        sealWeapon.GetComponent<SingleWeaponManager>().enabled = false;
+        sealControll.GetComponent<SgPlayerController>().enabled = false;
+        sealWeapon.GetComponent<SgWeaponManager>().enabled = false;
         sealBomb.GetComponent<BombSpawn>().enabled = false;
-        sealMouseRotate.GetComponent<SingleMouseRotate>().enabled = false;
+        sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
     }
 
     //뒤로가기 버튼
@@ -78,10 +78,10 @@ public class SgPauseManager : MonoBehaviour
         AudioListener.pause = false;    //bgm 다시재생
 
         //일시정지 풀리면 키 입력 기능들 봉인해제
-        sealControll.GetComponent<SinglePlayerControll>().enabled = true;
-        sealWeapon.GetComponent<SingleWeaponManager>().enabled = true;
+        sealControll.GetComponent<SgPlayerController>().enabled = true;
+        sealWeapon.GetComponent<SgWeaponManager>().enabled = true;
         sealBomb.GetComponent<BombSpawn>().enabled = true;
-        sealMouseRotate.GetComponent<SingleMouseRotate>().enabled = true;
+        sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
     }
 
     //게임 나가기 버튼

@@ -60,8 +60,6 @@ public class SoundManager : MonoBehaviour
     // 브금 랜덤 플레이 함수
     public void PlayRandomBGM()
     {
-        //int random = Random.Range(0, 2);
-        //bgmPlayer.clip = bgmSounds[random].clip;
         bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 BGM 음량 적용
         bgmPlayer.Play();
 
