@@ -6,25 +6,29 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 using Photon.Pun;
-using System.Net.Http.Headers;
 
 public class PlayerControll : MonoBehaviourPun
 {
     public PhotonView PV;
-    public GameObject[] obj;      //총 쏘는 장비
-    private int Weapon = 1;
+    public GameObject obj;
 
+    NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
 
     public float Move = 0.375f;
-
     public float move_speed = 0.375f;    //이동 거리
+
     float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
 
     RaycastHit hit;
 
+    private void Start()
+    {
+        noteTimingManager = FindObjectOfType<NoteTimingManager>();
+    }
+
     void Update()
-    {       
+    {
         if (PV.IsMine)
         {
             #region 장애물 판정 위한 Ray 생성
@@ -43,42 +47,19 @@ public class PlayerControll : MonoBehaviourPun
 
             PlayerMove();   //캐릭터 조작
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                Weapon = 1;
-            else if (Input.GetKeyDown(KeyCode.Alpha1))
-                Weapon = 2;
-
-            switch(Weapon)
-            {
-                case 1:
-                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
-                        obj[0].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
-                    break;
-                case 2:
-                    if (Input.GetMouseButtonDown(0))     //마우스 좌클릭 시,
-                        obj[1].GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
-                    break;
-            }
+            if(Input.GetMouseButtonDown(0))
+                obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
+            //obj.GetComponent<GunControll>().FireRateCalc();
+            //obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
         }
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        #region 누른만큼 이동
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.A))
-        //    transform.Translate(Vector3.left * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.W))
-        //    transform.Translate(Vector3.forward * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.S))
-        //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
-        #endregion
-
-        #region 칸 단위로 이동 
-        if(Under_ObstacleCheck())
-        {
+        #region 칸 단위로 이동   
+        //if (Under_ObstacleCheck())
+        //{
             if (Input.GetKeyDown(KeyCode.W))
             {
                 W_MoveCheck();
@@ -95,8 +76,7 @@ public class PlayerControll : MonoBehaviourPun
             {
                 D_MoveCheck();
             }
-        }
-        return;
+        //}
         #endregion
     }
 
@@ -105,16 +85,26 @@ public class PlayerControll : MonoBehaviourPun
     {
         if (W_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+            }
+            else
+                return;
         }
-        else
-            return;
     }
     private void S_MoveCheck()
     {
         if (S_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+            }
         }
         else
             return;
@@ -123,7 +113,12 @@ public class PlayerControll : MonoBehaviourPun
     {
         if (A_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+            }
         }
         else
             return;
@@ -132,7 +127,12 @@ public class PlayerControll : MonoBehaviourPun
     {
         if (D_ObstacleCheck() == true)
         {
-            transform.position = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+            if (noteTimingManager.CheckTiming())
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+            }
         }
         else
             return;
@@ -152,6 +152,7 @@ public class PlayerControll : MonoBehaviourPun
         }       
         return true;
     }
+
     public bool A_ObstacleCheck()
     {
         //근처 장애물 여부 판단 
@@ -164,6 +165,7 @@ public class PlayerControll : MonoBehaviourPun
         }
         return true;
     }
+
     public bool S_ObstacleCheck()
     {
         //근처 장애물 여부 판단 
@@ -176,6 +178,7 @@ public class PlayerControll : MonoBehaviourPun
         }
         return true;
     }
+
     public bool D_ObstacleCheck()
     {       
         //근처 장애물 여부 판단 
@@ -188,11 +191,13 @@ public class PlayerControll : MonoBehaviourPun
         }
         return true;
     }
+
     public bool Under_ObstacleCheck()
     {
+        //바닥 여부 판단
         if (Physics.Raycast(UnderRay, out hit, rayLength))
         {
-            if (hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
+            if (hit.collider.tag != "Ground")
             {
                 Debug.Log("Ground 없음");
                 return false;
