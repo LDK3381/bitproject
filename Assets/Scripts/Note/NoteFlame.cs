@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flame : MonoBehaviour
+public class NoteFlame : MonoBehaviour
 {
     bool musicStart = false;
-    [SerializeField] SoundManager _soundManager = null;
+    [SerializeField] SoundManager soundManager = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +13,7 @@ public class Flame : MonoBehaviour
         {
             if (collision.CompareTag("Note"))
             {
-                _soundManager.PlayRandomBGM();
+                soundManager.PlayRandomBGM();
                 musicStart = true;
             }
         }

@@ -11,11 +11,6 @@ public class SgFollowMainCamera : MonoBehaviour
 
     Vector3 cameraPosition;
 
-    private void Start()
-    {
-        //obj = FindObjectOfType<GameObject>();
-    }
-
     void LateUpdate()
     {
         if (obj.CompareTag("Player"))

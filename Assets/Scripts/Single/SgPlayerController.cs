@@ -6,11 +6,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 
-public class SinglePlayerControll : MonoBehaviour
+public class SgPlayerController : MonoBehaviour
 {
     NoteTimingManager noteTimingManager;
 
-    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
+    Ray forwardRay, leftRay, backwardRay, rightRay, underRay;
 
     public float Move = 0.375f;
     float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
@@ -26,16 +26,16 @@ public class SinglePlayerControll : MonoBehaviour
     {
         #region 장애물 판정 위한 Ray 생성
         forwardRay = new Ray(transform.position, transform.forward);
-        LeftRay = new Ray(transform.position, -transform.right);
-        BackwardRay = new Ray(transform.position, -transform.forward);
-        RightRay = new Ray(transform.position, transform.right);
-        UnderRay = new Ray(transform.position, -transform.up);
+        leftRay = new Ray(transform.position, -transform.right);
+        backwardRay = new Ray(transform.position, -transform.forward);
+        rightRay = new Ray(transform.position, transform.right);
+        underRay = new Ray(transform.position, -transform.up);
 
         Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
-        Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
-        Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
-        Debug.DrawRay(RightRay.origin, transform.right, Color.red);
-        Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
+        Debug.DrawRay(leftRay.origin, -transform.right, Color.red);
+        Debug.DrawRay(backwardRay.origin, -transform.forward, Color.red);
+        Debug.DrawRay(rightRay.origin, transform.right, Color.red);
+        Debug.DrawRay(underRay.origin, -transform.up, Color.red);
         #endregion
 
         PlayerMove();
@@ -156,7 +156,7 @@ public class SinglePlayerControll : MonoBehaviour
     public bool A_ObstacleCheck()
     {
         //근처 장애물 여부 판단 
-        if (Physics.Raycast(LeftRay, out hit, rayLength))
+        if (Physics.Raycast(leftRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
                  hit.collider.tag == "Player")
@@ -169,7 +169,7 @@ public class SinglePlayerControll : MonoBehaviour
     public bool S_ObstacleCheck()
     {
         //근처 장애물 여부 판단 
-        if (Physics.Raycast(BackwardRay, out hit, rayLength))
+        if (Physics.Raycast(backwardRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
                 hit.collider.tag == "Player")
@@ -182,7 +182,7 @@ public class SinglePlayerControll : MonoBehaviour
     public bool D_ObstacleCheck()
     {       
         //근처 장애물 여부 판단 
-        if (Physics.Raycast(RightRay, out hit, rayLength))
+        if (Physics.Raycast(rightRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
                 hit.collider.tag == "Player")
@@ -195,7 +195,7 @@ public class SinglePlayerControll : MonoBehaviour
     public bool Under_ObstacleCheck()
     {
         //바닥 여부 판단
-        if(Physics.Raycast(UnderRay, out hit, rayLength))
+        if(Physics.Raycast(underRay, out hit, rayLength))
         {
             if(hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
             {

@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseManagerSingle : MonoBehaviour
+public class SgPauseManager : MonoBehaviour
 {
     [Header("일시정지")]
     [SerializeField] GameObject pausePanel = null;      //일시정지 화면

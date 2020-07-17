@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class MouseRotate : MonoBehaviourPun
+public class MtMouseRotate : MonoBehaviourPun
 {
     public float rotSpeed;      //마우스 회전 속도
     public PhotonView PV;

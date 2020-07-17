@@ -13,10 +13,6 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] Text txt_Score = null;
 
-    void Start()
-    {
-    }
-    
     void Update()
     {
         currentScore = extraScore;

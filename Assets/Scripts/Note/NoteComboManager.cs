@@ -6,8 +6,8 @@ public enum ComboCount
 {
     Miss = 0,
     Cool = 1,
-    Great = 5,
-    Perfect = 9,
+    Great = 3,
+    Perfect = 5,
 }
 
 public class NoteComboManager : MonoBehaviour

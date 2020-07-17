@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleWeaponManager : MonoBehaviour
+public class SgWeaponManager : MonoBehaviour
 {
     public int selectedWeapon = 0;
 
@@ -43,7 +43,6 @@ public class SingleWeaponManager : MonoBehaviour
         if (previousSelectedWeapon != selectedWeapon)
             SelectWeapon();
         #endregion
-
     }
 
     // 무기 선택함수

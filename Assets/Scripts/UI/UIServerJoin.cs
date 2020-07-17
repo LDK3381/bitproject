@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class UIControl : MonoBehaviourPunCallbacks
+public class UIServerJoin : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1";   //게임 버전
 

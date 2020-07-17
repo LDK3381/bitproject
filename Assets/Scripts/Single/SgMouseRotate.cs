@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleMouseRotate : MonoBehaviour
+public class SgMouseRotate : MonoBehaviour
 {
     public float rotSpeed;      //마우스 회전 속도
     Camera viewCamera;        
@@ -19,7 +19,6 @@ public class SingleMouseRotate : MonoBehaviour
         transform.LookAt(heightPoint);  //해당 시점으로 마우스 이동
     }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition); //Ray(광선)을 메인카메라에 맞춰서 발사

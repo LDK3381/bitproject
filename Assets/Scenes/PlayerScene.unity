@@ -7802,6 +7802,11 @@ PrefabInstance:
       propertyPath: _soundManager
       value: 
       objectReference: {fileID: 882181732}
+    - target: {fileID: 5231072605176099549, guid: ba5105b94d4a7f5488c1982cdba5acc6,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 882181732}
     - target: {fileID: 5231072605893446791, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
       propertyPath: m_IsActive

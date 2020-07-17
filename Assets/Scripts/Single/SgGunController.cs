@@ -1,19 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;                   // 총알 개수 UI 설정을 위한 네임스페이스
-using Photon.Pun;
-using Photon.Realtime;
+using UnityEngine.UI;
 
-public class GunControll : MonoBehaviourPun
+public class SgGunController : MonoBehaviour
 {
-    public GameObject obj;      //총알 스폰
-
     [Header("현재 장착된 총")]
     [SerializeField] Gun nomalGun = null;
 
-    public float FireRate;
-    float Speed = 10f;
+    float FireRate;
 
     [SerializeField] Text txt_NomalGunBullet = null;
 
@@ -28,10 +23,16 @@ public class GunControll : MonoBehaviourPun
 
     public void BulletUiSetting()
     {
-        //txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
     }
 
-    public void FireRateCalc()
+    void Update()
+    {
+        FireRateCalc();
+        TryFire();
+    }
+
+    void FireRateCalc()
     {
         if (FireRate > 0)
         {
@@ -41,33 +42,26 @@ public class GunControll : MonoBehaviourPun
     }
 
     // 총알 발사 시도
-    [PunRPC]
-    public void TryFire()
+    void TryFire()
     {
-        if (!photonView.IsMine) return;
-
-        FireRateCalc();
-
         // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
         if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
         {
             if (FireRate <= 0)
             {
-                FireRate = 0.5f;
-                photonView.RPC("Fire", RpcTarget.All);
-                Debug.Log("TryFire");
+                FireRate = nomalGun.fireRate;
+                Fire();
             }
         }
     }
 
     // 총알 발사
-    [PunRPC]
-    public void Fire()
+    void Fire()
     {
         //총알감소
-        //nomalGun.bulletCount--;
+        nomalGun.bulletCount--;
 
-        //BulletUiSetting();
+        BulletUiSetting();
 
         //애니메이터
         nomalGun.animator.SetTrigger("GunFire");
@@ -79,10 +73,9 @@ public class GunControll : MonoBehaviourPun
         nomalGun.ps_MuzzleFlash.Play();
 
         //총알 Instantiate(무한 생성)
-        var clon = Instantiate(nomalGun.go_Bullet_Prefab, obj.transform.position, Quaternion.identity);
+        var clone = Instantiate
+            (nomalGun.go_Bullet_Prefab, nomalGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
         //총알 AddForce(발사)
-        clon.GetComponent<Rigidbody>().AddForce(transform.forward * Speed);
-        Debug.Log("Fire");
-
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * nomalGun.speed);
     }
 }

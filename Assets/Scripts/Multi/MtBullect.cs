@@ -6,7 +6,7 @@ using Photon.Pun;
 public class MtBullect : MonoBehaviourPun
 {
     [Header("피격 이펙트")]
-    [SerializeField] GameObject go_RicochetEffect = null;
+    //[SerializeField] GameObject go_RicochetEffect = null;
 
     [Header("총알 데미지")]
     [SerializeField] int damage = 0;

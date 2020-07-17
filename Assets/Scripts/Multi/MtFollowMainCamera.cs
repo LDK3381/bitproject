@@ -5,9 +5,9 @@ using Photon.Pun;
 
 public class MtFollowMainCamera : MonoBehaviourPun
 {
-    public float offsetX = 0f;
-    public float offsetY = 3f;
-    public float offsetZ = -0.5f;
+    public float offsetX =  0f;
+    public float offsetY =  3f;
+    public float offsetZ =  -0.5f;
     GameObject obj;
 
     Vector3 cameraPosition;

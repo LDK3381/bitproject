@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class OptionManager : MonoBehaviour
+public class UIOptionManager : MonoBehaviour
 {
     public Dropdown resolutionDropdown = null;
     public Toggle fullscreenToggle = null;

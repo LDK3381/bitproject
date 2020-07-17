@@ -14,12 +14,6 @@ public class BombSpawn : MonoBehaviour
 
     GameObject bombInstance = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //마우스 좌클릭 시, 폭탄 투척

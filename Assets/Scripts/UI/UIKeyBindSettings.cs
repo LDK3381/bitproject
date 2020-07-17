@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBindSettings : MonoBehaviour
+public class UIKeyBindSettings : MonoBehaviour
 {
     [Header("키 설정")]
     private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
@@ -13,7 +13,6 @@ public class KeyBindSettings : MonoBehaviour
     private Color32 before = new Color32(39, 171, 249, 255);
     private Color32 selected = new Color32(239, 116, 36, 255);
 
-    // Start is called before the first frame update
     void Start()
     {
         //기본 키값

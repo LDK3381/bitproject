@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;      //씬 변환에 필요한 네임스페이스
 using Photon.Pun;
 
-public class PlayerControll : MonoBehaviourPun, IPunObservable
+public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
     public PhotonView PV;
     public GameObject obj;
@@ -52,7 +52,7 @@ public class PlayerControll : MonoBehaviourPun, IPunObservable
             //if(Input.GetMouseButtonDown(0))
             //    obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
             //obj.GetComponent<GunControll>().FireRateCalc();
-            obj.GetComponent<GunControll>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+            obj.GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
         }
         else
         {

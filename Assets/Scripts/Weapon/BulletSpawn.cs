@@ -11,13 +11,6 @@ public class BulletSpawn : MonoBehaviourPun
     void Start()
     {
         Destroy(gameObject, 2f);
-        
-    }
-
-    private void Update()
-    {
-        //총알 AddForce(발사)
-        //GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
