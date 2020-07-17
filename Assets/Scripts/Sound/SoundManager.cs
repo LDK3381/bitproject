@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
                     if (!sfxPlayer[x].isPlaying)
                     {
                         sfxPlayer[x].clip = sfxSounds[i].clip;
-                        sfxPlayer[x].volume = PlayerPrefs.GetFloat("SfxVolSize");   //변경된 BGM 음량 적용
+                        sfxPlayer[x].volume = PlayerPrefs.GetFloat("SfxVolSize");   //변경된 SFX 음량 적용
                         sfxPlayer[x].Play();
                         return;
                     }
@@ -60,9 +60,9 @@ public class SoundManager : MonoBehaviour
     // 브금 랜덤 플레이 함수
     public void PlayRandomBGM()
     {
-        int random = Random.Range(0, 2);
-        bgmPlayer.clip = bgmSounds[random].clip;
-        bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 SFX 음량 적용
+        //int random = Random.Range(0, 2);
+        //bgmPlayer.clip = bgmSounds[random].clip;
+        bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 BGM 음량 적용
         bgmPlayer.Play();
 
         if(!bgmPlayer.isPlaying)
