@@ -8,6 +8,9 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BombSpawn : MonoBehaviour
 {
+    [Header("현재 장착된 총")]
+    [SerializeField] Gun Bomb = null;
+
     public Transform throwPoint = null;
     public GameObject bomb = null;
     public GameObject weapon = null;
