@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPoint: {fileID: 8621112712848612421}
   bomb: {fileID: 8470493637263005541, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 2212398472576598728}
 --- !u!114 &7386811802964970484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19829,6 +19829,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017f691bf04c1794ab0062b7c9cf216f, type: 3}
+--- !u!1 &2212398472576598728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 017f691bf04c1794ab0062b7c9cf216f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7896474421064686529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2949678984559685851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,

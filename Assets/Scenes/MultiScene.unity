@@ -715,6 +715,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 80900665670920337, guid: 058b42ca892589941944c5d0db81531f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 831802844192614865, guid: 058b42ca892589941944c5d0db81531f,
         type: 3}
       propertyPath: m_TagString
@@ -799,6 +804,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653001893449380300, guid: 058b42ca892589941944c5d0db81531f,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 058b42ca892589941944c5d0db81531f, type: 3}
@@ -3129,11 +3139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e57ad2f243867c499fdc13aa73fdade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSounds:
-  - soundName: 8bit_1
-    clip: {fileID: 8300000, guid: ee91f3ee12cbf1c4ebf5eaa17835094d, type: 3}
-  - soundName: 8bit_2
-    clip: {fileID: 8300000, guid: 90b5cf2b3eb3ba04b8b01ddee9355903, type: 3}
   sfxSounds:
   - soundName: Hurt
     clip: {fileID: 8300000, guid: 1389fc9ae6e54aa459c88c72c9cf1509, type: 3}

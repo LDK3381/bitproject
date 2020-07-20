@@ -11,6 +11,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
     public PhotonView PV;
     public GameObject obj;
+    public GameObject[] Weapon;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -22,6 +23,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     RaycastHit hit;
 
+    private int WeaponNum;
     private Vector3 currPos;
 
     private void Start()
@@ -49,10 +51,23 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
             PlayerMove();   //캐릭터 조작
 
-            //if(Input.GetMouseButtonDown(0))
-            //    obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
-            //obj.GetComponent<GunControll>().FireRateCalc();
-            obj.GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+            obj.GetComponent<MtWeaponManager>();
+
+            switch (obj.GetComponent<MtWeaponManager>().selectedWeapon)
+            {
+                case 0:
+                    Weapon[0].GetComponent<MtGunController>();
+                    break;
+                case 1:
+                    //Weapon[1].GetComponent<MtGunController>();
+                    Debug.Log(obj.GetComponent<MtWeaponManager>().selectedWeapon);
+                    break;
+                case 2:
+                    Weapon[2].GetComponent<MtBombSpawn>();
+                    break;
+                default:
+                    break;
+            }
         }
         else
         {
@@ -218,10 +233,12 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting)
         {
             stream.SendNext(this.transform.position);
+            stream.SendNext(obj.GetComponent<MtWeaponManager>().selectedWeapon);
         }
         else
         {
             currPos = (Vector3)stream.ReceiveNext();
+            obj.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
         }
     }
 }

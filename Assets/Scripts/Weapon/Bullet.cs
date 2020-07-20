@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
 
         // 이펙트 0.5초후 파괴
         Destroy(clone, 0.5f);
-
+        Destroy(gameObject);
         // 총알 파괴
         if (other.transform.CompareTag("Wall") || other.transform.CompareTag("BreakableWall"))
         {
