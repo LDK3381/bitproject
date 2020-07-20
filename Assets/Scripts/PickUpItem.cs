@@ -7,13 +7,16 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] Gun[] guns = null;
 
     SgGunController theGC;
+    SgShotGunController theSGC;
 
     void Start()
     {
         theGC = FindObjectOfType<SgGunController>();
+        theSGC = FindObjectOfType<SgShotGunController>();
     }
 
     const int NOMAL_GUN = 0;
+    const int SHOT_GUN = 0;
 
     // 아이템과 충돌
     void OnTriggerEnter(Collider other)
@@ -34,10 +37,18 @@ public class PickUpItem : MonoBehaviour
             // 일반 총알을 획득했을 떄
             else if (item.itemType == ItemType.NomalGun_Bullet)
             {
-                SoundManager.instance.PlaySE("Bullet");
+                //SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBullet;
                 guns[NOMAL_GUN].bulletCount += extra;
                 theGC.BulletUiSetting();
+            }
+            // 샷건 총알을 획득했을 때
+            else if (item.itemType == ItemType.ShotGun_Bullet)
+            {
+                //SoundManager.instance.PlaySE("Bullet");
+                extra = item.itemBullet;
+                guns[SHOT_GUN].bulletCount += extra;
+                theSGC.BulletUiSetting();
             }
 
             string message = "+" + extra;

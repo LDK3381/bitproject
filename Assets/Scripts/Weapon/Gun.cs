@@ -6,6 +6,7 @@ using Photon.Pun;
 public enum WeaponType
 {
     Normal_Gun,
+    Shot_Gun,
 }
 
 public class Gun : MonoBehaviourPun
