@@ -6,6 +6,8 @@ public enum ItemType
 {
     Score,
     NomalGun_Bullet,
+    ShotGun_Bullet,
+    Bomb_Bullet,
 }
 public class Item : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Item : MonoBehaviour
 
     public int itemScore;       //추가 점수
     public int itemBullet;      //추가 획득 총알
+    public int itemBomb;        //추가 획득 폭탄
 
     void Update()
     {
