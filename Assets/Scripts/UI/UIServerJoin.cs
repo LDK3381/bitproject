@@ -18,13 +18,13 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
 
         JoinButton.interactable = false;
-        connectionInfoText.text = "마스터 서버에 접속중...";
+        connectionInfoText.text = "CONNECTING TO THE MASTER SERVER...";
     }
 
     public override void OnConnectedToMaster()
     {
         JoinButton.interactable = true;
-        connectionInfoText.text = "온라인 : 마스터 서버와 접속 성공...";
+        connectionInfoText.text = "ONLINE : SUCCESSFUL CONNECT TO THE MASTER SERVER...";
 
         Debug.Log("마스터 연결");
     }
@@ -32,7 +32,7 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         JoinButton.interactable = false;
-        connectionInfoText.text = "오프라인 : 마스터 서버와 접속 실패...\n접속 재시도중...";
+        connectionInfoText.text = "OFFLINE : FAILED TO CONNECT TO THE MASTER SERVER...\n RETRY CONNECT...";
 
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -43,27 +43,27 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
         Debug.Log("Connect()실행");
         if (PhotonNetwork.IsConnected)
         {
-            connectionInfoText.text = "방에 접속중...";
+            connectionInfoText.text = "CONNECT TO ROOM...";
             Debug.Log("IsConnect안");
             PhotonNetwork.JoinRandomRoom();
         }
         else
         {
-            connectionInfoText.text = "오프라인 : 마스터 서버와 접속 실패...\n접속 재시도중...";
+            connectionInfoText.text = "OFFLINE : FAILED TO CONNECT TO THE MASTER SERVER...\n RETRY CONNECT...";
             PhotonNetwork.ConnectUsingSettings();
         }
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        connectionInfoText.text = "빈 방이 없음, 새로운 방 생성...";
+        connectionInfoText.text = "NO EMPTY ROOM, CREATING A NEW ROOM...";
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("서버 연결");
-        connectionInfoText.text = "방 참가 성공";
+        connectionInfoText.text = "CONNECT TO ROOM...";
         
         PhotonNetwork.LoadLevel("MultiScene");
     }
