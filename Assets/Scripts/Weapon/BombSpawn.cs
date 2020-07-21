@@ -24,7 +24,7 @@ public class BombSpawn : MonoBehaviour
         BombUiSetting();
     }
 
-        void Update()
+    void Update()
     {
         //마우스 좌클릭 시, 폭탄 투척
         if (Input.GetMouseButtonDown(0))

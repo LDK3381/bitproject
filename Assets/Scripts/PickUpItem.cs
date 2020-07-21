@@ -7,7 +7,6 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] Gun[] guns = null;
     const int NOMAL_GUN = 0;
     const int SHOT_GUN = 1;
-    const int BOMB = 2;
 
     [SerializeField] private SgGunController theGC = null;
     [SerializeField] private SgShotGunController theSGC = null;
