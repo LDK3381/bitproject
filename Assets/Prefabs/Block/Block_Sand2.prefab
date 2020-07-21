@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2827419807448510459}
   - component: {fileID: 1856006389113044206}
   - component: {fileID: 7303955208250958612}
+  - component: {fileID: -1646083918904958936}
   m_Layer: 0
   m_Name: Block_Sand2
   m_TagString: Ground
@@ -105,3 +106,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedX: 0.1
+  speedY: 0.1
+--- !u!111 &-1646083918904958936
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540144477868464935}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
