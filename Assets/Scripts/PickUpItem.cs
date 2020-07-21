@@ -11,6 +11,7 @@ public class PickUpItem : MonoBehaviour
 
     [SerializeField] private SgGunController theGC = null;
     [SerializeField] private SgShotGunController theSGC = null;
+    [SerializeField] private BombSpawn theBS = null;
 
     // 아이템과 충돌
     void OnTriggerEnter(Collider other)
@@ -43,6 +44,13 @@ public class PickUpItem : MonoBehaviour
                 extra = item.itemBullet;
                 guns[SHOT_GUN].bulletCount += extra;
                 theSGC.BulletUiSetting();
+            }
+            else if (item.itemType == ItemType.Bomb_Bullet)
+            {
+                //SoundManager.instance.PlaySE("Bullet");
+                extra = item.itemBomb;
+                theBS.BombCountUp(extra);
+                theBS.BombUiSetting();
             }
 
             string message = "+" + extra;
