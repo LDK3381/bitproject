@@ -33,7 +33,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   fireRate: 0.3
-  bulletCount: 10
+  bulletCount: 5
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 5560662109580431536}
   go_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
@@ -87,8 +87,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPoint: {fileID: 8621112712848612421}
-  bomb: {fileID: 8470493637263005541, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
-  weapon: {fileID: 2212398472576598728}
+  bomb: {fileID: 7133600363201837525, guid: 285dfc15fb5531742957113c9c29b051, type: 3}
+  weapon: {fileID: 5110383841035682174}
+  txt_Bomb: {fileID: 0}
+  bombCount: 1
 --- !u!114 &7386811802964970484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7366693795437701572}
+  - component: {fileID: 647480994}
   m_Layer: 0
   m_Name: ShotGun
   m_TagString: Untagged
@@ -133,6 +136,20 @@ Transform:
   m_Father: {fileID: 6365024033409639937}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &647480994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235889307760098114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be0add81497a374db1597b7832f5e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotGun: {fileID: 9082705668037443538}
+  txt_ShotGunBullet: {fileID: 0}
 --- !u!1 &1907632855824661529
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbd132b6a3246e43954a1a21af368f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomalGun: {fileID: 0}
+  nomalGun: {fileID: 5673819404564187744}
   txt_NomalGunBullet: {fileID: 0}
 --- !u!1 &2410398249123941252
 GameObject:
@@ -188,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6365024033409639937}
+  - component: {fileID: 1738356843}
   m_Layer: 0
   m_Name: WeaponHold
   m_TagString: Untagged
@@ -212,6 +230,19 @@ Transform:
   m_Father: {fileID: 5317831017763199681}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738356843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410398249123941252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ac192dfed75cd409b15f36165d25a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0
 --- !u!95 &7950839353285730030
 Animator:
   serializedVersion: 3
@@ -268,6 +299,7 @@ GameObject:
   - component: {fileID: 8390809324293229288}
   - component: {fileID: 6564457587654438180}
   - component: {fileID: 7601180569131389872}
+  - component: {fileID: 1899131219}
   m_Layer: 10
   m_Name: ChickenPrefab
   m_TagString: Player
@@ -398,6 +430,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 10
+--- !u!114 &1899131219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884412619304882441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ad05ae086d1a24585a30d2b7e880e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guns:
+  - {fileID: 5673819404564187744}
+  - {fileID: 9082705668037443538}
+  theGC: {fileID: 4770996337886199183}
+  theSGC: {fileID: 647480994}
+  theBS: {fileID: 4085248455373526196}
 --- !u!1 &4046766563879691763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,7 +5306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6679717884953749437
 Transform:
   m_ObjectHideFlags: 0
@@ -19822,12 +19872,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: db9b238f85680334bb8a3bd754ed61a8,
         type: 3}
       propertyPath: m_Name
-      value: Nomal Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: db9b238f85680334bb8a3bd754ed61a8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9b238f85680334bb8a3bd754ed61a8, type: 3}
@@ -19868,22 +19913,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
@@ -19928,21 +19973,15 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
       propertyPath: m_Name
-      value: Bomb
+      value: bomb
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 017f691bf04c1794ab0062b7c9cf216f,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017f691bf04c1794ab0062b7c9cf216f, type: 3}
---- !u!1 &2212398472576598728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 017f691bf04c1794ab0062b7c9cf216f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7896474421064686529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2949678984559685851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 017f691bf04c1794ab0062b7c9cf216f,
@@ -20034,24 +20073,24 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: f3544922643ddf946b5673fe5c2f6f6a,
         type: 3}
       propertyPath: m_Name
-      value: ShotGun
+      value: shotGun
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: f3544922643ddf946b5673fe5c2f6f6a,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3544922643ddf946b5673fe5c2f6f6a, type: 3}
---- !u!1 &248528117008756551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f3544922643ddf946b5673fe5c2f6f6a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8093846039935563342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3830780809667026260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f3544922643ddf946b5673fe5c2f6f6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8093846039935563342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &248528117008756551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f3544922643ddf946b5673fe5c2f6f6a,
     type: 3}
   m_PrefabInstance: {fileID: 8093846039935563342}
   m_PrefabAsset: {fileID: 0}

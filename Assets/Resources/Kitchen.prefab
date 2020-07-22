@@ -20154,6 +20154,8 @@ MonoBehaviour:
   throwPoint: {fileID: 7813287312220728408}
   bomb: {fileID: 8470493637263005541, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
   weapon: {fileID: 7746128209048652852}
+  txt_Bomb: {fileID: 0}
+  bombCount: 1
 --- !u!114 &3678360132577194045
 MonoBehaviour:
   m_ObjectHideFlags: 0
