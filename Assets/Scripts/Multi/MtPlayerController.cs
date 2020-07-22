@@ -10,7 +10,9 @@ using Photon.Pun;
 public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
     public PhotonView PV;
-    public GameObject obj;
+    public GameObject WeaponManger;
+    public GameObject[] Weapon;
+    public GameObject BulletIMG;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -22,11 +24,13 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     RaycastHit hit;
 
+    private int WeaponNum;
     private Vector3 currPos;
 
     private void Start()
     {
         noteTimingManager = FindObjectOfType<NoteTimingManager>();
+        BulletIMG.SetActive(false);
     }
 
     void Update()
@@ -47,12 +51,50 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
             #endregion
 
+            BulletIMG.SetActive(true);
+
             PlayerMove();   //캐릭터 조작
 
-            //if(Input.GetMouseButtonDown(0))
-            //    obj.GetComponent<GunControll>().photonView.RPC("Fire", RpcTarget.All);
-            //obj.GetComponent<GunControll>().FireRateCalc();
-            obj.GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+            #region 무기 변경
+            int previousSelectedWeapon = WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon;
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 0;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 1;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 2;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (previousSelectedWeapon != WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon)
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            #endregion
+
+            #region 무기선택 및 발사
+            switch (previousSelectedWeapon)
+            {
+                case 0:
+                    Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+                    break;
+                case 1:
+                    //Weapon[1].GetComponent<MtGunController>();
+                    Debug.Log(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
+                    break;
+                case 2:
+                    Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
+                    break;
+                default:
+                    break;
+            }
+            #endregion
+
         }
         else
         {
@@ -64,8 +106,8 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public void PlayerMove()
     {
         #region 칸 단위로 이동   
-        //if (Under_ObstacleCheck())
-        //{
+        if (Under_ObstacleCheck())
+        {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 W_MoveCheck();
@@ -82,7 +124,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             {
                 D_MoveCheck();
             }
-        //}
+        }
         #endregion
     }
 
@@ -218,10 +260,12 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting)
         {
             stream.SendNext(this.transform.position);
+            stream.SendNext(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
         }
         else
         {
             currPos = (Vector3)stream.ReceiveNext();
+            WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
         }
     }
 }

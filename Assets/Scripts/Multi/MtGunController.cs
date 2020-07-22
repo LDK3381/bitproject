@@ -15,29 +15,20 @@ public class MtGunController : MonoBehaviourPun
     public float fireRate = 0;
     public float speed = 10f;
 
-    //[SerializeField] Text txt_NomalGunBullet = null;
+    public Text txt_NomalGunBullet;
 
     void Start()
     {
-        //시작과 동시에 발사
-        fireRate = 0;
+        fireRate = 0.5f;
 
         //시작과 동시에 총알 개수 설정
         BulletUiSetting();
     }
 
+    [PunRPC]
     public void BulletUiSetting()
     {
-        //txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
-    }
-
-    public void FireRateCalc()
-    {
-        if (fireRate > 0)
-        {
-            //Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
-            fireRate -= Time.deltaTime;
-        }
+        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
     }
 
     // 총알 발사 시도
@@ -46,7 +37,11 @@ public class MtGunController : MonoBehaviourPun
     {
         if (!photonView.IsMine) return;
 
-        FireRateCalc();
+        if (fireRate > 0)
+        {
+            //Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
+            fireRate -= Time.deltaTime;
+        }
 
         // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
         if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
@@ -54,7 +49,7 @@ public class MtGunController : MonoBehaviourPun
             if (fireRate <= 0)
             {
                 fireRate = 0.5f;
-                photonView.RPC("Fire", RpcTarget.All);
+                photonView.RPC("Fire", RpcTarget.AllBuffered);
                 Debug.Log("TryFire");
             }
         }
@@ -65,9 +60,10 @@ public class MtGunController : MonoBehaviourPun
     public void Fire()
     {
         //총알감소
-        //nomalGun.bulletCount--;
+        nomalGun.bulletCount--;
 
         //BulletUiSetting();
+        photonView.RPC("BulletUiSetting", RpcTarget.All);
 
         //애니메이터
         nomalGun.animator.SetTrigger("GunFire");
@@ -83,6 +79,5 @@ public class MtGunController : MonoBehaviourPun
         //총알 AddForce(발사)
         clon.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
         Debug.Log("Fire");
-
     }
 }
