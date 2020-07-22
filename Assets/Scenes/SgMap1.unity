@@ -3681,6 +3681,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 484121685}
   bgmSource: {fileID: 1162734147}
   sfxSource: {fileID: 1162734145}
+  sealGunControll: {fileID: 0}
   sealControll: {fileID: 1887118924}
   sealWeapon: {fileID: 1738356841}
   sealBomb: {fileID: 1887118924}
@@ -5354,6 +5355,12 @@ PrefabInstance:
       propertyPath: txt_Bomb
       value: 
       objectReference: {fileID: 1563069122}
+    - target: {fileID: 4085248455373526196, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 737038124746942122, guid: 285dfc15fb5531742957113c9c29b051,
+        type: 3}
     - target: {fileID: 4770996337886199183, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: txt_NomalGunBullet
