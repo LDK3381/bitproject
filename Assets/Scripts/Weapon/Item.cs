@@ -6,6 +6,7 @@ public enum ItemType
 {
     Score,
     NomalGun_Bullet,
+    ShotGun_Bullet,
 }
 public class Item : MonoBehaviour
 {

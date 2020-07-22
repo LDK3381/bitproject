@@ -9,7 +9,7 @@ public class MtPickUpItem : MonoBehaviour
     public MtGunController theGC;
 
     const int NOMAL_GUN = 0;
-
+    const int SHOT_GUN = 1;
     // 아이템과 충돌
     void OnTriggerEnter(Collider other)
     {
@@ -25,6 +25,13 @@ public class MtPickUpItem : MonoBehaviour
                 SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBullet;
                 guns[NOMAL_GUN].bulletCount += extra;
+                theGC.BulletUiSetting();
+            }
+            else if (item.itemType == ItemType.ShotGun_Bullet)
+            {
+                SoundManager.instance.PlaySE("Bullet");
+                extra = item.itemBullet;
+                guns[SHOT_GUN].bulletCount += extra;
                 theGC.BulletUiSetting();
             }
 
