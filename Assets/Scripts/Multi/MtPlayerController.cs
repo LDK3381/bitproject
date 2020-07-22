@@ -106,8 +106,8 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public void PlayerMove()
     {
         #region 칸 단위로 이동   
-        //if (Under_ObstacleCheck())
-        //{
+        if (Under_ObstacleCheck())
+        {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 W_MoveCheck();
@@ -124,7 +124,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             {
                 D_MoveCheck();
             }
-        //}
+        }
         #endregion
     }
 

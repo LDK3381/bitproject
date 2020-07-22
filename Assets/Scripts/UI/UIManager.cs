@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainPanel = null;       //메인화면
-    [SerializeField] private GameObject playPanel = null;       //튜토리얼,싱글,멀티플레이 
+    [SerializeField] private GameObject playPanel = null;       //튜토리얼,싱글,멀티플레이
+    [SerializeField] private GameObject sgMapPanel = null;      //싱글 맵 선택
     [SerializeField] private GameObject optionPanel = null;     //환경설정
 
     private void Start()
@@ -26,6 +27,12 @@ public class UIManager : MonoBehaviour
         mainPanel.SetActive(false);
         playPanel.SetActive(true);
     }
+    public void OnSinglePlay()
+    {
+        Debug.Log("싱글플레이 시작");
+        playPanel.SetActive(false);
+        sgMapPanel.SetActive(true);
+    }
     //환경설정
     public void OnOption()
     {
@@ -43,6 +50,7 @@ public class UIManager : MonoBehaviour
     public void OnBack()
     {
         playPanel.SetActive(false);
+        sgMapPanel.SetActive(false);
         optionPanel.SetActive(false);
         mainPanel.SetActive(true);
     }
@@ -56,11 +64,17 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("PlayerScene");
 
     }
-    public void OnSinglePlay()
+    public void OnSgMap1()
     {
-        Debug.Log("싱글플레이 시작");
+        Debug.Log("SgMap1 시작");
         playPanel.SetActive(false);
-        SceneManager.LoadScene("PlayerScene");
+        SceneManager.LoadScene("SgMap1");
+    }
+    public void OnSgMap2()
+    {
+        Debug.Log("SgMap2 시작");
+        playPanel.SetActive(false);
+        SceneManager.LoadScene("SgMap2");
     }
     public void OnMultiPlay()
     {
