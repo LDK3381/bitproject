@@ -5033,7 +5033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &1393215966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6169,6 +6169,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1926505923}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1899131216 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8173901630970414727, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1926505923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1899131219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6429,6 +6435,22 @@ PrefabInstance:
       propertyPath: img_HpArray.Array.data[2]
       value: 
       objectReference: {fileID: 429605122}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: obj
+      value: 
+      objectReference: {fileID: 2683472479643687995, guid: 65605895c6e6ca84fb403ab32f49cf6d,
+        type: 3}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 1899131211}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: mesh_PlayerGraphics
+      value: 
+      objectReference: {fileID: 1899131216}
     - target: {fileID: 8621112712848612421, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,10 +13,14 @@ public class StatusManager : MonoBehaviourPun
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
+    [SerializeField] GameObject obj;          // 사망시 비석오브젝트
+
     [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
     [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
 
     [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
+
+    [SerializeField] GameObject playerPosition;
 
     void Start()
     {
@@ -66,7 +70,10 @@ public class StatusManager : MonoBehaviourPun
             HpUpdate();
 
             if (currentHp <= 0)
+            {
                 PlayerDead();
+                return;
+            }
 
             SoundManager.instance.PlaySE("Hurt");
             StartCoroutine(BlinkCoroutine());
@@ -90,6 +97,9 @@ public class StatusManager : MonoBehaviourPun
     // 플레이어 사망
     void PlayerDead()
     {
-        Debug.Log("플레이어가 죽었습니다.");
+        gameObject.SetActive(false);
+        Instantiate(obj, 
+            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 1, playerPosition.transform.position.z),
+            Quaternion.identity);
     }
 }
