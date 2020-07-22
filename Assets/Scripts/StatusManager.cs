@@ -13,14 +13,17 @@ public class StatusManager : MonoBehaviourPun
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
-    [SerializeField] GameObject obj;          // 사망시 비석오브젝트
+    [SerializeField] GameObject obj = null;          // 사망시 비석오브젝트
 
     [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
     [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
 
     [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
 
-    [SerializeField] GameObject playerPosition;
+    [SerializeField] GameObject playerPosition = null;
+    [SerializeField] SgPauseManager sealKey = null;
+
+    [SerializeField] GameObject losePanel = null;
 
     void Start()
     {
@@ -95,11 +98,28 @@ public class StatusManager : MonoBehaviourPun
     }
 
     // 플레이어 사망
-    void PlayerDead()
+    private void PlayerDead()
     {
         gameObject.SetActive(false);
+
+        //키보드, 마우스 잠금
+        sealKey.SealKey();
+
         Instantiate(obj, 
             new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 1, playerPosition.transform.position.z),
             Quaternion.identity);
+
+        //losepanel 실행
+        losePanel.SetActive(true);
+    }
+
+    //플레이어가 맵 밖으로 빠지면 익사 판정
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "DeadZone")
+        {
+            Debug.Log("플레이어가 익사했습니다.");
+            PlayerDead();
+        }
     }
 }

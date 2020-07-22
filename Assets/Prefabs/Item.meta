@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Prefabs/Item.meta
 <<<<<<< HEAD:Assets/Animator/Ground_BombCheck.meta
 guid: bb147ac426da7b042a5ab964237f3f94
 =======
 guid: d8bd577c8a3912b4e8b47b36f38a5e54
 >>>>>>> master:Assets/Prefabs/Item.meta
+========
+guid: 10ee2a76f164f2943a5bb2d547bb9010
+>>>>>>>> master:Assets/Effects.meta
+=======
+guid: d8bd577c8a3912b4e8b47b36f38a5e54
+>>>>>>> master
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

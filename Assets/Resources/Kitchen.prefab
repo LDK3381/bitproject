@@ -20117,7 +20117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680e9115786cf734cb3c7a66757868a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 10
   PV: {fileID: 2072079322743611902}
 --- !u!114 &2984174409138315668
 MonoBehaviour:
@@ -20136,9 +20135,13 @@ MonoBehaviour:
   - {fileID: 1566987407196293632}
   - {fileID: 8754152771005539036}
   - {fileID: 2154571492858165813}
+  obj: {fileID: 0}
   blinkSpeed: 0
   blinkCount: 0
   mesh_PlayerGraphics: {fileID: 0}
+  playerPosition: {fileID: 0}
+  sealKey: {fileID: 0}
+  losePanel: {fileID: 0}
 --- !u!114 &7813287310642371748
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -106,8 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedX: 0.1
-  speedY: 0.1
 --- !u!111 &3263220222303248820
 Animation:
   m_ObjectHideFlags: 0
@@ -121,6 +119,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0

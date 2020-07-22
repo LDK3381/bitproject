@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class MtMouseRotate : MonoBehaviourPun
 {
-    public float rotSpeed;      //마우스 회전 속도
     public PhotonView PV;
 
     Camera viewCamera;

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SgMouseRotate : MonoBehaviour
 {
-    public float rotSpeed;      //마우스 회전 속도
-    Camera viewCamera;        
+    Camera viewCamera;
 
     void Start()
     {
@@ -31,16 +30,6 @@ public class SgMouseRotate : MonoBehaviour
             Vector3 point = ray.GetPoint(rayDistance);  //그 교차 지점을 point로 지정
             Debug.DrawLine(ray.origin, point, Color.red);
             LookAt(point);                   //교차 지점이 캐릭터가 바라볼 시점이 됨.    
-        }
-    }
-
-    //플레이어가 맵 밖으로 빠지면 익사 판정
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Map")
-        {
-            Debug.Log("플레이어가 익사했습니다.");
-            gameObject.SetActive(false);
         }
     }
 }

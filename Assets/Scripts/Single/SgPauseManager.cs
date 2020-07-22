@@ -24,6 +24,7 @@ public class SgPauseManager : MonoBehaviour
     private float cursfxVol = 1f;
 
     [Header("봉인시킬 기능들")]
+    [SerializeField] SgGunController sealGunControll = null;
     [SerializeField] GameObject sealControll = null;
     [SerializeField] GameObject sealWeapon = null;
     [SerializeField] GameObject sealBomb = null;
@@ -63,10 +64,7 @@ public class SgPauseManager : MonoBehaviour
         AudioListener.pause = true;     //bgm 일시중단
 
         //일시정지 중에는 키 입력 기능들 봉인
-        sealControll.GetComponent<SgPlayerController>().enabled = false;
-        sealWeapon.GetComponent<SgWeaponManager>().enabled = false;
-        sealBomb.GetComponent<BombSpawn>().enabled = false;
-        sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
+        SealKey();
     }
 
     //뒤로가기 버튼
@@ -78,10 +76,25 @@ public class SgPauseManager : MonoBehaviour
         AudioListener.pause = false;    //bgm 다시재생
 
         //일시정지 풀리면 키 입력 기능들 봉인해제
+        UnSealKey();
+    }
+
+    public void UnSealKey()
+    {
+        sealGunControll.GetComponent<SgGunController>().enabled = true;
         sealControll.GetComponent<SgPlayerController>().enabled = true;
         sealWeapon.GetComponent<SgWeaponManager>().enabled = true;
         sealBomb.GetComponent<BombSpawn>().enabled = true;
         sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
+    }
+
+    public void SealKey()
+    {
+        sealGunControll.GetComponent<SgGunController>().enabled = false;
+        sealControll.GetComponent<SgPlayerController>().enabled = false;
+        sealWeapon.GetComponent<SgWeaponManager>().enabled = false;
+        sealBomb.GetComponent<BombSpawn>().enabled = false;
+        sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
     }
 
     //게임 나가기 버튼

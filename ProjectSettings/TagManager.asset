@@ -20,6 +20,7 @@ TagManager:
   - Gurow
   - CheckPosition
   - HGBullet
+  - DeadZone
   layers:
   - Default
   - TransparentFX
