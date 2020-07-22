@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class SpawnPlayer : MonoBehaviourPun
-{   
+public class SpawnPlayer : MonoBehaviour
+{ 
     public GameObject HPUI;     //HP UI
     public GameObject Choice;   //캐릭터 선택 UI
     public GameObject[] Point;  //캐릭터 스폰 위치
@@ -30,6 +31,9 @@ public class SpawnPlayer : MonoBehaviourPun
             }
         }
     }
+
+    
+
 
     public void OnCreate(string Nickname)
     {

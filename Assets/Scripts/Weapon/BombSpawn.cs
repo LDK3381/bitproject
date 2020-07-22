@@ -42,7 +42,7 @@ public class BombSpawn : MonoBehaviour
         txt_Bomb.text = "x " + bombCount;
     }
 
-    private void CreateBomb()
+    public void CreateBomb()
     {
         //현재 무기가 폭탄일 때에만 투척하도록 제한
         if (weapon.activeSelf == true && bombCount > 0)
