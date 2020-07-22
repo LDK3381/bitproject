@@ -10,8 +10,9 @@ using Photon.Pun;
 public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
     public PhotonView PV;
-    public GameObject obj;
+    public GameObject WeaponManger;
     public GameObject[] Weapon;
+    public GameObject BulletIMG;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -29,6 +30,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     private void Start()
     {
         noteTimingManager = FindObjectOfType<NoteTimingManager>();
+        BulletIMG.SetActive(false);
     }
 
     void Update()
@@ -49,25 +51,50 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
             #endregion
 
+            BulletIMG.SetActive(true);
+
             PlayerMove();   //캐릭터 조작
 
-            obj.GetComponent<MtWeaponManager>();
+            #region 무기 변경
+            int previousSelectedWeapon = WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon;
 
-            switch (obj.GetComponent<MtWeaponManager>().selectedWeapon)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 0;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 1;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
+            {
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 2;
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            }
+            else if (previousSelectedWeapon != WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon)
+                WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+            #endregion
+
+            #region 무기선택 및 발사
+            switch (previousSelectedWeapon)
             {
                 case 0:
-                    Weapon[0].GetComponent<MtGunController>();
+                    Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 1:
                     //Weapon[1].GetComponent<MtGunController>();
-                    Debug.Log(obj.GetComponent<MtWeaponManager>().selectedWeapon);
+                    Debug.Log(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
                     break;
                 case 2:
-                    Weapon[2].GetComponent<MtBombSpawn>();
+                    Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
                     break;
                 default:
                     break;
             }
+            #endregion
+
         }
         else
         {
@@ -233,12 +260,12 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting)
         {
             stream.SendNext(this.transform.position);
-            stream.SendNext(obj.GetComponent<MtWeaponManager>().selectedWeapon);
+            stream.SendNext(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
         }
         else
         {
             currPos = (Vector3)stream.ReceiveNext();
-            obj.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
+            WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
         }
     }
 }

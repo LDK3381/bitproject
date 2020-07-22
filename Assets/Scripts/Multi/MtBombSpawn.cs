@@ -14,23 +14,17 @@ public class MtBombSpawn : MonoBehaviourPun
 
     GameObject bombInstance = null;
 
-    void Update()
-    {
-        //마우스 좌클릭 시, 폭탄 투척
-        if (Input.GetMouseButtonDown(0))
-        {
-            photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
-        }
-    }
-
     [PunRPC]
     public void CreateBomb()
     {
         //현재 무기가 폭탄일 때에만 투척하도록 제한
         if (weapon.activeSelf == true)
         {
-            bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
-            Destroy(bombInstance, 2);
+            if (Input.GetMouseButtonDown(0))
+            {
+                bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
+                Destroy(bombInstance, 2);
+            }
         }
     }
 }

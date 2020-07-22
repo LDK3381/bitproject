@@ -15,7 +15,7 @@ public class MtGunController : MonoBehaviourPun
     public float fireRate = 0;
     public float speed = 10f;
 
-    //[SerializeField] Text txt_NomalGunBullet = null;
+    public Text txt_NomalGunBullet;
 
     void Start()
     {
@@ -25,14 +25,10 @@ public class MtGunController : MonoBehaviourPun
         BulletUiSetting();
     }
 
-    private void Update()
-    {
-        photonView.RPC("TryFire", RpcTarget.AllBuffered);
-    }
-
+    [PunRPC]
     public void BulletUiSetting()
     {
-        //txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
     }
 
     // 총알 발사 시도
@@ -53,7 +49,7 @@ public class MtGunController : MonoBehaviourPun
             if (fireRate <= 0)
             {
                 fireRate = 0.5f;
-                photonView.RPC("Fire", RpcTarget.All);
+                photonView.RPC("Fire", RpcTarget.AllBuffered);
                 Debug.Log("TryFire");
             }
         }
@@ -64,9 +60,10 @@ public class MtGunController : MonoBehaviourPun
     public void Fire()
     {
         //총알감소
-        //nomalGun.bulletCount--;
+        nomalGun.bulletCount--;
 
         //BulletUiSetting();
+        photonView.RPC("BulletUiSetting", RpcTarget.All);
 
         //애니메이터
         nomalGun.animator.SetTrigger("GunFire");

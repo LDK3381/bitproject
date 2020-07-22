@@ -19,6 +19,7 @@ TagManager:
   - Kitchen
   - Gurow
   - CheckPosition
+  - HGBullet
   layers:
   - Default
   - TransparentFX
