@@ -8,7 +8,7 @@ public class SgMouseRotate : MonoBehaviour
 
     void Start()
     {
-        viewCamera = Camera.main;                       //메인 카메라
+        viewCamera = Camera.main;      //메인 카메라
     }  
 
     //캐릭터가 향하는 방향을 마우스에 맞춰서
