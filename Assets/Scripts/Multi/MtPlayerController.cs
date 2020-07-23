@@ -60,16 +60,19 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                Debug.Log("1");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 0;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManger.transform.childCount >= 2)
             {
+                Debug.Log("2");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 1;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && WeaponManger.transform.childCount >= 3)
             {
+                Debug.Log("3");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 2;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
@@ -84,8 +87,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
                     Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 1:
-                    //Weapon[1].GetComponent<MtGunController>();
-                    Debug.Log(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
+                    Weapon[1].GetComponent<MtShotGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 2:
                     Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);

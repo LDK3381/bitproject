@@ -5,15 +5,20 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class SpawnPlayer : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 { 
     public GameObject HPUI;     //HP UI
     public GameObject Choice;   //캐릭터 선택 UI
     public GameObject[] Point;  //캐릭터 스폰 위치
+    public Text WaitText;
+    public Button PlayerButton;
+    
 
     private void Start()
     {
+        Debug.Log(PhotonNetwork.PlayerList.Length);
         HPUI.SetActive(false);
+        PlayerButton.interactable = false;
     }
 
     //스폰 위치 체크
@@ -32,15 +37,12 @@ public class SpawnPlayer : MonoBehaviour
         }
     }
 
-    
-
-
     public void OnCreate(string Nickname)
     {
         PhotonNetwork.Instantiate(Nickname, new Vector3(0.375f, 0.6f, 0.375f), Quaternion.identity);
         Choice.SetActive(false);
         HPUI.SetActive(true);
-        StartCoroutine("DestroyBullet");
+        StartCoroutine(DestroyBullet());
     }
 
     IEnumerator DestroyBullet()
@@ -50,5 +52,10 @@ public class SpawnPlayer : MonoBehaviour
         {
             GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
         }
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(10.0f);
     }
 }
