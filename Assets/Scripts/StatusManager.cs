@@ -17,13 +17,13 @@ public class StatusManager : MonoBehaviourPun
 
     [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
     [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
-
     [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
 
-    [SerializeField] GameObject playerPosition = null;
-    [SerializeField] SgPauseManager sealKey = null;
+    [SerializeField] GameObject playerPosition = null;  //패배나 승리 시 플레이어 위치 확인
+    [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
 
-    [SerializeField] GameObject losePanel = null;
+    [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
+    
 
     void Start()
     {
@@ -96,6 +96,8 @@ public class StatusManager : MonoBehaviourPun
 
         isInvincibleMode = false;
     }
+
+    
 
     // 플레이어 사망
     private void PlayerDead()
