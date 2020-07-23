@@ -106,8 +106,8 @@ public class StatusManager : MonoBehaviourPun
         sealKey.SealKey();
 
         Instantiate(obj, 
-            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 1, playerPosition.transform.position.z),
-            Quaternion.identity);
+            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
+            Quaternion.Euler(0, 90, 0));
 
         //losepanel 실행
         losePanel.SetActive(true);
