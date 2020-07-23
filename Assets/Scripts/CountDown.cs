@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CountDown : MonoBehaviour
 {
-    public GameObject numImg1 = null;
-    public GameObject numImg2 = null;
-    public GameObject numImg3 = null;
-    public GameObject startImg = null;
+    [SerializeField] private GameObject numImg1 = null;
+    [SerializeField] private GameObject numImg2 = null;
+    [SerializeField] private GameObject numImg3 = null;
+    [SerializeField] private GameObject startImg = null;
+    [SerializeField] private SgPauseManager SealKey = null;
 
     private int timer = 0;
 
@@ -15,7 +16,7 @@ public class CountDown : MonoBehaviour
     {
         //시작할 때 카운트 초기화
         timer = 0;
-
+        SealKey.SealKey();
         numImg1.SetActive(false);
         numImg2.SetActive(false);
         numImg3.SetActive(false);
@@ -25,7 +26,7 @@ public class CountDown : MonoBehaviour
     void Update()
     {
         //게임 시작시 정지
-        if(timer == 0)
+        if (timer == 0)
         {
             Time.timeScale = 0.0f;
         }
@@ -75,5 +76,6 @@ public class CountDown : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         startImg.SetActive(false);
+        SealKey.UnSealKey();
     }
 }

@@ -10,6 +10,7 @@ public class NoteTimingManager : MonoBehaviour
     [SerializeField] RectTransform timingRect = null;
     [SerializeField] GameObject[] dove = null;
     [SerializeField] NoteComboManager noteComboManager = null;
+    [SerializeField] SgAIManager sgaiManager = null;
 
     Vector2 timingBoxes;
     NoteEffectManager noteEffectManager = null;
@@ -39,6 +40,9 @@ public class NoteTimingManager : MonoBehaviour
                 noteEffectManager.DoveBounce();
                 //노트 콤보
                 noteComboManager.IncreaseCombo();
+
+                //AI 움직임 작동
+                //sgaiManager.AIMove();
 
                 Debug.Log("Hit");
 

@@ -13,10 +13,17 @@ public class StatusManager : MonoBehaviourPun
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
+    [SerializeField] GameObject obj = null;          // 사망시 비석오브젝트
+
     [SerializeField] float blinkSpeed = 0f;  // 플레이어 깜밖임 속도
     [SerializeField] int blinkCount = 0;    // 플레이어 깜밖임 횟수
-
     [SerializeField] MeshRenderer mesh_PlayerGraphics = null;
+
+    [SerializeField] GameObject playerPosition = null;  //패배나 승리 시 플레이어 위치 확인
+    [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
+
+    [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
+    
 
     void Start()
     {
@@ -66,7 +73,10 @@ public class StatusManager : MonoBehaviourPun
             HpUpdate();
 
             if (currentHp <= 0)
+            {
                 PlayerDead();
+                return;
+            }
 
             SoundManager.instance.PlaySE("Hurt");
             StartCoroutine(BlinkCoroutine());
@@ -87,9 +97,31 @@ public class StatusManager : MonoBehaviourPun
         isInvincibleMode = false;
     }
 
+    
+
     // 플레이어 사망
-    void PlayerDead()
+    private void PlayerDead()
     {
-        Debug.Log("플레이어가 죽었습니다.");
+        gameObject.SetActive(false);
+
+        //키보드, 마우스 잠금
+        sealKey.SealKey();
+
+        Instantiate(obj, 
+            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
+            Quaternion.Euler(0, 90, 0));
+
+        //losepanel 실행
+        losePanel.SetActive(true);
+    }
+
+    //플레이어가 맵 밖으로 빠지면 익사 판정
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "DeadZone")
+        {
+            Debug.Log("플레이어가 익사했습니다.");
+            PlayerDead();
+        }
     }
 }

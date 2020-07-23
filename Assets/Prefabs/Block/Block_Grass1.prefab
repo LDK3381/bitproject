@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7584100392932913670}
   - component: {fileID: 8843936247263491236}
   - component: {fileID: 8453054671144194474}
+  - component: {fileID: 6267503838070345010}
   m_Layer: 0
   m_Name: Block_Grass1
   m_TagString: Ground
@@ -105,3 +106,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &6267503838070345010
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177680595681838810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

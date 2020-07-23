@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9095085636198480444}
   - component: {fileID: 1788792517493277277}
   - component: {fileID: 2237697936024536789}
+  - component: {fileID: 3263220222303248820}
   m_Layer: 0
   m_Name: Block_Marble1
   m_TagString: Ground
@@ -105,3 +106,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &3263220222303248820
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351258045777448672}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6a10211a1864fb843afbb1e1613bd3e3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
