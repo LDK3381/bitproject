@@ -11,14 +11,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject Choice;   //캐릭터 선택 UI
     public GameObject[] Point;  //캐릭터 스폰 위치
     public Text WaitText;
-    public Button PlayerButton;
-    
 
     private void Start()
     {
         Debug.Log(PhotonNetwork.PlayerList.Length);
         HPUI.SetActive(false);
-        PlayerButton.interactable = false;
     }
 
     //스폰 위치 체크
@@ -52,10 +49,5 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
         }
-    }
-
-    IEnumerator StartGame()
-    {
-        yield return new WaitForSeconds(10.0f);
     }
 }

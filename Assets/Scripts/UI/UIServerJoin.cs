@@ -64,20 +64,18 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     {
         Debug.Log("방 입장");
         connectionInfoText.text = "CONNECT TO ROOM...";
-        
-        //PhotonNetwork.LoadLevel("MultiScene");
     }
 
-    private void test()
+    private void InPlayerCheckToNextScene()
     {
         if(PhotonNetwork.InRoom)
         {
             text.text = "Waiting Player... " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
 
-            if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
-            {
+            //if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            //{
                 PhotonNetwork.LoadLevel("MultiScene");
-            }
+            //}
         }
     }
 
@@ -88,6 +86,6 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        test();
+        InPlayerCheckToNextScene();
     }
 }

@@ -13,6 +13,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public GameObject WeaponManger;
     public GameObject[] Weapon;
     public GameObject BulletIMG;
+    public GameObject BigHp;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -31,6 +32,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     {
         noteTimingManager = FindObjectOfType<NoteTimingManager>();
         BulletIMG.SetActive(false);
+        BigHp.SetActive(false);
     }
 
     void Update()
@@ -52,7 +54,8 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             #endregion
 
             BulletIMG.SetActive(true);
-
+            BigHp.SetActive(true);
+            Debug.Log(photonView.ViewID);
             PlayerMove();   //캐릭터 조작
 
             #region 무기 변경
