@@ -32,8 +32,6 @@ public class SpawnPlayer : MonoBehaviour
         }
     }
 
-    
-
 
     public void OnCreate(string Nickname)
     {
