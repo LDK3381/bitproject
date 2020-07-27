@@ -64,8 +64,8 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     {
         Debug.Log("서버 연결");
         connectionInfoText.text = "CONNECT TO ROOM...";
-        
-        PhotonNetwork.LoadLevel("MultiScene");
+
+        //PhotonNetwork.LoadLevel("MultiScene");
     }
 
     public void OnExit()
