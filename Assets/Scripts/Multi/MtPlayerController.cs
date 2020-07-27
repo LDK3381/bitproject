@@ -14,6 +14,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public GameObject[] Weapon;
     public GameObject BulletIMG;
     public GameObject BigHp;
+    public GameObject playerRay;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -40,11 +41,11 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         if (PV.IsMine)
         {
             #region 장애물 판정 위한 Ray 생성
-            forwardRay = new Ray(transform.position, transform.forward);
-            LeftRay = new Ray(transform.position, -transform.right);
-            BackwardRay = new Ray(transform.position, -transform.forward);
-            RightRay = new Ray(transform.position, transform.right);
-            UnderRay = new Ray(transform.position, -transform.up);
+            forwardRay = new Ray(playerRay.transform.position, transform.forward);
+            LeftRay = new Ray(playerRay.transform.position, -transform.right);
+            BackwardRay = new Ray(playerRay.transform.position, -transform.forward);
+            RightRay = new Ray(playerRay.transform.position, transform.right);
+            UnderRay = new Ray(playerRay.transform.position, -transform.up);
 
             Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
             Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
