@@ -12,7 +12,6 @@ public class BombEvent : MonoBehaviour
     RaycastHit hit = new RaycastHit();
 
     [SerializeField] int damage = 0;
-    [SerializeField] float force = 0f;
 
     public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
@@ -67,7 +66,6 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);                   
                 }
             }
@@ -82,7 +80,6 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
@@ -97,7 +94,6 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f);
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }
@@ -112,7 +108,6 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    //hit.transform.GetComponent<Rigidbody>().AddExplosionForce(force, transform.position, 5f); 넉백.
                     hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
                 }
             }

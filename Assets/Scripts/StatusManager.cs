@@ -10,6 +10,7 @@ public class StatusManager : MonoBehaviourPun
     int currentHp = 0;                      // 현재 체력
 
     [SerializeField] Image[] img_HpArray = null;   // 체력 UI
+    [SerializeField] Image[] img_BigHpArray = null;   // 체력 UI
 
     bool isInvincibleMode = false;  // 무적상태 확인
 
@@ -23,7 +24,6 @@ public class StatusManager : MonoBehaviourPun
     [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
 
     [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
-    
 
     void Start()
     {
@@ -40,9 +40,15 @@ public class StatusManager : MonoBehaviourPun
         for (int i = 0; i < img_HpArray.Length; i++)
         {
             if (i < currentHp)
+            {
                 img_HpArray[i].gameObject.SetActive(true);
+                img_BigHpArray[i].gameObject.SetActive(true);
+            }
             else
+            {
                 img_HpArray[i].gameObject.SetActive(false);
+                img_BigHpArray[i].gameObject.SetActive(false);
+            }
         }
         #endregion
     }
@@ -96,8 +102,6 @@ public class StatusManager : MonoBehaviourPun
 
         isInvincibleMode = false;
     }
-
-    
 
     // 플레이어 사망
     private void PlayerDead()

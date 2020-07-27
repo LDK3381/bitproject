@@ -5,10 +5,12 @@ using UnityEngine;
 public class MtPickUpItem : MonoBehaviour
 {
     [SerializeField] Gun[] guns = null;
-
-    public MtGunController theGC;
+    [SerializeField] private MtGunController theHGC = null;
+    [SerializeField] private MtShotGunController theSGC = null;
+    [SerializeField] private MtBombSpawn theBS = null;
 
     const int NOMAL_GUN = 0;
+    const int SHOT_GUN = 1;    
 
     // 아이템과 충돌
     void OnTriggerEnter(Collider other)
@@ -25,7 +27,21 @@ public class MtPickUpItem : MonoBehaviour
                 SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBullet;
                 guns[NOMAL_GUN].bulletCount += extra;
-                theGC.BulletUiSetting();
+                theHGC.BulletUiSetting();
+            }
+            else if (item.itemType == ItemType.ShotGun_Bullet)
+            {
+                SoundManager.instance.PlaySE("Bullet");
+                extra = item.itemBullet;
+                guns[SHOT_GUN].bulletCount += extra;
+                theSGC.BulletUiSetting();
+            }
+            else if (item.itemType == ItemType.Bomb_Bullet)
+            {
+                //SoundManager.instance.PlaySE("Bullet");
+                extra = item.itemBomb;
+                theBS.BombCountUp(extra);
+                theBS.BombUiSetting();
             }
 
             string message = "+" + extra;
