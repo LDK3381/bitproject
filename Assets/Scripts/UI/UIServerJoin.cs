@@ -11,6 +11,10 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     public Text connectionInfoText; //네트워크 정보를 표시
     public Button JoinButton;       //멀티 서버 접속 버튼
+    public Text nowInfoText;
+    public Text totalInfoText;
+
+    const int MAXIMUM = 2;
 
     private void Start()
     {
@@ -19,6 +23,13 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
         JoinButton.interactable = false;
         connectionInfoText.text = "CONNECTING TO THE MASTER SERVER...";
+        nowInfoText.text = "NOW : 0";
+        totalInfoText.text = "MAX : 0";
+    }
+
+    private void Update()
+    {
+        JoinGame();
     }
 
     public override void OnConnectedToMaster()
@@ -64,8 +75,20 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     {
         Debug.Log("서버 연결");
         connectionInfoText.text = "CONNECT TO ROOM...";
+    }
 
-        //PhotonNetwork.LoadLevel("MultiScene");
+    private void JoinGame()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            nowInfoText.text = "NOW : " + PhotonNetwork.CurrentRoom.PlayerCount;
+            totalInfoText.text = "MAX : " + PhotonNetwork.CurrentRoom.MaxPlayers;
+
+            if (PhotonNetwork.CurrentRoom.PlayerCount == MAXIMUM)
+            {
+                PhotonNetwork.LoadLevel("MultiScene");
+            }
+        }
     }
 
     public void OnExit()

@@ -7,7 +7,7 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviour
 { 
-    public GameObject HPUI;     //HP UI
+    public GameObject inCanvace;     //게임내 켐퍼스
     public GameObject Choice;   //캐릭터 선택 UI
     public GameObject[] Point;  //캐릭터 스폰 위치
     public MtCount mtCount;     //캐릭터 선택 제한 시간
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isCheck = false;
-        HPUI.SetActive(false);
+        inCanvace.SetActive(false);
     }
 
     private void Update()
@@ -28,17 +28,29 @@ public class GameManager : MonoBehaviour
     //스폰 위치 체크
     Transform SpawnPointCheck()
     {
-        while (true)
+        foreach(var b in Point)
         {
-            int idx = Random.Range(0, 4);
-
-            if (!Point[idx].CompareTag("CheckPosition"))
+            if(!b.CompareTag("CheckPosition"))
             {
-                Point[idx].SetActive(false);
-                Point[idx].gameObject.tag = "CheckPosition";
-                return Point[idx].transform;
+                b.SetActive(false);
+                b.gameObject.tag = "CheckPosition";
+                return b.transform;
             }
         }
+
+        return null;
+
+        //while (true)
+        //{
+        //    int idx = Random.Range(0, 4);
+
+        //    if (!Point[idx].CompareTag("CheckPosition"))
+        //    {
+        //        Point[idx].SetActive(false);
+        //        Point[idx].gameObject.tag = "CheckPosition";
+        //        return Point[idx].transform;
+        //    }
+        //}
     }
 
     private void NotChoiceCreate()  //버튼 선택 안하면.
@@ -56,6 +68,7 @@ public class GameManager : MonoBehaviour
         isCheck = true;
         StartCoroutine("CreatePlayer");
     }
+
     IEnumerator CreatePlayer()
     {
         yield return new WaitForSeconds(mtCount.timeCost);  //남은시간
@@ -79,9 +92,9 @@ public class GameManager : MonoBehaviour
 
     public void OnCreate(string Nickname)
     {
-        PhotonNetwork.Instantiate(Nickname, new Vector3(0.375f, 0.6f, 0.375f), Quaternion.identity);
+        PhotonNetwork.Instantiate(Nickname, SpawnPointCheck().position, Quaternion.identity);
         Choice.SetActive(false);
-        HPUI.SetActive(true);
+        inCanvace.SetActive(true);
         StartCoroutine("DestroyBullet");
     }
 
