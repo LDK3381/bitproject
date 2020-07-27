@@ -6086,6 +6086,11 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: fc721bcf43201d64194d146ea37e2221, type: 3}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
+      propertyPath: img_BigHpArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
       propertyPath: img_HpArray.Array.data[0]
       value: 
       objectReference: {fileID: 487011166}
@@ -6130,6 +6135,21 @@ PrefabInstance:
       propertyPath: winScore
       value: 
       objectReference: {fileID: 2014818642}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 487011166}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 573409303}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 429605122}
     - target: {fileID: 8621112712848612421, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7386,6 +7406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795531296075032529, guid: fd84a7cc9b7414b4184142b8ac6ecdc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7795531296075032530, guid: fd84a7cc9b7414b4184142b8ac6ecdc6,
         type: 3}
