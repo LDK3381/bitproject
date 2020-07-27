@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c481c025166544a8456ae9029340a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPUI: {fileID: 1245074045}
+  inCanvace: {fileID: 1245074045}
   Choice: {fileID: 873055926}
   Point:
   - {fileID: 927837375}
@@ -493,7 +493,6 @@ MonoBehaviour:
   - {fileID: 1863849681}
   - {fileID: 1907564679}
   WaitText: {fileID: 1902535551}
-  PlayerButton: {fileID: 2395882928828339872}
 --- !u!4 &140535142
 Transform:
   m_ObjectHideFlags: 0
@@ -5318,13 +5317,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907564679}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 0.599, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1739410817}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044221092
 GameObject:
   m_ObjectHideFlags: 0

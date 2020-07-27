@@ -19829,7 +19829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPoint: {fileID: 7813287312220728408}
-  bomb: {fileID: 8470493637263005541, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
+  bomb: {fileID: 737038124746942122, guid: 285dfc15fb5531742957113c9c29b051, type: 3}
   weapon: {fileID: 7746128209048652852}
   txt_Bomb: {fileID: 965688599233560216}
 --- !u!114 &148211931946100212

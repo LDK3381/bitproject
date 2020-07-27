@@ -7,7 +7,7 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 { 
-    public GameObject HPUI;     //HP UI
+    public GameObject inCanvace;     //게임내 켐퍼스
     public GameObject Choice;   //캐릭터 선택 UI
     public GameObject[] Point;  //캐릭터 스폰 위치
     public Text WaitText;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         Debug.Log(PhotonNetwork.PlayerList.Length);
-        HPUI.SetActive(false);
+        inCanvace.SetActive(false);
     }
 
     private void Update()
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Instantiate(Nickname, new Vector3(0.375f, 0.6f, 0.375f), Quaternion.identity);
         Choice.SetActive(false);
-        HPUI.SetActive(true);
+        inCanvace.SetActive(true);
         StartCoroutine(DestroyBullet());
     }
 
