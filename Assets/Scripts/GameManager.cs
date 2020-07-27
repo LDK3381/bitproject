@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class SpawnPlayer : MonoBehaviour
+public class GameManager : MonoBehaviour
 { 
     public GameObject HPUI;     //HP UI
     public GameObject Choice;   //캐릭터 선택 UI
@@ -50,7 +50,7 @@ public class SpawnPlayer : MonoBehaviour
         }
     }
 
-    private void ChoiceCreate(string Nickname)   //버튼 선택시.
+    public void ChoiceCreate(string Nickname)   //버튼 선택시.
     {
         nick = Nickname;
         isCheck = true;
