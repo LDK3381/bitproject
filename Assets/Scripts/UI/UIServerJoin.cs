@@ -11,7 +11,6 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     public Text connectionInfoText; //네트워크 정보를 표시
     public Button JoinButton;       //멀티 서버 접속 버튼
-    public Text text;
 
     private void Start()
     {
@@ -41,10 +40,11 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public void Connect()
     {
         JoinButton.interactable = false;
-
+        Debug.Log("Connect()실행");
         if (PhotonNetwork.IsConnected)
         {
             connectionInfoText.text = "CONNECT TO ROOM...";
+            Debug.Log("IsConnect안");
             PhotonNetwork.JoinRandomRoom();
         }
         else
@@ -62,30 +62,14 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("방 입장");
+        Debug.Log("서버 연결");
         connectionInfoText.text = "CONNECT TO ROOM...";
-    }
 
-    private void InPlayerCheckToNextScene()
-    {
-        if(PhotonNetwork.InRoom)
-        {
-            text.text = "Waiting Player... " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
-
-            //if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
-            //{
-                PhotonNetwork.LoadLevel("MultiScene");
-            //}
-        }
+        //PhotonNetwork.LoadLevel("MultiScene");
     }
 
     public void OnExit()
     {
         Application.Quit();
-    }
-
-    private void Update()
-    {
-        InPlayerCheckToNextScene();
     }
 }
