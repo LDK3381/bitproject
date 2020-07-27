@@ -4953,7 +4953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680e9115786cf734cb3c7a66757868a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 10
   PV: {fileID: 5436434614296661068}
 --- !u!114 &4834652023181686988
 MonoBehaviour:
@@ -4970,6 +4969,8 @@ MonoBehaviour:
   throwPoint: {fileID: 1774114113686357889}
   bomb: {fileID: 8470493637263005541, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
   weapon: {fileID: 6120285215890856438}
+  txt_Bomb: {fileID: 0}
+  bombCount: 1
 --- !u!114 &1276256702258141799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4987,9 +4988,13 @@ MonoBehaviour:
   - {fileID: 1447654060714508051}
   - {fileID: 4925335385836591755}
   - {fileID: 6517950966443575273}
+  obj: {fileID: 0}
   blinkSpeed: 0
   blinkCount: 0
   mesh_PlayerGraphics: {fileID: 0}
+  playerPosition: {fileID: 0}
+  sealKey: {fileID: 0}
+  losePanel: {fileID: 0}
 --- !u!114 &5436434614296661068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20133,6 +20138,7 @@ MonoBehaviour:
   nomalGun: {fileID: 1874820343663027772}
   fireRate: 0
   speed: 10
+  txt_NomalGunBullet: {fileID: 0}
 --- !u!114 &1874820343663027772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20414,6 +20420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1774114113686357889}
   - component: {fileID: 793098900145636857}
+  - component: {fileID: 3352791466087822158}
   m_Layer: 0
   m_Name: Gurow
   m_TagString: Player
@@ -20449,9 +20456,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 5436434614296661068}
-  obj: {fileID: 7490225005325135362}
+  WeaponManger: {fileID: 0}
+  Weapon: []
+  BulletIMG: {fileID: 0}
   Move: 0.375
   move_speed: 10
+--- !u!114 &3352791466087822158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141889106836652054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 1, b: 0.1809969, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1
+  indicator: {fileID: 0}
 --- !u!1001 &525454875313839998
 PrefabInstance:
   m_ObjectHideFlags: 0

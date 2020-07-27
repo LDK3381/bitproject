@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SgMouseRotate : MonoBehaviour
 {
     Camera viewCamera;
+    public Texture2D mouseTarget = null;
 
     void Start()
     {
         viewCamera = Camera.main;      //메인 카메라
+        Cursor.visible = true;
     }  
 
     //캐릭터가 향하는 방향을 마우스에 맞춰서
@@ -30,6 +33,8 @@ public class SgMouseRotate : MonoBehaviour
             Vector3 point = ray.GetPoint(rayDistance);  //그 교차 지점을 point로 지정
             Debug.DrawLine(ray.origin, point, Color.red);
             LookAt(point);                   //교차 지점이 캐릭터가 바라볼 시점이 됨.    
+
+            Cursor.SetCursor(mouseTarget, point, CursorMode.Auto);
         }
     }
 }

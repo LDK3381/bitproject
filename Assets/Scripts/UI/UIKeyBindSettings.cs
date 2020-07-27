@@ -10,6 +10,9 @@ public class UIKeyBindSettings : MonoBehaviour
     public Text up, down, left, right, weapon1, weapon2, weapon3;
     private GameObject currentKey = null;
 
+    [Header("중복입력 발생 이벤트")]
+    public GameObject keyErrorPanel = null;
+
     private Color32 before = new Color32(39, 171, 249, 255);
     private Color32 selected = new Color32(239, 116, 36, 255);
 
@@ -73,10 +76,21 @@ public class UIKeyBindSettings : MonoBehaviour
         foreach (var key in keys)
         {
             PlayerPrefs.SetString(key.Key, key.Value.ToString());
-        }
+            PlayerPrefs.Save();
+            Debug.Log("키 변경 완료");
 
-        PlayerPrefs.Save();
-        Debug.Log("키 변경 완료");
+            ////동일한 키가 저장되어 있는지 체크
+            //if (PlayerPrefs.HasKey(key.Key))
+            //{
+            //    keyErrorPanel.SetActive(true);
+            //    return;
+            //}
+            //else
+            //{
+            //    PlayerPrefs.Save();
+            //    Debug.Log("키 변경 완료");
+            //}
+        }
     }
 
     //초기화 버튼 클릭 시 바뀐 키값 전부 초기화
@@ -97,5 +111,11 @@ public class UIKeyBindSettings : MonoBehaviour
         keys.Remove("Button_Weapon3");
 
         Start();
+    }
+
+    //키값 중복 저장으로 인해 생긴 창을 나갈려고 Back 버튼 누를 때,
+    public void OnKeyBack()
+    {
+        keyErrorPanel.SetActive(false);
     }
 }

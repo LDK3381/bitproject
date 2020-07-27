@@ -48,15 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1812176143852618705}
+  nomalGun: {fileID: 0}
   fireRate: 0
-  bulletCount: 0
-  maxBulletCount: 0
-  animator: {fileID: 0}
-  speed: 0
-  sound_Fire: 
-  ps_MuzzleFlash: {fileID: 515221795847701798}
-  bulletSpeed: 20
-  txt_CurrentGunBullet: {fileID: 0}
+  speed: 10
+  txt_NomalGunBullet: {fileID: 0}
 --- !u!114 &849973940985618017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,10 +179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c176fe19244f0954496458cbbfc1f5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObRayLength: 0.5
   explosionTime: 1.9
   damage: 0
   force: 0
+  ps_BombExplode: {fileID: 0}
 --- !u!1 &1812176143852618705
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680e9115786cf734cb3c7a66757868a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotSpeed: 10
   PV: {fileID: 3798807949287642097}
 --- !u!114 &5264962050794326442
 MonoBehaviour:
@@ -395,7 +389,8 @@ MonoBehaviour:
   throwPoint: {fileID: 1833402901208697828}
   bomb: {fileID: 9107967818634630545, guid: b1f1bbcf71148db40bef7d2f43402e4f, type: 3}
   weapon: {fileID: 798005828487567426}
-  dissapearTime: 2
+  txt_Bomb: {fileID: 0}
+  bombCount: 1
 --- !u!114 &3798807949287642097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,15 +488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 4535713256687053678}
+  nomalGun: {fileID: 0}
   fireRate: 0
-  bulletCount: 0
-  maxBulletCount: 0
-  animator: {fileID: 0}
-  speed: 0
-  sound_Fire: 
-  ps_MuzzleFlash: {fileID: 5172985423662857193}
-  bulletSpeed: 20
-  txt_CurrentGunBullet: {fileID: 0}
+  speed: 10
+  txt_NomalGunBullet: {fileID: 0}
 --- !u!114 &6216629609940089254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5423,6 +5413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401139091012762060}
   - component: {fileID: 8694835781010410004}
+  - component: {fileID: -1117345401798927993}
   m_Layer: 0
   m_Name: PapaGu
   m_TagString: Player
@@ -5458,11 +5449,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 3798807949287642097}
-  obj:
-  - {fileID: 6393588430105370133}
-  - {fileID: 555136917155566845}
+  WeaponManger: {fileID: 0}
+  Weapon: []
+  BulletIMG: {fileID: 0}
   Move: 0.375
   move_speed: 10
+--- !u!114 &-1117345401798927993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240582939267945590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 0.31705594, b: 1, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1
+  indicator: {fileID: 0}
 --- !u!1 &7666584937908974519
 GameObject:
   m_ObjectHideFlags: 0
