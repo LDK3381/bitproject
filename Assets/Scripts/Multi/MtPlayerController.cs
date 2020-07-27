@@ -55,7 +55,6 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
             BulletIMG.SetActive(true);
             BigHp.SetActive(true);
-            Debug.Log(photonView.ViewID);
             PlayerMove();   //캐릭터 조작
 
             #region 무기 변경

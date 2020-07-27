@@ -18,6 +18,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         HPUI.SetActive(false);
     }
 
+    private void Update()
+    {
+        foreach(var idx in PhotonNetwork.PlayerList)
+        {
+            Debug.Log(idx.ActorNumber);
+        }
+    }
+
     //스폰 위치 체크
     Transform SpawnPointCheck()
     {
