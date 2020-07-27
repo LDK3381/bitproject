@@ -194,6 +194,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29893834}
   m_CullTransparentMesh: 0
+--- !u!1 &33572812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33572814}
+  - component: {fileID: 33572813}
+  m_Layer: 0
+  m_Name: CountDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &33572813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33572812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3cabb672b48f84a90799f705a33139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeCount: {fileID: 2395882928828339876}
+  timeCost: 10
+  flag: 0
+--- !u!4 &33572814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33572812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 608.3125, y: 339.24023, z: 9.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59374832
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,12 +537,7 @@ MonoBehaviour:
   - {fileID: 667624133}
   - {fileID: 1863849681}
   - {fileID: 1907564679}
-  timeText: {fileID: 2395882928828339876}
-  nickName:
-  - Kitchen
-  - Kitchen
-  - Kitchen
-  - Kitchen
+  mtCount: {fileID: 33572813}
 --- !u!4 &140535142
 Transform:
   m_ObjectHideFlags: 0
@@ -5606,7 +5647,7 @@ PrefabInstance:
     - target: {fileID: 2395882928507107265, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnCreate
+      value: ChoiceCreate
       objectReference: {fileID: 0}
     - target: {fileID: 2395882928903377570, guid: fc1802ebe6b29af44bc6d6f824fb6553,
         type: 3}
