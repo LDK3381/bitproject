@@ -7,15 +7,14 @@ using Photon.Realtime;
 
 public class MtGunController : MonoBehaviourPun
 {
-    public GameObject obj;      //총알 스폰
+    public GameObject bulletSpawn;      //총알 스폰
 
     [Header("현재 장착된 총")]
     [SerializeField] Gun nomalGun = null;
-
-    public float fireRate = 0;
-    public float speed = 10f;
-
     public Text txt_NomalGunBullet;
+
+    private float fireRate = 0;
+    private float speed = 10f;
 
     void Start()
     {
@@ -49,7 +48,7 @@ public class MtGunController : MonoBehaviourPun
             if (fireRate <= 0)
             {
                 fireRate = 0.5f;
-                photonView.RPC("Fire", RpcTarget.AllBuffered);
+                photonView.RPC("HGFire", RpcTarget.AllBuffered);
                 Debug.Log("TryFire");
             }
         }
@@ -57,12 +56,11 @@ public class MtGunController : MonoBehaviourPun
 
     // 총알 발사
     [PunRPC]
-    public void Fire()
+    public void HGFire()
     {
         //총알감소
         nomalGun.bulletCount--;
 
-        //BulletUiSetting();
         photonView.RPC("BulletUiSetting", RpcTarget.All);
 
         //애니메이터
@@ -75,7 +73,7 @@ public class MtGunController : MonoBehaviourPun
         nomalGun.ps_MuzzleFlash.Play();
 
         //총알 Instantiate(무한 생성)
-        var clon = Instantiate(nomalGun.go_Bullet_Prefab, obj.transform.position, Quaternion.identity);
+        var clon = Instantiate(nomalGun.go_Bullet_Prefab, bulletSpawn.transform.position, Quaternion.identity);
         //총알 AddForce(발사)
         clon.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
         Debug.Log("Fire");

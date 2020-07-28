@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737038123159762090}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.020016432, y: 0.014563084, z: -0.0024254322}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 737038124746942121}
   m_RootOrder: 1
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionTime: 1.95
   damage: 1
-  force: 180
   ps_BombExplode: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
     type: 3}
 --- !u!1 &737038123412256070
@@ -76,8 +75,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737038123412256070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.020016432, y: -0.28043696, z: -0.0024254322}
-  m_LocalScale: {x: 0.085496366, y: 0.085496366, z: 0.085496366}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 737038124746942121}
   m_RootOrder: 2
@@ -171,7 +170,7 @@ GameObject:
   - component: {fileID: 737038123885542813}
   - component: {fileID: 737038123885542814}
   - component: {fileID: 737038123885542815}
-  - component: {fileID: 737038123885542808}
+  - component: {fileID: 1997885316132368648}
   m_Layer: 11
   m_Name: EggBomb
   m_TagString: Bomb
@@ -187,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737038123885542810}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.006000012, y: -0.13899997, z: -0.0029999018}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 737038124746942121}
@@ -274,8 +273,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &737038123885542808
-MeshCollider:
+--- !u!136 &1997885316132368648
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -284,10 +283,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -951608786083511892, guid: 017f691bf04c1794ab0062b7c9cf216f, type: 3}
+  m_Radius: 0.035105295
+  m_Height: 0.0986217
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.04931085, z: -0.0000000037252903}
 --- !u!1 &737038124746942122
 GameObject:
   m_ObjectHideFlags: 0

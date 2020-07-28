@@ -13,6 +13,8 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public GameObject WeaponManger;
     public GameObject[] Weapon;
     public GameObject BulletIMG;
+    public GameObject BigHp;
+    public GameObject playerRay;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -31,6 +33,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     {
         noteTimingManager = FindObjectOfType<NoteTimingManager>();
         BulletIMG.SetActive(false);
+        BigHp.SetActive(false);
     }
 
     void Update()
@@ -38,11 +41,11 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         if (PV.IsMine)
         {
             #region 장애물 판정 위한 Ray 생성
-            forwardRay = new Ray(transform.position, transform.forward);
-            LeftRay = new Ray(transform.position, -transform.right);
-            BackwardRay = new Ray(transform.position, -transform.forward);
-            RightRay = new Ray(transform.position, transform.right);
-            UnderRay = new Ray(transform.position, -transform.up);
+            forwardRay = new Ray(playerRay.transform.position, transform.forward);
+            LeftRay = new Ray(playerRay.transform.position, -transform.right);
+            BackwardRay = new Ray(playerRay.transform.position, -transform.forward);
+            RightRay = new Ray(playerRay.transform.position, transform.right);
+            UnderRay = new Ray(playerRay.transform.position, -transform.up);
 
             Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
             Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
@@ -52,7 +55,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             #endregion
 
             BulletIMG.SetActive(true);
-
+            BigHp.SetActive(true);
             PlayerMove();   //캐릭터 조작
 
             #region 무기 변경
@@ -60,16 +63,19 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                Debug.Log("1");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 0;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManger.transform.childCount >= 2)
             {
+                Debug.Log("2");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 1;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && WeaponManger.transform.childCount >= 3)
             {
+                Debug.Log("3");
                 WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = 2;
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             }
@@ -84,8 +90,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
                     Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 1:
-                    //Weapon[1].GetComponent<MtGunController>();
-                    Debug.Log(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
+                    Weapon[1].GetComponent<MtShotGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 2:
                     Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
@@ -248,6 +253,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             if (hit.collider.tag != "Ground")
             {
                 Debug.Log("Ground 없음");
+                Destroy(this.gameObject);
                 return false;
             }
         }

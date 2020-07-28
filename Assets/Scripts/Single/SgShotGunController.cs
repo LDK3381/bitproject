@@ -7,10 +7,9 @@ public class SgShotGunController : MonoBehaviour
 {
     [Header("현재 장착된 총")]
     [SerializeField] Gun shotGun = null;
+    public Text txt_ShotGunBullet;
 
-    float FireRate;
-
-    [SerializeField] Text txt_ShotGunBullet = null;
+    private float FireRate;
 
     void Start()
     {

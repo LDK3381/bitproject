@@ -10,7 +10,6 @@ public class NoteTimingManager : MonoBehaviour
     [SerializeField] RectTransform timingRect = null;
     [SerializeField] GameObject[] dove = null;
     [SerializeField] NoteComboManager noteComboManager = null;
-    [SerializeField] SgAIManager sgaiManager = null;
 
     Vector2 timingBoxes;
     NoteEffectManager noteEffectManager = null;

@@ -2277,7 +2277,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.65e-43, y: -1.92102e-22, z: 7.72e-43, w: -124435010}
+  m_BoundingSphereOverride: {x: 4.484e-42, y: 7.17e-43, z: 3.59e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4267,6 +4267,11 @@ PrefabInstance:
       objectReference: {fileID: 622795174}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
+      propertyPath: img_BigHpArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
       propertyPath: img_HpArray.Array.data[0]
       value: 
       objectReference: {fileID: 487011166}
@@ -4301,6 +4306,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2683472479643687995, guid: 65605895c6e6ca84fb403ab32f49cf6d,
         type: 3}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 487011166}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 573409303}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: img_BigHpArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 429605122}
     - target: {fileID: 8621112712848612421, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5125,6 +5145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WinPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268422303097874212, guid: 65fc789033553384da65287a1d1b1b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268422303097874219, guid: 65fc789033553384da65287a1d1b1b50,
         type: 3}
