@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Turret.meta
-guid: a8b2f2bd5dc5be14f9be9aad9be88794
-=======
-guid: 303de0cc42a0f184eafbaaf2529cc503
->>>>>>> master:Assets/Animator/Loading.meta
+guid: 0516a91b246efcc47a7ea9cfa1900d80
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -75,6 +75,7 @@ public class SgGunController : MonoBehaviour
         //총알 Instantiate(무한 생성)
         var clone = Instantiate
             (nomalGun.go_Bullet_Prefab, nomalGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
+
         //총알 AddForce(발사)
         clone.GetComponent<Rigidbody>().AddForce(transform.forward * nomalGun.speed);
     }

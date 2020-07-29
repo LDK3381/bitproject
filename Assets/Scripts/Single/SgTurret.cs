@@ -12,10 +12,19 @@ public class SgTurret : MonoBehaviour
 
     [SerializeField] float tr_spinSpeed = 0f;   //터렛 회전속도
 
+    [SerializeField] float tr_fireRate = 0f;    //연사속도
+
+    [SerializeField] float tr_fireSpeed = 0f;   //총알속도
+
+    [SerializeField] GameObject tr_Bullet_Prefab = null;   //터렛 총알 프리팹
+
+    [SerializeField] ParticleSystem tr_MuzzleFlash = null;  //터렛 발사 이펙트
+
+    float tr_currentFireRate = 0f;  //연사속도 변수
+
     Transform tr_Target = null;     //공격할 대상 트렌스폼
 
     Transform me = null;    //나의 위치(포탑위치)
-
 
     //가까운 플레이어 탐색
     void SearchPlayer()
@@ -53,6 +62,9 @@ public class SgTurret : MonoBehaviour
     
     void Start()
     {
+        //연사속도 대입
+        tr_currentFireRate = tr_fireRate;
+
         //플레이어 탐색 0.5초마다 실행
         InvokeRepeating("SearchPlayer", 0f, 0.5f);
 
@@ -80,6 +92,27 @@ public class SgTurret : MonoBehaviour
 
             //오일러 값에서 y축만 반영되게 수정 한 뒤 쿼티니온으로 변환
             tr_Gun_Body.rotation = Quaternion.Euler(0, tr_euler.y, 0);
+
+            //터렛이 조준할 방향(y축)
+            Quaternion tr_fireRotation = Quaternion.Euler(0, tr_lookRotation.eulerAngles.y, 0);
+
+            //현재 터렛의 방향과 조준할 방향
+            if (Quaternion.Angle(tr_Gun_Body.rotation, tr_fireRotation) < 5f)
+            {
+                tr_currentFireRate -= Time.deltaTime;
+
+                if (tr_currentFireRate <= 0)
+                {
+                    tr_currentFireRate = tr_fireRate;
+
+                    //총알 Instantiate(무한 생성)
+                    var clone = Instantiate
+                        (tr_Bullet_Prefab, tr_MuzzleFlash.transform.position, Quaternion.identity);
+
+                    //총알 AddForce(발사)
+                    clone.GetComponent<Rigidbody>().AddForce((tr_Target.position - me.position) * tr_fireSpeed);
+                }
+            }
         }
     }
 }

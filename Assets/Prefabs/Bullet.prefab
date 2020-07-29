@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2409849178986031438}
   - component: {fileID: 4760527561459293943}
   m_Layer: 0
-  m_Name: SgBullet
+  m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b3538952a787e47a9119f97b3b6384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go_RicochetEffect: {fileID: 8626265046202900392, guid: 27a2fd015326c294eac0bd921822f30e,
-    type: 3}
+  go_RicochetEffect: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
   damage: 1
   sound_Effect: NomalGun_Effect
 --- !u!1 &6776655975213359088
