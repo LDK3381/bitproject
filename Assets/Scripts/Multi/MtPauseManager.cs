@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class MtPauseManager : MonoBehaviour
+public class MtPauseManager : MonoBehaviourPun
 {
     [Header("일시정지")]
     [SerializeField] GameObject pausePanel = null;      //일시정지 화면
@@ -66,6 +67,7 @@ public class MtPauseManager : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("게임 나가기");
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("UI");
     }
     #endregion

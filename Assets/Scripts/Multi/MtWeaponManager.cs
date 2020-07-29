@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class MtWeaponManager : MonoBehaviourPun
+public class MtWeaponManager : MonoBehaviourPun, IPunObservable
 {
     public int selectedWeapon = 0;
 
@@ -19,6 +20,18 @@ public class MtWeaponManager : MonoBehaviourPun
             else
                 weapon.gameObject.SetActive(false);
             i++;
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(selectedWeapon);
+        }
+        else
+        {
+            selectedWeapon = (int)stream.ReceiveNext();
         }
     }
 }

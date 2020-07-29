@@ -21,6 +21,10 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
                 btn = b;
                 btn.interactable = false;
             }
+            else
+            {
+                b.interactable = false;
+            }
         }
     }
 

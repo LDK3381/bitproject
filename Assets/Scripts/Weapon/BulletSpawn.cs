@@ -6,8 +6,6 @@ using Photon.Realtime;
 
 public class BulletSpawn : MonoBehaviourPun
 {
-    //public float bulletSpeed = 10f;                 //발사 속도
-
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -24,7 +22,7 @@ public class BulletSpawn : MonoBehaviourPun
         if(!photonView.IsMine && other.tag == "Player" && other.GetComponent<PhotonView>().IsMine)
         {
             Debug.Log("캐릭터 충돌");
-            other.GetComponent<StatusManager>().DecreaseHp(1);
+            other.GetComponent<StatusManager>().MtDecreaseHp(1);
             photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
         }
     }
