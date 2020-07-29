@@ -30,6 +30,7 @@ public class MtPauseManager : MonoBehaviourPun
         fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
 
         pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     void Start()
@@ -46,6 +47,15 @@ public class MtPauseManager : MonoBehaviourPun
         cursfxVol = PlayerPrefs.GetFloat("SfxVolSize");
         sfxSlider.value = cursfxVol;
         sfxSource.volume = sfxSlider.value;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pausePanel.SetActive(!pausePanel.activeSelf);
+            pauseButton.SetActive(!pauseButton.activeSelf);
+        }
     }
 
     #region 버튼들

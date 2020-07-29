@@ -1817,7 +1817,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.446e-42, w: 0}
+  m_BoundingSphereOverride: {x: 1e-45, y: NaN, z: NaN, w: 2.7552806e+22}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3446,8 +3446,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1879527089}
   - {fileID: 1387019942}
+  - {fileID: 1879527089}
   - {fileID: 1627598722}
   - {fileID: 1422359293}
   - {fileID: 776344338}
@@ -4002,11 +4002,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1245074046}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 901.0001, y: 477.00012}
+  m_AnchoredPosition: {x: 890, y: 469.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387019943
@@ -5357,7 +5357,7 @@ PrefabInstance:
     - target: {fileID: 5231072604843617228, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5231072604843617228, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
