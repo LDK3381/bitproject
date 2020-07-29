@@ -8,13 +8,13 @@ using UnityEngine.UI;
 
 public enum IndicatorType
 {
-    BOX,
+    BOX = 0,
     ARROW
 }
 
 public class Indicator : MonoBehaviour
 {
-    [SerializeField] private IndicatorType indicatorType;
+    [SerializeField] private IndicatorType indicatorType = 0;
     private Image indicatorImage;
     private Text distanceText;
 
@@ -82,4 +82,3 @@ public class Indicator : MonoBehaviour
         transform.gameObject.SetActive(value);
     }
 }
-

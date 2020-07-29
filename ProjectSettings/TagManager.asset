@@ -21,6 +21,9 @@ TagManager:
   - CheckPosition
   - HGBullet
   - DeadZone
+  - BombCheck
+  - Enemy
+  - CliffCollider
   layers:
   - Default
   - TransparentFX
@@ -35,8 +38,8 @@ TagManager:
   - Player
   - Bomb
   - Ground
-  - 
-  - 
+  - CliffCollider
+  - Enemy
   - 
   - 
   - 

@@ -146,7 +146,7 @@ public class SgPlayerController : MonoBehaviour
         if (Physics.Raycast(forwardRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || 
-                hit.collider.tag == "Player")
+                hit.collider.tag == "Enemy")
             {
                 return false;
             }
@@ -159,7 +159,7 @@ public class SgPlayerController : MonoBehaviour
         if (Physics.Raycast(leftRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                 hit.collider.tag == "Player")
+                 hit.collider.tag == "Enemy")
             {
                 return false;
             }
@@ -172,7 +172,7 @@ public class SgPlayerController : MonoBehaviour
         if (Physics.Raycast(backwardRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Player")
+                hit.collider.tag == "Enemy")
             {
                 return false;
             }
@@ -185,7 +185,7 @@ public class SgPlayerController : MonoBehaviour
         if (Physics.Raycast(rightRay, out hit, rayLength))
         {
             if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Player")
+                hit.collider.tag == "Enemy")
             {
                 return false;
             }
