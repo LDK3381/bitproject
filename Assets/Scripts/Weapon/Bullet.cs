@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("캐릭터 충돌");
-            other.transform.GetComponent<StatusManager>().DecreaseHp(1);
+            other.transform.GetComponent<StatusManager>().MtDecreaseHp(1);
             Destroy(this.gameObject);
         }
     }

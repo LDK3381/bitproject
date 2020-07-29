@@ -51,11 +51,9 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public void Connect()
     {
         JoinButton.interactable = false;
-        Debug.Log("Connect()실행");
         if (PhotonNetwork.IsConnected)
         {
             connectionInfoText.text = "CONNECT TO ROOM...";
-            Debug.Log("IsConnect안");
             PhotonNetwork.JoinRandomRoom();
         }
         else
