@@ -4,6 +4,14 @@ using UnityEngine.UI;
 /// <summary>
 /// Assign this script to the indicator prefabs.
 /// </summary>
+/// 
+
+public enum IndicatorType
+{
+    BOX,
+    ARROW
+}
+
 public class Indicator : MonoBehaviour
 {
     [SerializeField] private IndicatorType indicatorType;
@@ -75,8 +83,3 @@ public class Indicator : MonoBehaviour
     }
 }
 
-public enum IndicatorType
-{
-    BOX,
-    ARROW
-}
