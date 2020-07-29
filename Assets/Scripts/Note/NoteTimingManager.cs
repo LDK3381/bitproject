@@ -13,12 +13,14 @@ public class NoteTimingManager : MonoBehaviour
 
     Vector2 timingBoxes;
     NoteEffectManager noteEffectManager = null;
-    
+    AIController aiController;
+
     void Start()
     {
         noteEffectManager = FindObjectOfType<NoteEffectManager>();
-        timingBoxes = new Vector2();
+        aiController = FindObjectOfType<AIController>();
 
+        timingBoxes = new Vector2();
         timingBoxes.Set(center.localPosition.x - timingRect.rect.width / 2,
             center.localPosition.x + timingRect.rect.width / 2);
     }
@@ -40,9 +42,6 @@ public class NoteTimingManager : MonoBehaviour
                 //노트 콤보
                 noteComboManager.IncreaseCombo();
 
-                //AI 움직임 작동
-                //sgaiManager.AIMove();
-
                 Debug.Log("Hit");
 
                 dove[2].SetActive(false);
@@ -50,9 +49,28 @@ public class NoteTimingManager : MonoBehaviour
                 return true;
             }
         }
+
         DoveStop();
         return false;
     }
+
+    ////AI가 자동으로 한칸씩 이동하도록 설정
+    //public void AICheckTiming()
+    //{
+    //    for (int i = 0; i < noteList.Count; i++)
+    //    {
+    //        float t_notePosX = noteList[i].transform.localPosition.x;
+
+    //        if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
+    //        {
+    //            //AI 움직임 작동
+    //            aiController.AIMove();
+
+    //            Debug.Log("Hit");
+    //        }
+    //    }
+    //}
+
     private void DoveFly()
     {
         if(!GameObject.Find("Dove1"))
