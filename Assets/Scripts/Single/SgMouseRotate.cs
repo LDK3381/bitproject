@@ -34,6 +34,8 @@ public class SgMouseRotate : MonoBehaviour
             Debug.DrawLine(ray.origin, point, Color.red);
             LookAt(point);      //교차 지점이 캐릭터가 바라볼 시점이 됨.    
 
+            point.x = mouseTarget.width / 2;
+            point.y = mouseTarget.height / 2;
             Cursor.SetCursor(mouseTarget, point, CursorMode.Auto);  //마우스 커서 이미지 변경
         }
     }
