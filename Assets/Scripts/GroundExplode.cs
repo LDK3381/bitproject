@@ -24,7 +24,7 @@ public class GroundExplode : MonoBehaviour
         }
     }
 
-    //파괴될 발판에 콜라이더 생성(AI가 그 발판 구간을 못지나가게 제한)
+    //파괴될 발판에 콜라이더 생성(AI가 해당 발판 구간을 못지나가게 제한)
     IEnumerator CreateCliffCollider()
     {
         yield return new WaitForSeconds(2.0f);

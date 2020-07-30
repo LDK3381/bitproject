@@ -6,18 +6,17 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
-    NoteTimingManager noteTimingManager;
     Ray forwardRay, leftRay, backwardRay, rightRay, underRay;
-    public float Move = 0.375f;
-    float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
     RaycastHit hit = new RaycastHit();
+    public GameObject aiPlayer = null;  //Ray가 나오는 위치(플레이어 프리펩)
+
+    public float Move = 0.375f;         //AI의 이동거리
+    float rayLength = 0.375f;           //Ray와 장애물 간 판정거리
 
     NavMeshAgent agent;
-    public GameObject aiPlayer = null;  //Ray가 나오는 위치(플레이어 프리펩)
 
     void Start()
     {
-        noteTimingManager = FindObjectOfType<NoteTimingManager>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -41,6 +40,8 @@ public class AIController : MonoBehaviour
         Debug.DrawRay(rightRay.origin, transform.right, Color.red);
         Debug.DrawRay(underRay.origin, -transform.up, Color.red);
         #endregion
+
+        KeepCenterPos();
     }
 
     //AI 조작 함수(WASD)
@@ -172,4 +173,18 @@ public class AIController : MonoBehaviour
         return true;
     }
     #endregion
+
+    //항상 타일 정중앙에 있도록 조정
+    public void KeepCenterPos()
+    {
+        float posX, posZ;
+
+        posX = (float)(transform.position.x % 0.375);
+        posZ = (float)(transform.position.z % 0.375);
+
+        if (posX != 0)
+            posX = 0;
+        if (posZ != 0)
+            posZ = 0;
+    }
 }

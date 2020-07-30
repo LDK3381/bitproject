@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class AISpawn : MonoBehaviour
 {
-    public GameObject enemy; //AI 프리팹
+    [Header("적 AI")]
+    [SerializeField] GameObject enemy = null;          //AI 프리팹
+
+    AIFindObject find;
 
     public Wave[] waves;
     Wave currentWave;
@@ -19,6 +22,7 @@ public class AISpawn : MonoBehaviour
     [System.Serializable]
     public class Wave
     {
+
         public int enemyCount = 0;      //생성시킬 AI 수`
         public float timeBetweenSpawns = 0f;    //스폰 시간 간격
     }
@@ -26,7 +30,9 @@ public class AISpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        find = GetComponent<AIFindObject>();
         NextWave();
+        InvokeRepeating("SpawnAI", 0f, 2f);
     }
 
     // Update is called once per frame
@@ -37,7 +43,7 @@ public class AISpawn : MonoBehaviour
             enemiesRemainingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-            SpawnAI();
+            //SpawnEffect();
         }
     }
 
@@ -57,8 +63,8 @@ public class AISpawn : MonoBehaviour
     //AI 스폰 함수
     public void SpawnAI()
     {
-        GameObject spawnedEnemy = Instantiate(enemy, GetRandomPoint(), enemy.transform.rotation);
-        spawnedEnemy.GetComponent<AIController>().AIStart();
+        Vector3 point = GetRandomPoint();      
+        GameObject spawnedEnemy = Instantiate(enemy, point, enemy.transform.rotation);
     }
 
     //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기

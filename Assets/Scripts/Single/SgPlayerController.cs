@@ -14,6 +14,7 @@ public class SgPlayerController : MonoBehaviour
 
     public float Move = 0.375f;
     float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
+    public GameObject playerRay;
 
     RaycastHit hit = new RaycastHit();
 
@@ -25,11 +26,11 @@ public class SgPlayerController : MonoBehaviour
     void Update()
     {
         #region 장애물 판정 위한 Ray 생성
-        forwardRay = new Ray(transform.position, transform.forward);
-        leftRay = new Ray(transform.position, -transform.right);
-        backwardRay = new Ray(transform.position, -transform.forward);
-        rightRay = new Ray(transform.position, transform.right);
-        underRay = new Ray(transform.position, -transform.up);
+        forwardRay = new Ray(playerRay.transform.position, transform.forward);
+        leftRay = new Ray(playerRay.transform.position, -transform.right);
+        backwardRay = new Ray(playerRay.transform.position, -transform.forward);
+        rightRay = new Ray(playerRay.transform.position, transform.right);
+        underRay = new Ray(playerRay.transform.position, -transform.up);
 
         Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
         Debug.DrawRay(leftRay.origin, -transform.right, Color.red);
@@ -44,19 +45,6 @@ public class SgPlayerController : MonoBehaviour
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        //저장된 키값 정보 가져오기
-
-        #region 누른만큼 이동
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    transform.Translate(Vector3.right * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.A))
-        //    transform.Translate(Vector3.left * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.W))
-        //    transform.Translate(Vector3.forward * move_speed * Time.deltaTime);
-        //else if (Input.GetKeyDown(KeyCode.S))
-        //    transform.Translate(Vector3.back * move_speed * Time.deltaTime); 
-        #endregion
-
         #region 칸 단위로 이동
         if(Under_ObstacleCheck()) //Ground 여부 판정.
         {

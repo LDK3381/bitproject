@@ -54,23 +54,6 @@ public class NoteTimingManager : MonoBehaviour
         return false;
     }
 
-    ////AI가 자동으로 한칸씩 이동하도록 설정
-    //public void AICheckTiming()
-    //{
-    //    for (int i = 0; i < noteList.Count; i++)
-    //    {
-    //        float t_notePosX = noteList[i].transform.localPosition.x;
-
-    //        if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
-    //        {
-    //            //AI 움직임 작동
-    //            aiController.AIMove();
-
-    //            Debug.Log("Hit");
-    //        }
-    //    }
-    //}
-
     private void DoveFly()
     {
         if(!GameObject.Find("Dove1"))
