@@ -7,6 +7,7 @@ using Photon.Pun;
 public class PlayerChoice : MonoBehaviourPun, IPunObservable
 {
     public Button[] button;
+    public Text choiceText;
 
     private Button btn;
 
@@ -18,6 +19,8 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
             if (b.CompareTag(name))
             {
                 Debug.Log("button false");
+                Debug.Log(name);
+                ChoiceAllPlayer(name);
                 btn = b;
                 btn.interactable = false;
             }
@@ -25,6 +28,14 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
             {
                 b.interactable = false;
             }
+        }
+    }
+
+    private void ChoiceAllPlayer(string Nick)
+    {
+        for(int i =0; i< PhotonNetwork.PlayerList.Length; i++)
+        {
+            choiceText.text = photonView.ViewID.ToString() + " : " + Nick + "\n";
         }
     }
 

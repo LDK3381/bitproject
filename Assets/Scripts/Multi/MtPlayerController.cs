@@ -15,6 +15,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public GameObject BulletIMG;
     public GameObject BigHp;
     public GameObject playerRay;
+    public StatusManager statuManager;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -93,13 +94,20 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
                     Weapon[1].GetComponent<MtShotGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 2:
-                    Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
+                    }
                     break;
                 default:
                     break;
             }
             #endregion
 
+            if(statuManager.DeadPlayerCount == 1)
+            {
+                statuManager.winPanel.SetActive(true);
+            }
         }
         else
         {
@@ -259,6 +267,8 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
         return true;
     }
     #endregion
+
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

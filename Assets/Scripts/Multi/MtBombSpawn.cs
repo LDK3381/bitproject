@@ -38,13 +38,10 @@ public class MtBombSpawn : MonoBehaviourPun
         //현재 무기가 폭탄일 때에만 투척하도록 제한
         if (weapon.activeSelf == true && bombCount > 0)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                bombCount--;
-                photonView.RPC("BombUiSetting", RpcTarget.All);
-                bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
-                Destroy(bombInstance, 2);
-            }
+            bombCount--;
+            photonView.RPC("BombUiSetting", RpcTarget.All);
+            bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
+            Destroy(bombInstance, 2);
         }
     }
 }

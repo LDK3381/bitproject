@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;                   // UI 사용에 필요한 네임스페이스
 using Photon.Pun;
 
-public class StatusManager : MonoBehaviourPun
+public class StatusManager : MonoBehaviourPun, IPunObservable
 {
     [SerializeField] int maxHp = 0;         // 최대 체력
     int currentHp = 0;                      // 현재 체력
@@ -24,19 +24,22 @@ public class StatusManager : MonoBehaviourPun
     [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
 
     [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
+    public GameObject winPanel;
 
     public int DeadPlayerCount;
 
-    private Transform loseP;
+    private bool isLife;
 
     void Start()
     {
+        isLife = true;
+        winPanel.SetActive(false);
+        losePanel.SetActive(false);
+
         #region 체력을 최대 체력으로
         currentHp = maxHp;
         HpUpdate();
         #endregion
-
-        loseP = GameObject.Find("UI").transform.Find("LosePanel");
     }
 
     // HP 상태를 업데이트
@@ -126,6 +129,7 @@ public class StatusManager : MonoBehaviourPun
 
             if (currentHp <= 0)
             {
+                isLife = false;
                 MtPlayerDead();
                 return;
             }
@@ -139,17 +143,16 @@ public class StatusManager : MonoBehaviourPun
     private void MtPlayerDead()
     {
         sealKey = null;
-        losePanel = null;
         gameObject.SetActive(false);
 
         Instantiate(obj,
             new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
             Quaternion.Euler(0, 90, 0));
 
-        //losepanel 실행
-        loseP.gameObject.SetActive(true);
+        losePanel.SetActive(true);
 
         DeadPlayerCount++;
+        Debug.Log(DeadPlayerCount);
     }
     #endregion
 
@@ -183,5 +186,17 @@ public class StatusManager : MonoBehaviourPun
             MtPlayerDead();
         else
             SgPlayerDead();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(DeadPlayerCount);
+        }
+        else
+        {
+            DeadPlayerCount = (int)stream.ReceiveNext();
+        }
     }
 }

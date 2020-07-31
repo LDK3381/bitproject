@@ -62,14 +62,6 @@ public class MtPauseManager : MonoBehaviourPun
         pausePanel.SetActive(false);
         pauseButton.SetActive(true);
     }
-
-    //게임 나가기 버튼
-    public void ExitGame()
-    {
-        Debug.Log("게임 나가기");
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("UI");
-    }
     #endregion
 
     #region 옵션 기능들

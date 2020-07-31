@@ -11,8 +11,6 @@ public class SpawnManager : MonoBehaviour
     public GameObject Choice;       //캐릭터 선택 UI
     public GameObject[] Point;      //캐릭터 스폰 위치
     public MtCount mtCount;         //캐릭터 선택 제한 시간
-    public GameObject WinPanel;     //승리 판넬
-    public GameObject LosePanel;    //패배 판넬
 
     private string nick;            //선택한 캐릭터 이름
     private GameObject FixedPosition;  //고정된 위치
@@ -22,8 +20,6 @@ public class SpawnManager : MonoBehaviour
     {
         isCheck = false;
         inCanvace.SetActive(false);
-        WinPanel.SetActive(false);
-        LosePanel.SetActive(false);
     }
 
     private void Update()
@@ -111,16 +107,6 @@ public class SpawnManager : MonoBehaviour
         {
             GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
         }
-    }
-    #endregion
-
-    #region Win & Lose
-    private void WinCheck()
-    {
-        int num = gameObject.GetComponent<StatusManager>().DeadPlayerCount;
-
-        if (num == 1)
-            WinPanel.SetActive(true);
     }
     #endregion
 }
