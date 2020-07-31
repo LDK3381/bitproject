@@ -57,5 +57,11 @@ public class Bullet : MonoBehaviour
             other.transform.GetComponent<StatusManager>().MtDecreaseHp(1);
             Destroy(this.gameObject);
         }
+
+        if (other.transform.CompareTag("Enemy"))
+        {
+            Debug.Log("적 AI 피격");
+            Destroy(this.gameObject);
+        }
     }
 }

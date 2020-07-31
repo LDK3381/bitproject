@@ -29,6 +29,7 @@ public class SgPauseManager : MonoBehaviour
     [SerializeField] GameObject sealWeapon = null;
     [SerializeField] GameObject sealBomb = null;
     [SerializeField] GameObject sealMouseRotate = null;
+    [SerializeField] GameObject sealAITimer = null;
 
     void OnEnable()
     {
@@ -86,6 +87,7 @@ public class SgPauseManager : MonoBehaviour
         sealWeapon.GetComponent<SgWeaponManager>().enabled = true;
         sealBomb.GetComponent<BombSpawn>().enabled = true;
         sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
+        sealAITimer.GetComponent<AITimer>().enabled = true;
     }
 
     public void SealKey()
@@ -95,6 +97,7 @@ public class SgPauseManager : MonoBehaviour
         sealWeapon.GetComponent<SgWeaponManager>().enabled = false;
         sealBomb.GetComponent<BombSpawn>().enabled = false;
         sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
+        sealAITimer.GetComponent<AITimer>().enabled = false;
     }
 
     //게임 나가기 버튼

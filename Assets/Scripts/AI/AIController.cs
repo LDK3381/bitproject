@@ -8,10 +8,10 @@ public class AIController : MonoBehaviour
 {
     Ray forwardRay, leftRay, backwardRay, rightRay, underRay;
     RaycastHit hit = new RaycastHit();
-    public GameObject aiPlayer = null;  //Ray가 나오는 위치(플레이어 프리펩)
+    public GameObject aiPlayer;  //Ray가 나오는 위치(플레이어 프리펩)
 
-    public float Move = 0.375f;         //AI의 이동거리
-    float rayLength = 0.375f;           //Ray와 장애물 간 판정거리
+    public float Move = 0.375f;       //AI의 이동거리
+    float rayLength = 0.5f;           //Ray와 장애물 간 판정거리
 
     NavMeshAgent agent;
 
@@ -40,8 +40,6 @@ public class AIController : MonoBehaviour
         Debug.DrawRay(rightRay.origin, transform.right, Color.red);
         Debug.DrawRay(underRay.origin, -transform.up, Color.red);
         #endregion
-
-        KeepCenterPos();
     }
 
     //AI 조작 함수(WASD)
@@ -75,6 +73,7 @@ public class AIController : MonoBehaviour
                 default: break;
             }
 
+            KeepCenterPos();
         }
         #endregion
     }

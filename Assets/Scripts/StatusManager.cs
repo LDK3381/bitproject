@@ -28,6 +28,7 @@ public class StatusManager : MonoBehaviourPun
     public int DeadPlayerCount;
 
     private Transform loseP;
+    private AITimer timer;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class StatusManager : MonoBehaviourPun
         #endregion
 
         loseP = GameObject.Find("UI").transform.Find("LosePanel");
+        timer = GetComponent<AITimer>();
     }
 
     // HP 상태를 업데이트

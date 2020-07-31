@@ -8,7 +8,7 @@ public class AISpawn : MonoBehaviour
     [Header("적 AI")]
     [SerializeField] GameObject enemy = null;          //AI 프리팹
 
-    AIFindObject find;
+    AIChildManager find;
 
     public Wave[] waves;
     Wave currentWave;
@@ -23,16 +23,16 @@ public class AISpawn : MonoBehaviour
     public class Wave
     {
 
-        public int enemyCount = 0;      //생성시킬 AI 수`
+        public int enemyCount = 0;      //생성시킬 AI 수
         public float timeBetweenSpawns = 0f;    //스폰 시간 간격
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        find = GetComponent<AIFindObject>();
+        find = GetComponent<AIChildManager>();
         NextWave();
-        InvokeRepeating("SpawnAI", 0f, 2f);
+        //InvokeRepeating("SpawnAI", 0f, 2f);
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class AISpawn : MonoBehaviour
             enemiesRemainingToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpawns;
 
-            //SpawnEffect();
+            SpawnAI();
         }
     }
 
@@ -61,10 +61,12 @@ public class AISpawn : MonoBehaviour
     }
 
     //AI 스폰 함수
-    public void SpawnAI()
+    public GameObject SpawnAI()
     {
         Vector3 point = GetRandomPoint();      
         GameObject spawnedEnemy = Instantiate(enemy, point, enemy.transform.rotation);
+
+        return spawnedEnemy;
     }
 
     //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기

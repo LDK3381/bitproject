@@ -7,28 +7,32 @@ public class AITimer : MonoBehaviour
 {
     [Header("타이머 설정")]
     [SerializeField] Text txt_Timer = null;
-    [SerializeField] float startTime = 90f;     //시작은 1:30
-    [SerializeField] float currentTime = 0f;    //현재 시각
-    [SerializeField] float wastedTime = 0f;    //소모된 시간
+    [SerializeField] float startTime = 90f;         //시작은 1:30
+    [SerializeField] float currentTime = 0f;        //현재 시간
+    [SerializeField] float wastedTime = 0;          //버틴 시간
+    [SerializeField] GameObject losePanel = null;   //패배 화면
 
     private bool flag = true;
+    private float minutes, seconds;
+
     StatusManager status;
+    AISpawn spawn;
 
     void Start()
     {
         currentTime = startTime;
         status = FindObjectOfType<StatusManager>();
+        spawn = FindObjectOfType<AISpawn>();
     }
 
     void Update()
     {
-        string minutes = ((int)currentTime / 60).ToString();
-        string seconds = ((int)currentTime % 60).ToString();   //초 단위는 소수점 2자리까지만 표시
-        txt_Timer.text = minutes + ":" + seconds;
+        UpdateCurrentTime(currentTime);
 
         if (currentTime > 0)
         {
-            currentTime -= Time.deltaTime; //1초씩 감소(타임어택)
+            currentTime -= Time.deltaTime;      //제한시간 1초씩 감소
+            wastedTime += Time.deltaTime;       //버틴 시간 1초씩 증가
         }
 
         if (currentTime <= 0 && flag == true)   //타이머가 다 지나면 게임종료
@@ -38,4 +42,65 @@ public class AITimer : MonoBehaviour
             flag = false;
         }
     }
+
+    //현재 제한시간 상황 갱신
+    public void UpdateCurrentTime(float curTime)
+    {
+        //minutes = ((int)curTime / 60).ToString();
+        //seconds = ((int)curTime % 60).ToString();
+        //Debug.Log("현재시간 : " + minutes + ":" + seconds);
+
+        minutes = Mathf.FloorToInt(curTime / 60);
+        seconds = Mathf.FloorToInt(curTime % 60);
+        txt_Timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    #region 특정 이벤트로 인한 제한시간 변화
+
+    //총으로 ai 파괴할때 시간 5초 증가 이벤트
+    public void UpdateByPlBullet()
+    {
+        currentTime += 5f;
+        UpdateCurrentTime(currentTime);
+    }
+
+    //폭탄으로 ai 파괴할 때 시간 10초 증가 이벤트
+    public void UpdateByPlBomb()
+    {
+        currentTime += 10f;
+        UpdateCurrentTime(currentTime);
+    }
+
+    //적의 총으로 데미지 입을 때 5초 감소 이벤트
+    public void UpdateByAIBullet()
+    {
+        currentTime -= 5f;
+        UpdateCurrentTime(currentTime);
+    }
+
+    //적의 폭탄으로 데미지 입을 때 7초 감소 이벤트
+    public void UpdateByAIBomb()
+    {
+        currentTime -= 7f;
+        UpdateCurrentTime(currentTime);
+    }
+    #endregion
+
+    #region 외부에다 쓸 시간값 가져오는 함수들
+    //외부에다 쓸 버틴 시간값
+    public float GetWastedTime()
+    {
+        if (losePanel.activeSelf == true)
+            return wastedTime;
+
+        return wastedTime;
+    }
+
+    //외부에다 쓸 현재 시간값
+    public float GetCurrentTime()
+    {
+        return currentTime;
+    }
+    #endregion
+
 }

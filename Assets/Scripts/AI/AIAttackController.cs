@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SgTurret : MonoBehaviour
+public class AIAttackController : MonoBehaviour
 {
     [SerializeField] Transform tr_Gun_Body = null;
     [SerializeField] float tr_range = 0f;   //터렛의 사정거리
@@ -14,20 +14,21 @@ public class SgTurret : MonoBehaviour
     [SerializeField] ParticleSystem tr_MuzzleFlash = null;  //터렛 발사 이펙트
 
     float tr_currentFireRate = 0f;  //연사속도 변수
-
     Transform tr_Target = null;     //공격할 대상 트렌스폼
-
     Transform me = null;    //나의 위치(포탑위치)
 
     //가까운 플레이어 탐색
     void SearchPlayer()
     {
+        //나의 위치 시작할때 대입
+        me = transform;
+
         //OverlapSphere : 객체 주변의 Collider를 검출
         Collider[] tr_cols = Physics.OverlapSphere(transform.position, tr_range, tr_layerMask); //터렛 주변의 Collider 검출
         Transform tr_shortTarget = null;    //터렛과 가까운 트랜스폼
 
         //검출된 Collider 있을경우
-        if (tr_cols.Length>0)
+        if (tr_cols.Length > 0)
         {
             float tr_shortDistance = Mathf.Infinity; //짧은것을 비교하려면 가장 긴 녀석이 기준이 되야함
 
@@ -52,7 +53,8 @@ public class SgTurret : MonoBehaviour
 
         tr_Target = tr_shortTarget; //타겟을 가까운 타겟으로 대입
     }
-    
+
+    // Start is called before the first frame update
     void Start()
     {
         //연사속도 대입
@@ -60,19 +62,21 @@ public class SgTurret : MonoBehaviour
 
         //플레이어 탐색 0.5초마다 실행
         InvokeRepeating("SearchPlayer", 0f, 0.5f);
-
-        //나의 위치 시작할때 대입
-        me = transform;
     }
 
     void Update()
     {
         //타겟이 없을경우(터렛 회전)
         if (tr_Target == null)
+        {
+            Debug.Log("못찾음.");
             tr_Gun_Body.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
+        }
+
         //타겟이 있을 경우
         else
         {
+            Debug.Log("찾음.");
             //LookRotation : 특정 좌표를 바라보게 만드는 회전값을 리턴
             Quaternion tr_lookRotation = Quaternion.LookRotation(tr_Target.position - me.position);   //플레이어 위치 확인
             Debug.Log(tr_lookRotation);
