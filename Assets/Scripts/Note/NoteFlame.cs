@@ -35,7 +35,7 @@ public class NoteFlame : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            soundManager.PlayRandomBGM();
+            soundManager.PlayBGM();
             CheckCurrentScene();
             musicStart = true;
         }

@@ -18,18 +18,46 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        PhotonNetwork.GameVersion = gameVersion;
-        PhotonNetwork.ConnectUsingSettings();
+        try
+        {
+            PhotonNetwork.GameVersion = gameVersion;
+            PhotonNetwork.ConnectUsingSettings();
 
-        JoinButton.interactable = false;
-        connectionInfoText.text = "CONNECTING TO THE MASTER SERVER...";
-        nowInfoText.text = "NOW : 0";
-        totalInfoText.text = "MAX : 0";
+            JoinButton.interactable = false;
+            connectionInfoText.text = "CONNECTING TO THE MASTER SERVER...";
+            nowInfoText.text = "NOW : 0";
+            totalInfoText.text = "MAX : 0";
+        }
+        catch
+        {
+            Debug.Log("UIServerJoin.Start Error");
+        }
     }
 
     private void Update()
     {
         JoinGame();
+    }
+
+    private void JoinGame()
+    {
+        try
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                nowInfoText.text = "NOW : " + PhotonNetwork.CurrentRoom.PlayerCount;
+                totalInfoText.text = "MAX : " + PhotonNetwork.CurrentRoom.MaxPlayers;
+
+                if (PhotonNetwork.CurrentRoom.PlayerCount == MAXIMUM)
+                {
+                    PhotonNetwork.LoadLevel("MultiScene");
+                }
+            }
+        }
+        catch
+        {
+            Debug.Log("UIServerJoin.JoinGame Error");
+        }
     }
 
     public override void OnConnectedToMaster()
@@ -73,20 +101,6 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     {
         Debug.Log("서버 연결");
         connectionInfoText.text = "CONNECT TO ROOM...";
-    }
-
-    private void JoinGame()
-    {
-        if (PhotonNetwork.InRoom)
-        {
-            nowInfoText.text = "NOW : " + PhotonNetwork.CurrentRoom.PlayerCount;
-            totalInfoText.text = "MAX : " + PhotonNetwork.CurrentRoom.MaxPlayers;
-
-            if (PhotonNetwork.CurrentRoom.PlayerCount == MAXIMUM)
-            {
-                PhotonNetwork.LoadLevel("MultiScene");
-            }
-        }
     }
 
     public void OnExit()

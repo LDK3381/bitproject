@@ -33,38 +33,64 @@ public class SoundManager : MonoBehaviour
     //효과음 플레이 함수
     public void PlaySE(string _soundName)
     {
-        for (int i = 0; i < sfxSounds.Length; i++)
+        try
         {
-            //일치되는 효과음 찾기
-            if (_soundName == sfxSounds[i].soundName)
+            for (int i = 0; i < sfxSounds.Length; i++)
             {
-                //재생되지 않는 효과음 찾기
-                for (int x = 0; x < sfxPlayer.Length; x++)
+                //일치되는 효과음 찾기
+                if (_soundName == sfxSounds[i].soundName)
                 {
-                    if (!sfxPlayer[x].isPlaying)
-                    {
-                        sfxPlayer[x].clip = sfxSounds[i].clip;
-                        sfxPlayer[x].volume = PlayerPrefs.GetFloat("SfxVolSize");   //변경된 SFX 음량 적용
-                        sfxPlayer[x].Play();
-                        return;
-                    }
+                    CurrentPlaySE(i);
                 }
-                Debug.Log("모든 효과음 플레이어가 사용중입니다!!!");
-                return;
             }
+            Debug.Log("등록된 효과음이 없습니다");
         }
-        Debug.Log("등록된 효과음이 없습니다");
+        catch
+        {
+            Debug.Log("SoundManager.PlaySE Error");
+        }
+    }
+
+    private void CurrentPlaySE(int i)
+    {
+        try
+        {
+            //재생되지 않는 효과음 찾기
+            for (int x = 0; x < sfxPlayer.Length; x++)
+            {
+                if (!sfxPlayer[x].isPlaying)
+                {
+                    sfxPlayer[x].clip = sfxSounds[i].clip;
+                    sfxPlayer[x].volume = PlayerPrefs.GetFloat("SfxVolSize");   //변경된 SFX 음량 적용
+                    sfxPlayer[x].Play();
+                    return;
+                }
+            }
+            Debug.Log("모든 효과음 플레이어가 사용중입니다!!!");
+            return;
+        }
+        catch
+        {
+            Debug.Log("SoundManager.CurrentPlaySE Error");
+        }
     }
 
     // 브금 랜덤 플레이 함수
-    public void PlayRandomBGM()
+    public void PlayBGM()
     {
-        bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 BGM 음량 적용
-        bgmPlayer.Play();
-
-        if(!bgmPlayer.isPlaying)
+        try
         {
-            Debug.Log("bgm이 나오질 않습니다!");
+            bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVolSize");  //변경된 BGM 음량 적용
+            bgmPlayer.Play();
+
+            if (!bgmPlayer.isPlaying)
+            {
+                Debug.Log("bgm이 나오질 않습니다!");
+            }
+        }
+        catch
+        {
+            Debug.Log("SoundManager.PlayBGM Error");
         }
     }
 }
