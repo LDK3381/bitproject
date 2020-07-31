@@ -5,29 +5,20 @@ using UnityEngine;
 public class SgTurret : MonoBehaviour
 {
     [SerializeField] Transform tr_Gun_Body = null;
-
-    [SerializeField] float tr_range = 0f;   //터렛의 사정거리
-
-    [SerializeField] LayerMask tr_layerMask = 0;    //특정레이어 마스크 검출
-
-    [SerializeField] float tr_spinSpeed = 0f;   //터렛 회전속도
-
-    [SerializeField] float tr_fireRate = 0f;    //연사속도
-
-    [SerializeField] float tr_fireSpeed = 0f;   //총알속도
-
-    [SerializeField] GameObject tr_Bullet_Prefab = null;   //터렛 총알 프리팹
-
+    [SerializeField] float tr_range = 0f;                   //터렛의 사정거리
+    [SerializeField] LayerMask tr_layerMask = 0;            //특정레이어 마스크 검출
+    [SerializeField] float tr_spinSpeed = 0f;               //터렛 회전속도
+    [SerializeField] float tr_fireRate = 0f;                //연사속도
+    [SerializeField] float tr_fireSpeed = 0f;               //총알속도
+    [SerializeField] GameObject tr_Bullet_Prefab = null;    //터렛 총알 프리팹
     [SerializeField] ParticleSystem tr_MuzzleFlash = null;  //터렛 발사 이펙트
 
     float tr_currentFireRate = 0f;  //연사속도 변수
-
     Transform tr_Target = null;     //공격할 대상 트렌스폼
-
-    Transform me = null;    //나의 위치(포탑위치)
+    Transform me = null;            //나의 위치(포탑위치)
 
     //가까운 플레이어 탐색
-    void SearchPlayer()
+    private void SearchPlayer()
     {
         //OverlapSphere : 객체 주변의 Collider를 검출
         Collider[] tr_cols = Physics.OverlapSphere(transform.position, tr_range, tr_layerMask); //터렛 주변의 Collider 검출
@@ -59,7 +50,7 @@ public class SgTurret : MonoBehaviour
 
         tr_Target = tr_shortTarget; //타겟을 가까운 타겟으로 대입
     }
-    
+
     void Start()
     {
         //연사속도 대입

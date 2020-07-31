@@ -34,23 +34,45 @@ public class BombSpawn : MonoBehaviour
     }
     public void BombCountUp(int extra)
     {
-        bombCount += extra;
+        try
+        {
+            bombCount += extra;
+        }
+        catch
+        {
+            Debug.Log("BombSpawn.BombCountUp Error");
+        }
     }
 
     public void BombUiSetting()
     {
-        txt_Bomb.text = "x " + bombCount;
+        try
+        {
+            txt_Bomb.text = "x " + bombCount;
+        }
+        catch
+        {
+            Debug.Log("BombSpawn.BombUiSetting Error");
+        }
     }
 
     public void CreateBomb()
     {
-        //현재 무기가 폭탄일 때에만 투척하도록 제한
-        if (weapon.activeSelf == true && bombCount > 0)
+        try
         {
-            bombCount--;
-            BombUiSetting();
-            bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
-            Destroy(bombInstance, 2);
+            //현재 무기가 폭탄일 때에만 투척하도록 제한
+            if (weapon.activeSelf == true && bombCount > 0)
+            {
+                bombCount--;
+                BombUiSetting();
+                bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
+                Destroy(bombInstance, 2);
+            }
         }
+        catch
+        {
+            Debug.Log("BombSpawn.CreateBomb Error");
+        }
+ 
     }
 }
