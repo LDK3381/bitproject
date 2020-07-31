@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,8 +14,11 @@ public class Bullet : MonoBehaviour
     [Header("피격 효과음")]
     [SerializeField] string sound_Effect = null;
 
+    private bool flag = true;
+
     private void Start()
     {
+        flag = PlayerInRoom();
         Destroy(gameObject, 7.0f);
     }
 
@@ -50,11 +54,10 @@ public class Bullet : MonoBehaviour
             Debug.Log("벽 충돌");
             Destroy(this.gameObject);
         }
-
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("캐릭터 충돌");
-            other.transform.GetComponent<StatusManager>().MtDecreaseHp(1);
+            DecreaseHp(other);
             Destroy(this.gameObject);
         }
 
@@ -63,5 +66,19 @@ public class Bullet : MonoBehaviour
             Debug.Log("적 AI 피격");
             Destroy(this.gameObject);
         }
+    }
+    private bool PlayerInRoom()
+    {
+        if (PhotonNetwork.InRoom)
+            return true;    //멀티
+        else
+            return false;   //싱글 
+    }
+    private void DecreaseHp(Collision other)
+    {
+        if (flag == true)
+            other.transform.GetComponent<StatusManager>().MtDecreaseHp(1);
+        else
+            other.transform.GetComponent<StatusManager>().SgDecreaseHp(1);
     }
 }

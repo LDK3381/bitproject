@@ -14,75 +14,144 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("메인화면");
-        optionPanel.SetActive(false);
-        playPanel.SetActive(false);
-        keyErrorPanel.SetActive(false);
-        mainPanel.SetActive(true);
+        try
+        {
+            Debug.Log("메인화면");
+            optionPanel.SetActive(false);
+            playPanel.SetActive(false);
+            keyErrorPanel.SetActive(false);
+            mainPanel.SetActive(true);
+        }
+        catch
+        {
+            Debug.Log("UIManager.Start Error");
+        }
     }
 
     #region 메인화면 기본옵션들
     //게임시작
     public void OnPlay()
     {
-        Debug.Log("게임시작화면");
-        mainPanel.SetActive(false);
-        playPanel.SetActive(true);
+        try
+        {
+            Debug.Log("게임시작화면");
+            mainPanel.SetActive(false);
+            playPanel.SetActive(true);
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnPlay Error");
+        }
     }
     public void OnSinglePlay()
     {
-        Debug.Log("싱글플레이 시작");
-        playPanel.SetActive(false);
-        sgMapPanel.SetActive(true);
+        try
+        {
+            Debug.Log("싱글플레이 시작");
+            playPanel.SetActive(false);
+            sgMapPanel.SetActive(true);
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnSinglePlay Error");
+        }
     }
     //환경설정
     public void OnOption()
     {
-        Debug.Log("환경설정");
-        mainPanel.SetActive(false);
-        optionPanel.SetActive(true);
+        try
+        {
+            Debug.Log("환경설정");
+            mainPanel.SetActive(false);
+            optionPanel.SetActive(true);
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnOption Error");
+        }
     }
     //게임종료
     public void OnQuit()
     {
-        Debug.Log("종료");
-        Application.Quit();
+        try
+        {
+            Debug.Log("종료");
+            Application.Quit();
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnQuit");
+        }
     }
     //뒤로가기
     public void OnBack()
     {
-        playPanel.SetActive(false);
-        sgMapPanel.SetActive(false);
-        optionPanel.SetActive(false);
-        mainPanel.SetActive(true);
+        try
+        {
+            playPanel.SetActive(false);
+            sgMapPanel.SetActive(false);
+            optionPanel.SetActive(false);
+            mainPanel.SetActive(true);
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnBack");
+        }
     }
     #endregion
 
     #region 게임플레이 옵션들
     public void OnTutorial()
     {
-        Debug.Log("튜토리얼 시작");
-        playPanel.SetActive(false);
-        SceneManager.LoadScene("PlayerScene");
-
+        try
+        {
+            Debug.Log("튜토리얼 시작");
+            playPanel.SetActive(false);
+            SceneManager.LoadScene("PlayerScene");
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnTutorial Error");
+        }
     }
     public void OnSgMap1()
     {
-        Debug.Log("SgMap1 시작");
-        playPanel.SetActive(false);
-        SceneManager.LoadScene("SgMap1");
+        try
+        {
+            Debug.Log("SgMap1 시작");
+            playPanel.SetActive(false);
+            SceneManager.LoadScene("SgMap1");
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnSgMap1 Error");
+        }
     }
     public void OnSgMap2()
     {
-        Debug.Log("SgMap2 시작");
-        playPanel.SetActive(false);
-        SceneManager.LoadScene("SgMap2");
+        try
+        {
+            Debug.Log("SgMap2 시작");
+            playPanel.SetActive(false);
+            SceneManager.LoadScene("SgMap2");
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnSgMap2 Error");
+        }
     }
     public void OnMultiPlay()
     {
-        Debug.Log("멀티플레이 시작");
-        playPanel.SetActive(false);
-        SceneManager.LoadScene("MultiUI");
+        try
+        {
+            Debug.Log("멀티플레이 시작");
+            playPanel.SetActive(false);
+            SceneManager.LoadScene("MultiUI");
+        }
+        catch
+        {
+            Debug.Log("UIManager.OnMultiPlay Error");
+        }
     }
     #endregion
 

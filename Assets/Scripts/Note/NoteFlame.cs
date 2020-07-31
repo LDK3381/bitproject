@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class NoteFlame : MonoBehaviour
 {
-    bool musicStart = false;
     [SerializeField] SoundManager soundManager = null;
     [SerializeField] AIController aiController = null;
+
+    private bool musicStart = false;
     private Scene currentScene;
 
     void Start()
@@ -17,21 +18,39 @@ public class NoteFlame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(musicStart == false)
+        try
         {
-            if (collision.CompareTag("Note"))
+            if (musicStart == false)
             {
-                soundManager.PlayRandomBGM();
-                CheckCurrentScene();
-                musicStart = true;
+                NoteTrigger(collision);
             }
+        }
+        catch
+        {
+            Debug.Log("NoteFlame.OnTriggerEnter2D Error");
+        }
+    }
+
+    private void NoteTrigger(Collider2D collision)
+    {
+        if (collision.CompareTag("Note"))
+        {
+            soundManager.PlayBGM();
+            CheckCurrentScene();
+            musicStart = true;
         }
     }
 
     public void CheckCurrentScene()
     {
-        if (currentScene.name == "SgMap1" || currentScene.name == "SgMap2")
-            aiController.AIStart();     //리듬 노드 한 단위마다 ai가 자동으로 한칸씩 랜덤 이동
+        try
+        {
+            if (currentScene.name == "SgMap1" || currentScene.name == "SgMap2")
+                aiController.AIStart();     //리듬 노드 한 단위마다 ai가 자동으로 한칸씩 랜덤 이동
+        }
+        catch
+        {
+            Debug.Log("NoteFlame.CheckCurrentScene Error");
+        }
     }
-
 }
