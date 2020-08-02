@@ -5,15 +5,16 @@ using UnityEngine;
 public class AIChildManager : MonoBehaviour
 {
     [Header("AI의 자식들 관리")]
-    [SerializeField] GameObject childAI = null;
-    [SerializeField] GameObject childEffect = null;
+    [SerializeField] GameObject childAI = null;         //ai 본체(자식1)
+    [SerializeField] GameObject childEffect = null;     //ai 이펙트(자식2)
 
     // Start is called before the first frame update
     void Start()
     {
-        childAI.SetActive(false);   //적 생성할 때 이펙트만 보이게 하기
+        childAI.SetActive(false);   //적 생성할 때 이펙트(마법진)만 보이게 하기
         StartCoroutine("ShowAI");
     }
+
 
     IEnumerator ShowAI()
     {

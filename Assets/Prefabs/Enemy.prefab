@@ -24055,7 +24055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3206881260545939343}
   m_LocalRotation: {x: 0, y: -0.008726535, z: 0, w: 0.9999619}
-  m_LocalPosition: {x: -9.73165, y: 0.57830757, z: -5.6242266}
+  m_LocalPosition: {x: -5.608494, y: 0.57872593, z: -10.120695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5527048395007079294}
@@ -24104,13 +24104,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tr_Gun_Body: {fileID: 5527048395007079294}
-  tr_range: 5
+  tr_range: 2
   tr_layerMask:
     serializedVersion: 2
     m_Bits: 1024
   tr_spinSpeed: 270
   tr_fireRate: 1
-  tr_fireSpeed: 5
+  tr_fireSpeed: 8
   tr_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
     type: 3}
   tr_MuzzleFlash: {fileID: 6209757634800688134}

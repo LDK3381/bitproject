@@ -12,8 +12,15 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] private SgShotGunController theSGC = null;
     [SerializeField] private BombSpawn theBS = null;
 
+    SgItemSpawn spawn;
+
+    void Start()
+    {
+        spawn = FindObjectOfType<SgItemSpawn>();
+    }
+
     // 아이템과 충돌
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Item"))
         {
@@ -31,7 +38,7 @@ public class PickUpItem : MonoBehaviour
             // 일반 총알을 획득했을 떄
             else if (item.itemType == ItemType.NomalGun_Bullet)
             {
-                //SoundManager.instance.PlaySE("Bullet");
+                SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBullet;
                 guns[NOMAL_GUN].bulletCount += extra;
                 theGC.BulletUiSetting();
@@ -39,14 +46,14 @@ public class PickUpItem : MonoBehaviour
             // 샷건 총알을 획득했을 때
             else if (item.itemType == ItemType.ShotGun_Bullet)
             {
-                //SoundManager.instance.PlaySE("Bullet");
+                SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBullet;
                 guns[SHOT_GUN].bulletCount += extra;
                 theSGC.BulletUiSetting();
             }
             else if (item.itemType == ItemType.Bomb_Bullet)
             {
-                //SoundManager.instance.PlaySE("Bullet");
+                SoundManager.instance.PlaySE("Bullet");
                 extra = item.itemBomb;
                 theBS.BombCountUp(extra);
                 theBS.BombUiSetting();
@@ -56,7 +63,8 @@ public class PickUpItem : MonoBehaviour
 
             //FloatingTextManager.instance.CreateFloatingText(other.transform.position, message);
 
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            spawn.InsertQueue(other.gameObject);    //아이템을 먹으면 큐에서 다시 비활성화 처리(Destroy X)
         }
     }
 }

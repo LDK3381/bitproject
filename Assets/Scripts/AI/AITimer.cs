@@ -43,13 +43,9 @@ public class AITimer : MonoBehaviour
         }
     }
 
-    //현재 제한시간 상황 갱신
+    //현재 제한시간 정보 갱신
     public void UpdateCurrentTime(float curTime)
     {
-        //minutes = ((int)curTime / 60).ToString();
-        //seconds = ((int)curTime % 60).ToString();
-        //Debug.Log("현재시간 : " + minutes + ":" + seconds);
-
         minutes = Mathf.FloorToInt(curTime / 60);
         seconds = Mathf.FloorToInt(curTime % 60);
         txt_Timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -57,31 +53,31 @@ public class AITimer : MonoBehaviour
 
     #region 특정 이벤트로 인한 제한시간 변화
 
-    //총으로 ai 파괴할때 시간 5초 증가 이벤트
+    //총으로 ai 파괴할때 
     public void UpdateByPlBullet()
     {
         currentTime += 5f;
         UpdateCurrentTime(currentTime);
     }
 
-    //폭탄으로 ai 파괴할 때 시간 10초 증가 이벤트
+    //폭탄으로 ai 파괴할 때 
     public void UpdateByPlBomb()
     {
         currentTime += 10f;
         UpdateCurrentTime(currentTime);
     }
 
-    //적의 총으로 데미지 입을 때 5초 감소 이벤트
+    //적의 총으로 데미지 입을 때 
     public void UpdateByAIBullet()
     {
         currentTime -= 5f;
         UpdateCurrentTime(currentTime);
     }
 
-    //적의 폭탄으로 데미지 입을 때 7초 감소 이벤트
+    //적의 폭탄으로 데미지 입을 때 
     public void UpdateByAIBomb()
     {
-        currentTime -= 7f;
+        currentTime -= 10f;
         UpdateCurrentTime(currentTime);
     }
     #endregion

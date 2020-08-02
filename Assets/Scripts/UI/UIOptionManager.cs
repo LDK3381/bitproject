@@ -18,7 +18,6 @@ public class UIOptionManager : MonoBehaviour
             //값이 변할때마다 AddListener을 통해 해당 함수 발동(인자가 없으면 그냥 함수명만, 있으면 delegate 활용)
             fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
             resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(); });
-            //textureQualityDropdown.onValueChanged.AddListener(delegate { SetTextureQuality(); });
 
             //선택 가능한 해상도가 리스트에 추가
             resolutions = Screen.resolutions;

@@ -100,18 +100,6 @@ public class UIKeyBindSettings : MonoBehaviour
                 PlayerPrefs.SetString(key.Key, key.Value.ToString());
                 PlayerPrefs.Save();
                 Debug.Log("키 변경 완료");
-
-                ////동일한 키가 저장되어 있는지 체크
-                //if (PlayerPrefs.HasKey(key.Key))
-                //{
-                //    keyErrorPanel.SetActive(true);
-                //    return;
-                //}
-                //else
-                //{
-                //    PlayerPrefs.Save();
-                //    Debug.Log("키 변경 완료");
-                //}
             }
         }
         catch
@@ -125,12 +113,13 @@ public class UIKeyBindSettings : MonoBehaviour
     {
         try
         {
+            //1. PlayerPref 삭제
             foreach (var key in keys)
             {
                 PlayerPrefs.DeleteKey(key.Key);
             }
 
-            //PlayerPref 삭제 후, Dictionary 삭제 처리
+            //2. Dictionary 삭제 처리 (순서 안지키면 삭제 안됨)
             keys.Remove("Button_Up");
             keys.Remove("Button_Down");
             keys.Remove("Button_Left");
@@ -145,11 +134,5 @@ public class UIKeyBindSettings : MonoBehaviour
         {
             Debug.Log("UIKeyBindSettiongs.ResetKeys Error");
         }
-    }
-
-    //키값 중복 저장으로 인해 생긴 창을 나갈려고 Back 버튼 누를 때,
-    public void OnKeyBack()
-    {
-        keyErrorPanel.SetActive(false);
     }
 }

@@ -11,14 +11,7 @@ public class AIController : MonoBehaviour
     public GameObject aiPlayer;  //Ray가 나오는 위치(플레이어 프리펩)
 
     public float Move = 0.375f;       //AI의 이동거리
-    float rayLength = 0.5f;           //Ray와 장애물 간 판정거리
-
-    NavMeshAgent agent;
-
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
+    float rayLength = 0.45f;          //Ray와 장애물 간 판정거리
 
     public void AIStart()
     {

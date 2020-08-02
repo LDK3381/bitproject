@@ -15,11 +15,13 @@ public class Bullet : MonoBehaviour
     [SerializeField] string sound_Effect = null;
 
     private bool flag = true;
+    AITimer timer;
 
     private void Start()
     {
         flag = PlayerInRoom();
         Destroy(gameObject, 7.0f);
+        timer = FindObjectOfType<AITimer>();
     }
 
     // OnCollisionEnter : 다른 컬라이더와 충돌하는 순간 호출되는 함수
@@ -58,6 +60,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("캐릭터 충돌");
             DecreaseHp(other);
+            timer.UpdateByAIBullet();   //총에 맞으면 제한시간 5초 감소
             Destroy(this.gameObject);
         }
 

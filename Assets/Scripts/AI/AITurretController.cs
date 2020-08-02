@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIAttackController : MonoBehaviour
+public class AITurretController : MonoBehaviour
 {
     [SerializeField] Transform tr_Gun_Body = null;
     [SerializeField] float tr_range = 0f;   //터렛의 사정거리
