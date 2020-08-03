@@ -5,50 +5,82 @@ using UnityEngine;
 public class MtPickUpItem : MonoBehaviour
 {
     [SerializeField] Gun[] guns = null;
-    [SerializeField] private MtGunController theHGC = null;
+    [SerializeField] private MtGunController     theHGC = null;
     [SerializeField] private MtShotGunController theSGC = null;
-    [SerializeField] private MtBombSpawn theBS = null;
+    [SerializeField] private MtBombSpawn         theBS  = null;
 
     const int NOMAL_GUN = 0;
-    const int SHOT_GUN = 1;    
+    const int SHOT_GUN = 1;
 
-    // 아이템과 충돌
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Item"))
+        try
         {
-            Item item = other.GetComponent<Item>();
-
-            int extra = 0;
-
-            // 일반 총알을 획득했을 떄
-            if (item.itemType == ItemType.NomalGun_Bullet)
+            if (other.transform.CompareTag("Item"))
             {
-                SoundManager.instance.PlaySE("Bullet");
-                extra = item.itemBullet;
-                guns[NOMAL_GUN].bulletCount += extra;
-                theHGC.BulletUiSetting();
-            }
-            else if (item.itemType == ItemType.ShotGun_Bullet)
-            {
-                SoundManager.instance.PlaySE("Bullet");
-                extra = item.itemBullet;
-                guns[SHOT_GUN].bulletCount += extra;
-                theSGC.BulletUiSetting();
-            }
-            else if (item.itemType == ItemType.Bomb_Bullet)
-            {
-                //SoundManager.instance.PlaySE("Bullet");
-                extra = item.itemBomb;
-                theBS.BombCountUp(extra);
-                theBS.BombUiSetting();
-            }
+                Item item = other.GetComponent<Item>();
 
-            string message = "+" + extra;
+                int extra = 0;
 
-            //FloatingTextManager.instance.CreateFloatingText(other.transform.position, message);
+                switch (item.itemType)
+                {
+                    case ItemType.NomalGun_Bullet: GetNomal(item, extra); break;
+                    case ItemType.ShotGun_Bullet:  GetShot(item, extra);  break;
+                    case ItemType.Bomb_Bullet:     GetBomb(item, extra);  break;
+                    default:
+                        break;
+                }
+                string message = "+" + extra;
+                //FloatingTextManager.instance.CreateFloatingText(other.transform.position, message);
+                Destroy(other.gameObject);
+            }
+        }
+        catch
+        {
+            Debug.Log("MtPickUpItem.OnTriggerEnter Error");
+        }
+    }
 
-            Destroy(other.gameObject);
+    private void GetNomal(Item item, int extra)
+    {
+        try
+        {
+            SoundManager.instance.PlaySE("Bullet");
+            extra = item.itemBullet;
+            guns[NOMAL_GUN].bulletCount += extra;
+            theHGC.BulletUiSetting();
+        }
+        catch
+        {
+            Debug.Log("MtPickUpItem.GetNomal Error");
+        }
+    }
+    private void GetShot(Item item, int extra)
+    {
+        try
+        {
+            SoundManager.instance.PlaySE("Bullet");
+            extra = item.itemBullet;
+            guns[SHOT_GUN].bulletCount += extra;
+            theSGC.BulletUiSetting();
+        }
+        catch
+        {
+            Debug.Log("MtPickUpItem.GetShot Error");
+        }
+    }
+    private void GetBomb(Item item, int extra)
+    {
+        try
+        {
+            //SoundManager.instance.PlaySE("Bullet");
+            extra = item.itemBomb;
+            theBS.BombCountUp(extra);
+            theBS.BombUiSetting();
+        }
+        catch
+        {
+            Debug.Log("MtPickUpItem.GetBomb Error");
         }
     }
 }
