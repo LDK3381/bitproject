@@ -13,187 +13,278 @@ public class SgPlayerController : MonoBehaviour
     Ray forwardRay, leftRay, backwardRay, rightRay, underRay;
 
     public float Move = 0.375f;
-    float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
+    public float rayLength = 0.375f;            //Ray와 장애물 간 판정거리
     public GameObject playerRay;
 
     RaycastHit hit = new RaycastHit();
 
     void Start()
     {
-        noteTimingManager = FindObjectOfType<NoteTimingManager>();
+        try
+        {
+            noteTimingManager = FindObjectOfType<NoteTimingManager>();
+        }
+        catch
+        {
+            Debug.Log("SgPlayerController.Start Error");
+        }
     }
 
     void Update()
     {
-        #region 장애물 판정 위한 Ray 생성
-        forwardRay = new Ray(playerRay.transform.position, transform.forward);
-        leftRay = new Ray(playerRay.transform.position, -transform.right);
-        backwardRay = new Ray(playerRay.transform.position, -transform.forward);
-        rightRay = new Ray(playerRay.transform.position, transform.right);
-        underRay = new Ray(playerRay.transform.position, -transform.up);
-
-        Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
-        Debug.DrawRay(leftRay.origin, -transform.right, Color.red);
-        Debug.DrawRay(backwardRay.origin, -transform.forward, Color.red);
-        Debug.DrawRay(rightRay.origin, transform.right, Color.red);
-        Debug.DrawRay(underRay.origin, -transform.up, Color.red);
-        #endregion
-
+        RaySet();
         PlayerMove();
+    }
+    private void RaySet()
+    {
+        try
+        {
+            #region 장애물 판정 위한 Ray 생성
+            forwardRay = new Ray(playerRay.transform.position, transform.forward);
+            leftRay = new Ray(playerRay.transform.position, -transform.right);
+            backwardRay = new Ray(playerRay.transform.position, -transform.forward);
+            rightRay = new Ray(playerRay.transform.position, transform.right);
+            underRay = new Ray(playerRay.transform.position, -transform.up);
+
+            Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
+            Debug.DrawRay(leftRay.origin, -transform.right, Color.red);
+            Debug.DrawRay(backwardRay.origin, -transform.forward, Color.red);
+            Debug.DrawRay(rightRay.origin, transform.right, Color.red);
+            Debug.DrawRay(underRay.origin, -transform.up, Color.red);
+            #endregion
+        }
+        catch
+        {
+            Debug.Log("SgPlayerController.RaySet Error");
+        }
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        #region 칸 단위로 이동
-        if(Under_ObstacleCheck()) //Ground 여부 판정.
+        try
         {
-            if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up"))))
+            #region 칸 단위로 이동
+            if (Under_ObstacleCheck()) //Ground 여부 판정.
             {
-                W_MoveCheck();
+                if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up"))))
+                {
+                    W_MoveCheck();
+                }
+                else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down"))))
+                {
+                    S_MoveCheck();
+                }
+                else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left"))))
+                {
+                    A_MoveCheck();
+                }
+                else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right"))))
+                {
+                    D_MoveCheck();
+                }
             }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down"))))
-            {
-                S_MoveCheck();
-            }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left"))))
-            {
-                A_MoveCheck();
-            }
-            else if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right"))))
-            {
-                D_MoveCheck();
-            }
+            #endregion
         }
-        #endregion
+        catch
+        {
+            Debug.Log("SgPlayerController.PlayerMove Error");
+        }
     }
 
     #region WASD 작동여부 결정
     private void W_MoveCheck()
     {
-        if (W_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (W_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("SgPlayerController.W_MoveCheck Error");
+        }
     }
     private void S_MoveCheck()
     {
-        if (S_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (S_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("SgPlayerController.S_MoveCheck Error");
+        }
     }
     private void A_MoveCheck()
     {
-        if (A_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (A_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("SgPlayerController.A_MoveCheck Error");
+        }
     }
     private void D_MoveCheck()
     {
-        if (D_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (D_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("SgPlayerController.D_MoveCheck Error");
+        }
     }
     #endregion
 
     #region 앞 혹은 옆에 장애물이 있을때 해당 방향으로의 움직임 봉쇄(4방향)
-    public bool W_ObstacleCheck()
-    {  
-        //근처 장애물 여부 판단       
-        if (Physics.Raycast(forwardRay, out hit, rayLength))
-        {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || 
-                hit.collider.tag == "Enemy")
-            {
-                return false;
-            }
-        }       
-        return true;
-    }
-    public bool A_ObstacleCheck()
+    private bool W_ObstacleCheck()
     {
-        //근처 장애물 여부 판단 
-        if (Physics.Raycast(leftRay, out hit, rayLength))
+        try
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                 hit.collider.tag == "Enemy")
+            //근처 장애물 여부 판단       
+            if (Physics.Raycast(forwardRay, out hit, rayLength))
             {
-                return false;
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                    hit.collider.tag == "Enemy")
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        catch
+        {
+            Debug.Log("SgPlayerController.W_ObstacleCheck Error");
+            return true;
+        }
     }
-    public bool S_ObstacleCheck()
+    private bool A_ObstacleCheck()
     {
-        //근처 장애물 여부 판단 
-        if (Physics.Raycast(backwardRay, out hit, rayLength))
+        try
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Enemy")
+            //근처 장애물 여부 판단 
+            if (Physics.Raycast(leftRay, out hit, rayLength))
             {
-                return false;
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                     hit.collider.tag == "Enemy")
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
-    }
-    public bool D_ObstacleCheck()
-    {       
-        //근처 장애물 여부 판단 
-        if (Physics.Raycast(rightRay, out hit, rayLength))
+        catch
         {
-            if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
-                hit.collider.tag == "Enemy")
-            {
-                return false;
-            }
+            Debug.Log("SgPlayerController.A_ObstaclecCheck Error");
+            return true;
         }
-        return true;
     }
-    public bool Under_ObstacleCheck()
+    private bool S_ObstacleCheck()
     {
-        //바닥 여부 판단
-        if(Physics.Raycast(underRay, out hit, rayLength))
+        try
         {
-            if(hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
+            //근처 장애물 여부 판단 
+            if (Physics.Raycast(backwardRay, out hit, rayLength))
             {
-                Debug.Log("Ground 없음");
-                return false;
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                    hit.collider.tag == "Enemy")
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        catch
+        {
+            Debug.Log("SgPlayerController.S_ObstacleCheck Error");
+            return true;
+        }
     }
-
+    private bool D_ObstacleCheck()
+    {
+        try
+        {
+            //근처 장애물 여부 판단 
+            if (Physics.Raycast(rightRay, out hit, rayLength))
+            {
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                    hit.collider.tag == "Enemy")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch
+        {
+            Debug.Log("SgPlayerController.D_ObstacleCheck Error");
+            return true;
+        }
+    }
+    private bool Under_ObstacleCheck()
+    {
+        try
+        {
+            //바닥 여부 판단
+            if (Physics.Raycast(underRay, out hit, rayLength))
+            {
+                if (hit.collider.tag != "Ground" && hit.collider.tag != "Bomb")
+                {
+                    Debug.Log("Ground 없음");
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch
+        {
+            Debug.Log("SgPlayerController.Under_ObstacleCheck Error");
+            return true;
+        }
+    }
     #endregion
 
 }

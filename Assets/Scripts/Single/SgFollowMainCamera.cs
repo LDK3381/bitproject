@@ -13,13 +13,21 @@ public class SgFollowMainCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        if (obj.CompareTag("Player"))
+        try
         {
-            cameraPosition.x = obj.transform.position.x + offsetX;
-            cameraPosition.y = obj.transform.position.y + offsetY;
-            cameraPosition.z = obj.transform.position.z + offsetZ;
+            if (obj.CompareTag("Player"))
+            {
+                cameraPosition.x = obj.transform.position.x + offsetX;
+                cameraPosition.y = obj.transform.position.y + offsetY;
+                cameraPosition.z = obj.transform.position.z + offsetZ;
 
-            transform.position = cameraPosition;
+                transform.position = cameraPosition;
+            }
         }
+        catch
+        {
+            Debug.Log("SgFollowMainCamera.LateUpdate Error");
+        }
+        
     }
 }
