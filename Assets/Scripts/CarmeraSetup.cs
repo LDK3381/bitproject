@@ -8,11 +8,22 @@ public class CarmeraSetup : MonoBehaviourPun
 {
     void Start()
     {
-        if (photonView.IsMine)
+        CameraSet();
+    }
+    private void CameraSet()
+    {
+        try
         {
-            CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
+            if (photonView.IsMine)
+            {
+                CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
 
-            followCam.Follow = transform;
+                followCam.Follow = transform;
+            }
+        }
+        catch
+        {
+            Debug.Log("CameraSetUp.CameraSet Error");
         }
     }
 }

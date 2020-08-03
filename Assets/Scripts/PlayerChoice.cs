@@ -13,30 +13,44 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void Choice(string name)
     {
-        foreach (Button b in button)
+        try
         {
-            if (b.CompareTag(name))
+            foreach (Button b in button)
             {
-                Debug.Log("button false");
-                btn = b;
-                btn.interactable = false;
+                if (b.CompareTag(name))
+                {
+                    Debug.Log("button false");
+                    btn = b;
+                    btn.interactable = false;
+                }
+                else
+                {
+                    b.interactable = false;
+                }
             }
-            else
-            {
-                b.interactable = false;
-            }
+        }
+        catch
+        {
+            Debug.Log("PlayerChoice.Choice Error");
         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if(stream.IsWriting)
+        try
         {
-            stream.SendNext(btn);
+            if (stream.IsWriting)
+            {
+                stream.SendNext(btn);
+            }
+            else
+            {
+                btn = (Button)stream.ReceiveNext();
+            }
         }
-        else
+        catch
         {
-            btn = (Button)stream.ReceiveNext();
+            Debug.Log("PlayerChoice.OnPhotonSerializeView Error");
         }
     }
 }

@@ -77,7 +77,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -91,7 +91,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -105,7 +105,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -119,7 +119,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -134,7 +134,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -147,7 +147,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -160,7 +160,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
@@ -173,7 +173,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
-                        hit.transform.GetComponent<WallEvent>().explode();
+                        hit.transform.GetComponent<WallEvent>().Explode();
                     }
                     //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
