@@ -48,7 +48,7 @@ public class Mine : MonoBehaviour
         if (other.transform.name == "ChickenPrefab")
         {
             //플레이어에게 데미지
-            other.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+            other.transform.GetComponent<StatusManager>().SgDecreaseHp(damage);
 
             Explosion();
         }

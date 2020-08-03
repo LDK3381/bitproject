@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class MtPauseManager : MonoBehaviour
+public class MtPauseManager : MonoBehaviourPun
 {
     [Header("일시정지")]
     [SerializeField] GameObject pausePanel = null;      //일시정지 화면
@@ -29,6 +30,7 @@ public class MtPauseManager : MonoBehaviour
         fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
 
         pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     void Start()
@@ -45,6 +47,15 @@ public class MtPauseManager : MonoBehaviour
         cursfxVol = PlayerPrefs.GetFloat("SfxVolSize");
         sfxSlider.value = cursfxVol;
         sfxSource.volume = sfxSlider.value;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pausePanel.SetActive(!pausePanel.activeSelf);
+            pauseButton.SetActive(!pauseButton.activeSelf);
+        }
     }
 
     #region 버튼들
@@ -66,6 +77,7 @@ public class MtPauseManager : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("게임 나가기");
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("UI");
     }
     #endregion

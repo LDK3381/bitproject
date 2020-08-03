@@ -25,6 +25,6 @@ public class MtCount : MonoBehaviour
             timeCost = 0f;
             flag = false;
         }
-        timeCount.text = "남은시간 : " + timeCost.ToString("N0");
+        timeCount.text = timeCost.ToString("N0");
     }
 }

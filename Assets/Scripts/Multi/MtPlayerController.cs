@@ -253,7 +253,6 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             if (hit.collider.tag != "Ground")
             {
                 Debug.Log("Ground 없음");
-                Destroy(this.gameObject);
                 return false;
             }
         }

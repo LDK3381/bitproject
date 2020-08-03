@@ -14,7 +14,7 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public Text nowInfoText;
     public Text totalInfoText;
 
-    const int MAXIMUM = 1;
+    const int MAXIMUM = 1;      //최대 참가인원 수
 
     private void Start()
     {
@@ -51,11 +51,9 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public void Connect()
     {
         JoinButton.interactable = false;
-        Debug.Log("Connect()실행");
         if (PhotonNetwork.IsConnected)
         {
             connectionInfoText.text = "CONNECT TO ROOM...";
-            Debug.Log("IsConnect안");
             PhotonNetwork.JoinRandomRoom();
         }
         else

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class BombEvent : MonoBehaviour
+public class BombEvent : MonoBehaviourPun
 {
     private float obRayLength = 0.5f;
     private float waitTime = 0f;
@@ -66,7 +67,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);                   
+                    CheckInRoom();
                 }
             }
             //아랫쪽 광선 범위에 장애물이 들어온 경우,
@@ -80,7 +81,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
             //왼쪽 광선 범위에 장애물이 들어온 경우,
@@ -94,7 +95,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
             //오른쪽 광선 범위에 장애물이 들어온 경우,
@@ -108,7 +109,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
 
@@ -123,7 +124,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
             if (Physics.Raycast(downRay1, out hit, obRayLength))
@@ -136,7 +137,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
             if (Physics.Raycast(leftRay1, out hit, obRayLength))
@@ -149,7 +150,7 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
             if (Physics.Raycast(rightRay1, out hit, obRayLength))
@@ -162,12 +163,25 @@ public class BombEvent : MonoBehaviour
                 //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                 if (hit.collider.tag == "Player")
                 {
-                    hit.transform.GetComponent<StatusManager>().DecreaseHp(damage);
+                    CheckInRoom();
                 }
             }
 
             Destroy(effect, 2);     //이펙트 2초후에 소멸
         }
         #endregion
+    }
+
+    //싱글&멀티 확인용
+    private void CheckInRoom()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            hit.transform.GetComponent<StatusManager>().MtDecreaseHp(damage);
+        }
+        else
+        {
+            hit.transform.GetComponent<StatusManager>().SgDecreaseHp(damage);
+        }
     }
 }
