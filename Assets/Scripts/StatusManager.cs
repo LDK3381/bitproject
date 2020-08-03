@@ -7,12 +7,12 @@ using Photon.Pun;
 public class StatusManager : MonoBehaviourPun
 {
     [SerializeField] int maxHp = 0;         // 최대 체력
-    int currentHp = 0;                      // 현재 체력
+    private int currentHp = 0;                      // 현재 체력
 
-    [SerializeField] Image[] img_HpArray = null;   // 체력 UI
+    [SerializeField] Image[] img_HpArray    = null;   // 체력 UI
     [SerializeField] Image[] img_BigHpArray = null;   // 체력 UI
 
-    bool isInvincibleMode = false;  // 무적상태 확인
+    private bool isInvincibleMode = false;  // 무적상태 확인
 
     [SerializeField] GameObject obj = null;   // 사망시 비석오브젝트
 
@@ -28,92 +28,126 @@ public class StatusManager : MonoBehaviourPun
     public int DeadPlayerCount;
 
     private Transform loseP;
-    private AITimer timer;
 
     void Start()
     {
-        #region 체력을 최대 체력으로
-        currentHp = maxHp;
-        HpUpdate();
-        #endregion
+        try
+        {
+            #region 체력을 최대 체력으로
+            currentHp = maxHp;
+            HpUpdate();
+            #endregion
 
-        loseP = GameObject.Find("UI").transform.Find("LosePanel");
-        timer = GetComponent<AITimer>();
+            loseP = GameObject.Find("UI").transform.Find("LosePanel");
+        }
+        catch
+        {
+            Debug.Log("StatusManager.Start Error");
+        }
     }
 
     // HP 상태를 업데이트
     void HpUpdate()
     {
-        #region 시작체력 개수와 체력이 감소했을 떄
-        for (int i = 0; i < img_HpArray.Length; i++)
+        try
         {
-            if (i < currentHp)
+            #region 시작체력 개수와 체력이 감소했을 떄
+            for (int i = 0; i < img_HpArray.Length; i++)
             {
-                img_HpArray[i].gameObject.SetActive(true);
-                img_BigHpArray[i].gameObject.SetActive(true);
+                if (i < currentHp)
+                {
+                    img_HpArray[i].gameObject.SetActive(true);
+                    img_BigHpArray[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    img_HpArray[i].gameObject.SetActive(false);
+                    img_BigHpArray[i].gameObject.SetActive(false);
+                }
             }
-            else
-            {
-                img_HpArray[i].gameObject.SetActive(false);
-                img_BigHpArray[i].gameObject.SetActive(false);
-            }
+            #endregion
         }
-        #endregion
+        catch
+        {
+            Debug.Log("StatusManager.HpUpdate Error");
+        }
     }
 
     // HP 증가
     public void IncreaseHp(int _num)
     {
-        #region 체력을 획득
-        if (currentHp == maxHp)
-            return;
+        try
+        {
+            #region 체력을 획득
+            if (currentHp == maxHp)
+                return;
 
-        currentHp += _num;
+            currentHp += _num;
+            
+            if (currentHp > maxHp)
+                currentHp = maxHp;
 
-
-        if (currentHp > maxHp)
-            currentHp = maxHp;
-
-        HpUpdate();
-        #endregion
+            HpUpdate();
+            #endregion
+        }
+        catch
+        {
+            Debug.Log("StatusManager.IncreaseHp Error");
+        }
     }
 
     #region Single
     // HP 감소
     public void SgDecreaseHp(int _num)
     {
-        if (!isInvincibleMode)
+        try
         {
-            currentHp -= _num;
-            HpUpdate();
-
-            if (currentHp <= 0)
+            if (!isInvincibleMode)
             {
-                SgPlayerDead();
-                return;
-            }
+                currentHp -= _num;
+                HpUpdate();
 
-            SoundManager.instance.PlaySE("Hurt");
-            StartCoroutine(BlinkCoroutine());
+                if (currentHp <= 0)
+                {
+                    SgPlayerDead();
+                    return;
+                }
+
+                SoundManager.instance.PlaySE("Hurt");
+                StartCoroutine(BlinkCoroutine());
+            }
+        }
+        catch
+        {
+            Debug.Log("StatusManager.SgDecreaseHp Error");
         }
     }
 
     // 플레이어 사망
     public void SgPlayerDead()
     {
-        gameObject.SetActive(false);
+        try
+        {
+            gameObject.SetActive(false);
 
-        //키보드, 마우스 잠금
-        sealKey.SealKey();
+            //키보드, 마우스 잠금
+            sealKey.SealKey();
 
-        Instantiate(obj,
-            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
-            Quaternion.Euler(0, 90, 0));
+            Instantiate(obj,
+                new Vector3(playerPosition.transform.position.x,
+                            playerPosition.transform.position.y + 2,
+                            playerPosition.transform.position.z),
+                        Quaternion.Euler(0, 90, 0));
 
-        //losepanel 실행
-        losePanel.SetActive(true);
+            //losepanel 실행
+            losePanel.SetActive(true);
 
-        DeadPlayerCount++;
+            DeadPlayerCount++;
+        }
+        catch
+        {
+            Debug.Log("StatusManager.SgPlayerDead Error");
+        }
     }
     #endregion
 
@@ -121,37 +155,52 @@ public class StatusManager : MonoBehaviourPun
     // HP 감소
     public void MtDecreaseHp(int _num)
     {
-        if (!isInvincibleMode)
+        try
         {
-            currentHp -= _num;
-            HpUpdate();
-
-            if (currentHp <= 0)
+            if (!isInvincibleMode)
             {
-                MtPlayerDead();
-                return;
-            }
+                currentHp -= _num;
+                HpUpdate();
 
-            SoundManager.instance.PlaySE("Hurt");
-            StartCoroutine(BlinkCoroutine());
+                if (currentHp <= 0)
+                {
+                    MtPlayerDead();
+                    return;
+                }
+                SoundManager.instance.PlaySE("Hurt");
+                StartCoroutine(BlinkCoroutine());
+            }
+        }
+        catch
+        {
+            Debug.Log("StatusManager.MtDeccreaseHp Error");
         }
     }
 
     // 플레이어 사망
     private void MtPlayerDead()
     {
-        sealKey = null;
-        losePanel = null;
-        gameObject.SetActive(false);
+        try
+        {
+            sealKey = null;
+            losePanel = null;
+            gameObject.SetActive(false);
 
-        Instantiate(obj,
-            new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
-            Quaternion.Euler(0, 90, 0));
+            Instantiate(obj,
+                new Vector3(playerPosition.transform.position.x,
+                            playerPosition.transform.position.y + 2,
+                            playerPosition.transform.position.z),
+                        Quaternion.Euler(0, 90, 0));
 
-        //losepanel 실행
-        loseP.gameObject.SetActive(true);
+            //losepanel 실행
+            loseP.gameObject.SetActive(true);
 
-        DeadPlayerCount++;
+            DeadPlayerCount++;
+        }
+        catch
+        {
+            Debug.Log("StatusManager.MtPlayerDead Error");
+        }
     }
     #endregion
 
@@ -172,18 +221,32 @@ public class StatusManager : MonoBehaviourPun
     //플레이어가 맵 밖으로 빠지면 익사 판정
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "DeadZone")
+        try
         {
-            Debug.Log("플레이어가 익사했습니다.");
-            CheckInRoom();
+            if (other.gameObject.tag == "DeadZone")
+            {
+                Debug.Log("플레이어가 익사했습니다.");
+                CheckInRoom();
+            }
         }
+        catch
+        {
+            Debug.Log("StatusManager.OnTriggerEnter Error");
+        } 
     }
 
     private void CheckInRoom()
     {
-        if (PhotonNetwork.InRoom)
-            MtPlayerDead();
-        else
-            SgPlayerDead();
+        try
+        {
+            if (PhotonNetwork.InRoom)
+                MtPlayerDead();
+            else
+                SgPlayerDead();
+        }
+        catch
+        {
+            Debug.Log("StatusManager.CheckInRoom Error");
+        }
     }
 }

@@ -9,12 +9,12 @@ using Photon.Pun;
 
 public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
-    public PhotonView PV;
-    public GameObject WeaponManger;
+    public PhotonView   PV;
+    public GameObject   WeaponManger;
     public GameObject[] Weapon;
-    public GameObject BulletIMG;
-    public GameObject BigHp;
-    public GameObject playerRay;
+    public GameObject   BulletIMG;
+    public GameObject   BigHp;
+    public GameObject   playerRay;
 
     NoteTimingManager noteTimingManager;
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -31,14 +31,50 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     private void Start()
     {
-        noteTimingManager = FindObjectOfType<NoteTimingManager>();
-        BulletIMG.SetActive(false);
-        BigHp.SetActive(false);
+        try
+        {
+            noteTimingManager = FindObjectOfType<NoteTimingManager>();
+            BulletIMG.SetActive(false);
+            BigHp.SetActive(false);
+        }
+        catch
+        {
+            Debug.Log("MtPlayerController.Start Error");
+        }
     }
 
     void Update()
     {
-        if (PV.IsMine)
+        try
+        {
+            if (PV.IsMine)
+            {
+                int previousSelectedWeapon = WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon;
+                RaySet();
+
+                BulletIMG.SetActive(true);
+                BigHp.SetActive(true);
+
+                PlayerMove();   //캐릭터 조작
+
+                WeaponChange(previousSelectedWeapon); //무기 변경
+
+                WeaponChoice(previousSelectedWeapon); //무기 선택 및 발사
+            }
+            else
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, currPos, Time.deltaTime * 10.0f);
+            }
+        }
+        catch
+        {
+            Debug.Log("MtPlayerController.Update Error");
+        }
+    }
+
+    private void RaySet()
+    {
+        try
         {
             #region 장애물 판정 위한 Ray 생성
             forwardRay = new Ray(playerRay.transform.position, transform.forward);
@@ -53,14 +89,18 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             Debug.DrawRay(RightRay.origin, transform.right, Color.red);
             Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
             #endregion
+        }
+        catch
+        {
+            Debug.Log("MtPlayerController.RaySet Error");
+        }
+    }
 
-            BulletIMG.SetActive(true);
-            BigHp.SetActive(true);
-            PlayerMove();   //캐릭터 조작
-
+    private void WeaponChange(int previousSelectedWeapon)
+    {
+        try
+        {
             #region 무기 변경
-            int previousSelectedWeapon = WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon;
-
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("1");
@@ -82,7 +122,17 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             else if (previousSelectedWeapon != WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon)
                 WeaponManger.GetComponent<MtWeaponManager>().photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
             #endregion
+        }
+        catch
+        {
+            Debug.Log("MtPlayerController.WeaponChange Error");
+        }
+    }
 
+    private void WeaponChoice(int previousSelectedWeapon)
+    {
+        try
+        {
             #region 무기선택 및 발사
             switch (previousSelectedWeapon)
             {
@@ -99,82 +149,109 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
                     break;
             }
             #endregion
-
         }
-        else
+        catch
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, currPos, Time.deltaTime * 10.0f);
+            Debug.Log("MtPlayerController.WeaponChoice Error");
         }
     }
 
     //캐릭터 조작 함수(WASD)
     public void PlayerMove()
     {
-        #region 칸 단위로 이동   
-        if (Under_ObstacleCheck())
+        try
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            #region 칸 단위로 이동   
+            if (Under_ObstacleCheck())
             {
-                W_MoveCheck();
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    W_MoveCheck();
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    S_MoveCheck();
+                }
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    A_MoveCheck();
+                }
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    D_MoveCheck();
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                S_MoveCheck();
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                A_MoveCheck();
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                D_MoveCheck();
-            }
+            #endregion
         }
-        #endregion
+        catch
+        {
+            Debug.Log("MtPlayerController.PlayerMove Error");
+        }
     }
 
     #region WASD 작동여부 결정
     private void W_MoveCheck()
     {
-        if (W_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (W_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+                }
+                else
+                    return;
             }
-            else
-                return;
+        }
+        catch
+        {
+            Debug.Log("MtPlayerController.W_MoveCheck Error");
         }
     }
     private void S_MoveCheck()
     {
-        if (S_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (S_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("MtPlayerController.S_MoveCheck Error");
+        }
     }
     private void A_MoveCheck()
     {
-        if (A_ObstacleCheck() == true)
+        try
         {
-            if (noteTimingManager.CheckTiming())
+            if (A_ObstacleCheck() == true)
             {
-                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
-                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+                if (noteTimingManager.CheckTiming())
+                {
+                    //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                    Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+                }
             }
+            else
+                return;
         }
-        else
-            return;
+        catch
+        {
+            Debug.Log("MtPlayerController.A_MoveCheck Error");
+        }
     }
     private void D_MoveCheck()
     {
@@ -262,15 +339,22 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if(stream.IsWriting)
+        try
         {
-            stream.SendNext(this.transform.position);
-            stream.SendNext(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
+            if (stream.IsWriting)
+            {
+                stream.SendNext(this.transform.position);
+                stream.SendNext(WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon);
+            }
+            else
+            {
+                currPos = (Vector3)stream.ReceiveNext();
+                WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
+            }
         }
-        else
+        catch
         {
-            currPos = (Vector3)stream.ReceiveNext();
-            WeaponManger.GetComponent<MtWeaponManager>().selectedWeapon = (int)stream.ReceiveNext();
+            Debug.Log("MtPlayerController.OnPhotonSerializeView Error");
         }
     }
 }

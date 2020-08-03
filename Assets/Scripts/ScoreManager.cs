@@ -12,8 +12,15 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        currentScore = extraScore;
-        //점수 증가 표시
-        txt_Score.text = currentScore.ToString();
+        try
+        {
+            currentScore = extraScore;
+            //점수 증가 표시
+            txt_Score.text = currentScore.ToString();
+        }
+        catch
+        {
+            Debug.Log("ScoreManager.Update Error");
+        }
     }
 }

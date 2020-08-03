@@ -8,10 +8,10 @@ using Photon.Pun;
 
 public class MtBombSpawn : MonoBehaviourPun
 {
-    public Transform throwPoint = null;
-    public GameObject bomb = null;
-    public GameObject weapon = null;
-    public Text txt_Bomb = null;
+    public Transform  throwPoint = null;
+    public GameObject bomb       = null;
+    public GameObject weapon     = null;
+    public Text       txt_Bomb   = null;
 
     private GameObject bombInstance = null;
     private int bombCount = 1;
@@ -23,28 +23,49 @@ public class MtBombSpawn : MonoBehaviourPun
 
     public void BombCountUp(int extra)
     {
-        bombCount += extra;
+        try
+        {
+            bombCount += extra;
+        }
+        catch
+        {
+            Debug.Log("MtBombSpawn.BombCountUp Error");
+        }
     }
 
     [PunRPC]
     public void BombUiSetting()
     {
-        txt_Bomb.text = "x " + bombCount;
+        try
+        {
+            txt_Bomb.text = "x " + bombCount;
+        }
+        catch
+        {
+            Debug.Log("MtBombSpawn.BombUiSetting Error");
+        }
     }
 
     [PunRPC]
     public void CreateBomb()
     {
-        //현재 무기가 폭탄일 때에만 투척하도록 제한
-        if (weapon.activeSelf == true && bombCount > 0)
+        try
         {
-            if (Input.GetMouseButtonDown(0))
+            //현재 무기가 폭탄일 때에만 투척하도록 제한
+            if (weapon.activeSelf == true && bombCount > 0)
             {
-                bombCount--;
-                photonView.RPC("BombUiSetting", RpcTarget.All);
-                bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
-                Destroy(bombInstance, 2);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    bombCount--;
+                    photonView.RPC("BombUiSetting", RpcTarget.All);
+                    bombInstance = Instantiate(bomb, throwPoint.position, throwPoint.rotation);
+                    Destroy(bombInstance, 2);
+                }
             }
+        }
+        catch
+        {
+            Debug.Log("MtBombSpawn.CreateBomb Error");
         }
     }
 }
