@@ -24038,8 +24038,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8215201083421312094}
   - component: {fileID: 6526796872408513822}
-  - component: {fileID: 692035729796587842}
   - component: {fileID: 6934357470356632912}
+  - component: {fileID: 8738450124964730933}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -24055,7 +24055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3206881260545939343}
   m_LocalRotation: {x: 0, y: -0.008726535, z: 0, w: 0.9999619}
-  m_LocalPosition: {x: -5.608494, y: 0.57872593, z: -10.120695}
+  m_LocalPosition: {x: 12.759808, y: 0.57803476, z: -28.123163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5527048395007079294}
@@ -24077,20 +24077,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPlayer: {fileID: 3307526676675205547}
   Move: 0.375
---- !u!114 &692035729796587842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3206881260545939343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ad01e4482a97042ab2fe62cf6ff521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childAI: {fileID: 3307526676675205547}
-  childEffect: {fileID: 7246676840780767710}
 --- !u!114 &6934357470356632912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24114,6 +24100,20 @@ MonoBehaviour:
   tr_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
     type: 3}
   tr_MuzzleFlash: {fileID: 6209757634800688134}
+--- !u!114 &8738450124964730933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206881260545939343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ad01e4482a97042ab2fe62cf6ff521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childAI: {fileID: 3307526676675205547}
+  childEffect: {fileID: 7246676840780767710}
 --- !u!1 &3307526676675205547
 GameObject:
   m_ObjectHideFlags: 0
@@ -24136,7 +24136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5527048395007079294
 Transform:
   m_ObjectHideFlags: 0
@@ -53017,7 +53017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2220111220530128731
 Transform:
   m_ObjectHideFlags: 0

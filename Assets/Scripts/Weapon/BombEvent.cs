@@ -18,10 +18,14 @@ public class BombEvent : MonoBehaviourPun
 
     AIDamageController aiDamage;
 
+    void Start()
+    {
+        aiDamage = FindObjectOfType<AIDamageController>();
+    }
+
     void Update()
     {
-        BombToDetectOthers();
-        aiDamage = FindObjectOfType<AIDamageController>();
+        BombToDetectOthers();       
     }
 
     //폭탄의 충돌 범위 감지(주변 오브젝트에 데미지용)

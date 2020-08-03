@@ -17,12 +17,14 @@ public class NoteComboManager : MonoBehaviour
     private ComboCount MISS, COOL, GREAT, PERFECT;
 
     NoteEffectManager noteEffectManager = null;
+    StatusManager status = null;
 
     int currentCombo = 0;
 
     void Start()
     {
         noteEffectManager = FindObjectOfType<NoteEffectManager>();
+        status = FindObjectOfType<StatusManager>();
 
         for (int i = 0; i < goComboImage.Length; i++)
         {

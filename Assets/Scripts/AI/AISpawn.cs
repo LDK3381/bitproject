@@ -10,23 +10,95 @@ public class AISpawn : MonoBehaviour
     [SerializeField] int enemyCount = 0;        //현재 ai 생성 수
     [SerializeField] int maxCount = 10;         //최대 ai 생성 제한 수
 
+    public static AISpawn instance;
+    public Queue<GameObject> e_queue = new Queue<GameObject>();
+
+    [SerializeField] AIChildManager child;
 
     void Start()
     {
-        InvokeRepeating("SpawnAI", 1f, 1f);
+        instance = this;
+
+        //큐 밖으로 꺼내지기 전까진 일단 적의 모습, 이펙트 아무것도 나오지 않게 하기
+        child.childAI.SetActive(false);
+        child.childEffect.SetActive(false);
+
+        for (int i = 0; i < maxCount; i++)
+        {
+            //큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨.
+            GameObject e_object = Instantiate(enemy, this.gameObject.transform);
+            e_queue.Enqueue(e_object);  //Enqueue : 큐에 저장
+            e_object.SetActive(false);
+        }
+
+        StartCoroutine("SpawnAI");
     }
 
     void Update()
     {
-        EnemyCountCheck();  //수시로 생성된 ai 수 관리
+        EnemyCountCheck(); 
     }
 
-    //AI 스폰 함수
-    public void SpawnAI()
+    #region AI 큐 활용
+    //적이 파괴되었을 때 큐에 저장(비활성화)
+    public void InsertQueue(GameObject e_object)
     {
-        Vector3 point = GetRandomPoint();
-        GameObject spawnedEnemy = Instantiate(enemy, point, enemy.transform.rotation);
-        enemyCount++;
+        e_queue.Enqueue(e_object);
+        e_object.SetActive(false);
+    }
+
+    //적을 생성시키려 할 때 큐에서 꺼내기(활성화)
+    public GameObject GetQueue()
+    {
+        GameObject e_object = e_queue.Dequeue();    //Dequeue : 큐에서 꺼내기
+        e_object.SetActive(true);
+
+        return e_object;
+    }
+
+    //적 AI 사망 시, (큐 안에서 해당 적 오브젝트를 비활성화 처리)
+    public void AIDie(GameObject killedEnemy)
+    {
+        killedEnemy.SetActive(false);
+        instance.InsertQueue(killedEnemy);
+    }
+    #endregion
+
+    #region AI 스폰
+    //AI 스폰 함수
+    IEnumerator SpawnAI()
+    {
+        while(true)
+        {
+            if (e_queue.Count != 0)
+            {
+                Vector3 point = GetRandomPoint();
+                GameObject spawnedEnemy = GetQueue();
+                spawnedEnemy.transform.position = point;
+
+                //AI의 자식 객체들 불러오기
+                GameObject childEnemy = spawnedEnemy.transform.Find("PigeonPrefab").gameObject;
+                GameObject childEffect = spawnedEnemy.transform.Find("GuMagic").gameObject;
+
+                //ai가 큐 밖으로 꺼내져 오면 먼저 마법진부터 실행
+                childEffect.SetActive(true);
+
+                //2초 후에 ai 본체 등장
+                yield return new WaitForSeconds(2f);
+                childEnemy.SetActive(true);
+
+                //마법진 소멸은 AI 등장 후 1초 뒤에
+                yield return new WaitForSeconds(1f);
+                childEffect.SetActive(false);
+
+                //마법진에서 완전히 소환되고 1초 후에 동작 실행
+                yield return new WaitForSeconds(1f);
+                spawnedEnemy.GetComponent<AIController>().AIStart();
+
+                enemyCount++;
+            }
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기
@@ -44,13 +116,16 @@ public class AISpawn : MonoBehaviour
         return spawnPoint;
     }
 
+    #endregion
+    
+    #region AI 객체 수 관리
     //생성된 AI 수 관리
     public void EnemyCountCheck()
     {
         //현재 필드에 최대 10마리 전부 있다면, 스폰 중지
         if (enemyCount >= maxCount)
         {
-            CancelInvoke("SpawnAI");
+            StopCoroutine("SpawnAI");
         }
     }
 
@@ -65,8 +140,9 @@ public class AISpawn : MonoBehaviour
     public int DecreaseCount()
     {
         enemyCount--;
-        Start();        //수 줄어들면 다시 최대 10마리 채우기
         return enemyCount;
     }
+    #endregion
+   
 }
 

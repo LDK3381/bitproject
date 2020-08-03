@@ -119,7 +119,7 @@ public class UIKeyBindSettings : MonoBehaviour
                 PlayerPrefs.DeleteKey(key.Key);
             }
 
-            //2. Dictionary 삭제 처리 (순서 안지키면 삭제 안됨)
+            //2. Dictionary 삭제 (순서 안지키면 삭제 안됨)
             keys.Remove("Button_Up");
             keys.Remove("Button_Down");
             keys.Remove("Button_Left");

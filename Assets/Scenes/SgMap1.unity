@@ -3120,7 +3120,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.7656e-41, z: 2.8057e-41, w: 445353.5}
+  m_BoundingSphereOverride: {x: -3.11e-43, y: -1.114e-42, z: 6e-45, w: 1.3e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6740,6 +6740,7 @@ MonoBehaviour:
   enemy: {fileID: 3206881260545939343, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
   enemyCount: 0
   maxCount: 10
+  child: {fileID: 8738450124964730933, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
 --- !u!4 &1356206765
 Transform:
   m_ObjectHideFlags: 0
@@ -6889,7 +6890,7 @@ GameObject:
   - component: {fileID: 1393569978}
   - component: {fileID: 1393569977}
   m_Layer: 0
-  m_Name: SgItemSpawnManager
+  m_Name: ItemSpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8840,6 +8841,11 @@ PrefabInstance:
       propertyPath: txt_NomalGunBullet
       value: 
       objectReference: {fileID: 622795174}
+    - target: {fileID: 5673819404564187744, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7601180569131389872, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: mouseTarget

@@ -52,32 +52,31 @@ public class AITimer : MonoBehaviour
     }
 
     #region 특정 이벤트로 인한 제한시간 변화
-
     //총으로 ai 파괴할때 
     public void UpdateByPlBullet()
     {
-        currentTime += 5f;
+        currentTime += 10f;
         UpdateCurrentTime(currentTime);
     }
 
     //폭탄으로 ai 파괴할 때 
     public void UpdateByPlBomb()
     {
-        currentTime += 10f;
+        currentTime += 15f;
         UpdateCurrentTime(currentTime);
     }
 
     //적의 총으로 데미지 입을 때 
     public void UpdateByAIBullet()
     {
-        currentTime -= 5f;
+        currentTime -= 7f;
         UpdateCurrentTime(currentTime);
     }
 
     //적의 폭탄으로 데미지 입을 때 
     public void UpdateByAIBomb()
     {
-        currentTime -= 10f;
+        currentTime -= 15f;
         UpdateCurrentTime(currentTime);
     }
     #endregion
