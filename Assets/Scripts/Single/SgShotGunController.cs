@@ -11,6 +11,8 @@ public class SgShotGunController : MonoBehaviour
 
     private float FireRate;
 
+    private Transform transform = null;
+
     void Start()
     {
         //시작과 동시에 발사
@@ -28,6 +30,7 @@ public class SgShotGunController : MonoBehaviour
     void Update()
     {
         FireRateCalc();
+        transform = GameObject.Find("Player").transform.Find("ChickenPrefab");
         TryFire();
     }
 
@@ -74,6 +77,8 @@ public class SgShotGunController : MonoBehaviour
         //총알 Instantiate(무한 생성)
         var clone = Instantiate
             (shotGun.go_Bullet_Prefab, shotGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
+
+        clone.transform.rotation = transform.rotation;
 
         //총알 AddForce(발사)
         clone.GetComponent<Rigidbody>().AddForce(transform.forward * shotGun.speed);
