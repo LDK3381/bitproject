@@ -12,6 +12,13 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] private SgShotGunController theSGC = null;
     [SerializeField] private BombSpawn           theBS  = null;
 
+    SgItemSpawn spawn;
+
+    void Start()
+    {
+        spawn = FindObjectOfType<SgItemSpawn>();
+    }
+
     // 아이템과 충돌
     void OnTriggerEnter(Collider other)
     {
@@ -34,7 +41,7 @@ public class PickUpItem : MonoBehaviour
                 }
                 string message = "+" + extra;
                 //FloatingTextManager.instance.CreateFloatingText(other.transform.position, message);
-                Destroy(other.gameObject);
+                spawn.InsertQueue(other.gameObject);    //아이템을 먹으면 큐에서 다시 비활성화 처리(Destroy X)
             }
         }
         catch

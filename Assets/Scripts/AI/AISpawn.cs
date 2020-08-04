@@ -13,25 +13,26 @@ public class AISpawn : MonoBehaviour
     public static AISpawn instance;
     public Queue<GameObject> e_queue = new Queue<GameObject>();
 
-    [SerializeField] AIChildManager child;
-
     void Start()
     {
-        instance = this;
-
-        //큐 밖으로 꺼내지기 전까진 일단 적의 모습, 이펙트 아무것도 나오지 않게 하기
-        child.childAI.SetActive(false);
-        child.childEffect.SetActive(false);
-
-        for (int i = 0; i < maxCount; i++)
+        try
         {
-            //큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨.
-            GameObject e_object = Instantiate(enemy, this.gameObject.transform);
-            e_queue.Enqueue(e_object);  //Enqueue : 큐에 저장
-            e_object.SetActive(false);
-        }
+            instance = this;
 
-        StartCoroutine("SpawnAI");
+            //AI의 자식 객체들 불러오기
+            GameObject e_Enemy = enemy.transform.Find("PigeonPrefab").gameObject;
+            GameObject e_Effect = enemy.transform.Find("GuMagic").gameObject;
+
+            //큐 밖으로 꺼내지기 전까진 일단 적의 모습, 이펙트 아무것도 나오지 않게 하기
+            e_Enemy.SetActive(false);
+            e_Effect.SetActive(false);
+
+            CreateQueue();
+        }
+        catch
+        {
+            Debug.Log("AISpawn.Start Error");
+        }
     }
 
     void Update()
@@ -40,27 +41,69 @@ public class AISpawn : MonoBehaviour
     }
 
     #region AI 큐 활용
+    //큐 생성
+    private void CreateQueue()
+    {
+        try
+        {
+            for (int i = 0; i < maxCount; i++)
+            {
+                //큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨.
+                GameObject e_object = Instantiate(enemy, this.gameObject.transform);
+                e_queue.Enqueue(e_object);  //Enqueue : 큐에 저장
+                e_object.SetActive(false);
+            }
+
+            StartCoroutine("SpawnAI");
+        }
+        catch
+        {
+            Debug.Log("AISpawn.CreateQueue Error");
+        }
+    }
     //적이 파괴되었을 때 큐에 저장(비활성화)
     public void InsertQueue(GameObject e_object)
     {
-        e_queue.Enqueue(e_object);
-        e_object.SetActive(false);
+        try
+        {
+            e_queue.Enqueue(e_object);
+            e_object.SetActive(false);
+        }
+        catch
+        {
+            Debug.Log("AISpawn.InsertQueue Error");
+        }
     }
 
     //적을 생성시키려 할 때 큐에서 꺼내기(활성화)
     public GameObject GetQueue()
     {
-        GameObject e_object = e_queue.Dequeue();    //Dequeue : 큐에서 꺼내기
-        e_object.SetActive(true);
+        try
+        {
+            GameObject e_object = e_queue.Dequeue();    //Dequeue : 큐에서 꺼내기
+            e_object.SetActive(true);
 
-        return e_object;
+            return e_object;
+        }
+        catch
+        {
+            Debug.Log("AISpawn.GetQueue Error");
+            return null;
+        }
     }
 
     //적 AI 사망 시, (큐 안에서 해당 적 오브젝트를 비활성화 처리)
     public void AIDie(GameObject killedEnemy)
     {
-        killedEnemy.SetActive(false);
-        instance.InsertQueue(killedEnemy);
+        try
+        {
+            killedEnemy.SetActive(false);
+            instance.InsertQueue(killedEnemy);
+        }
+        catch
+        {
+            Debug.Log("AISpawn.AIDie Error");
+        }
     }
     #endregion
 
@@ -104,16 +147,24 @@ public class AISpawn : MonoBehaviour
     //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기
     public Vector3 GetRandomPoint()
     {
-        Vector3 RandomPosition = Random.insideUnitSphere * 10f;
-        NavMeshHit hit;
+        try
+        {
+            Vector3 RandomPosition = Random.insideUnitSphere * 10f;
+            NavMeshHit hit;
 
-        NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
+            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
 
-        //타일 정중앙에 정확히 스폰하기 위해 위치값 조정
-        Vector3 spawnPoint =
-            new Vector3((float)(hit.position.x - hit.position.x % 0.375), hit.position.y, (float)(hit.position.z - hit.position.z % 0.375));
+            //타일 정중앙에 정확히 스폰하기 위해 위치값 조정
+            Vector3 spawnPoint =
+                new Vector3((float)(hit.position.x - hit.position.x % 0.375), hit.position.y, (float)(hit.position.z - hit.position.z % 0.375));
 
-        return spawnPoint;
+            return spawnPoint;
+        }
+        catch
+        {
+            Debug.Log("AISpawn.GetRandomPoint Error");
+            return new Vector3();
+        }
     }
 
     #endregion
@@ -122,25 +173,48 @@ public class AISpawn : MonoBehaviour
     //생성된 AI 수 관리
     public void EnemyCountCheck()
     {
-        //현재 필드에 최대 10마리 전부 있다면, 스폰 중지
-        if (enemyCount >= maxCount)
+        try
         {
-            StopCoroutine("SpawnAI");
+            //현재 필드에 최대 10마리 전부 있다면, 스폰 중지
+            if (enemyCount >= maxCount)
+            {
+                StopCoroutine("SpawnAI");
+            }
+        }
+        catch
+        {
+            Debug.Log("AISpawn.EnemyCountCheck Error");
         }
     }
 
     //AI 수 증가 이벤트
     public int IncreaseCount()
     {
-        enemyCount++;
-        return enemyCount;
+        try
+        {
+            enemyCount++;
+            return enemyCount;
+        }
+        catch
+        {
+            Debug.Log("AISpawn.IncreaseCount Error");
+            return 0;
+        }
     }
 
     //AI 수 감소 이벤트
     public int DecreaseCount()
     {
-        enemyCount--;
-        return enemyCount;
+        try
+        {
+            enemyCount--;
+            return enemyCount;
+        }
+        catch
+        {
+            Debug.Log("AISpawn.DecreaseCount Error");
+            return 0;
+        }
     }
     #endregion
    

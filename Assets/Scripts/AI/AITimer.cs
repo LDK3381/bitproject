@@ -16,68 +16,108 @@ public class AITimer : MonoBehaviour
     private float minutes, seconds;
 
     StatusManager status;
-    AISpawn spawn;
 
     void Start()
     {
         currentTime = startTime;
         status = FindObjectOfType<StatusManager>();
-        spawn = FindObjectOfType<AISpawn>();
     }
 
     void Update()
     {
-        UpdateCurrentTime(currentTime);
-
-        if (currentTime > 0)
+        try
         {
-            currentTime -= Time.deltaTime;      //제한시간 1초씩 감소
-            wastedTime += Time.deltaTime;       //버틴 시간 1초씩 증가
+            UpdateCurrentTime(currentTime);
+
+            if (currentTime > 0)
+            {
+                currentTime -= Time.deltaTime;      //제한시간 1초씩 감소
+                wastedTime += Time.deltaTime;       //버틴 시간 1초씩 증가
+            }
+
+            if (currentTime <= 0 && flag == true)   //타이머가 다 지나면 게임종료
+            {
+                currentTime = 0;
+                status.SgPlayerDead();
+                flag = false;
+            }
         }
-
-        if (currentTime <= 0 && flag == true)   //타이머가 다 지나면 게임종료
+        catch
         {
-            currentTime = 0;
-            status.SgPlayerDead();
-            flag = false;
+            Debug.Log("AITimer.Update Error");
         }
     }
 
     //현재 제한시간 정보 갱신
     public void UpdateCurrentTime(float curTime)
     {
-        minutes = Mathf.FloorToInt(curTime / 60);
-        seconds = Mathf.FloorToInt(curTime % 60);
-        txt_Timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        try
+        {
+            minutes = Mathf.FloorToInt(curTime / 60);
+            seconds = Mathf.FloorToInt(curTime % 60);
+            txt_Timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        catch
+        {
+            Debug.Log("AITimer.UpdateCurrentTime Error");
+        }
     }
 
     #region 특정 이벤트로 인한 제한시간 변화
     //총으로 ai 파괴할때 
     public void UpdateByPlBullet()
     {
-        currentTime += 10f;
-        UpdateCurrentTime(currentTime);
+        try
+        {
+            currentTime += 10f;
+            UpdateCurrentTime(currentTime);
+        }
+        catch
+        {
+            Debug.Log("AITimer.UpdateByPlBullet Error");
+        }
     }
 
     //폭탄으로 ai 파괴할 때 
     public void UpdateByPlBomb()
     {
-        currentTime += 15f;
-        UpdateCurrentTime(currentTime);
+        try
+        {
+            currentTime += 15f;
+            UpdateCurrentTime(currentTime);
+        }
+        catch
+        {
+            Debug.Log("AITimer.UpdateByPlBomb Error");
+        }
     }
 
     //적의 총으로 데미지 입을 때 
     public void UpdateByAIBullet()
     {
-        currentTime -= 7f;
-        UpdateCurrentTime(currentTime);
+        try
+        {
+            currentTime -= 10f;
+            UpdateCurrentTime(currentTime);
+        }
+        catch
+        {
+            Debug.Log("AITimer.UpdateByAIBullet Error");
+        }
     }
 
     //적의 폭탄으로 데미지 입을 때 
     public void UpdateByAIBomb()
     {
-        currentTime -= 15f;
-        UpdateCurrentTime(currentTime);
+        try
+        {
+            currentTime -= 15f;
+            UpdateCurrentTime(currentTime);
+        }
+        catch
+        {
+            Debug.Log("AITimer.UpdateByAIBomb Error");
+        }
     }
     #endregion
 
@@ -85,16 +125,32 @@ public class AITimer : MonoBehaviour
     //외부에다 쓸 버틴 시간값
     public float GetWastedTime()
     {
-        if (losePanel.activeSelf == true)
-            return wastedTime;
+        try
+        {
+            if (losePanel.activeSelf == true)
+                return wastedTime;
 
-        return wastedTime;
+            return wastedTime;
+        }
+        catch
+        {
+            Debug.Log("AITimer.GetWastedTime Error");
+            return 0f;
+        }
     }
 
     //외부에다 쓸 현재 시간값
     public float GetCurrentTime()
     {
-        return currentTime;
+        try
+        {
+            return currentTime;
+        }
+        catch
+        {
+            Debug.Log("AITimer.GetCurrentTime Error");
+            return 0f;
+        }
     }
     #endregion
 

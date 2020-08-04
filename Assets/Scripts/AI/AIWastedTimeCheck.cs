@@ -27,7 +27,14 @@ public class AIWastedTimeCheck : MonoBehaviour
     //게임오버 시 패배 화면에 버틴시간 표시
     public void AIGameOver()
     {
-        if (losePanel.activeSelf == true)
-            txt_wastedTime.text = timer.GetWastedTime().ToString("f0") + "'sec";
+        try
+        {
+            if (losePanel.activeSelf == true)
+                txt_wastedTime.text = timer.GetWastedTime().ToString("f0") + "'sec";
+        }
+        catch
+        {
+            Debug.Log("AIWastedTimeCheck.AIGameOver Error");
+        }
     }
 }

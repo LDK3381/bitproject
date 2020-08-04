@@ -7,7 +7,6 @@ public class GroundExplode : MonoBehaviour
 {
     private Animation  anima         = null;
     public  GameObject cliffCollider = null;
-    public  GameObject enemy         = null;
 
     void Start()
     {

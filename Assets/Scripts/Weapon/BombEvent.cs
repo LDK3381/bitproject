@@ -16,6 +16,13 @@ public class BombEvent : MonoBehaviourPun
 
     public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
+    AIDamageController aiDamage;
+
+    void Start()
+    {
+        aiDamage = FindObjectOfType<AIDamageController>();
+    }
+
     void Update()
     {
         BombToDetectOthers();
@@ -84,6 +91,11 @@ public class BombEvent : MonoBehaviourPun
                     {
                         CheckInRoom();
                     }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
+                    }
                 }
                 //아랫쪽 광선 범위에 장애물이 들어온 경우,
                 if (Physics.Raycast(downRay, out hit, obRayLength))
@@ -97,6 +109,11 @@ public class BombEvent : MonoBehaviourPun
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
+                    }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
                     }
                 }
                 //왼쪽 광선 범위에 장애물이 들어온 경우,
@@ -112,6 +129,11 @@ public class BombEvent : MonoBehaviourPun
                     {
                         CheckInRoom();
                     }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
+                    }
                 }
                 //오른쪽 광선 범위에 장애물이 들어온 경우,
                 if (Physics.Raycast(rightRay, out hit, obRayLength))
@@ -125,6 +147,11 @@ public class BombEvent : MonoBehaviourPun
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
+                    }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
                     }
                 }
 
@@ -141,6 +168,11 @@ public class BombEvent : MonoBehaviourPun
                     {
                         CheckInRoom();
                     }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
+                    }
                 }
                 if (Physics.Raycast(downRay1, out hit, obRayLength))
                 {
@@ -153,6 +185,11 @@ public class BombEvent : MonoBehaviourPun
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
+                    }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
                     }
                 }
                 if (Physics.Raycast(leftRay1, out hit, obRayLength))
@@ -167,6 +204,11 @@ public class BombEvent : MonoBehaviourPun
                     {
                         CheckInRoom();
                     }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
+                    }
                 }
                 if (Physics.Raycast(rightRay1, out hit, obRayLength))
                 {
@@ -179,6 +221,11 @@ public class BombEvent : MonoBehaviourPun
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
+                    }
+                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        aiDamage.AIDamagedByBomb();
                     }
                 }
 

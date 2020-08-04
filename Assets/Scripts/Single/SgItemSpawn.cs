@@ -13,43 +13,77 @@ public class SgItemSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
-        spawn = FindObjectOfType<AISpawn>();
-
-        //리스트 내 모든 아이템들을 1개씩 큐에 저장(비활성화)
-        for (int i = 0; i < itemList.Length; i++)
+        try
         {
-            //이 코드가 들어있는 빈 오브젝트가 큐라는 저장공간이 됨.
-            GameObject t_object = Instantiate(itemList[i], this.gameObject.transform);
-            i_queue.Enqueue(t_object);  
-            t_object.SetActive(false);
+            instance = this;
+            spawn = FindObjectOfType<AISpawn>();
+
+            CreateQueue();
+        }
+        catch
+        {
+            Debug.Log("SgItemSpawn.Start Error");
+        }
+    }
+
+    private void CreateQueue()
+    {
+        try
+        {
+            //리스트 내 모든 아이템들을 1개씩 큐에 저장(비활성화)
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                //이 코드가 들어있는 빈 오브젝트가 큐라는 저장공간이 됨.
+                GameObject t_object = Instantiate(itemList[i], this.gameObject.transform);
+                i_queue.Enqueue(t_object);
+                t_object.SetActive(false);
+            }
+
             StartCoroutine(SpawnItem());
         }
+        catch
+        {
+            Debug.Log("SgItemSpawn.CreateQueue Error");
+        }
+
     }
 
     //아이템을 먹으면 해당 아이템을 다시 큐에 저장(비활성화)
     public void InsertQueue(GameObject p_object)
     {
-        i_queue.Enqueue(p_object);      //Enqueue : 오브젝트를 큐에 저장
-        p_object.SetActive(false);
+        try
+        {
+            i_queue.Enqueue(p_object);      //Enqueue : 오브젝트를 큐에 저장
+            p_object.SetActive(false);
 
-        StartCoroutine(SpawnItem());
+            StartCoroutine(SpawnItem());
+        }
+        catch
+        {
+            Debug.Log("SgItemSpawn.InsertQueue Error");
+        }
     }
 
     //저장된 아이템을 큐에서 꺼내오기(활성화)
     public GameObject GetQueue()
     {
-        GameObject t_object = i_queue.Dequeue();    //Dequeue : 오브젝트를 큐에서 꺼내기
-        t_object.SetActive(true);
+        try
+        {
+            GameObject t_object = i_queue.Dequeue();    //Dequeue : 오브젝트를 큐에서 꺼내기
+            t_object.SetActive(true);
 
-        return t_object;
+            return t_object;
+        }
+        catch
+        {
+            Debug.Log("SgItemSpawn.GetQueue Error");
+            return null;
+        }
     }
 
 
     IEnumerator SpawnItem()
     {
-        yield return new WaitForSeconds(1f);
-
         while (true)
         {
             if (i_queue.Count != 0)
@@ -60,5 +94,6 @@ public class SgItemSpawn : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
         }
-    } 
+    }
 }
+

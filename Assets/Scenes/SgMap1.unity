@@ -3120,7 +3120,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -3.11e-43, y: -1.114e-42, z: 6e-45, w: 1.3e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.83672e-40}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6740,7 +6740,6 @@ MonoBehaviour:
   enemy: {fileID: 3206881260545939343, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
   enemyCount: 0
   maxCount: 10
-  child: {fileID: 8738450124964730933, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
 --- !u!4 &1356206765
 Transform:
   m_ObjectHideFlags: 0
