@@ -21,14 +21,21 @@ public class BoxObjectPool : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<Indicator>();
-
-        for (int i = 0; i < pooledAmount; i++)
+        try
         {
-            Indicator box = Instantiate(pooledObject);
-            box.transform.SetParent(transform, false);
-            box.Activate(false);
-            pooledObjects.Add(box);
+            pooledObjects = new List<Indicator>();
+
+            for (int i = 0; i < pooledAmount; i++)
+            {
+                Indicator box = Instantiate(pooledObject);
+                box.transform.SetParent(transform, false);
+                box.Activate(false);
+                pooledObjects.Add(box);
+            }
+        }
+        catch
+        {
+            Debug.Log("BoxObjectPool.Start Error");
         }
     }
 
@@ -38,22 +45,30 @@ public class BoxObjectPool : MonoBehaviour
     /// <returns></returns>
     public Indicator GetPooledObject()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        try
         {
-            if (!pooledObjects[i].Active)
+            for (int i = 0; i < pooledObjects.Count; i++)
             {
-                return pooledObjects[i];
+                if (!pooledObjects[i].Active)
+                {
+                    return pooledObjects[i];
+                }
             }
+            if (willGrow)
+            {
+                Indicator box = Instantiate(pooledObject);
+                box.transform.SetParent(transform, false);
+                box.Activate(false);
+                pooledObjects.Add(box);
+                return box;
+            }
+            return null;
         }
-        if (willGrow)
+        catch
         {
-            Indicator box = Instantiate(pooledObject);
-            box.transform.SetParent(transform, false);
-            box.Activate(false);
-            pooledObjects.Add(box);
-            return box;
+            Debug.Log("BoxObjectPool.GetPooledObject Error");
+            return null;
         }
-        return null;
     }
 
     /// <summary>
@@ -61,9 +76,16 @@ public class BoxObjectPool : MonoBehaviour
     /// </summary>
     public void DeactivateAllPooledObjects()
     {
-        foreach (Indicator box in pooledObjects)
+        try
         {
-            box.Activate(false);
+            foreach (Indicator box in pooledObjects)
+            {
+                box.Activate(false);
+            }
+        }
+        catch
+        {
+            Debug.Log("BoxObjectPool.DeactivateAllPooledObjects Error");
         }
     }
 }

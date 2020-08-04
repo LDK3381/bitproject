@@ -14,12 +14,13 @@ GameObject:
   - component: {fileID: 5438275959370580560}
   - component: {fileID: 6285780497248314493}
   - component: {fileID: 671639347393065844}
+  - component: {fileID: -4508896816230544690}
   m_Layer: 0
   m_Name: Block_Sand1
-  m_TagString: Ground
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3344130902590449621
 Transform:
@@ -125,3 +126,19 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!208 &-4508896816230544690
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743988781085201862}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.127, y: 0.127, z: 0.127}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0.127, z: 0}
+  m_TimeToStationary: 0.5

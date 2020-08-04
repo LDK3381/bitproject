@@ -13,17 +13,24 @@ public class BulletSpawn : MonoBehaviourPun
 
     void OnTriggerEnter(Collider other)
     {
-        //총알이 벽에 부딪치면 바로 소멸
-        if (other.tag == "Wall" || other.tag == "BreakableWall")
+        try
         {
-            Debug.Log("벽 충돌");
-            photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
+            //총알이 벽에 부딪치면 바로 소멸
+            if (other.tag == "Wall" || other.tag == "BreakableWall")
+            {
+                Debug.Log("벽 충돌");
+                photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
+            }
+            if (!photonView.IsMine && other.tag == "Player" && other.GetComponent<PhotonView>().IsMine)
+            {
+                Debug.Log("캐릭터 충돌");
+                other.GetComponent<StatusManager>().MtDecreaseHp(1);
+                photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
+            }
         }
-        if(!photonView.IsMine && other.tag == "Player" && other.GetComponent<PhotonView>().IsMine)
+        catch
         {
-            Debug.Log("캐릭터 충돌");
-            other.GetComponent<StatusManager>().MtDecreaseHp(1);
-            photonView.RPC("DestroyRPC", RpcTarget.AllBuffered);
+            Debug.Log("BulletSpawn.OnTriggerEnter Error");
         }
     }
 

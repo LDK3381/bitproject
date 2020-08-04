@@ -12,26 +12,40 @@ public class MtWeaponManager : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void SelectWeapon()
     {
-        int i = 0;
-        foreach (Transform weapon in transform)
+        try
         {
-            if (i == selectedWeapon)
-                weapon.gameObject.SetActive(true);
-            else
-                weapon.gameObject.SetActive(false);
-            i++;
+            int i = 0;
+            foreach (Transform weapon in transform)
+            {
+                if (i == selectedWeapon)
+                    weapon.gameObject.SetActive(true);
+                else
+                    weapon.gameObject.SetActive(false);
+                i++;
+            }
+        }
+        catch
+        {
+            Debug.Log("MtWeaponManager.SelectWeapon Error");
         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        try
         {
-            stream.SendNext(selectedWeapon);
+            if (stream.IsWriting)
+            {
+                stream.SendNext(selectedWeapon);
+            }
+            else
+            {
+                selectedWeapon = (int)stream.ReceiveNext();
+            }
         }
-        else
+        catch
         {
-            selectedWeapon = (int)stream.ReceiveNext();
+            Debug.Log("MtWeaponManager.OnPhotonSerializeView Error");
         }
     }
 }

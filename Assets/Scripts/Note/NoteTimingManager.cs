@@ -17,82 +17,96 @@ public class NoteTimingManager : MonoBehaviour
 
     void Start()
     {
-        noteEffectManager = FindObjectOfType<NoteEffectManager>();
-        aiController = FindObjectOfType<AIController>();
+        try
+        {
+            noteEffectManager = FindObjectOfType<NoteEffectManager>();
+            aiController = FindObjectOfType<AIController>();
 
-        timingBoxes = new Vector2();
-        timingBoxes.Set(center.localPosition.x - timingRect.rect.width / 2,
-            center.localPosition.x + timingRect.rect.width / 2);
+            timingBoxes = new Vector2();
+            timingBoxes.Set(center.localPosition.x - timingRect.rect.width / 2,
+                center.localPosition.x + timingRect.rect.width / 2);
+        }
+        catch
+        {
+            Debug.Log("NoteTimingManager.Start Error");
+        }
+      
     }
 
     public bool CheckTiming()
     {
-        for(int i = 0; i < noteList.Count; i++)
+        try
         {
-            float t_notePosX = noteList[i].transform.localPosition.x;
-
-            if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
+            for (int i = 0; i < noteList.Count; i++)
             {
-                //노트 제거
-                noteList[i].GetComponent<Note>().HideNote();
-                noteList.RemoveAt(i);
-                //노트 이펙트
-                noteEffectManager.NoteHitEffect();
-                noteEffectManager.DoveBounce();
-                //노트 콤보
-                noteComboManager.IncreaseCombo();
+                float t_notePosX = noteList[i].transform.localPosition.x;
 
-                Debug.Log("Hit");
+                if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
+                {
+                    //노트 제거
+                    noteList[i].GetComponent<Note>().HideNote();
+                    noteList.RemoveAt(i);
 
-                dove[2].SetActive(false);
-                DoveFly();
-                return true;
+                    //노트 이펙트
+                    noteEffectManager.NoteHitEffect();
+                    noteEffectManager.DoveBounce();
+
+                    //노트 콤보
+                    noteComboManager.IncreaseCombo();
+
+                    Debug.Log("Hit");
+
+                    dove[2].SetActive(false);
+                    DoveFly();
+                    return true;
+                }
             }
+            DoveStop();
+            return false;
         }
-
-        DoveStop();
-        return false;
+        catch
+        {
+            Debug.Log("NoteTimingManager.CheckTiming Error");
+            return false;
+        }
     }
-
-    ////AI가 자동으로 한칸씩 이동하도록 설정
-    //public void AICheckTiming()
-    //{
-    //    for (int i = 0; i < noteList.Count; i++)
-    //    {
-    //        float t_notePosX = noteList[i].transform.localPosition.x;
-
-    //        if (timingBoxes.x <= t_notePosX && t_notePosX <= timingBoxes.y)
-    //        {
-    //            //AI 움직임 작동
-    //            aiController.AIMove();
-
-    //            Debug.Log("Hit");
-    //        }
-    //    }
-    //}
 
     private void DoveFly()
     {
-        if(!GameObject.Find("Dove1"))
+        try
         {
-            GameObject.Find("Dove").transform.Find("Dove1").gameObject.SetActive(true);
-            GameObject.Find("Dove").transform.Find("Dove2").gameObject.SetActive(false);
+            if (!GameObject.Find("Dove1"))
+            {
+                GameObject.Find("Dove").transform.Find("Dove1").gameObject.SetActive(true);
+                GameObject.Find("Dove").transform.Find("Dove2").gameObject.SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("Dove").transform.Find("Dove1").gameObject.SetActive(false);
+                GameObject.Find("Dove").transform.Find("Dove2").gameObject.SetActive(true);
+            }
         }
-        else
+        catch
         {
-            GameObject.Find("Dove").transform.Find("Dove1").gameObject.SetActive(false);
-            GameObject.Find("Dove").transform.Find("Dove2").gameObject.SetActive(true);
+            Debug.Log("NoteTimingManager.DoveFly Error");
         }
     }
 
     public void DoveStop()
     {
-        noteComboManager.ResetCombo();
-        noteEffectManager.DoveBounce();
+        try
+        {
+            noteComboManager.ResetCombo();
+            noteEffectManager.DoveBounce();
 
-        dove[0].SetActive(false);
-        dove[1].SetActive(false);
-        dove[2].SetActive(true);
-        Debug.Log("Bad or Miss");
+            dove[0].SetActive(false);
+            dove[1].SetActive(false);
+            dove[2].SetActive(true);
+            Debug.Log("Bad or Miss");
+        }
+        catch
+        {
+            Debug.Log("NoteTimingManager.DoveStop Error");
+        }
     }
 }
