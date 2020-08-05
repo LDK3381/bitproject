@@ -12,16 +12,37 @@ public class NoteEffectManager : MonoBehaviour
 
     public void NoteHitEffect()
     {
-        noteHitAnimator.SetTrigger(notehit);
+        try
+        {
+            noteHitAnimator.SetTrigger(notehit);
+        }
+        catch
+        {
+            Debug.Log("NoteEffectManager.NoteHitEffect Error");
+        }
     }
 
     public void NoteBounce()
     {
-        noteCheckAnimator.SetTrigger(notehit);
+        try
+        {
+            noteCheckAnimator.SetTrigger(notehit);
+        }
+        catch
+        {
+            Debug.Log("NoteEffectManager.NoteBounce Error");
+        }
     }
 
     public void DoveBounce()
     {
-        doveAnimator.SetTrigger(notehit);
+        try
+        {
+            doveAnimator.SetTrigger(notehit);
+        }
+        catch
+        {
+            Debug.Log("NoteEffectManager.DoveBounce Error");
+        }
     }
 }

@@ -23,7 +23,14 @@ public class SgGunController : MonoBehaviour
 
     public void BulletUiSetting()
     {
-        txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+        try
+        {
+            txt_NomalGunBullet.text = "x " + nomalGun.bulletCount;
+        }
+        catch
+        {
+            Debug.Log("SgGunController.BulletUiSetting Error");
+        }
     }
 
     void Update()
@@ -34,48 +41,71 @@ public class SgGunController : MonoBehaviour
 
     void FireRateCalc()
     {
-        if (FireRate > 0)
+        try
         {
-            //Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
-            FireRate -= Time.deltaTime;
+            if (FireRate > 0)
+            {
+                //Time.deltaTime : 현재 프레임을 실행하는데 걸리는 시간(60분의 1)
+                FireRate -= Time.deltaTime;
+            }
         }
+        catch
+        {
+            Debug.Log("SgGunController.FireRateCalc Error");
+        }
+     
     }
 
     // 총알 발사 시도
     void TryFire()
     {
-        // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
-        if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
+        try
         {
-            if (FireRate <= 0)
+            // Fire1(마우스 좌클릭)과 노말건의 총알이 0발 이상일떄
+            if (Input.GetButton("Fire1") && nomalGun.bulletCount > 0)
             {
-                FireRate = nomalGun.fireRate;
-                Fire();
+                if (FireRate <= 0)
+                {
+                    FireRate = nomalGun.fireRate;
+                    Fire();
+                }
             }
+        }
+        catch
+        {
+            Debug.Log("SgGunController.TryFire Error");
         }
     }
 
     // 총알 발사
     void Fire()
     {
-        //총알감소
-        nomalGun.bulletCount--;
+        try
+        {
+            //총알감소
+            nomalGun.bulletCount--;
 
-        BulletUiSetting();
+            BulletUiSetting();
 
-        //애니메이터
-        nomalGun.animator.SetTrigger("GunFire");
+            //애니메이터
+            nomalGun.animator.SetTrigger("GunFire");
 
-        //효과음
-        SoundManager.instance.PlaySE(nomalGun.sound_Fire);
+            //효과음
+            SoundManager.instance.PlaySE(nomalGun.sound_Fire);
 
-        //총알 발사 이펙트
-        nomalGun.ps_MuzzleFlash.Play();
+            //총알 발사 이펙트
+            nomalGun.ps_MuzzleFlash.Play();
 
-        //총알 Instantiate(무한 생성)
-        var clone = Instantiate
-            (nomalGun.go_Bullet_Prefab, nomalGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
-        //총알 AddForce(발사)
-        clone.GetComponent<Rigidbody>().AddForce(transform.forward * nomalGun.speed);
+            //총알 Instantiate(무한 생성)
+            var clone = Instantiate
+                (nomalGun.go_Bullet_Prefab, nomalGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
+
+            //총알 AddForce(발사)
+            clone.GetComponent<Rigidbody>().AddForce(transform.forward * nomalGun.speed);
+        }
+        catch
+        {
+            Debug.Log("SgGunController.Fire Error");
+        }
     }
 }

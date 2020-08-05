@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class MtCount : MonoBehaviour
 {
-    public Text timeCount = null;
-    public float timeCost = 10.0f;
-    public bool flag = false;
+    public Text  timeCount = null;
+    public float timeCost  = 10.0f;
+    public bool  flag      = false;
 
     void Update()
     {
@@ -15,16 +15,23 @@ public class MtCount : MonoBehaviour
     }
     public void CountDown()
     {
-        if (timeCost > 0)
+        try
         {
-            timeCost -= Time.deltaTime;
-            flag = true;
+            if (timeCost > 0)
+            {
+                timeCost -= Time.deltaTime;
+                flag = true;
+            }
+            if (timeCost <= 0)
+            {
+                timeCost = 0f;
+                flag = false;
+            }
+            timeCount.text = timeCost.ToString("N0");
         }
-        if (timeCost <= 0)
+        catch
         {
-            timeCost = 0f;
-            flag = false;
+            Debug.Log("MtCount.CountDown Error");
         }
-        timeCount.text = "남은시간 : " + timeCost.ToString("N0");
     }
 }

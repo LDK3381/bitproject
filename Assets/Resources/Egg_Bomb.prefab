@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 737038123412256068}
   - component: {fileID: 2450068223584237526}
   - component: {fileID: 5664164642810698151}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: BombCheck
   m_Icon: {fileID: 0}
@@ -296,9 +296,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737038124746942121}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Egg_Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

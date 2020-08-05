@@ -4,9 +4,17 @@ using UnityEngine.UI;
 /// <summary>
 /// Assign this script to the indicator prefabs.
 /// </summary>
+/// 
+
+public enum IndicatorType
+{
+    BOX = 0,
+    ARROW
+}
+
 public class Indicator : MonoBehaviour
 {
-    [SerializeField] private IndicatorType indicatorType;
+    [SerializeField] private IndicatorType indicatorType = 0;
     private Image indicatorImage;
     private Text distanceText;
 
@@ -34,8 +42,15 @@ public class Indicator : MonoBehaviour
 
     void Awake()
     {
-        indicatorImage = transform.GetComponent<Image>();
-        distanceText = transform.GetComponentInChildren<Text>();
+        try
+        {
+            indicatorImage = transform.GetComponent<Image>();
+            distanceText = transform.GetComponentInChildren<Text>();
+        }
+        catch
+        {
+            Debug.Log("Indicator.Awake Error");
+        }
     }
 
     /// <summary>
@@ -44,7 +59,14 @@ public class Indicator : MonoBehaviour
     /// <param name="color"></param>
     public void SetImageColor(Color color)
     {
-        indicatorImage.color = color;
+        try
+        {
+            indicatorImage.color = color;
+        }
+        catch
+        {
+            Debug.Log("Indicator.SetImageColor Error");
+        }
     }
 
     /// <summary>
@@ -53,7 +75,14 @@ public class Indicator : MonoBehaviour
     /// <param name="value"></param>
     public void SetDistanceText(float value)
     {
-        distanceText.text = value >= 0 ? Mathf.Floor(value) + " m" : "";
+        try
+        {
+            distanceText.text = value >= 0 ? Mathf.Floor(value) + " m" : "";
+        }
+        catch
+        {
+            Debug.Log("Indicator.SetDistanceText Error");
+        }
     }
 
     /// <summary>
@@ -62,7 +91,14 @@ public class Indicator : MonoBehaviour
     /// <param name="rotation"></param>
     public void SetTextRotation(Quaternion rotation)
     {
-        distanceText.rectTransform.rotation = rotation;
+        try
+        {
+            distanceText.rectTransform.rotation = rotation;
+        }
+        catch
+        {
+            Debug.Log("Indicator.SetTextRotation Error");
+        }
     }
 
     /// <summary>
@@ -71,12 +107,13 @@ public class Indicator : MonoBehaviour
     /// <param name="value"></param>
     public void Activate(bool value)
     {
-        transform.gameObject.SetActive(value);
+        try
+        {
+            transform.gameObject.SetActive(value);
+        }
+        catch
+        {
+            Debug.Log("Indicator.Activate Error");
+        }
     }
-}
-
-public enum IndicatorType
-{
-    BOX,
-    ARROW
 }

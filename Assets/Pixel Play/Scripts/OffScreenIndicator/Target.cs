@@ -74,9 +74,16 @@ public class Target : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        if(OffScreenIndicator.TargetStateChanged != null)
+        try
         {
-            OffScreenIndicator.TargetStateChanged.Invoke(this, true);
+            if (OffScreenIndicator.TargetStateChanged != null)
+            {
+                OffScreenIndicator.TargetStateChanged.Invoke(this, true);
+            }
+        }
+        catch
+        {
+            Debug.Log("Target.OnEnable Error");
         }
     }
 
@@ -85,9 +92,16 @@ public class Target : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        if(OffScreenIndicator.TargetStateChanged != null)
+        try
         {
-            OffScreenIndicator.TargetStateChanged.Invoke(this, false);
+            if (OffScreenIndicator.TargetStateChanged != null)
+            {
+                OffScreenIndicator.TargetStateChanged.Invoke(this, false);
+            }
+        }
+        catch
+        {
+            Debug.Log("Target.OnDisable Error");
         }
     }
 
@@ -98,7 +112,15 @@ public class Target : MonoBehaviour
     /// <returns></returns>
     public float GetDistanceFromCamera(Vector3 cameraPosition)
     {
-        float distanceFromCamera = Vector3.Distance(cameraPosition, transform.position);
-        return distanceFromCamera;
+        try
+        {
+            float distanceFromCamera = Vector3.Distance(cameraPosition, transform.position);
+            return distanceFromCamera;
+        }
+        catch
+        {
+            Debug.Log("Target.GetDistanceFromCamera Error");
+            return 0f;
+        }
     }
 }

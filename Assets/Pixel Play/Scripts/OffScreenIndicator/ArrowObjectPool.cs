@@ -6,7 +6,7 @@ class ArrowObjectPool : MonoBehaviour
     public static ArrowObjectPool current;
 
     [Tooltip("Assign the arrow prefab.")]
-    public Indicator pooledObject;
+    public Indicator pooledObject = null;
     [Tooltip("Initial pooled amount.")]
     public int pooledAmount = 1;
     [Tooltip("Should the pooled amount increase.")]
@@ -21,14 +21,21 @@ class ArrowObjectPool : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<Indicator>();
-
-        for (int i = 0; i < pooledAmount; i++)
+        try
         {
-            Indicator arrow = Instantiate(pooledObject);
-            arrow.transform.SetParent(transform, false);
-            arrow.Activate(false);
-            pooledObjects.Add(arrow);
+            pooledObjects = new List<Indicator>();
+
+            for (int i = 0; i < pooledAmount; i++)
+            {
+                Indicator arrow = Instantiate(pooledObject);
+                arrow.transform.SetParent(transform, false);
+                arrow.Activate(false);
+                pooledObjects.Add(arrow);
+            }
+        }
+        catch
+        {
+            Debug.Log("ArrowObjectPool.Start Error");
         }
     }
 
@@ -38,22 +45,30 @@ class ArrowObjectPool : MonoBehaviour
     /// <returns></returns>
     public Indicator GetPooledObject()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        try
         {
-            if (!pooledObjects[i].Active)
+            for (int i = 0; i < pooledObjects.Count; i++)
             {
-                return pooledObjects[i];
+                if (!pooledObjects[i].Active)
+                {
+                    return pooledObjects[i];
+                }
             }
+            if (willGrow)
+            {
+                Indicator arrow = Instantiate(pooledObject);
+                arrow.transform.SetParent(transform, false);
+                arrow.Activate(false);
+                pooledObjects.Add(arrow);
+                return arrow;
+            }
+            return null;
         }
-        if (willGrow)
+        catch
         {
-            Indicator arrow = Instantiate(pooledObject);
-            arrow.transform.SetParent(transform, false);
-            arrow.Activate(false);
-            pooledObjects.Add(arrow);
-            return arrow;
+            Debug.Log("ArrowObjectPool.GetPooledObject Error");
+            return null;
         }
-        return null;
     }
 
     /// <summary>
@@ -61,9 +76,16 @@ class ArrowObjectPool : MonoBehaviour
     /// </summary>
     public void DeactivateAllPooledObjects()
     {
-        foreach (Indicator arrow in pooledObjects)
+        try
         {
-            arrow.Activate(false);
+            foreach (Indicator arrow in pooledObjects)
+            {
+                arrow.Activate(false);
+            }
+        }
+        catch
+        {
+            Debug.Log("ArrowObjectPool.DeactivateAllPooledObjects Error");
         }
     }
 }

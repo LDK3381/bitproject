@@ -18,104 +18,121 @@ public class UIKeyBindSettings : MonoBehaviour
 
     void Start()
     {
-        //기본 키값
-        keys.Add("Button_Up", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up", "W")));
-        keys.Add("Button_Down", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down", "S")));
-        keys.Add("Button_Left", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left", "A")));
-        keys.Add("Button_Right", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right", "D")));
-        keys.Add("Button_Weapon1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon1", "Alpha1")));
-        keys.Add("Button_Weapon2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon2", "Alpha2")));
-        keys.Add("Button_Weapon3", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon3", "Alpha3")));
+        try
+        {
+            //기본 키값
+            keys.Add("Button_Up", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Up", "W")));
+            keys.Add("Button_Down", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Down", "S")));
+            keys.Add("Button_Left", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Left", "A")));
+            keys.Add("Button_Right", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Right", "D")));
+            keys.Add("Button_Weapon1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon1", "Alpha1")));
+            keys.Add("Button_Weapon2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon2", "Alpha2")));
+            keys.Add("Button_Weapon3", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Button_Weapon3", "Alpha3")));
 
-        //화면에 변경된 키를 버튼에 그대로 표시
-        up.text = keys["Button_Up"].ToString();
-        down.text = keys["Button_Down"].ToString();
-        left.text = keys["Button_Left"].ToString();
-        right.text = keys["Button_Right"].ToString();
-        weapon1.text = keys["Button_Weapon1"].ToString();
-        weapon2.text = keys["Button_Weapon2"].ToString();
-        weapon3.text = keys["Button_Weapon3"].ToString();
+            //화면에 변경된 키를 버튼에 그대로 표시
+            up.text = keys["Button_Up"].ToString();
+            down.text = keys["Button_Down"].ToString();
+            left.text = keys["Button_Left"].ToString();
+            right.text = keys["Button_Right"].ToString();
+            weapon1.text = keys["Button_Weapon1"].ToString();
+            weapon2.text = keys["Button_Weapon2"].ToString();
+            weapon3.text = keys["Button_Weapon3"].ToString();
 
-        SaveKeys();
+            SaveKeys();
+        }
+        catch
+        {
+            Debug.Log("UIKeyBindSettings.Start Error");
+        }
     }
 
     //화면에 출력
     void OnGUI()
     {
-        if (currentKey != null)
+        try
         {
-            Event e = Event.current;
-            if (e.isKey)
+            if (currentKey != null)
             {
-                keys[currentKey.name] = e.keyCode;
-                currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
-                currentKey.GetComponent<Image>().color = before;
-                currentKey = null;
+                Event e = Event.current;
+                if (e.isKey)
+                {
+                    keys[currentKey.name] = e.keyCode;
+                    currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
+                    currentKey.GetComponent<Image>().color = before;
+                    currentKey = null;
+                }
             }
         }
+        catch
+        {
+            Debug.Log("UIKeyBindSettings.OnGUI Error");
+        }
     }
-
 
     //버튼 클릭 시, 키 변경 전/후에 따라 색상 변경
     public void ChangeKey(GameObject clicked)
     {
-        if (currentKey != null)
+        try
         {
-            currentKey.GetComponent<Image>().color = before;
+            if (currentKey != null)
+            {
+                currentKey.GetComponent<Image>().color = before;
+            }
+
+            currentKey = clicked;
+            currentKey.GetComponent<Image>().color = selected;
+
+            SaveKeys();
         }
-
-        currentKey = clicked;
-        currentKey.GetComponent<Image>().color = selected;
-
-        SaveKeys();
+        catch
+        {
+            Debug.Log("UIKeyBindSettings.ChangeKey Error");
+        }
     }
 
     //변경한 키값 저장
     public void SaveKeys()
     {
-        foreach (var key in keys)
+        try
         {
-            PlayerPrefs.SetString(key.Key, key.Value.ToString());
-            PlayerPrefs.Save();
-            Debug.Log("키 변경 완료");
-
-            ////동일한 키가 저장되어 있는지 체크
-            //if (PlayerPrefs.HasKey(key.Key))
-            //{
-            //    keyErrorPanel.SetActive(true);
-            //    return;
-            //}
-            //else
-            //{
-            //    PlayerPrefs.Save();
-            //    Debug.Log("키 변경 완료");
-            //}
+            foreach (var key in keys)
+            {
+                PlayerPrefs.SetString(key.Key, key.Value.ToString());
+                PlayerPrefs.Save();
+                Debug.Log("키 변경 완료");
+            }
+        }
+        catch
+        {
+            Debug.Log("UIKeyBindSettings.SaveKeys Error");
         }
     }
 
     //초기화 버튼 클릭 시 바뀐 키값 전부 초기화
     public void ResetKeys()
     {
-        foreach (var key in keys)
+        try
         {
-            PlayerPrefs.DeleteKey(key.Key);
+            //1. PlayerPref 삭제
+            foreach (var key in keys)
+            {
+                PlayerPrefs.DeleteKey(key.Key);
+            }
+
+            //2. Dictionary 삭제 (순서 안지키면 삭제 안됨)
+            keys.Remove("Button_Up");
+            keys.Remove("Button_Down");
+            keys.Remove("Button_Left");
+            keys.Remove("Button_Right");
+            keys.Remove("Button_Weapon1");
+            keys.Remove("Button_Weapon2");
+            keys.Remove("Button_Weapon3");
+
+            Start();
         }
-
-        //PlayerPref 삭제 후, Dictionary 삭제 처리
-        keys.Remove("Button_Up");
-        keys.Remove("Button_Down");
-        keys.Remove("Button_Left");
-        keys.Remove("Button_Right");
-        keys.Remove("Button_Weapon1");
-        keys.Remove("Button_Weapon2");
-        keys.Remove("Button_Weapon3");
-
-        Start();
-    }
-
-    //키값 중복 저장으로 인해 생긴 창을 나갈려고 Back 버튼 누를 때,
-    public void OnKeyBack()
-    {
-        keyErrorPanel.SetActive(false);
+        catch
+        {
+            Debug.Log("UIKeyBindSettiongs.ResetKeys Error");
+        }
     }
 }

@@ -7,24 +7,39 @@ public class Note : MonoBehaviour
     public float noteSpeed = 400;
     UnityEngine.UI.Image noteImage;
 
-    void OnEnable()
-    {
-        //노트 enable = true
-        if(noteImage == null)
-            noteImage = GetComponent<UnityEngine.UI.Image>();
-        noteImage.enabled = true;
-    }
-
     void Update()
     {
         //노트 이동.
         transform.localPosition += Vector3.right * noteSpeed * Time.deltaTime;
     }
 
+    void OnEnable()
+    {
+        try
+        {
+            //노트 enable = true
+            if (noteImage == null)
+                noteImage = GetComponent<UnityEngine.UI.Image>();
+            noteImage.enabled = true;
+        }
+        catch
+        {
+            Debug.Log("Note.OnEnable Error");
+        }
+    }
+
     public void HideNote()
     {
-        //노트 enable = false
-        noteImage.enabled = false;
+        try
+        {
+            //노트 enable = false
+            noteImage.enabled = false;
+        }
+        catch
+        {
+            Debug.Log("Note.HideNote Error");
+        }
+      
     }
 
     public bool GetNoteFlag()
