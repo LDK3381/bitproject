@@ -16,11 +16,14 @@ public class Bullet : MonoBehaviour
 
     private bool flag = true;
 
+    AITimer timer;
+
     private void Start()
     {
         try
         {
             flag = PlayerInRoom();
+            timer = FindObjectOfType<AITimer>();
             Destroy(gameObject, 7.0f);
         }
         catch
@@ -66,7 +69,9 @@ public class Bullet : MonoBehaviour
             if (other.transform.CompareTag("Player"))
             {
                 Debug.Log("캐릭터 충돌");
+                timer.UpdateByAIBullet();   //총알 맞으면 제한시간 감소
                 DecreaseHp(other);
+
                 Destroy(this.gameObject);
             }
         }

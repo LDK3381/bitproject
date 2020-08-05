@@ -46,7 +46,7 @@ public class NoteFlame : MonoBehaviour
         try
         {
             if (currentScene.name == "SgMap1" || currentScene.name == "SgMap2")
-                aiController.AIStart();     //리듬 노드 한 단위마다 ai가 자동으로 한칸씩 랜덤 이동
+                aiController.Start();     //리듬 노드 한 단위마다 ai가 자동으로 한칸씩 랜덤 이동
         }
         catch
         {

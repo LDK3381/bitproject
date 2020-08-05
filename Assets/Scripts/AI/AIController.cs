@@ -11,13 +11,13 @@ public class AIController : MonoBehaviour
     public GameObject aiPlayer;  //Ray가 나오는 위치(플레이어 프리펩)
 
     public float Move = 0.375f;       //AI의 이동거리
-    float rayLength = 0.45f;          //Ray와 장애물 간 판정거리
+    float rayLength = 0.5f;          //Ray와 장애물 간 판정거리
 
-    public void AIStart()
+    public void Start()
     {
         try
         {
-            InvokeRepeating("AIMove", 0f, 0.5f);    //0초 후, 0.5초마다 AIMove() 실행(ai 이동)
+            InvokeRepeating("AIMove", 0f, 0.5f);    //2초 후, 0.5초마다 AIMove() 실행(ai 이동)
         }
         catch
         {

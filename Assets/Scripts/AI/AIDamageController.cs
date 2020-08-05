@@ -22,11 +22,21 @@ public class AIDamageController : MonoBehaviour
         }
     }
 
+    //적이 총알에 맞으면,
     private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Bullet")
         {
             AIDamagedByBullet();
+        }
+    }
+
+    //적이 낙사하면,
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "DeadZone")
+        {
+            spawn.AIDie(transform.parent.gameObject);   //쓰러뜨린 ai를 다시 큐에다 비활성화 처리
         }
     }
 
