@@ -97,7 +97,7 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
     }
 
     // 플레이어 사망
-    private void SgPlayerDead()
+    public void SgPlayerDead()
     {
         gameObject.SetActive(false);
 

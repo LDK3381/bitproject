@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviourPun
 { 
     public GameObject inCanvace;    //게임내 켐퍼스
     public GameObject Choice;       //캐릭터 선택 UI
     public GameObject[] Point;      //캐릭터 스폰 위치
+    public Text choiceText;
     public MtCount mtCount;         //캐릭터 선택 제한 시간
 
     private string nick;            //선택한 캐릭터 이름
@@ -55,6 +56,7 @@ public class SpawnManager : MonoBehaviour
     {
         nick = Nickname;
         FixedPosition = SpawnPointCheck(Nickname);
+        photonView.RPC("ChoiceAllPlayer", RpcTarget.AllBuffered, Nickname);
         isCheck = true;
         StartCoroutine("CreatePlayer");
     }
@@ -109,4 +111,11 @@ public class SpawnManager : MonoBehaviour
         }
     }
     #endregion
+
+    [PunRPC]
+    private void ChoiceAllPlayer(string Nick)
+    {
+        Debug.Log(PhotonNetwork.PlayerList.Length);
+        choiceText.text += "Chose "+ Nick + "!\n";
+    }
 }
