@@ -24,7 +24,6 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
     [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
 
     [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
-    public GameObject winPanel;
 
     public int DeadPlayerCount;
 
@@ -33,8 +32,6 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
     void Start()
     {
         isLife = true;
-        winPanel.SetActive(false);
-        losePanel.SetActive(false);
 
         #region 체력을 최대 체력으로
         currentHp = maxHp;
@@ -140,16 +137,17 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
     }
 
     // 플레이어 사망
-    private void MtPlayerDead()
+    public void MtPlayerDead()
     {
         sealKey = null;
+        losePanel = null;
         gameObject.SetActive(false);
 
         Instantiate(obj,
             new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
             Quaternion.Euler(0, 90, 0));
 
-        losePanel.SetActive(true);
+        GameObject.Find("UI").transform.Find("Canvas").transform.Find("LosePanel").transform.gameObject.SetActive(!isLife);
 
         DeadPlayerCount++;
         Debug.Log(DeadPlayerCount);

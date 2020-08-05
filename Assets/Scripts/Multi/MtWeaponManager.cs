@@ -8,6 +8,11 @@ public class MtWeaponManager : MonoBehaviourPun, IPunObservable
 {
     public int selectedWeapon = 0;
 
+    private void Update()
+    {
+        photonView.RPC("SelectWeapon", RpcTarget.AllBuffered);
+    }
+
     // 무기 선택함수
     [PunRPC]
     public void SelectWeapon()

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class UIServerJoin : MonoBehaviourPunCallbacks
 {
@@ -14,7 +15,7 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public Text nowInfoText;
     public Text totalInfoText;
 
-    const int MAXIMUM = 1;
+    const int MAXIMUM = 2;
 
     private void Start()
     {
@@ -91,6 +92,7 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
     public void OnExit()
     {
-        Application.Quit();
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("UI");
     }
 }

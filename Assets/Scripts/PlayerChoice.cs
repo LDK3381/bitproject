@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerChoice : MonoBehaviourPun, IPunObservable
 {
@@ -10,6 +11,7 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
     public Text choiceText;
 
     private Button btn;
+    private List<string> namelist;
 
     [PunRPC]
     public void Choice(string name)
@@ -18,9 +20,13 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
         {
             if (b.CompareTag(name))
             {
+                photonView.name = name;
                 Debug.Log("button false");
                 Debug.Log(name);
-                ChoiceAllPlayer(name);
+                namelist.Add(photonView.name);
+                Debug.Log(namelist.Count);
+
+                photonView.RPC("ChoiceAllPlayer", RpcTarget.AllBuffered, name);
                 btn = b;
                 btn.interactable = false;
             }
@@ -31,11 +37,13 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
         }
     }
 
+    [PunRPC]
     private void ChoiceAllPlayer(string Nick)
     {
-        for(int i =0; i< PhotonNetwork.PlayerList.Length; i++)
+        Debug.Log(PhotonNetwork.PlayerList.Length);
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            choiceText.text = photonView.ViewID.ToString() + " : " + Nick + "\n";
+            choiceText.text += photonView.ControllerActorNr + " : " + Nick + "\n";
         }
     }
 
@@ -43,11 +51,11 @@ public class PlayerChoice : MonoBehaviourPun, IPunObservable
     {
         if(stream.IsWriting)
         {
-            stream.SendNext(btn);
+            stream.SendNext(namelist);
         }
         else
         {
-            btn = (Button)stream.ReceiveNext();
+            namelist = (List<string>)stream.ReceiveNext();
         }
     }
 }
