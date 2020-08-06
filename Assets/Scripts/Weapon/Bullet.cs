@@ -54,6 +54,7 @@ public class Bullet : MonoBehaviour
             // 이펙트 0.5초후 파괴
             Destroy(clone, 0.5f);
             Destroy(gameObject);
+
             // 총알 파괴
             if (other.transform.CompareTag("Wall") || other.transform.CompareTag("BreakableWall"))
             {
@@ -63,7 +64,6 @@ public class Bullet : MonoBehaviour
             if (other.transform.CompareTag("Player"))
             {
                 Debug.Log("캐릭터 충돌");
-                timer.UpdateByAIBullet();   //총알 맞으면 제한시간 감소
                 DecreaseHp(other);
 
                 Destroy(this.gameObject);
@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
         if (PhotonNetwork.InRoom)
             return true;    //멀티
         else
-            return false;   //싱글 
+            return false;   //싱글
     }
 
     private void DecreaseHp(Collision other)
@@ -88,9 +88,14 @@ public class Bullet : MonoBehaviour
         try
         {
             if (flag == true)
+            {
                 other.transform.GetComponent<StatusManager>().MtDecreaseHp(1);
+            }
             else
+            {
+                timer.UpdateByAIBullet();   //총알 맞으면 제한시간 감소
                 other.transform.GetComponent<StatusManager>().SgDecreaseHp(1);
+            }
         }
         catch
         {
