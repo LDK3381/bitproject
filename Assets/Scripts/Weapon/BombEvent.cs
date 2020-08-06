@@ -16,11 +16,11 @@ public class BombEvent : MonoBehaviourPun
 
     public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
-    AIDamageController aiDamage;
+    AITimer timer;
 
     void Start()
     {
-        aiDamage = FindObjectOfType<AIDamageController>();
+        timer = FindObjectOfType<AITimer>();
     }
 
     void Update()
@@ -94,7 +94,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 //아랫쪽 광선 범위에 장애물이 들어온 경우,
@@ -113,7 +113,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 //왼쪽 광선 범위에 장애물이 들어온 경우,
@@ -132,7 +132,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 //오른쪽 광선 범위에 장애물이 들어온 경우,
@@ -151,7 +151,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
 
@@ -171,7 +171,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 if (Physics.Raycast(downRay1, out hit, obRayLength))
@@ -189,7 +189,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 if (Physics.Raycast(leftRay1, out hit, obRayLength))
@@ -207,7 +207,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
                 if (Physics.Raycast(rightRay1, out hit, obRayLength))
@@ -225,7 +225,7 @@ public class BombEvent : MonoBehaviourPun
                     //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
-                        aiDamage.AIDamagedByBomb();
+                        hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
 
@@ -251,6 +251,7 @@ public class BombEvent : MonoBehaviourPun
             else
             {
                 hit.transform.GetComponent<StatusManager>().SgDecreaseHp(damage);
+                timer.UpdateByAIBomb(); //적의 폭탄에 맞으면 제한시간 감소
             }
         }
         catch

@@ -40,8 +40,8 @@ TagManager:
   - Ground
   - CliffCollider
   - Enemy
-  - 
-  - 
+  - Bullet
+  - Bullet_Enemy
   - 
   - 
   - 
