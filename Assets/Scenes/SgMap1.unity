@@ -564,6 +564,7 @@ GameObject:
   - component: {fileID: 74488338}
   - component: {fileID: 74488337}
   - component: {fileID: 74488336}
+  - component: {fileID: 74488339}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: CliffCollider
@@ -644,6 +645,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74488334}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &74488339
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74488334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &118797589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1100,7 @@ GameObject:
   - component: {fileID: 223429007}
   - component: {fileID: 223429006}
   - component: {fileID: 223429005}
+  - component: {fileID: 223429008}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: CliffCollider
@@ -1163,6 +1181,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223429003}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &223429008
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223429003}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &231147959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1309,7 @@ GameObject:
   - component: {fileID: 249142189}
   - component: {fileID: 249142188}
   - component: {fileID: 249142187}
+  - component: {fileID: 249142190}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: CliffCollider
@@ -1355,6 +1390,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249142185}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &249142190
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249142185}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &249752708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1814,7 @@ GameObject:
   - component: {fileID: 410497507}
   - component: {fileID: 410497506}
   - component: {fileID: 410497505}
+  - component: {fileID: 410497508}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: CliffCollider
@@ -1843,6 +1895,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410497503}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &410497508
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410497503}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &414787597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 310399783643974711, guid: fd1c2984fd143d045b04082472fe3bb7,
@@ -2369,6 +2437,7 @@ GameObject:
   - component: {fileID: 525753452}
   - component: {fileID: 525753451}
   - component: {fileID: 525753450}
+  - component: {fileID: 525753453}
   m_Layer: 0
   m_Name: Cube (11)
   m_TagString: CliffCollider
@@ -2449,6 +2518,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525753448}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &525753453
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525753448}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &554481805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,7 +3205,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.83672e-40}
+  m_BoundingSphereOverride: {x: 1e-45, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4494,6 +4579,7 @@ GameObject:
   - component: {fileID: 993948648}
   - component: {fileID: 993948647}
   - component: {fileID: 993948646}
+  - component: {fileID: 993948649}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: CliffCollider
@@ -4574,6 +4660,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993948644}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &993948649
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993948644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1000393807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4586,6 +4688,7 @@ GameObject:
   - component: {fileID: 1000393811}
   - component: {fileID: 1000393810}
   - component: {fileID: 1000393809}
+  - component: {fileID: 1000393812}
   m_Layer: 0
   m_Name: Cube (14)
   m_TagString: CliffCollider
@@ -4666,6 +4769,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000393807}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1000393812
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000393807}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1036377936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,6 +4927,7 @@ GameObject:
   - component: {fileID: 1052163027}
   - component: {fileID: 1052163026}
   - component: {fileID: 1052163025}
+  - component: {fileID: 1052163028}
   m_Layer: 0
   m_Name: Cube (16)
   m_TagString: CliffCollider
@@ -4888,6 +5008,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052163023}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1052163028
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052163023}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1062475579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5067,6 +5203,7 @@ GameObject:
   - component: {fileID: 1089566852}
   - component: {fileID: 1089566851}
   - component: {fileID: 1089566850}
+  - component: {fileID: 1089566853}
   m_Layer: 0
   m_Name: Cube (12)
   m_TagString: CliffCollider
@@ -5147,6 +5284,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089566848}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1089566853
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089566848}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1091494747
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,7 +6890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea360766f0407de4397b716c6bc5cc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3206881260545939343, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
+  enemy: {fileID: 3206881260545939343, guid: 0ccc7c06f9f7ad74c9fe6858a3bf6d30, type: 3}
   enemyCount: 0
   maxCount: 10
 --- !u!4 &1356206765
@@ -7192,6 +7345,7 @@ GameObject:
   - component: {fileID: 1449982841}
   - component: {fileID: 1449982840}
   - component: {fileID: 1449982839}
+  - component: {fileID: 1449982842}
   m_Layer: 0
   m_Name: Cube (13)
   m_TagString: CliffCollider
@@ -7272,6 +7426,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449982837}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1449982842
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449982837}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!224 &1482959924 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5231072604843617228, guid: ba5105b94d4a7f5488c1982cdba5acc6,
@@ -7463,6 +7633,7 @@ GameObject:
   - component: {fileID: 1495613742}
   - component: {fileID: 1495613741}
   - component: {fileID: 1495613740}
+  - component: {fileID: 1495613743}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: CliffCollider
@@ -7543,6 +7714,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495613738}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1495613743
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495613738}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &1563069122 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3699745916492967967, guid: 09e0675cb34b4aa42baaae357197cba8,
@@ -7567,6 +7754,7 @@ GameObject:
   - component: {fileID: 1596611769}
   - component: {fileID: 1596611768}
   - component: {fileID: 1596611767}
+  - component: {fileID: 1596611770}
   m_Layer: 0
   m_Name: Cube (9)
   m_TagString: CliffCollider
@@ -7647,6 +7835,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596611765}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1596611770
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596611765}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1606869988
 GameObject:
   m_ObjectHideFlags: 0
@@ -8012,6 +8216,7 @@ GameObject:
   - component: {fileID: 1720750481}
   - component: {fileID: 1720750480}
   - component: {fileID: 1720750479}
+  - component: {fileID: 1720750482}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: CliffCollider
@@ -8092,6 +8297,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720750477}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1720750482
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720750477}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1738356841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2410398249123941252, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
@@ -8116,6 +8337,7 @@ GameObject:
   - component: {fileID: 1797373452}
   - component: {fileID: 1797373451}
   - component: {fileID: 1797373450}
+  - component: {fileID: 1797373453}
   m_Layer: 0
   m_Name: Cube (15)
   m_TagString: CliffCollider
@@ -8196,6 +8418,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797373448}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1797373453
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797373448}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1824845087
 GameObject:
   m_ObjectHideFlags: 0
@@ -8438,6 +8676,7 @@ GameObject:
   - component: {fileID: 1860797948}
   - component: {fileID: 1860797947}
   - component: {fileID: 1860797946}
+  - component: {fileID: 1860797949}
   m_Layer: 0
   m_Name: Cube
   m_TagString: CliffCollider
@@ -8518,6 +8757,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860797944}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1860797949
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860797944}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1863497491
 GameObject:
   m_ObjectHideFlags: 0
@@ -9342,6 +9597,7 @@ GameObject:
   - component: {fileID: 2038612030}
   - component: {fileID: 2038612029}
   - component: {fileID: 2038612028}
+  - component: {fileID: 2038612031}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: CliffCollider
@@ -9422,6 +9678,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038612026}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &2038612031
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038612026}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2071638367
 GameObject:
   m_ObjectHideFlags: 0
@@ -9434,6 +9706,7 @@ GameObject:
   - component: {fileID: 2071638371}
   - component: {fileID: 2071638370}
   - component: {fileID: 2071638369}
+  - component: {fileID: 2071638372}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: CliffCollider
@@ -9514,6 +9787,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071638367}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &2071638372
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071638367}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2134100466
 PrefabInstance:
   m_ObjectHideFlags: 0

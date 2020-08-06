@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3693835044152842128}
   - component: {fileID: 2409849178986031438}
   - component: {fileID: 4760527561459293943}
-  m_Layer: 15
-  m_Name: Bullet
+  m_Layer: 16
+  m_Name: Bullet_Enemy
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 5906902825350208793}
   - component: {fileID: 3276651669737668646}
   - component: {fileID: 3085003286758383809}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
