@@ -8,8 +8,8 @@ public class CountDown : MonoBehaviour
     [SerializeField] private GameObject numImg2     = null;
     [SerializeField] private GameObject numImg3     = null;
     [SerializeField] private GameObject startImg    = null;
-    [SerializeField] private SgPauseManager SealKey = null;
-
+    [SerializeField] private SgPauseManager sealKey = null;
+    [SerializeField] private GameObject pauseBtn    = null;
     private int timer = 0;
 
     void Start()
@@ -18,10 +18,11 @@ public class CountDown : MonoBehaviour
         {
             //시작할 때 카운트 초기화
             timer = 0;
-            SealKey.SealKey();
+            sealKey.SealKey();
             numImg1.SetActive(false);
             numImg2.SetActive(false);
             numImg3.SetActive(false);
+            pauseBtn.SetActive(false);
             startImg.SetActive(false);
         }
         catch
@@ -111,6 +112,7 @@ public class CountDown : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         startImg.SetActive(false);
-        SealKey.UnSealKey();
+        pauseBtn.SetActive(true);
+        sealKey.UnSealKey();
     }
 }

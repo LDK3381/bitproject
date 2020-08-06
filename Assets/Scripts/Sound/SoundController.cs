@@ -14,32 +14,57 @@ public class SoundController : MonoBehaviour
     [SerializeField] public Slider bgmSlider = null;
     [SerializeField] public Slider sfxSlider = null;
 
-    [Header("소리 초기값")]
-    private float defaultmasterVol = 1f;
-    private float defaultbgmVol = 1f;
-    private float defaultsfxVol = 1f;
+    [Header("소리 초기값(여기서 수정 안함)")]  
+    private float defaultmasterVol = 0f;
+    private float defaultbgmVol = 0f;
+    private float defaultsfxVol = 0f;
 
     void Start()
     {
         try
         {
-            //Master 초기값 설정
-            PlayerPrefs.SetFloat("MasterVolSize", 1f);
-            defaultmasterVol = PlayerPrefs.GetFloat("MasterVolSize");
-            masterSlider.value = defaultmasterVol;
-            AudioListener.volume = masterSlider.value;
+            if (!PlayerPrefs.HasKey("MasterVolSize"))
+            {
+                //Master 볼륨값이 존재하지 않으면, 초기값 설정
+                PlayerPrefs.SetFloat("MasterVolSize", 0.7f);
+                masterSlider.value = 0.7f;
+                AudioListener.volume = masterSlider.value;
+            }
+            else
+            {
+                //존재하면, 이전 Master값 가져오기
+                masterSlider.value = PlayerPrefs.GetFloat("MasterVolSize");
+                AudioListener.volume = masterSlider.value;
+            }
 
-            //BGM 초기값 설정
-            PlayerPrefs.SetFloat("BgmVolSize", 1f);
-            defaultbgmVol = PlayerPrefs.GetFloat("BgmVolSize");
-            bgmSlider.value = defaultbgmVol;
-            bgmSource.volume = bgmSlider.value;
+            if (!PlayerPrefs.HasKey("BgmVolSize"))
+            {
 
-            //SFX 초기값 설정
-            PlayerPrefs.SetFloat("SfxVolSize", 1f);
-            defaultsfxVol = PlayerPrefs.GetFloat("SfxVolSize");
-            sfxSlider.value = defaultsfxVol;
-            sfxSource.volume = sfxSlider.value;
+                //BGM 볼륨값이 존재하지 않으면, 초기값 설정
+                PlayerPrefs.SetFloat("BgmVolSize", 0.7f);
+                bgmSlider.value = 0.7f;
+                bgmSource.volume = bgmSlider.value;
+            }
+            else
+            {
+                //존재하면, 이전 BGM값 가져오기
+                bgmSlider.value = PlayerPrefs.GetFloat("BgmVolSize");
+                bgmSource.volume = bgmSlider.value;
+            }
+
+            if (!PlayerPrefs.HasKey("SfxVolSize"))
+            {
+                //SFX 볼륨값이 존재하지 않으면, 초기값 설정
+                PlayerPrefs.SetFloat("SfxVolSize", 0.7f);
+                sfxSlider.value = 0.7f;
+                sfxSource.volume = sfxSlider.value;
+            }
+            else
+            {
+                //존재하면, 이전 SFX값 가져오기
+                sfxSlider.value = PlayerPrefs.GetFloat("SfxVolSize");
+                sfxSource.volume = sfxSlider.value;
+            }
 
             PlayerPrefs.Save();
         }
@@ -112,7 +137,22 @@ public class SoundController : MonoBehaviour
             PlayerPrefs.DeleteKey("BgmVolSize");
             PlayerPrefs.DeleteKey("SfxVolSize");
 
-            Start();
+            //Master 초기값 설정
+            PlayerPrefs.SetFloat("MasterVolSize", 0.7f);
+            masterSlider.value = 0.7f;
+            AudioListener.volume = masterSlider.value;
+
+            //BGM 초기값 설정
+            PlayerPrefs.SetFloat("BgmVolSize", 0.7f);
+            bgmSlider.value = 0.7f;
+            bgmSource.volume = bgmSlider.value;
+
+            //SFX 초기값 설정
+            PlayerPrefs.SetFloat("SfxVolSize", 0.7f);
+            sfxSlider.value = 0.7f;
+            sfxSource.volume = sfxSlider.value;
+
+            PlayerPrefs.Save();
         }
         catch
         {
@@ -120,3 +160,4 @@ public class SoundController : MonoBehaviour
         }
     }
 }
+

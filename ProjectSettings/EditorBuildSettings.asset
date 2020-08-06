@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SgMap1.unity
     guid: 4151cfd6ea72cdf4a96c3bb9f6bbab78
   - enabled: 1
-    path: Assets/Scenes/SgMap3.unity
-    guid: 92b6323fbb586b549bc023a8703615af
+    path: Assets/Scenes/SgMap2.unity
+    guid: 026b6ef93dd34014eb441ade60e0424e
   m_configObjects: {}

@@ -29,7 +29,8 @@ public class SgPauseManager : MonoBehaviour
     [SerializeField] GameObject sealWeapon           = null;
     [SerializeField] GameObject sealBomb             = null;
     [SerializeField] GameObject sealMouseRotate      = null;
-    [SerializeField] GameObject sealAITimer = null;
+    [SerializeField] GameObject sealAITimer          = null;
+    [SerializeField] AIController aiController       = null;
 
     void OnEnable()
     {
@@ -118,6 +119,8 @@ public class SgPauseManager : MonoBehaviour
             sealBomb.GetComponent<BombSpawn>().enabled = true;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
             sealAITimer.GetComponent<AITimer>().enabled = true;
+            aiController.GetComponent<AIController>().enabled = true;
+            aiController.GetComponent<AITurretController>().enabled = true;
         }
         catch
         {
@@ -135,6 +138,8 @@ public class SgPauseManager : MonoBehaviour
             sealBomb.GetComponent<BombSpawn>().enabled = false;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
             sealAITimer.GetComponent<AITimer>().enabled = false;
+            aiController.GetComponent<AIController>().enabled = false;
+            aiController.GetComponent<AITurretController>().enabled = false;
         }
         catch
         {
@@ -147,8 +152,10 @@ public class SgPauseManager : MonoBehaviour
     {
         try
         {
+            Time.timeScale = 1;     //화면 바뀔 때 정지상태가 유지되는 현상 방지
             Debug.Log("게임 나가기");
             SceneManager.LoadScene("UI");
+
         }
         catch
         {
