@@ -3192,6 +3192,16 @@ PrefabInstance:
       propertyPath: SealKey
       value: 
       objectReference: {fileID: 1162734148}
+    - target: {fileID: 755160791781636512, guid: b3af982419fb4844eb145ee286143e2b,
+        type: 3}
+      propertyPath: pauseBtn
+      value: 
+      objectReference: {fileID: 118797589}
+    - target: {fileID: 755160791781636512, guid: b3af982419fb4844eb145ee286143e2b,
+        type: 3}
+      propertyPath: sealKey
+      value: 
+      objectReference: {fileID: 1162734148}
     - target: {fileID: 755160791781636542, guid: b3af982419fb4844eb145ee286143e2b,
         type: 3}
       propertyPath: m_Name
@@ -4418,7 +4428,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 9.629944e-35, z: 2.9057e-41, w: 3.8205e-41}
+  m_BoundingSphereOverride: {x: -1.375e-42, y: 1.02e-43, z: NaN, w: 2.1e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -8340,6 +8350,8 @@ MonoBehaviour:
   sealBomb: {fileID: 1887118924}
   sealMouseRotate: {fileID: 1899131211}
   sealAITimer: {fileID: 781029417}
+  aiController: {fileID: 7472988064329882959, guid: 0ccc7c06f9f7ad74c9fe6858a3bf6d30,
+    type: 3}
 --- !u!1 &1174048403
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,6 @@ public class AISpawn : MonoBehaviour
     void Update()
     {
         EnemyCountCheck();
-        StartCoroutine("SpawnAI");
     }
 
     #region AI 큐 활용
@@ -181,6 +180,10 @@ public class AISpawn : MonoBehaviour
     {
         try
         {
+            if(enemyCount < maxCount)
+            {
+                StartCoroutine("SpawnAI");
+            }
             //현재 필드에 최대 10마리 전부 있다면, 스폰 중지
             if (enemyCount >= maxCount)
             {
