@@ -1,5 +1,11 @@
 fileFormatVersion: 2
-guid: 4ec91e4d0cda1ce489d7984bda4cf35d
+guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc
+labels:
+- warfx
+- particles
+- fire
+- weapon
+- desktop
 PrefabImporter:
   externalObjects: {}
   userData: 

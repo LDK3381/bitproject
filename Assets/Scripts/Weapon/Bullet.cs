@@ -51,12 +51,6 @@ public class Bullet : MonoBehaviour
             //normal : 충돌한 컬라이더의 표면 방향
             var clone = Instantiate(go_RicochetEffect, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
 
-            //지뢰와 충돌 했을 때 데미지 발생
-            if (other.transform.CompareTag("Mine"))
-            {
-                other.transform.GetComponent<Mine>().Damaged(damage);
-            }
-
             // 이펙트 0.5초후 파괴
             Destroy(clone, 0.5f);
             Destroy(gameObject);

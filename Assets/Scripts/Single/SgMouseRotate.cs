@@ -22,6 +22,7 @@ public class SgMouseRotate : MonoBehaviour
 
         MousePoint(groundPlane, ray, rayDistance);
     }
+
     //캐릭터가 향하는 방향을 마우스에 맞춰서
     public void LookAt(Vector3 lookPoint)
     {

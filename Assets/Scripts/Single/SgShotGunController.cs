@@ -11,6 +11,9 @@ public class SgShotGunController : MonoBehaviour
 
     private float FireRate;
 
+    //치킨프리팹 좌표값을 얻기위해
+    private Transform playerTransform = null;
+
     void Start()
     {
         //시작과 동시에 발사
@@ -23,6 +26,10 @@ public class SgShotGunController : MonoBehaviour
     void Update()
     {
         FireRateCalc();
+
+        //치킨 프리팹 좌표값 가져옴
+        playerTransform = GameObject.Find("Player").transform.Find("ChickenPrefab");
+
         TryFire();
     }
 
@@ -98,6 +105,8 @@ public class SgShotGunController : MonoBehaviour
             //총알 Instantiate(무한 생성)
             var clone = Instantiate
                 (shotGun.go_Bullet_Prefab, shotGun.ps_MuzzleFlash.transform.position, Quaternion.identity);
+
+            clone.transform.rotation = playerTransform.rotation;
 
             //총알 AddForce(발사)
             clone.GetComponent<Rigidbody>().AddForce(transform.forward * shotGun.speed);

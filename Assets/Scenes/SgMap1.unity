@@ -2534,6 +2534,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!198 &553874805 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7054220626831339736, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1926505923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &554481805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,6 +3375,12 @@ MonoBehaviour:
   currentTime: 0
   wastedTime: 0
   losePanel: {fileID: 2134100467}
+--- !u!198 &815585984 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6631559959936718233, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1926505923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &822956325
 GameObject:
   m_ObjectHideFlags: 0
@@ -6956,8 +6968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c39a2baf4276540a953d9a0df98dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  force: 250
 --- !u!65 &1393215968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8118,12 +8128,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675376605}
   m_CullTransparentMesh: 0
---- !u!198 &1695261471 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4296620302066850264, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1926505923}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699800092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9069,27 +9073,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1235889307760098114, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1907632855824661529, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4085248455373526196, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: txt_Bomb
       value: 
       objectReference: {fileID: 1563069122}
-    - target: {fileID: 4085248455373526196, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: bomb
-      value: 
-      objectReference: {fileID: 737038124746942122, guid: 285dfc15fb5531742957113c9c29b051,
-        type: 3}
     - target: {fileID: 4770996337886199183, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: txt_NomalGunBullet
@@ -9097,23 +9085,58 @@ PrefabInstance:
       objectReference: {fileID: 622795174}
     - target: {fileID: 5673819404564187744, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
-      propertyPath: speed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7601180569131389872, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: mouseTarget
+      propertyPath: ps_MuzzleFlash
       value: 
-      objectReference: {fileID: 2800000, guid: fc721bcf43201d64194d146ea37e2221, type: 3}
-    - target: {fileID: 8155533398735108975, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+      objectReference: {fileID: 815585984}
+    - target: {fileID: 6631559959936718233, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+    - target: {fileID: 6631559959936718235, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
-      propertyPath: img_BigHpArray.Array.size
-      value: 3
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631559959936718237, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631559959936718239, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631559959950970111, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054220626817214900, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054220626817214910, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054220626831339736, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054220626831339740, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054220626831339742, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
@@ -9132,27 +9155,6 @@ PrefabInstance:
       objectReference: {fileID: 429605122}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
-      propertyPath: losePanel
-      value: 
-      objectReference: {fileID: 2134100467}
-    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: sealKey
-      value: 
-      objectReference: {fileID: 1162734148}
-    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: playerPosition
-      value: 
-      objectReference: {fileID: 1899131211}
-    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
-      propertyPath: obj
-      value: 
-      objectReference: {fileID: 2683472479643687995, guid: 65605895c6e6ca84fb403ab32f49cf6d,
-        type: 3}
-    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
-        type: 3}
       propertyPath: img_BigHpArray.Array.data[0]
       value: 
       objectReference: {fileID: 487011166}
@@ -9168,9 +9170,14 @@ PrefabInstance:
       objectReference: {fileID: 429605122}
     - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
-      propertyPath: wastedTime
+      propertyPath: sealKey
       value: 
-      objectReference: {fileID: 1276415104}
+      objectReference: {fileID: 1162734148}
+    - target: {fileID: 8390809324293229288, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: losePanel
+      value: 
+      objectReference: {fileID: 2134100467}
     - target: {fileID: 8621112712848612421, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9230,7 +9237,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ps_MuzzleFlash
       value: 
-      objectReference: {fileID: 1695261471}
+      objectReference: {fileID: 553874805}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0eeb42f8dbbacf54a8d2565276db6cd9, type: 3}
 --- !u!1 &1952969171
