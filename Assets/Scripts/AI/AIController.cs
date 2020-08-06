@@ -161,7 +161,7 @@ public class AIController : MonoBehaviour
             //근처 장애물 여부 판단       
             if (Physics.Raycast(forwardRay, out hit, rayLength))
             {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
                     hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
                 {
                     return false;
@@ -183,7 +183,7 @@ public class AIController : MonoBehaviour
             //근처 장애물 여부 판단 
             if (Physics.Raycast(leftRay, out hit, rayLength))
             {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
                      hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
                 {
                     return false;
@@ -204,8 +204,8 @@ public class AIController : MonoBehaviour
         {
             //근처 장애물 여부 판단 
             if (Physics.Raycast(backwardRay, out hit, rayLength))
-            {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+            { 
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
                     hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
                 {
                     return false;
@@ -227,7 +227,7 @@ public class AIController : MonoBehaviour
             //근처 장애물 여부 판단 
             if (Physics.Raycast(rightRay, out hit, rayLength))
             {
-                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" ||
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
                     hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
                 {
                     return false;

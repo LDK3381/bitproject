@@ -24,6 +24,7 @@ TagManager:
   - BombCheck
   - Enemy
   - CliffCollider
+  - OutsideCliffCollider
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - Enemy
   - Bullet
   - Bullet_Enemy
-  - 
+  - OutsideCliffCollider
   - 
   - 
   - 

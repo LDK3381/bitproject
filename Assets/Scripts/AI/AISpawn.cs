@@ -155,7 +155,7 @@ public class AISpawn : MonoBehaviour
     {
         try
         {
-            Vector3 RandomPosition = Random.insideUnitSphere * 10f;
+            Vector3 RandomPosition = Random.insideUnitSphere * 15f;
             NavMeshHit hit;
 
             NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
