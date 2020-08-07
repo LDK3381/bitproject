@@ -5,13 +5,7 @@ using Photon.Pun;
 
 public class FireGun_Bullet : MonoBehaviourPun
 {
-    [Header("총알 데미지")]
-    [SerializeField] int damage = 0;
-
     private bool flag = true;
-
-    //[Header("피격 효과음")]
-    //[SerializeField] string sound_Effect = null;
 
     private void Start()
     {
