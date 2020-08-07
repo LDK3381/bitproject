@@ -8,7 +8,6 @@ using Photon.Realtime;
 public class PlayerChoice : MonoBehaviourPun
 {
     public Button[] button;
-    public Text choiceText;
 
     private Button btn;
 
