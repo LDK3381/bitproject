@@ -12,7 +12,6 @@ public class PlayerChoice : MonoBehaviourPun
 
     private Button btn;
 
-    [PunRPC]
     public void Choice(string name)
     {
         foreach (Button b in button)

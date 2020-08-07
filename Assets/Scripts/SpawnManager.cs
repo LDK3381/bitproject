@@ -112,6 +112,7 @@ public class SpawnManager : MonoBehaviourPun
     }
     #endregion
 
+    //선택된 캐릭터 text로 표출
     [PunRPC]
     private void ChoiceAllPlayer(string Nick)
     {
