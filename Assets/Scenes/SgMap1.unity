@@ -565,9 +565,9 @@ GameObject:
   - component: {fileID: 74488337}
   - component: {fileID: 74488336}
   - component: {fileID: 74488339}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (6)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1101,9 +1101,9 @@ GameObject:
   - component: {fileID: 223429006}
   - component: {fileID: 223429005}
   - component: {fileID: 223429008}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (4)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,9 +1310,9 @@ GameObject:
   - component: {fileID: 249142188}
   - component: {fileID: 249142187}
   - component: {fileID: 249142190}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (7)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1815,9 +1815,9 @@ GameObject:
   - component: {fileID: 410497506}
   - component: {fileID: 410497505}
   - component: {fileID: 410497508}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (5)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2468,9 +2468,9 @@ GameObject:
   - component: {fileID: 525753451}
   - component: {fileID: 525753450}
   - component: {fileID: 525753453}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (11)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4610,9 +4610,9 @@ GameObject:
   - component: {fileID: 993948647}
   - component: {fileID: 993948646}
   - component: {fileID: 993948649}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (1)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4719,9 +4719,9 @@ GameObject:
   - component: {fileID: 1000393810}
   - component: {fileID: 1000393809}
   - component: {fileID: 1000393812}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (14)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4958,9 +4958,9 @@ GameObject:
   - component: {fileID: 1052163026}
   - component: {fileID: 1052163025}
   - component: {fileID: 1052163028}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (16)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5234,9 +5234,9 @@ GameObject:
   - component: {fileID: 1089566851}
   - component: {fileID: 1089566850}
   - component: {fileID: 1089566853}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (12)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7364,9 +7364,9 @@ GameObject:
   - component: {fileID: 1449982840}
   - component: {fileID: 1449982839}
   - component: {fileID: 1449982842}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (13)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7652,9 +7652,9 @@ GameObject:
   - component: {fileID: 1495613741}
   - component: {fileID: 1495613740}
   - component: {fileID: 1495613743}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (10)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7773,9 +7773,9 @@ GameObject:
   - component: {fileID: 1596611768}
   - component: {fileID: 1596611767}
   - component: {fileID: 1596611770}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (9)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8229,9 +8229,9 @@ GameObject:
   - component: {fileID: 1720750480}
   - component: {fileID: 1720750479}
   - component: {fileID: 1720750482}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (8)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8350,9 +8350,9 @@ GameObject:
   - component: {fileID: 1797373451}
   - component: {fileID: 1797373450}
   - component: {fileID: 1797373453}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (15)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8689,9 +8689,9 @@ GameObject:
   - component: {fileID: 1860797947}
   - component: {fileID: 1860797946}
   - component: {fileID: 1860797949}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9430,9 +9430,9 @@ GameObject:
   - component: {fileID: 2038612029}
   - component: {fileID: 2038612028}
   - component: {fileID: 2038612031}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (3)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9539,9 +9539,9 @@ GameObject:
   - component: {fileID: 2071638370}
   - component: {fileID: 2071638369}
   - component: {fileID: 2071638372}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube (2)
-  m_TagString: CliffCollider
+  m_TagString: OutsideCliffCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

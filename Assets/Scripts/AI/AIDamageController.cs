@@ -41,7 +41,7 @@ public class AIDamageController : MonoBehaviour
     }
 
     #region 외부에다 쓸 AI 피격 이벤트
-    //총으로 적 1마리 없앨 때마다 제한시간 증가  
+    //총으로 적 1마리 피격
     public void AIDamagedByBullet()
     {
         try
@@ -57,7 +57,7 @@ public class AIDamageController : MonoBehaviour
         }
     }
 
-    //폭탄으로 적 1마리 없앨 때마다 제한시간 증가  
+    //폭탄으로 적 1마리 피격
     public void AIDamagedByBomb()
     {
         try
