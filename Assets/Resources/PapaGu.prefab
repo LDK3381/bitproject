@@ -5395,7 +5395,7 @@ MonoBehaviour:
   bulletCount: 5
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 301014071053354677}
-  go_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
+  go_Bullet_Prefab: {fileID: 8984373130788316724, guid: f023af06dcb67c34bb50c8c9c2ae0c0a,
     type: 3}
   animator: {fileID: 1261218128596466541}
   speed: 10
@@ -5527,8 +5527,8 @@ GameObject:
   - component: {fileID: 6910444246597022238}
   - component: {fileID: 770990027114798367}
   - component: {fileID: 3073474471719499191}
+  - component: {fileID: 3638567290800119321}
   - component: {fileID: 1398885651148407617}
-  - component: {fileID: 2145548406862112042}
   - component: {fileID: 7216349628367003396}
   - component: {fileID: 5937787984779202096}
   - component: {fileID: 7847975223405421568}
@@ -5605,6 +5605,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3638567290800119321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310794324131225143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47648287, y: 0.8598687, z: 1.0413705}
+  m_Center: {x: 0.000017240644, y: -0.07006571, z: -0.051588163}
 --- !u!54 &1398885651148407617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5621,20 +5634,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!64 &2145548406862112042
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5310794324131225143}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 7672459970248413558, guid: 28d14e8c070d869489bf5de97327a32e, type: 3}
 --- !u!114 &7216349628367003396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5660,6 +5659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 3798807949287642097}
+  mouseTarget: {fileID: 2800000, guid: fc721bcf43201d64194d146ea37e2221, type: 3}
 --- !u!114 &7847975223405421568
 MonoBehaviour:
   m_ObjectHideFlags: 0

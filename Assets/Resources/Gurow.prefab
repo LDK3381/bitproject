@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 5436434614296661068}
+  mouseTarget: {fileID: 2800000, guid: fc721bcf43201d64194d146ea37e2221, type: 3}
 --- !u!114 &2163662989761803357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5336,7 +5337,7 @@ MonoBehaviour:
   bulletCount: 5
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 4086527074322507440}
-  go_Bullet_Prefab: {fileID: 6108397999069690865, guid: 3856a03be5c2b7a4180caf1ba0aaf263,
+  go_Bullet_Prefab: {fileID: 8984373130788316724, guid: f023af06dcb67c34bb50c8c9c2ae0c0a,
     type: 3}
   animator: {fileID: 3385011428436192076}
   speed: 10
