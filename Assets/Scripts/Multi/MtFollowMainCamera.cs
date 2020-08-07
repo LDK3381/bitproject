@@ -8,7 +8,7 @@ public class MtFollowMainCamera : MonoBehaviourPun
     public float offsetX =  0f;
     public float offsetY =  3f;
     public float offsetZ =  -0.5f;
-    GameObject obj;
+    GameObject isMy;     //본인
 
     Vector3 cameraPosition;
 
@@ -16,7 +16,7 @@ public class MtFollowMainCamera : MonoBehaviourPun
     {
         try
         {
-            obj = FindObjectOfType<GameObject>();
+            isMy = FindObjectOfType<GameObject>();
         }
         catch
         {
@@ -28,11 +28,11 @@ public class MtFollowMainCamera : MonoBehaviourPun
     {
         try
         {
-            if (obj.CompareTag("Player"))
+            if (isMy.CompareTag("Player"))
             {
-                cameraPosition.x = obj.transform.position.x + offsetX;
-                cameraPosition.y = obj.transform.position.y + offsetY;
-                cameraPosition.z = obj.transform.position.z + offsetZ;
+                cameraPosition.x = isMy.transform.position.x + offsetX;
+                cameraPosition.y = isMy.transform.position.y + offsetY;
+                cameraPosition.z = isMy.transform.position.z + offsetZ;
 
                 transform.position = cameraPosition;
             }

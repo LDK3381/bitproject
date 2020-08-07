@@ -48,6 +48,12 @@ public class MtPauseManager : MonoBehaviourPun
         sfxSource.volume = sfxSlider.value;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseGame();
+    }
+
     #region 버튼들
     //일시정지 버튼
     public void PauseGame()

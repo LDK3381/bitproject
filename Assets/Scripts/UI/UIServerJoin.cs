@@ -85,9 +85,19 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
 
             if (PhotonNetwork.CurrentRoom.PlayerCount == MAXIMUM)
             {
-                PhotonNetwork.LoadLevel("MultiScene");
+                Debug.Log(RandomRoom());
+                PhotonNetwork.LoadLevel(RandomRoom());
             }
         }
+    }
+
+    //랜덤 맵선택
+    private string RandomRoom()
+    {
+        if (Random.Range(0, 1) == 0)
+            return "MtMap1";
+        else
+            return "MtMap2";
     }
 
     public void OnExit()
