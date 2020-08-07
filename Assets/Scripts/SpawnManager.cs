@@ -10,8 +10,8 @@ public class SpawnManager : MonoBehaviourPun
     public GameObject inCanvace;    //게임내 켐퍼스
     public GameObject Choice;       //캐릭터 선택 UI
     public GameObject[] Point;      //캐릭터 스폰 위치
-    public Button[] button;
-    public Text choiceText;
+    public Button[] button;         //캐릭터 선택 버튼
+    public Text choiceText;         //선택한 캐릭터 알려주는 text
     public MtCount mtCount;         //캐릭터 선택 제한 시간
 
     private Button btn;
@@ -114,16 +114,14 @@ public class SpawnManager : MonoBehaviourPun
     }
     #endregion
 
-    //선택된 캐릭터 text로 표출
-    [PunRPC]
+    [PunRPC] //선택된 캐릭터 text로 표출
     private void ChoiceAllPlayer(string Nick)
     {
         Debug.Log(PhotonNetwork.PlayerList.Length);
         choiceText.text += "Chose "+ Nick + "!\n";
     }
 
-    [PunRPC]
-    //플레이어 선택
+    [PunRPC] //플레이어 선택
     public void ChoiceButton(string name)
     {
         foreach (Button b in button)

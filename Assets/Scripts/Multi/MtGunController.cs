@@ -91,6 +91,7 @@ public class MtGunController : MonoBehaviourPun
 
             //총알 Instantiate(무한 생성)
             var clon = Instantiate(nomalGun.go_Bullet_Prefab, bulletSpawn.transform.position, Quaternion.identity);
+            
             //총알 AddForce(발사)
             clon.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             Debug.Log("Fire");

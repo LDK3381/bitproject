@@ -9,26 +9,25 @@ using Photon.Pun;
 
 public class MtPlayerController : MonoBehaviourPun, IPunObservable
 {
-    public PhotonView PV;
-    public MtWeaponManager WeaponManger;
-    public GameObject[] Weapon;
-    public GameObject BulletIMG;
-    public GameObject BigHp;
+    public PhotonView PV;                   //본인 포톤뷰
+    public MtWeaponManager WeaponManger;    
+    public GameObject[] Weapon;             //소지하고있는 무기
+    public GameObject BulletIMG;            //소지하고있는 총알
+    public GameObject BigHp;                //체력
     public GameObject playerRay;
     public StatusManager statuManager;
-
-    MtFinal final;
-    NoteTimingManager noteTimingManager;
-    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
 
     public float Move = 0.375f;
     public float move_speed = 0.375f;    //이동 거리
 
-    float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
+    MtFinal final;
+    NoteTimingManager noteTimingManager;
 
+    Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
     RaycastHit hit;
 
-    private int WeaponNum;
+    float rayLength = 0.25f;            //Ray와 장애물 간 판정거리
+
     private Vector3 currPos;
 
     private void Start()
@@ -41,78 +40,47 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     void Update()
     {
-        if (PV.IsMine)
+        try
         {
-            #region 장애물 판정 위한 Ray 생성
-            forwardRay = new Ray(playerRay.transform.position, transform.forward);
-            LeftRay = new Ray(playerRay.transform.position, -transform.right);
-            BackwardRay = new Ray(playerRay.transform.position, -transform.forward);
-            RightRay = new Ray(playerRay.transform.position, transform.right);
-            UnderRay = new Ray(playerRay.transform.position, -transform.up);
-
-            Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
-            Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
-            Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
-            Debug.DrawRay(RightRay.origin, transform.right, Color.red);
-            Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
-            #endregion
-
-            BulletIMG.SetActive(true);
-            BigHp.SetActive(true);
-            PlayerMove();   //캐릭터 조작
-
-            #region 무기 변경
-            int previousSelectedWeapon = WeaponManger.selectedWeapon;
-
-            if (Input.GetKeyUp(KeyCode.Alpha1))
+            if (PV.IsMine)
             {
-                Debug.Log("1");
-                WeaponManger.selectedWeapon = 0;
-            }
-            else if (Input.GetKeyUp(KeyCode.Alpha2) && WeaponManger.transform.childCount >= 2)
-            {
-                Debug.Log("2");
-                WeaponManger.selectedWeapon = 1;
-            }
-            else if (Input.GetKeyUp(KeyCode.Alpha3) && WeaponManger.transform.childCount >= 3)
-            {
-                Debug.Log("3");
-                WeaponManger.selectedWeapon = 2;
-            }
-            else if (previousSelectedWeapon != WeaponManger.selectedWeapon)
-                WeaponManger.photonView.RPC("SelectWeapon", RpcTarget.AllViaServer);
-            #endregion
+                #region 장애물 판정 위한 Ray 생성
+                forwardRay = new Ray(playerRay.transform.position, transform.forward);
+                LeftRay = new Ray(playerRay.transform.position, -transform.right);
+                BackwardRay = new Ray(playerRay.transform.position, -transform.forward);
+                RightRay = new Ray(playerRay.transform.position, transform.right);
+                UnderRay = new Ray(playerRay.transform.position, -transform.up);
 
-            #region 무기선택 및 발사
-            switch (previousSelectedWeapon)
-            {
-                case 0:
-                    Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
-                    break;
-                case 1:
-                    Weapon[1].GetComponent<MtShotGunController>();
-                    break;
-                case 2:
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            #endregion
+                Debug.DrawRay(forwardRay.origin, transform.forward, Color.red);
+                Debug.DrawRay(LeftRay.origin, -transform.right, Color.red);
+                Debug.DrawRay(BackwardRay.origin, -transform.forward, Color.red);
+                Debug.DrawRay(RightRay.origin, transform.right, Color.red);
+                Debug.DrawRay(UnderRay.origin, -transform.up, Color.red);
+                #endregion
 
-            #region WIN
-            if (PhotonNetwork.PlayerList.Length == 1)
-                final.winPanel.SetActive(true);
+                BulletIMG.SetActive(true);
+                BigHp.SetActive(true);
+                PlayerMove();   //캐릭터 조작
+
+                //무기 변경
+                int previousSelectedWeapon = WeaponManger.selectedWeapon;
+                ChangeWeapon(previousSelectedWeapon);
+
+                //무기선택 및 발사
+                ChoiceAndFire(previousSelectedWeapon);
+
+                //승리 체크
+                WinCheck();
+            }
             else
-                final.winPanel.SetActive(false);
-            #endregion
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, currPos, Time.deltaTime * 10.0f);
+            }
         }
-        else
+        catch (System.Exception ex)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, currPos, Time.deltaTime * 10.0f);
+            Debug.Log(ex.Message);
+            throw;
         }
     }
 
@@ -270,7 +238,58 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     }
     #endregion
 
+    //플레이어 무기 변경
+    private void ChangeWeapon(int SelectedWeapon)
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            Debug.Log("1");
+            WeaponManger.selectedWeapon = 0;
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2) && WeaponManger.transform.childCount >= 2)
+        {
+            Debug.Log("2");
+            WeaponManger.selectedWeapon = 1;
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha3) && WeaponManger.transform.childCount >= 3)
+        {
+            Debug.Log("3");
+            WeaponManger.selectedWeapon = 2;
+        }
+        else if (SelectedWeapon != WeaponManger.selectedWeapon)
+            WeaponManger.photonView.RPC("SelectWeapon", RpcTarget.AllViaServer);
+    }
 
+    //무기선택 및 발사
+    private void ChoiceAndFire(int SelectedWeapon)
+    {
+        switch (SelectedWeapon)
+        {
+            case 0:
+                Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+                break;
+            case 1:
+                Weapon[1].GetComponent<MtShotGunController>();
+                break;
+            case 2:
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Weapon[2].GetComponent<MtBombSpawn>().photonView.RPC("CreateBomb", RpcTarget.AllBuffered);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    //승리체크
+    private void WinCheck()
+    {
+        if (PhotonNetwork.PlayerList.Length == 1)
+            final.winPanel.SetActive(true);
+        else
+            final.winPanel.SetActive(false);
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
