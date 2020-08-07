@@ -29,6 +29,7 @@ public class SgPauseManager : MonoBehaviour
     [SerializeField] GameObject sealWeapon           = null;
     [SerializeField] GameObject sealBomb             = null;
     [SerializeField] GameObject sealMouseRotate      = null;
+    [SerializeField] AISpawn sealSpawn               = null;
     [SerializeField] GameObject sealAITimer          = null;
     [SerializeField] AIController aiController       = null;
 
@@ -119,6 +120,7 @@ public class SgPauseManager : MonoBehaviour
             sealBomb.GetComponent<BombSpawn>().enabled = true;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
             sealAITimer.GetComponent<AITimer>().enabled = true;
+            sealSpawn.GetComponent<AISpawn>().enabled = true;
             aiController.GetComponent<AIController>().enabled = true;
             aiController.GetComponent<AITurretController>().enabled = true;
         }
@@ -138,6 +140,7 @@ public class SgPauseManager : MonoBehaviour
             sealBomb.GetComponent<BombSpawn>().enabled = false;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
             sealAITimer.GetComponent<AITimer>().enabled = false;
+            sealSpawn.GetComponent<AISpawn>().enabled = false;
             aiController.GetComponent<AIController>().enabled = false;
             aiController.GetComponent<AITurretController>().enabled = false;
         }

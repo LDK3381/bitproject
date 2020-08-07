@@ -3235,7 +3235,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 2.1618506e+33, z: 9.9e-43, w: 2.4e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5748,6 +5748,7 @@ MonoBehaviour:
   sealWeapon: {fileID: 1738356841}
   sealBomb: {fileID: 1887118924}
   sealMouseRotate: {fileID: 1899131211}
+  sealSpawn: {fileID: 1356206764}
   sealAITimer: {fileID: 781029417}
   aiController: {fileID: 7472988064329882959, guid: 4ec91e4d0cda1ce489d7984bda4cf35d,
     type: 3}
@@ -6933,7 +6934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356206763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2403607, y: 1.5913754, z: 4.5749674}
+  m_LocalPosition: {x: 7.39, y: 1.5913754, z: 8.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6951,7 +6952,6 @@ GameObject:
   - component: {fileID: 1393215970}
   - component: {fileID: 1393215969}
   - component: {fileID: 1393215968}
-  - component: {fileID: 1393215967}
   - component: {fileID: 1393215966}
   m_Layer: 0
   m_Name: Spike
@@ -6976,18 +6976,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1393215967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393215965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c39a2baf4276540a953d9a0df98dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1393215968
 BoxCollider:
   m_ObjectHideFlags: 0

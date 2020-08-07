@@ -44,8 +44,8 @@ TagManager:
   - Bullet
   - Bullet_Enemy
   - OutsideCliffCollider
-  - 
-  - 
+  - Item
+  - TombStone
   - 
   - 
   - 

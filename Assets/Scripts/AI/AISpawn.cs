@@ -32,18 +32,14 @@ public class AISpawn : MonoBehaviour
     }
 
     #region AI 큐 활용
-    //큐 생성
+    //큐 생성(큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨)
     private void CreateQueue()
     {
         try
         {
             for (int i = 0; i < maxCount; i++)
             {
-                //instance.e_queue.Enqueue(CreateEnemy());  //Enqueue : 큐에 저장
-                //큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨.
-                GameObject e_object = Instantiate(enemy, this.gameObject.transform);
-                e_queue.Enqueue(e_object);
-                e_object.SetActive(false);
+                instance.e_queue.Enqueue(CreateEnemy());    //Enqueue : 큐에 저장
             }
         }
         catch
@@ -93,7 +89,6 @@ public class AISpawn : MonoBehaviour
             {
                 GameObject e_object = e_queue.Dequeue();    //Dequeue : 큐에서 꺼내기
                 e_object.SetActive(true);
-
                 return e_object;
             }
             //큐에 더 이상 꺼낼 오브젝트가 없다면? 새로 추가하기
@@ -136,17 +131,15 @@ public class AISpawn : MonoBehaviour
             GameObject spawnedEnemy = GetQueue();
             spawnedEnemy.transform.position = point;
 
-            //스폰된 적은 일단 마법진 사라질 때까지 잠시 행동 봉인
-            spawnedEnemy.GetComponent<AIController>().enabled = false;
-            spawnedEnemy.GetComponent<AITurretController>().enabled = false;
+            NavMeshAgent agent = spawnedEnemy.GetComponentInChildren<NavMeshAgent>();
+            agent.Warp(spawnedEnemy.transform.position);  //navmeshAgent가 오브젝트랑 떨어져있지 않도록, 자동으로 오브젝트 위치로 워프시킴
 
-            //그 후 동작 실행
-            yield return new WaitForSeconds(1f);
             spawnedEnemy.GetComponent<AIController>().enabled = true;
             spawnedEnemy.GetComponent<AITurretController>().enabled = true;
 
             enemyCount++;
         }
+        yield return new WaitForSeconds(1f);
     }
 
     //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기
@@ -157,7 +150,7 @@ public class AISpawn : MonoBehaviour
             Vector3 RandomPosition = Random.insideUnitSphere * 15f;
             NavMeshHit hit;
 
-            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
+            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 20f, NavMesh.AllAreas);
 
             //타일 정중앙에 정확히 스폰하기 위해 위치값 조정
             Vector3 spawnPoint =

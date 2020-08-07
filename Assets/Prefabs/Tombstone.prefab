@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4395876127162296551}
   - component: {fileID: 6226770969660685624}
   - component: {fileID: -3591245734117128411}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Tombstone
   m_TagString: Wall
   m_Icon: {fileID: 0}

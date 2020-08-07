@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            InvokeRepeating("AIMove", 0f, 0.5f);    //2초 후, 0.5초마다 AIMove() 실행(ai 이동)
+            InvokeRepeating("AIMove", 1.5f, 0.5f);    //1.5초 후, 0.5초마다 AIMove() 실행(ai 이동)
         }
         catch
         {
@@ -65,26 +65,10 @@ public class AIController : MonoBehaviour
             {
                 switch (Random.Range(0, 4))
                 {
-                    case 0:
-                        if (W_ObstacleCheck() == false)
-                            goto case 1;    //장애물 땜에 해당 방향으로 못가면? 다음 case문으로 이동
-                        else
-                            W_MoveCheck(); break;  //장애물이 없으면 해당 방향 이동 후, switch문 종료(break)
-                    case 1:
-                        if (S_ObstacleCheck() == false)
-                            goto case 2;
-                        else
-                            S_MoveCheck(); break;
-                    case 2:
-                        if (A_ObstacleCheck() == false)
-                            goto case 3;
-                        else
-                            A_MoveCheck(); break;
-                    case 3:
-                        if (D_ObstacleCheck() == false)
-                            goto case 0;
-                        else
-                            D_MoveCheck(); break;
+                    case 0: W_MoveCheck(); break;
+                    case 1: S_MoveCheck(); break;
+                    case 2: A_MoveCheck(); break;
+                    case 3: D_MoveCheck(); break;
                     default: break;
                 }
 
@@ -103,9 +87,14 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+            if (W_ObstacleCheck() == true)
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_W = new Vector3(transform.position.x, transform.position.y, transform.position.z + Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_W, 1f);
+            }
+            else
+                return;
         }
         catch
         {
@@ -116,9 +105,14 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+            if (S_ObstacleCheck() == true)
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_S = new Vector3(transform.position.x, transform.position.y, transform.position.z - Move);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_S, 1f);
+            }
+            else
+                return;
         }
         catch
         {
@@ -129,9 +123,14 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+            if (A_ObstacleCheck() == true)
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_A = new Vector3(transform.position.x - Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_A, 1f);
+            }
+            else
+                return;
         }
         catch
         {
@@ -142,9 +141,14 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
-            Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
-            transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+            if (D_ObstacleCheck() == true)
+            {
+                //MoveDir : 캐릭터가 이동할 방향(이동 목표지점)
+                Vector3 MoveDir_D = new Vector3(transform.position.x + Move, transform.position.y, transform.position.z);
+                transform.position = Vector3.Slerp(transform.position, MoveDir_D, 1f);
+            }
+            else
+                return;
         }
         catch
         {

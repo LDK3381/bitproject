@@ -69,7 +69,7 @@ public class AITurretController : MonoBehaviour
             tr_currentFireRate = tr_fireRate;
 
             //플레이어 탐색 0.5초마다 실행
-            InvokeRepeating("SearchPlayer", 1f, 0.3f);
+            InvokeRepeating("SearchPlayer", 2f, 0.3f);
         }
         catch
         {
