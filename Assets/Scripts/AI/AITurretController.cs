@@ -84,7 +84,6 @@ public class AITurretController : MonoBehaviour
             //타겟이 없을경우(터렛 회전)
             if (tr_Target == null)
             {
-                Debug.Log("못찾음.");
                 tr_Gun_Body.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
             }
 

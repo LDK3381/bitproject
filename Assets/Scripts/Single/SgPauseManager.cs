@@ -156,6 +156,7 @@ public class SgPauseManager : MonoBehaviour
         try
         {
             Time.timeScale = 1;     //화면 바뀔 때 정지상태가 유지되는 현상 방지
+            AudioListener.pause = false;    //bgm 다시재생
             Debug.Log("게임 나가기");
             SceneManager.LoadScene("UI");
 

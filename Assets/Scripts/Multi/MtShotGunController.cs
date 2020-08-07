@@ -13,6 +13,7 @@ public class MtShotGunController : MonoBehaviourPun
     public Text txt_ShotGunBullet;
 
     private float FireRate;
+    private Transform playerTransform = null;
 
     void Start()
     {
@@ -26,6 +27,21 @@ public class MtShotGunController : MonoBehaviourPun
         catch
         {
             Debug.Log("MtShotGunController.Start Error");
+        }
+    }
+
+    private void Update()
+    {
+        try
+        {
+            //캐릭터 프리팹 좌표값 가져옴
+            playerTransform = FindToName();
+
+            photonView.RPC("TryFire", RpcTarget.AllBuffered);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log(ex.Message);
         }
     }
 
@@ -98,12 +114,31 @@ public class MtShotGunController : MonoBehaviourPun
             var clone = Instantiate
                 (shotGun.go_Bullet_Prefab, bulletSpawn.transform.position, Quaternion.identity);
 
+            clone.transform.rotation = playerTransform.rotation;
+
             //총알 AddForce(발사)
             clone.GetComponent<Rigidbody>().AddForce(transform.forward * shotGun.speed);
         }
         catch
         {
             Debug.Log("MtShotGunController.SGFire Error");
+        }
+    }
+
+    //자신이 선택한 캐릭터 찾기
+    private Transform FindToName()
+    {
+        switch (PhotonNetwork.LocalPlayer.NickName)
+        {
+            case "Kitchen":
+                return GameObject.Find("Kitchen(Clone)").transform.Find("ChickenPrefab");
+            case "Gurow":
+                return GameObject.Find("Gurow(Clone)").transform.Find("CrowPrefabs");
+            case "PapaGu":
+                return GameObject.Find("PapaGu(Clone)").transform.Find("ParrotPrefabs");
+            case "RainGuw":
+                return GameObject.Find("RainGuw(Clone)").transform.Find("ChickenRainbowPrefab");
+            default: return null;
         }
     }
 }

@@ -8,12 +8,14 @@ public class MtMouseRotate : MonoBehaviourPun
     public PhotonView PV;
 
     Camera viewCamera;
+    public Texture2D mouseTarget = null;
 
     private void Start()
     {
         try
         {
             viewCamera = Camera.main;
+            Cursor.visible = true;
         }
         catch
         {
@@ -39,6 +41,10 @@ public class MtMouseRotate : MonoBehaviourPun
                                                                 //Debug.DrawLine(ray.origin, point, Color.red);
                                                                 //LookAt(point);                   //교차 지점이 캐릭터가 바라볼 시점이 됨.
                     PV.RPC("LookAt", RpcTarget.All, point);
+
+                    point.x = mouseTarget.width / 2;
+                    point.y = mouseTarget.height / 2;
+                    Cursor.SetCursor(mouseTarget, point, CursorMode.Auto);  //마우스 커서 이미지 변경
                 }
             }
         }

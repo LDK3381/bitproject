@@ -19,7 +19,7 @@ public class SoundController : MonoBehaviour
     private float defaultbgmVol = 0f;
     private float defaultsfxVol = 0f;
 
-    void Start()
+    void Awake()
     {
         try
         {
@@ -73,6 +73,7 @@ public class SoundController : MonoBehaviour
             Debug.Log("SoundController.Start Error");
         }
     }
+
 
     //마스터 볼륨 조절
     public void SetMasterVolume()

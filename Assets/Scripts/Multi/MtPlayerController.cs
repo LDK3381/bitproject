@@ -90,7 +90,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
                     Weapon[0].GetComponent<MtGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
                     break;
                 case 1:
-                    Weapon[1].GetComponent<MtShotGunController>().photonView.RPC("TryFire", RpcTarget.AllBuffered);
+                    Weapon[1].GetComponent<MtShotGunController>();
                     break;
                 case 2:
                     if (Input.GetMouseButtonDown(0))
