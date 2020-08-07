@@ -406,11 +406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1392199938}
     - target: {fileID: 2104180408220462168, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: PauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 2104180408407523335, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
@@ -466,6 +466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChoiceButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104180408986779005, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2104180409021278812, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
@@ -1110,7 +1115,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0.15625, z: 0.0390625, w: -0.0390625}
+  m_BoundingSphereOverride: {x: 5.6408e-41, y: 1.05e-43, z: 2.75508e-40, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

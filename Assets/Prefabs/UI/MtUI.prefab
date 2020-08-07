@@ -207,7 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 544192088259511192, guid: d4bad12e4ad636740b891c43d93b1939,
+          type: 3}
         m_MethodName: OnBack
         m_Mode: 1
         m_Arguments:
@@ -1681,7 +1682,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2104180408362680449}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1909,7 +1910,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2104180408362680449}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1996,7 +1997,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 544192088259511192, guid: d4bad12e4ad636740b891c43d93b1939,
+          type: 3}
         m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
@@ -2173,10 +2175,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 2104180408118306818}
   - {fileID: 6173041180977231747}
   - {fileID: 2104180408220462169}
   - {fileID: 2104180408986779005}
-  - {fileID: 2104180408118306818}
   - {fileID: 6065995501600486373}
   - {fileID: 9200432794584388381}
   m_Father: {fileID: 2104180407784799658}
@@ -2587,7 +2589,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2104180407784799657}
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -2890,7 +2892,7 @@ RectTransform:
   m_Children:
   - {fileID: 2104180407462668508}
   m_Father: {fileID: 2104180408362680449}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3364,7 +3366,7 @@ PrefabInstance:
     - target: {fileID: 5231072604843617228, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5231072604843617228, guid: ba5105b94d4a7f5488c1982cdba5acc6,
         type: 3}
