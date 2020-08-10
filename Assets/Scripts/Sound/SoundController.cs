@@ -138,22 +138,7 @@ public class SoundController : MonoBehaviour
             PlayerPrefs.DeleteKey("BgmVolSize");
             PlayerPrefs.DeleteKey("SfxVolSize");
 
-            //Master 초기값 설정
-            PlayerPrefs.SetFloat("MasterVolSize", 0.7f);
-            masterSlider.value = 0.7f;
-            AudioListener.volume = masterSlider.value;
-
-            //BGM 초기값 설정
-            PlayerPrefs.SetFloat("BgmVolSize", 0.7f);
-            bgmSlider.value = 0.7f;
-            bgmSource.volume = bgmSlider.value;
-
-            //SFX 초기값 설정
-            PlayerPrefs.SetFloat("SfxVolSize", 0.7f);
-            sfxSlider.value = 0.7f;
-            sfxSource.volume = sfxSlider.value;
-
-            PlayerPrefs.Save();
+            Awake();
         }
         catch
         {

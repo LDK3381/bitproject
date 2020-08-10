@@ -9,9 +9,11 @@ public class UIKeyBindSettings : MonoBehaviour
     private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
     public Text up, down, left, right, weapon1, weapon2, weapon3;
     private GameObject currentKey = null;
+    private bool inputEnabled = true;
 
     [Header("중복입력 발생 이벤트")]
-    public GameObject keyErrorPanel = null;
+    [SerializeField] GameObject keyErrorPanel = null;
+    [SerializeField] Text sameKey = null;
 
     private Color32 before = new Color32(39, 171, 249, 255);
     private Color32 selected = new Color32(239, 116, 36, 255);
@@ -56,6 +58,31 @@ public class UIKeyBindSettings : MonoBehaviour
                 Event e = Event.current;
                 if (e.isKey)
                 {
+                    KeyCode ourKeyCode = e.keyCode;
+
+                    //중복키 입력 시 아래 alreadyUsedList에 추가
+                    List<string> alreadyUsedList = new List<string>();
+                    foreach (var item in keys)
+                    {
+                        if (item.Value == ourKeyCode && inputEnabled == true)
+                        {
+                            alreadyUsedList.Add(item.Key);
+                            sameKey.text = item.Value.ToString();
+                            inputEnabled = false;
+                        }
+                    }
+                    //해당 중복키 입력 시, 화면에 "?"가 출력
+                    if (alreadyUsedList.Count > 0)
+                    {
+                        foreach (var alreadyUsedItem in alreadyUsedList)
+                        {
+                            //keys[alreadyUsedItem] = KeyCode.Question;
+                            alreadyUsedList.Remove(alreadyUsedItem);
+                            keyErrorPanel.SetActive(true);
+                        }
+                    }
+
+
                     keys[currentKey.name] = e.keyCode;
                     currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
                     currentKey.GetComponent<Image>().color = before;
@@ -134,5 +161,12 @@ public class UIKeyBindSettings : MonoBehaviour
         {
             Debug.Log("UIKeyBindSettiongs.ResetKeys Error");
         }
+    }
+
+    //중복키 입력 시 발동 이벤트
+    public void OnKeyBack()
+    {
+        keyErrorPanel.SetActive(false);
+        inputEnabled = true;
     }
 }

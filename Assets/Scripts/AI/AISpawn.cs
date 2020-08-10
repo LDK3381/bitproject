@@ -53,7 +53,6 @@ public class AISpawn : MonoBehaviour
     {
         try
         {
-            //큐라는 저장공간은 이 스크립트가 들어간 빈 오브젝트가 됨.
             GameObject e_object = Instantiate(enemy, this.gameObject.transform);
             e_object.SetActive(false);
             return e_object;
@@ -65,7 +64,7 @@ public class AISpawn : MonoBehaviour
         }
     }
 
-    //적이 파괴되었을 때 큐에 저장(비활성화)
+    //적이 파괴되었을 때 큐에 다시 저장(비활성화)
     public void InsertQueue(GameObject e_object)
     {
         try
@@ -132,7 +131,7 @@ public class AISpawn : MonoBehaviour
             spawnedEnemy.transform.position = point;
 
             NavMeshAgent agent = spawnedEnemy.GetComponentInChildren<NavMeshAgent>();
-            agent.Warp(spawnedEnemy.transform.position);  //navmeshAgent가 오브젝트랑 떨어져있지 않도록, 자동으로 오브젝트 위치로 워프시킴
+            agent.Warp(spawnedEnemy.transform.position);  //NavMeshAgent가 오브젝트랑 떨어져있지 않도록, 자동으로 오브젝트 위치로 워프시킴
 
             spawnedEnemy.GetComponent<AIController>().enabled = true;
             spawnedEnemy.GetComponent<AITurretController>().enabled = true;

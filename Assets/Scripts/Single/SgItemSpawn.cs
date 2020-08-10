@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SgItemSpawn : MonoBehaviour
 {
@@ -8,15 +9,12 @@ public class SgItemSpawn : MonoBehaviour
     public static SgItemSpawn instance;
     public Queue<GameObject> i_queue = new Queue<GameObject>();
 
-    AISpawn spawn;
-
     // Start is called before the first frame update
     void Start()
     {
         try
         {
             instance = this;
-            spawn = FindObjectOfType<AISpawn>();
 
             CreateQueue();
         }
@@ -89,10 +87,33 @@ public class SgItemSpawn : MonoBehaviour
             if (i_queue.Count != 0)
             {
                 GameObject t_object = GetQueue();
-                Vector3 point = spawn.GetRandomPoint();     //아이템 스폰지점은 ai와 동일하게 navmesh 범위 안
+                Vector3 point = GetRandomPoint();     //아이템 스폰지점은 ai와 동일하게 navmesh 범위 안
                 t_object.transform.position = point;
             }
             yield return new WaitForSeconds(1f);
+        }
+    }
+
+    //Navmesh 범위 내에서 스폰할 랜덤 위치값 가져오기
+    public Vector3 GetRandomPoint()
+    {
+        try
+        {
+            Vector3 RandomPosition = Random.insideUnitSphere * 10f;
+            NavMeshHit hit;
+
+            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
+
+            //타일 정중앙에 정확히 스폰하기 위해 위치값 조정
+            Vector3 spawnPoint =
+                new Vector3((float)(hit.position.x - hit.position.x % 0.375), hit.position.y, (float)(hit.position.z - hit.position.z % 0.375));
+
+            return spawnPoint;
+        }
+        catch
+        {
+            Debug.Log("SgItemSpawn.GetRandomPoint Error");
+            return new Vector3();
         }
     }
 }

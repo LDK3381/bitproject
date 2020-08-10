@@ -105,7 +105,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.19
+    agentRadius: 0.2
     agentHeight: 2
     agentSlope: 0
     agentClimb: 0
@@ -113,7 +113,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.06333333
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -3235,7 +3235,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.4813e-40, y: 3.59e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 9.04e-43, y: 5.1583306e-21, z: 9.04e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -7090,7 +7090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393569976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.7785554, y: 1.1355019, z: 6.8124003}
+  m_LocalPosition: {x: 7.43, y: 2.39, z: 5.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10081,6 +10081,11 @@ PrefabInstance:
       propertyPath: txt_Bomb
       value: 
       objectReference: {fileID: 1563069122}
+    - target: {fileID: 1931900453403526935, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: bombCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6119737242763030520, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: txt_NomalGunBullet

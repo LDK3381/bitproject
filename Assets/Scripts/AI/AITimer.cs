@@ -9,7 +9,7 @@ public class AITimer : MonoBehaviour
     [SerializeField] Text txt_Timer = null;
     [SerializeField] float startTime = 90f;         //시작은 1:30
     [SerializeField] float currentTime = 0f;        //현재 시간
-    [SerializeField] float wastedTime = 0;          //버틴 시간
+    [SerializeField] float wastedTime = 0f;         //버틴 시간
     [SerializeField] GameObject losePanel = null;   //패배 화면
 
     private bool flag = true;
