@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8359114386179412738}
   - component: {fileID: 2827419807448510459}
   - component: {fileID: 1856006389113044206}
-  - component: {fileID: 7303955208250958612}
   - component: {fileID: -1646083918904958936}
   - component: {fileID: -6941071702006799663}
+  - component: {fileID: 8980265973572723484}
   m_Layer: 0
   m_Name: Block_Sand2
   m_TagString: Wall
@@ -95,21 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25400004, y: 0.25400007, z: 0.25400007}
   m_Center: {x: 0.000000014901161, y: 0.127, z: -0.000000037252903}
---- !u!114 &7303955208250958612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540144477868464935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90cdab412131f34abbb9b8184e54f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cliffCollider: {fileID: 883357256685865225, guid: 7b81e930258b2634b9d110cdd3e4b2af,
-    type: 3}
-  enemy: {fileID: 2016376087161713090, guid: 4ec91e4d0cda1ce489d7984bda4cf35d, type: 3}
 --- !u!111 &-1646083918904958936
 Animation:
   m_ObjectHideFlags: 0
@@ -142,3 +127,17 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0.127, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &8980265973572723484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540144477868464935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42f515ace2174b4ebe5e5396cde267c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cliffCollider: {fileID: 883357256685865225, guid: 7b81e930258b2634b9d110cdd3e4b2af,
+    type: 3}

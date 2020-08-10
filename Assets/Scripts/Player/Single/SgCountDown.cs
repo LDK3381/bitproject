@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountDown : MonoBehaviour
+public class SgCountDown : MonoBehaviour
 {
     [SerializeField] private GameObject numImg1     = null;
     [SerializeField] private GameObject numImg2     = null;

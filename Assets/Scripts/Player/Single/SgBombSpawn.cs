@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
-public class BombSpawn : MonoBehaviour
+public class SgBombSpawn : MonoBehaviour
 {
     [Header("현재 장착된 총")]
     public Transform throwPoint = null;

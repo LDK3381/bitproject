@@ -12,6 +12,13 @@ public class MtPickUpItem : MonoBehaviour
     const int NOMAL_GUN = 0;
     const int SHOT_GUN = 1;
 
+    ItemSpawn itemSpawn;
+
+    private void Start()
+    {
+        itemSpawn = FindObjectOfType<ItemSpawn>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         try
@@ -32,7 +39,7 @@ public class MtPickUpItem : MonoBehaviour
                 }
                 string message = "+" + extra;
                 //FloatingTextManager.instance.CreateFloatingText(other.transform.position, message);
-                Destroy(other.gameObject);
+                itemSpawn.InsertQueue(other.gameObject);    //아이템을 먹으면 큐에서 다시 비활성화 처리(Destroy X)
             }
         }
         catch

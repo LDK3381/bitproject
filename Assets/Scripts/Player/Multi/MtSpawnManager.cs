@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class SpawnManager : MonoBehaviourPun
+public class MtSpawnManager : MonoBehaviourPun
 { 
     public GameObject inCanvace;    //게임내 켐퍼스
     public GameObject Choice;       //캐릭터 선택 UI

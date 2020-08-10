@@ -4,13 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.AI;
 
-public class SgItemSpawn : MonoBehaviourPun
+public class ItemSpawn : MonoBehaviourPun
 {
     public GameObject[] itemList;   //하트, 기본총알, 샷건총알, 폭탄 
-    public static SgItemSpawn instance;
+    public static ItemSpawn instance;
     public Queue<GameObject> i_queue = new Queue<GameObject>();
 
-    AISpawn spawn;
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +17,17 @@ public class SgItemSpawn : MonoBehaviourPun
         try
         {
             instance = this;
-            spawn = FindObjectOfType<AISpawn>();
-
             CreateQueue();
         }
         catch
         {
             Debug.Log("SgItemSpawn.Start Error");
         }
+    }
+
+    void Update()
+    {
+        
     }
 
     private void CreateQueue()
@@ -93,6 +95,10 @@ public class SgItemSpawn : MonoBehaviourPun
                 GameObject t_object = GetQueue();
                 Vector3 point = GetRandomPoint();     //아이템 스폰지점은 ai와 동일하게 navmesh 범위 안
                 t_object.transform.position = point;
+
+                NavMeshAgent agent = t_object.GetComponent<NavMeshAgent>();
+                agent.Warp(t_object.transform.position);  //NavMeshAgent가 오브젝트랑 떨어져있지 않도록, 자동으로 오브젝트 위치로 워프시킴
+                agent.updateUpAxis = false;     //NavMeshAgent가 적용된 오브젝트를 옆으로 누울 수 있게 함
             }
             yield return new WaitForSeconds(1f);
         }
@@ -103,10 +109,10 @@ public class SgItemSpawn : MonoBehaviourPun
     {
         try
         {
-            Vector3 RandomPosition = Random.insideUnitSphere * 10f;
+            Vector3 RandomPosition = Random.insideUnitSphere * 15f;
             NavMeshHit hit;
 
-            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 15f, NavMesh.AllAreas);
+            NavMesh.SamplePosition(transform.position + RandomPosition, out hit, 20f, NavMesh.AllAreas);
 
             //타일 정중앙에 정확히 스폰하기 위해 위치값 조정
             Vector3 spawnPoint =

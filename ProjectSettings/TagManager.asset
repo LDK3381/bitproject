@@ -25,6 +25,7 @@ TagManager:
   - Enemy
   - CliffCollider
   - OutsideCliffCollider
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -46,7 +47,7 @@ TagManager:
   - OutsideCliffCollider
   - Item
   - TombStone
-  - 
+  - Turret
   - 
   - 
   - 

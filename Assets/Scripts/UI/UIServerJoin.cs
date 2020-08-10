@@ -15,7 +15,7 @@ public class UIServerJoin : MonoBehaviourPunCallbacks
     public Text nowInfoText;
     public Text totalInfoText;
 
-    const int MAXIMUM = 4;
+    const int MAXIMUM = 2;
 
     private void Start()
     {

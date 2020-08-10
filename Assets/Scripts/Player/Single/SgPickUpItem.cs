@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpItem : MonoBehaviour
+public class SgPickUpItem : MonoBehaviour
 {
     [SerializeField] Gun[] guns = null;
     const int NOMAL_GUN = 0;
@@ -10,13 +10,13 @@ public class PickUpItem : MonoBehaviour
 
     [SerializeField] private SgGunController     theGC  = null;
     [SerializeField] private SgShotGunController theSGC = null;
-    [SerializeField] private BombSpawn           theBS  = null;
+    [SerializeField] private SgBombSpawn           theBS  = null;
 
-    SgItemSpawn spawn;
+    ItemSpawn spawn;
 
     void Start()
     {
-        spawn = FindObjectOfType<SgItemSpawn>();
+        spawn = FindObjectOfType<ItemSpawn>();
     }
 
     // 아이템과 충돌
@@ -55,7 +55,6 @@ public class PickUpItem : MonoBehaviour
         {
             SoundManager.instance.PlaySE("Score");
             extra = item.itemScore;
-            ScoreManager.extraScore += extra;
         }
         catch
         {

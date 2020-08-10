@@ -117,7 +117,7 @@ public class SgPauseManager : MonoBehaviour
             sealGunControll.GetComponent<SgGunController>().enabled = true;
             sealControll.GetComponent<SgPlayerController>().enabled = true;
             sealWeapon.GetComponent<SgWeaponManager>().enabled = true;
-            sealBomb.GetComponent<BombSpawn>().enabled = true;
+            sealBomb.GetComponent<SgBombSpawn>().enabled = true;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = true;
             sealAITimer.GetComponent<AITimer>().enabled = true;
             sealSpawn.GetComponent<AISpawn>().enabled = true;
@@ -137,7 +137,7 @@ public class SgPauseManager : MonoBehaviour
             sealGunControll.GetComponent<SgGunController>().enabled = false;
             sealControll.GetComponent<SgPlayerController>().enabled = false;
             sealWeapon.GetComponent<SgWeaponManager>().enabled = false;
-            sealBomb.GetComponent<BombSpawn>().enabled = false;
+            sealBomb.GetComponent<SgBombSpawn>().enabled = false;
             sealMouseRotate.GetComponent<SgMouseRotate>().enabled = false;
             sealAITimer.GetComponent<AITimer>().enabled = false;
             sealSpawn.GetComponent<AISpawn>().enabled = false;
