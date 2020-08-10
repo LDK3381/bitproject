@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using UnityEngine.AI;
 
-public class SgItemSpawn : MonoBehaviour
+public class SgItemSpawn : MonoBehaviourPun
 {
     public GameObject[] itemList;   //하트, 기본총알, 샷건총알, 폭탄 
     public static SgItemSpawn instance;
     public Queue<GameObject> i_queue = new Queue<GameObject>();
+
+    AISpawn spawn;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,7 @@ public class SgItemSpawn : MonoBehaviour
         try
         {
             instance = this;
+            spawn = FindObjectOfType<AISpawn>();
 
             CreateQueue();
         }
