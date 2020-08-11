@@ -69,7 +69,7 @@ public class AITimer : MonoBehaviour
     {
         try
         {
-            currentTime += 5f;
+            currentTime += 10f;
             UpdateCurrentTime(currentTime);
         }
         catch
@@ -83,7 +83,7 @@ public class AITimer : MonoBehaviour
     {
         try
         {
-            currentTime += 10f;
+            currentTime += 20f;
             UpdateCurrentTime(currentTime);
         }
         catch
@@ -97,7 +97,7 @@ public class AITimer : MonoBehaviour
     {
         try
         {
-            currentTime -= 5f;
+            currentTime -= 7f;
             UpdateCurrentTime(currentTime);
         }
         catch

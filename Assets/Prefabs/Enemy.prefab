@@ -71,7 +71,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3206881260545939343}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d66da7701a83d0349bcb0f3ac825b7c4, type: 3}
   m_Name: 
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Bits: 1024
   tr_spinSpeed: 270
   tr_fireRate: 1
-  tr_fireSpeed: 8
+  tr_fireSpeed: 5
   tr_Bullet_Prefab: {fileID: 6108397999069690865, guid: 203fe5ddaabbc5b46866f13406bc9af8,
     type: 3}
   tr_MuzzleFlash: {fileID: 6209757634800688134}
@@ -94,13 +94,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3206881260545939343}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d0781117e8f5d418cf2f975cc4e555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aiPlayer: {fileID: 3307526676675205547}
-  Move: 0.375
 --- !u!1 &3307526676675205547
 GameObject:
   m_ObjectHideFlags: 0
