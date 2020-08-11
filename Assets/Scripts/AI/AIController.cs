@@ -10,8 +10,8 @@ public class AIController : MonoBehaviour
     RaycastHit hit = new RaycastHit();
     public GameObject aiPlayer;  //Ray가 나오는 위치(플레이어 프리펩)
 
-    public float Move = 0.375f;       //AI의 이동거리
-    float rayLength = 0.5f;          //Ray와 장애물 간 판정거리
+    private float Move = 0.375f;       //AI의 이동거리
+    float rayLength = 0.45f;          //Ray와 장애물 간 판정거리
 
     public void Start()
     {
@@ -166,7 +166,7 @@ public class AIController : MonoBehaviour
             if (Physics.Raycast(forwardRay, out hit, rayLength))
             {
                 if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
-                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
+                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider" || hit.collider.tag == "Turret")
                 {
                     return false;
                 }
@@ -188,7 +188,7 @@ public class AIController : MonoBehaviour
             if (Physics.Raycast(leftRay, out hit, rayLength))
             {
                 if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
-                     hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
+                     hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider" || hit.collider.tag == "Turret")
                 {
                     return false;
                 }
@@ -210,7 +210,7 @@ public class AIController : MonoBehaviour
             if (Physics.Raycast(backwardRay, out hit, rayLength))
             { 
                 if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
-                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
+                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider" || hit.collider.tag == "Turret")
                 {
                     return false;
                 }
@@ -232,7 +232,7 @@ public class AIController : MonoBehaviour
             if (Physics.Raycast(rightRay, out hit, rayLength))
             {
                 if (hit.collider.tag == "Wall" || hit.collider.tag == "BreakableWall" || hit.collider.tag == "OutsideCliffCollider" ||
-                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider")
+                    hit.collider.tag == "Player" || hit.collider.tag == "Enemy" || hit.collider.tag == "CliffCollider" || hit.collider.tag == "Turret")
                 {
                     return false;
                 }

@@ -17,7 +17,7 @@ public class SgBombSpawn : MonoBehaviour
     
     [SerializeField] Text txt_Bomb = null;
 
-    [SerializeField] int bombCount = 1;
+    [SerializeField] int bombCount = 5;
 
     void Start()
     {

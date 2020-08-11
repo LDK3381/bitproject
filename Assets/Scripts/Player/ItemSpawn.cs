@@ -25,11 +25,6 @@ public class ItemSpawn : MonoBehaviourPun
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     private void CreateQueue()
     {
         try

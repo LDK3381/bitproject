@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using Photon.Pun;
 
-public class CarmeraSetup : MonoBehaviourPun
+public class MtCameraSetup : MonoBehaviourPun
 {
     void Start()
     {

@@ -2749,7 +2749,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.177e-42, y: 0, z: 0, w: 2.1e-43}
+  m_BoundingSphereOverride: {x: 2.87e-42, y: 4.664e-42, z: 2.3318e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -9122,6 +9122,11 @@ PrefabInstance:
       propertyPath: txt_NomalGunBullet
       value: 
       objectReference: {fileID: 622795174}
+    - target: {fileID: 4846524464981243410, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
+        type: 3}
+      propertyPath: txt_Bomb
+      value: 
+      objectReference: {fileID: 1563069122}
     - target: {fileID: 6119737242763030520, guid: 0eeb42f8dbbacf54a8d2565276db6cd9,
         type: 3}
       propertyPath: txt_NomalGunBullet
