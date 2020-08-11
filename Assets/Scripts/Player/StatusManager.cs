@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;                   // UI 사용에 필요한 네임스페이스
 using Photon.Pun;
 
-public class StatusManager : MonoBehaviourPun, IPunObservable
+public class StatusManager : MonoBehaviourPun
 {
     [SerializeField] int maxHp = 0;         // 최대 체력
     int currentHp = 0;                      // 현재 체력
@@ -24,8 +24,6 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
     [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
 
     [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
-
-    public int DeadPlayerCount;
 
     private bool isLife;
 
@@ -110,8 +108,6 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
 
         //losepanel 실행
         losePanel.SetActive(true);
-
-        DeadPlayerCount++;
     }
     #endregion
 
@@ -148,9 +144,6 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
             Quaternion.Euler(0, 90, 0));
 
         GameObject.Find("UI").transform.Find("Canvas").transform.Find("LosePanel").transform.gameObject.SetActive(!isLife);
-
-        DeadPlayerCount++;
-        Debug.Log(DeadPlayerCount);
     }
     #endregion
 
@@ -184,17 +177,5 @@ public class StatusManager : MonoBehaviourPun, IPunObservable
             MtPlayerDead();
         else
             SgPlayerDead();
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            stream.SendNext(DeadPlayerCount);
-        }
-        else
-        {
-            DeadPlayerCount = (int)stream.ReceiveNext();
-        }
     }
 }
