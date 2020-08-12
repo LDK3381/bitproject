@@ -6,8 +6,8 @@ using Photon.Pun;
 
 public class StatusManager : MonoBehaviourPun
 {
-    [SerializeField] int maxHp = 0;         // 최대 체력
-    int currentHp = 0;                      // 현재 체력
+    [SerializeField] int maxHp = 3;         // 최대 체력
+    public int currentHp;                      // 현재 체력
 
     [SerializeField] Image[] img_HpArray = null;   // 체력 UI
     [SerializeField] Image[] img_BigHpArray = null;   // 체력 UI
@@ -22,15 +22,11 @@ public class StatusManager : MonoBehaviourPun
 
     [SerializeField] GameObject playerPosition = null;  //패배나 승리 시 플레이어 위치 확인
     [SerializeField] SgPauseManager sealKey = null;     //패배나 승리 시 플레이어 움직임 제한
-
+    public MtSealKey mtSealKey;
     [SerializeField] GameObject losePanel = null;   //패배 패널 불러오기 위해 필요
-
-    private bool isLife;
 
     void Start()
     {
-        isLife = true;
-
         #region 체력을 최대 체력으로
         currentHp = maxHp;
         HpUpdate();
@@ -97,6 +93,7 @@ public class StatusManager : MonoBehaviourPun
     // 플레이어 사망
     public void SgPlayerDead()
     {
+        mtSealKey = null;
         gameObject.SetActive(false);
 
         //키보드, 마우스 잠금
@@ -122,7 +119,6 @@ public class StatusManager : MonoBehaviourPun
 
             if (currentHp <= 0)
             {
-                isLife = false;
                 MtPlayerDead();
                 return;
             }
@@ -135,6 +131,7 @@ public class StatusManager : MonoBehaviourPun
     // 플레이어 사망
     public void MtPlayerDead()
     {
+        mtSealKey.SealKey();
         sealKey = null;
         losePanel = null;
         gameObject.SetActive(false);
@@ -142,8 +139,6 @@ public class StatusManager : MonoBehaviourPun
         Instantiate(obj,
             new Vector3(playerPosition.transform.position.x, playerPosition.transform.position.y + 2, playerPosition.transform.position.z),
             Quaternion.Euler(0, 90, 0));
-
-        GameObject.Find("UI").transform.Find("Canvas").transform.Find("LosePanel").transform.gameObject.SetActive(!isLife);
     }
     #endregion
 

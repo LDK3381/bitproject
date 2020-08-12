@@ -15,12 +15,12 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
     public GameObject BulletIMG;            //소지하고있는 총알
     public GameObject BigHp;                //체력
     public GameObject playerRay;
-    public StatusManager statuManager;
+
 
     public float Move = 0.375f;
     public float move_speed = 0.375f;    //이동 거리
 
-    MtFinal final;
+
     NoteTimingManager noteTimingManager;
 
     Ray forwardRay, LeftRay, BackwardRay, RightRay, UnderRay;
@@ -32,7 +32,7 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
     private void Start()
     {
-        final = FindObjectOfType<MtFinal>();
+
         noteTimingManager = FindObjectOfType<NoteTimingManager>();
         BulletIMG.SetActive(false);
         BigHp.SetActive(false);
@@ -68,9 +68,6 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
 
                 //무기선택 및 발사
                 ChoiceAndFire(previousSelectedWeapon);
-
-                //승리 체크
-                WinCheck();
             }
             else
             {
@@ -280,15 +277,6 @@ public class MtPlayerController : MonoBehaviourPun, IPunObservable
             default:
                 break;
         }
-    }
-
-    //승리체크
-    private void WinCheck()
-    {
-        if (PhotonNetwork.PlayerList.Length == 1)
-            final.winPanel.SetActive(true);
-        else
-            final.winPanel.SetActive(false);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -12,6 +12,7 @@ public class FireGun_Bullet : MonoBehaviourPun
         try
         {
             flag = PlayerInRoom();
+            Destroy(gameObject, 3.0f);
         }
         catch (System.Exception ex)
         {

@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306708756996549762}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.068000026, z: 0.13600002}
-  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.07, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3757644832848382873}
   m_Father: {fileID: 6743292464399547131}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494204199332763737}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2453594, y: 0.11999996, z: 0.009999994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3757644832848382873}
@@ -5691,6 +5691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 3
+  currentHp: 0
   img_HpArray:
   - {fileID: 210375657752180670}
   - {fileID: 210375658371517687}
@@ -5705,6 +5706,7 @@ MonoBehaviour:
   mesh_PlayerGraphics: {fileID: 3073474471719499191}
   playerPosition: {fileID: 5310794324131225143}
   sealKey: {fileID: 0}
+  mtSealKey: {fileID: 5087237902139349255}
   losePanel: {fileID: 0}
 --- !u!114 &3798807949287642097
 MonoBehaviour:
@@ -5838,14 +5840,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5424653576118664120}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.24535938, y: 0.120000005, z: 0.00999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7098742721214401566}
   m_Father: {fileID: 6533178663208162890}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &301014071053354677
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -20289,6 +20291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401139091012762060}
   - component: {fileID: 8694835781010410004}
+  - component: {fileID: 5087237902139349255}
   - component: {fileID: -1117345401798927993}
   - component: {fileID: 9058267451233963172}
   m_Layer: 0
@@ -20335,9 +20338,26 @@ MonoBehaviour:
   BulletIMG: {fileID: 512082709993348285}
   BigHp: {fileID: 4360957651921405164}
   playerRay: {fileID: 2747153794515956767}
-  statuManager: {fileID: 0}
   Move: 0.375
   move_speed: 10
+--- !u!114 &5087237902139349255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240582939267945590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a509965bdacfd498ec255cd4fc4401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PV: {fileID: 3798807949287642097}
+  Pcontrol: {fileID: 7240582939267945590}
+  Gcontrol: {fileID: 4708163408482546731}
+  WeaponM: {fileID: 5399388145082672906}
+  BombS: {fileID: 4295920130833318098}
+  MouseR: {fileID: 5310794324131225143}
 --- !u!114 &-1117345401798927993
 MonoBehaviour:
   m_ObjectHideFlags: 0
