@@ -37,27 +37,27 @@ TagManager:
   - 
   - whatStopsMovement
   - whatCanMovement
-  - Player
+  - Player_Single
   - Bomb
   - Ground
   - CliffCollider
   - Enemy
-  - Bullet
+  - Bullet_Player
   - Bullet_Enemy
   - OutsideCliffCollider
   - Item
   - TombStone
   - Turret
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UnBreakableWall
+  - BreakableWall
+  - Bullet_Kitchen
+  - Bullet_RainGuw
+  - Bullet_Gurow
+  - Bullet_PapaGu
+  - Player_Kitchen
+  - Player_Gurow
+  - Player_PapaGu
+  - Player_RainGuw
   - 
   m_SortingLayers:
   - name: Default

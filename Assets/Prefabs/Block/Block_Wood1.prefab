@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5087208448182021455}
   - component: {fileID: 4746768125916374698}
   - component: {fileID: 2557985716441895504}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Block_Wood1
   m_TagString: BreakableWall
   m_Icon: {fileID: 0}

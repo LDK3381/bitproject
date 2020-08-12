@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class BombEvent : MonoBehaviourPun
 {
-    private float obRayLength = 0.5f;
+    private float obRayLength = 0.45f;
     private float waitTime = 0f;
     public float explosionTime = 2f;  //폭파하기까지 걸리는 시간
 
@@ -78,151 +78,125 @@ public class BombEvent : MonoBehaviourPun
             {
                 GameObject effect = Instantiate(ps_BombExplode, transform.position, transform.rotation);
 
-                //윗쪽 광선 범위에 장애물이 들어온 경우,
-                if (Physics.Raycast(upRay, out hit, obRayLength))
+                //UnBreakableWall 레이어만 제외하고 나머지 충돌 체크
+                int _layerMask = (-1) -(1 << LayerMask.NameToLayer("UnBreakableWall"));
+
+                if (Physics.Raycast(upRay, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                //아랫쪽 광선 범위에 장애물이 들어온 경우,
-                if (Physics.Raycast(downRay, out hit, obRayLength))
+                if (Physics.Raycast(downRay, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                //왼쪽 광선 범위에 장애물이 들어온 경우,
-                if (Physics.Raycast(leftRay, out hit, obRayLength))
+                if (Physics.Raycast(leftRay, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                //오른쪽 광선 범위에 장애물이 들어온 경우,
-                if (Physics.Raycast(rightRay, out hit, obRayLength))
+                if (Physics.Raycast(rightRay, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
 
-                //대각선 광선 범위에 장애물이 들어온 경우,
-                if (Physics.Raycast(upRay1, out hit, obRayLength))
+                if (Physics.Raycast(upRay1, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                if (Physics.Raycast(downRay1, out hit, obRayLength))
+                if (Physics.Raycast(downRay1, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                if (Physics.Raycast(leftRay1, out hit, obRayLength))
+                if (Physics.Raycast(leftRay1, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
                     }
                 }
-                if (Physics.Raycast(rightRay1, out hit, obRayLength))
+                if (Physics.Raycast(rightRay1, out hit, obRayLength, _layerMask))
                 {
-                    //폭탄 범위 내 벽이 있으면 벽 폭파
                     if (hit.collider.tag == "BreakableWall")
                     {
                         hit.transform.GetComponent<WallEvent>().Explode();
                     }
-                    //폭탄 범위 내 캐릭터가 있으면 캐릭터 데미지 주기
                     if (hit.collider.tag == "Player")
                     {
                         CheckInRoom();
                     }
-                    //폭탄 범위 내 AI가 있으면 AI한테 데미지 주기
                     if (hit.collider.tag == "Enemy")
                     {
                         hit.transform.GetComponent<AIDamageController>().AIDamagedByBomb();
@@ -251,7 +225,6 @@ public class BombEvent : MonoBehaviourPun
             else
             {
                 hit.transform.GetComponent<StatusManager>().SgDecreaseHp(damage);
-                timer.UpdateByAIBomb(); //적의 폭탄에 맞으면 제한시간 감소
             }
         }
         catch

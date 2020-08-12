@@ -14,7 +14,7 @@ public class MtBombSpawn : MonoBehaviourPun
     public Text txt_Bomb = null;
 
     private GameObject bombInstance = null;
-    private int bombCount = 1;
+    private int bombCount = 3;
 
     void Start()
     {

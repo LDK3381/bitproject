@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3693835044152842128}
   - component: {fileID: 2409849178986031438}
   - component: {fileID: 4760527561459293943}
-  m_Layer: 16
-  m_Name: Bullet_Enemy
+  m_Layer: 25
+  m_Name: Bullet_Player 3
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6108397999069690865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08716154, y: 0.48648793, z: 1.151}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 5906902825350208793}
@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_RicochetEffect: {fileID: 100004, guid: b46890100828db6429ff69c322b45893, type: 3}
-  damage: 1
   sound_Effect: NomalGun_Effect
 --- !u!1 &6776655975213359088
 GameObject:
@@ -137,7 +136,7 @@ GameObject:
   - component: {fileID: 5906902825350208793}
   - component: {fileID: 3276651669737668646}
   - component: {fileID: 3085003286758383809}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
