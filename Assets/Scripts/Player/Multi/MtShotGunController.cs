@@ -13,7 +13,6 @@ public class MtShotGunController : MonoBehaviourPun
     public Text txt_ShotGunBullet;
 
     private float FireRate;
-    private Transform playerTransform = null;
 
     void Start()
     {
