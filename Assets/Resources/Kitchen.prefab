@@ -11626,6 +11626,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4083345082331771055}
     m_Modifications:
+    - target: {fileID: 100002, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 7e9c50938e32351438a7df9ccad2f2a5, type: 3}
       propertyPath: m_Name
       value: NomalGun_Light
