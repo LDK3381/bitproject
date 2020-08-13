@@ -292,6 +292,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChoiceButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2104180408005472411, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1392199938}
+    - target: {fileID: 2104180408005472411, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetBGMVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 2104180408220462168, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -301,6 +311,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104180408322603343, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1392199938}
+    - target: {fileID: 2104180408322603343, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSFXVolume
       objectReference: {fileID: 0}
     - target: {fileID: 2104180408407523335, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
@@ -336,6 +356,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104180408771085615, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1392199938}
+    - target: {fileID: 2104180408771085615, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMasterVolume
       objectReference: {fileID: 0}
     - target: {fileID: 2104180408933810170, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
         type: 3}
@@ -684,7 +714,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 9.404242e-38, z: 7.9639e-41, w: 8.071e-42}
+  m_BoundingSphereOverride: {x: 1e-45, y: 2.3265834e-35, z: 0, w: 4.15e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -12,7 +12,6 @@ TagManager:
   - HP
   - Ground
   - Note
-  - Mine
   - Item
   - RainGuw
   - PapaGu
@@ -26,6 +25,7 @@ TagManager:
   - CliffCollider
   - OutsideCliffCollider
   - Turret
+  - FireGun
   layers:
   - Default
   - TransparentFX

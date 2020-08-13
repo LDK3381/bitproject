@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7789440906300251042}
   - component: {fileID: -2024986582799131568}
-  m_Layer: 0
-  m_Name: FireGun
-  m_TagString: Untagged
+  m_Layer: 15
+  m_Name: FireGun_Player
+  m_TagString: FireGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,9 +55,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7789440906300251042}
     m_Modifications:
+    - target: {fileID: 100000, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
       propertyPath: m_Name
       value: FireGun_Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118,6 +126,10 @@ PrefabInstance:
     - target: {fileID: 19800002, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
       propertyPath: lengthInSec
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 2147482423
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b8be6da4d86ea4fb5bb4e73ee18fcc, type: 3}
