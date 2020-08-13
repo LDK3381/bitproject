@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class NoteFlame : MonoBehaviour
 {
     [SerializeField] SoundManager soundManager = null;
-    [SerializeField] AIController aiController = null;
 
     private bool musicStart = false;
     private Scene currentScene;
@@ -36,21 +35,7 @@ public class NoteFlame : MonoBehaviour
         if (collision.CompareTag("Note"))
         {
             soundManager.PlayBGM();
-            CheckCurrentScene();
             musicStart = true;
-        }
-    }
-
-    public void CheckCurrentScene()
-    {
-        try
-        {
-            if (currentScene.name == "SgMap1" || currentScene.name == "SgMap2")
-                aiController.Start();     //리듬 노드 한 단위마다 ai가 자동으로 한칸씩 랜덤 이동
-        }
-        catch
-        {
-            Debug.Log("NoteFlame.CheckCurrentScene Error");
         }
     }
 }

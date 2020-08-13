@@ -41,6 +41,12 @@ public class SgPauseManager : MonoBehaviour
             fullscreenToggle.onValueChanged.AddListener(delegate { SetFullScreen(); });
 
             pausePanel.SetActive(false);
+
+            //시작할 때 전체화면 여부에 따라 체크여부 결정
+            if (Screen.fullScreen == true)
+                fullscreenToggle.isOn = true;
+            else
+                fullscreenToggle.isOn = false;
         }
         catch
         {

@@ -7,7 +7,6 @@ public class BombEvent : MonoBehaviourPun
 {
     private float obRayLength = 0.45f;
     private float waitTime = 0f;
-    public float explosionTime = 2f;  //폭파하기까지 걸리는 시간
 
     Ray rightRay, leftRay, upRay, downRay, rightRay1, leftRay1, upRay1, downRay1;
     RaycastHit hit = new RaycastHit();
@@ -16,12 +15,6 @@ public class BombEvent : MonoBehaviourPun
 
     public GameObject ps_BombExplode;     //폭탄 폭발 이펙트
 
-    AITimer timer;
-
-    void Start()
-    {
-        timer = FindObjectOfType<AITimer>();
-    }
 
     void Update()
     {
@@ -74,7 +67,7 @@ public class BombEvent : MonoBehaviourPun
             waitTime += Time.deltaTime;
 
             //2초 후에 발동
-            if (waitTime > explosionTime)
+            if (waitTime > 1.95f)
             {
                 GameObject effect = Instantiate(ps_BombExplode, transform.position, transform.rotation);
 

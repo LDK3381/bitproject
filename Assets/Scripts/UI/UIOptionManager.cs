@@ -26,6 +26,12 @@ public class UIOptionManager : MonoBehaviour
                 resolutionDropdown.options.Add(new Dropdown.OptionData(res.ToString()));
             }
             resolutionText.text = resolutions.ToString();
+
+            //시작할 때 전체화면 여부에 따라 체크여부 결정
+            if (Screen.fullScreen == true)
+                fullscreenToggle.isOn = true;
+            else
+                fullscreenToggle.isOn = false;
         }
         catch
         {

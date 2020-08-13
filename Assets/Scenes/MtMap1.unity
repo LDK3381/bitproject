@@ -709,7 +709,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2685,6 +2685,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6173041180108271250, guid: 4dc34ea8fd86d7741a0a3264138f8ee3,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 882181732}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dc34ea8fd86d7741a0a3264138f8ee3, type: 3}
 --- !u!114 &1381657027 stripped
