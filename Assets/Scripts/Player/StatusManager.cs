@@ -169,7 +169,7 @@ public class StatusManager : MonoBehaviourPun
     private void CheckInRoom()
     {
         if (PhotonNetwork.InRoom)
-            MtPlayerDead();
+            MtDecreaseHp(3);
         else
             SgPlayerDead();
     }
