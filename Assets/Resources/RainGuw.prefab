@@ -4960,8 +4960,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6456362, y: 1.1133794, z: 0.8700752}
-  m_Center: {x: 0.0055473447, y: 0.06780034, z: -0.00000023841858}
+  m_Size: {x: 0.73772275, y: 1.0429603, z: 0.8700752}
+  m_Center: {x: 0.0028389096, y: 0.032590806, z: -0.00000023841858}
 --- !u!54 &3989690272264840965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5901,7 +5901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   fireRate: 0.3
-  bulletCount: 5
+  bulletCount: 7
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 7844273444266306988}
   go_Bullet_Prefab: {fileID: 8984373130788316724, guid: 6943a18c5eda45c4cadb2e27642a9ead,

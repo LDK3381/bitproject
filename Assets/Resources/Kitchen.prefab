@@ -343,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   fireRate: 0.3
-  bulletCount: 5
+  bulletCount: 7
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 3440336364751687383}
   go_Bullet_Prefab: {fileID: 8984373130788316724, guid: 522f9f5500a2c804da602abc5a703a4a,

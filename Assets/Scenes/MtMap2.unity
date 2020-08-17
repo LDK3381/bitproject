@@ -714,7 +714,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 2.3265834e-35, z: 0, w: 4.15e-43}
+  m_BoundingSphereOverride: {x: 0, y: -6.774321e-24, z: 6.29e-43, w: -7.5382286e-24}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2002,6 +2002,16 @@ PrefabInstance:
       propertyPath: sfxSlider
       value: 
       objectReference: {fileID: 309408571}
+    - target: {fileID: 544192088259511192, guid: d4bad12e4ad636740b891c43d93b1939,
+        type: 3}
+      propertyPath: bgmSource
+      value: 
+      objectReference: {fileID: 882181734}
+    - target: {fileID: 544192088259511194, guid: d4bad12e4ad636740b891c43d93b1939,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 544192088259511195, guid: d4bad12e4ad636740b891c43d93b1939,
         type: 3}
       propertyPath: m_Name

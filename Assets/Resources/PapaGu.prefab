@@ -5392,7 +5392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   fireRate: 0.3
-  bulletCount: 5
+  bulletCount: 7
   maxBulletCount: 20
   ps_MuzzleFlash: {fileID: 301014071053354677}
   go_Bullet_Prefab: {fileID: 8984373130788316724, guid: 5f236c78678361d4fa7708a7b6a23147,
@@ -5616,8 +5616,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.66696906, y: 0.9154652, z: 0.8889467}
-  m_Center: {x: 0.000017285347, y: -0.04226747, z: 0.024623722}
+  m_Size: {x: 0.7175791, y: 0.9154652, z: 0.8889467}
+  m_Center: {x: -0.0060077906, y: -0.04226747, z: 0.024623722}
 --- !u!54 &1398885651148407617
 Rigidbody:
   m_ObjectHideFlags: 0

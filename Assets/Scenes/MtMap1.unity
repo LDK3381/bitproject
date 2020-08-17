@@ -709,7 +709,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.8e-43, y: 2.2844254e-33, z: 0, w: -13.557877}
+  m_BoundingSphereOverride: {x: 0.03125, y: 0.048828125, z: 0.0234375, w: -0.013671875}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1793,7 +1793,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065968412}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3287,6 +3287,20 @@ PrefabInstance:
       propertyPath: sfxSlider
       value: 
       objectReference: {fileID: 1381657033}
+    - target: {fileID: 544192088259511192, guid: d4bad12e4ad636740b891c43d93b1939,
+        type: 3}
+      propertyPath: bgmSource
+      value: 
+      objectReference: {fileID: 882181734}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 544192088259511194, guid: d4bad12e4ad636740b891c43d93b1939,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 544192088259511195, guid: d4bad12e4ad636740b891c43d93b1939,
         type: 3}
       propertyPath: m_Name
